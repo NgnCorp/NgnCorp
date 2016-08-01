@@ -1,19 +1,23 @@
 package ngn.view;
 
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Офис
  */
 public class Pin {
     
-    private javax.swing.JPanel EnterPin;
-    private javax.swing.JLabel MarkPinCodeEnter;
-    private javax.swing.JLabel MarkPinCodeExit;
-    private javax.swing.JLabel PinAnimate;
-    private javax.swing.JPasswordField PinCode;
-    private javax.swing.JLabel PinCodeText;
+    private final javax.swing.JPanel EnterPin;
+    private final javax.swing.JLabel MarkPinCodeEnter;
+    private final javax.swing.JLabel MarkPinCodeExit;
+    private final javax.swing.JLabel PinAnimate;
+    private final javax.swing.JPasswordField PinCode;
+    private final javax.swing.JLabel PinCodeText;
     
-    public Pin() {
+    public Pin(JFrame JF) {
         EnterPin = new javax.swing.JPanel();
         PinCode = new javax.swing.JPasswordField();
         PinAnimate = new javax.swing.JLabel();
@@ -21,25 +25,15 @@ public class Pin {
         MarkPinCodeExit = new javax.swing.JLabel();
         MarkPinCodeEnter = new javax.swing.JLabel();
         
-        //EnterPin.setBackground(EnterCard.getBackground());
-        EnterPin.setLayout(new java.awt.GridBagLayout());
-
-        PinCode.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        PinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Css.cssPin(EnterPin, PinCode, PinAnimate, PinCodeText, MarkPinCodeExit, MarkPinCodeEnter);
         PinCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //PinCodeActionPerformed(evt);
             }
         });
         
-        //PinCode.addFocusListener(new CustomListener());
-  
-        PinCodeText.setText("<html>Введите PIN-код");
-
-        MarkPinCodeExit.setText("Для ВЫХОДА нажмите звездочку (*) на клавиатуре.");
-
-        MarkPinCodeEnter.setText("Для ПОДТВЕРЖДЕНИЯ pin-кода нажмите решетку (#) на клавиатуре.");
-
-
+        PinAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/secAnim.gif"))); // NOI18N
+        
+        JF.add(EnterPin);
     }
 }
