@@ -28,6 +28,7 @@ public class Css extends Ngn {
     }
     public static void Css(JPanel JP) {
         JP.setSize(windowWidth, windowHeight);
-        JP.setBackground(Color.BLACK);
+        JP.setBackground(new java.awt.Color(204, 0, 0));
     }
+    
 }
