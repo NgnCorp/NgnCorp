@@ -128,4 +128,135 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
     }
+    static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
+        EnterLitrs.setBackground(new Color(204, 0, 0));
+        EnterLitrs.setLayout(new GridBagLayout());
+
+        LitrsInputMark.setFont(new Font("Candara", 0, 36)); // NOI18N
+        LitrsInputMark.setForeground(new Color(255, 255, 255));
+        LitrsInputMark.setHorizontalAlignment(SwingConstants.CENTER);
+        LitrsInputMark.setText("<html><p>Введите количество литров</p>");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.PAGE_END;
+        EnterLitrs.add(LitrsInputMark, gridBagConstraints);
+
+        LogoNgn.setFont(new Font("Candara", 1, 18));
+        LogoNgn.setForeground(new Color(255, 153, 51));
+        LogoNgn.setHorizontalAlignment(SwingConstants.CENTER);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        EnterLitrs.add(LogoNgn, gridBagConstraints);
+
+        LitrsInput.setFont(new Font("Candara", 1, 72)); // NOI18N
+        LitrsInput.setHorizontalAlignment(JTextField.CENTER);
+        LitrsInput.setText("");
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
+        EnterLitrs.add(LitrsInput, gridBagConstraints);
+        LitrsInput.setFocusable(true); //___________________ FALSE !!!!!!
+
+        ClientInfo.setBackground(new Color(204, 0, 0));
+        ClientInfo.setLayout(new GridBagLayout());
+
+        ClientName.setBackground(new Color(204, 0, 0));
+        ClientName.setFont(new Font("Candara", 1, 24)); // NOI18N
+        ClientName.setForeground(new Color(255, 255, 255));
+        ClientName.setHorizontalAlignment(SwingConstants.LEFT);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 10;
+        ClientInfo.add(ClientName, gridBagConstraints);
+
+        ClientLitrs.setBackground(ClientName.getBackground());
+        ClientLitrs.setFont(ClientName.getFont());
+        ClientLitrs.setForeground(ClientName.getForeground());
+        ClientLitrs.setHorizontalAlignment(ClientName.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 10;
+        ClientInfo.add(ClientLitrs, gridBagConstraints);
+
+        ClientCard.setBackground(ClientName.getBackground());
+        ClientCard.setFont(ClientName.getFont());
+        ClientCard.setForeground(ClientName.getForeground());
+        ClientCard.setHorizontalAlignment(ClientName.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 10;
+        ClientInfo.add(ClientCard, gridBagConstraints);
+
+        NameMark.setFont(new Font("Candara", 1, 18)); // NOI18N
+        NameMark.setForeground(new Color(255, 153, 51));
+        NameMark.setText("Владелец карты:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        ClientInfo.add(NameMark, gridBagConstraints);
+
+        LitrsMark.setFont(NameMark.getFont());
+        LitrsMark.setForeground(NameMark.getForeground());
+        LitrsMark.setText("Остаток литров:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        ClientInfo.add(LitrsMark, gridBagConstraints);
+
+        CardMark.setFont(NameMark.getFont());
+        CardMark.setForeground(NameMark.getForeground());
+        CardMark.setText("Номер карты:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        ClientInfo.add(CardMark, gridBagConstraints);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new Insets(10, 10, 10, 10);
+        EnterLitrs.add(ClientInfo, gridBagConstraints);
+
+        ActionEnterText.setFont(new Font("Candara", 1, 24)); // NOI18N
+        ActionEnterText.setForeground(new Color(255, 255, 255));
+        ActionEnterText.setText("Нажмите решетку (#) на клавиатуре для ПУСКА заправки.");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new Insets(10, 0, 10, 0);
+        EnterLitrs.add(ActionEnterText, gridBagConstraints);
+
+        ActionExitText.setBackground(ActionEnterText.getBackground());
+        ActionExitText.setFont(ActionEnterText.getFont());
+        ActionExitText.setForeground(ActionEnterText.getForeground());
+        ActionExitText.setHorizontalAlignment(ActionEnterText.getHorizontalAlignment());
+        ActionExitText.setText("Нажмите звездочку (*) на клавиатуре для ВЫХОДА.");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new Insets(10, 0, 10, 0);
+        EnterLitrs.add(ActionExitText, gridBagConstraints);
+    }
 }

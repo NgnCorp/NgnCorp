@@ -26,6 +26,7 @@ public class Card {
         CardCode.addActionListener((ActionEvent evt) -> {
             //CardCodeActionPerformed(evt);
         });
+        
         CardCode.addFocusListener(new Listener.CheckFocus());
         CardAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
 

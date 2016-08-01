@@ -1,7 +1,7 @@
 package ngn.view;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
+import ngn.controller.Listener;
 
 
 /**
@@ -15,25 +15,41 @@ public class Litrs {
     private final JLabel LitrsInputMark;
     private final JLabel LitrsMark;
     private final JTextField LitrsInput;
+    private final JLabel LogoNgn;
+    private final JPanel ClientInfo;
+    private final JLabel ClientName;
+    private final JLabel ClientCard;
+    private final JLabel NameMark;
+    private final JLabel CardMark;
+    private final JLabel ActionEnterText;
+    private final JLabel ActionExitText;
     
-    public Litrs() {
+    public Litrs(JFrame JF) {
         
-        EnterLitrs = new javax.swing.JPanel();
-        LitrsInputMark = new javax.swing.JLabel();
-        LitrsInput = new javax.swing.JTextField();
-        ClientLitrs = new javax.swing.JLabel();
-        LitrsMark = new javax.swing.JLabel();
-    
-        Css.JPanel(EnterLitrs);
-        EnterLitrs.setLayout(new java.awt.GridBagLayout());
-
-        LitrsInputMark.setText("<html><p>Введите количество литров</p>"); // Контент
-
-        LitrsInput.setText("7");
-        LitrsInput.addActionListener((ActionEvent evt) -> {
-            //LitrsInputActionPerformed(evt);
+        EnterLitrs = new JPanel();
+        LitrsInputMark = new JLabel();
+        LitrsInput = new JTextField();
+        ClientLitrs = new JLabel();
+        LitrsMark = new JLabel();
+        LogoNgn = new JLabel();
+        ClientInfo = new JPanel();
+        ClientName = new JLabel();
+        ClientCard = new JLabel();
+        NameMark = new JLabel();
+        CardMark = new JLabel();
+        ActionEnterText = new JLabel();
+        ActionExitText = new JLabel();
+        
+        Css.cssLitrs(ActionExitText, ActionEnterText, CardMark, NameMark, ClientCard, ClientName, ClientInfo, LogoNgn, EnterLitrs, LitrsInputMark, LitrsInput, ClientLitrs, LitrsMark);
+        LitrsInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //LitrsInputActionPerformed(evt);
+            }
         });
-
-        //LitrsInput.addFocusListener(new CustomListener());
+        
+        LitrsInput.addFocusListener(new Listener.CheckFocus());
+        LogoNgn.setIcon(new ImageIcon(getClass().getResource("/images/logo_ngn.png"))); // NOI18N
+        
+        JF.add(EnterLitrs);
     }
 }
