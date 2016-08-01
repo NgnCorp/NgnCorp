@@ -19,7 +19,7 @@ public class Ngn extends JFrame {
             
             KeyPad KEYPAD = new KeyPad();
             GasStation GASSTATION = new GasStation();
-            ActionListener ACTIONLISTENER = new ActionListener();
+            Listener ACTIONLISTENER = new Listener();
             Timer TIMER = new Timer();
             Variables VARIABLES = new Variables();
             
