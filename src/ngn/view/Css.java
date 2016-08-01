@@ -17,6 +17,10 @@ public class Css extends Ngn {
     public static int windowHeight = screenSize.height;
     public static int windowWidth = screenSize.width;
     
+    public Css() {
+        
+    }
+    
     public static void MainFrame(JFrame MFrame) {
         MFrame.setDefaultCloseOperation(MFrame.EXIT_ON_CLOSE);
 
@@ -26,7 +30,7 @@ public class Css extends Ngn {
         //window.setLocationRelativeTo(null);
         MFrame.setVisible(true);
     }
-    public static void Css(JPanel JP) {
+    public static void JPanel(JPanel JP) {
         JP.setSize(windowWidth, windowHeight);
         JP.setBackground(new Color(204, 0, 0));
     }
