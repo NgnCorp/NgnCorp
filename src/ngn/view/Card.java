@@ -23,12 +23,14 @@ public class Card {
         CardText = new javax.swing.JLabel();
         
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
-        CardCode.addActionListener((ActionEvent evt) -> {
-            //CardCodeActionPerformed(evt);
-        });
-        CardCode.addFocusListener(new Listener.CheckFocus());
         CardAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
 
         JF.add(EnterCard);
+        
+        CardCode.addActionListener((ActionEvent evt) -> {
+            //CardCodeActionPerformed(evt);
+        });
+        
+        CardCode.addFocusListener(new Listener.CheckFocus());
     }
 }

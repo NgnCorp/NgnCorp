@@ -46,6 +46,7 @@ public class Css extends Ngn {
 
         CardCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
         CardCode.setHorizontalAlignment(JTextField.CENTER);
+        CardCode.setName("CardCode");
         
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -69,6 +70,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
     }
+    
     static void cssPin(JPanel EnterPin, JPasswordField PinCode, JLabel PinAnimate, JLabel PinCodeText, JLabel MarkPinCodeExit, JLabel MarkPinCodeEnter) {
         
         EnterPin.setBackground(new Color(204, 0, 0));
