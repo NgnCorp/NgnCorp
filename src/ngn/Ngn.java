@@ -13,11 +13,11 @@ import ngn.model.*;
 public class Ngn extends JFrame {
 
     public static void main(String[] args) {
-        JFrame Ngn = new JFrame();
-        Css.MainFrame(Ngn);
+        JFrame NGN = new JFrame();
+        Css.MainFrame(NGN);
 
         //if (PreLoader.PreLoader()) {
-            Card CARD = new Card(Ngn);
+            Card CARD = new Card(NGN);
             Pin PIN = new Pin();
             Litrs LITRS = new Litrs();
         //}
