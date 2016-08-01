@@ -24,7 +24,7 @@ public class Litrs {
         ClientLitrs = new javax.swing.JLabel();
         LitrsMark = new javax.swing.JLabel();
     
-        Css.Css(EnterLitrs);
+        Css.JPanel(EnterLitrs);
         EnterLitrs.setLayout(new java.awt.GridBagLayout());
 
         LitrsInputMark.setText("<html><p>Введите количество литров</p>"); // Контент
