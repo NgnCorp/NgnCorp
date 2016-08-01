@@ -26,6 +26,8 @@ public class Pin {
         MarkPinCodeEnter = new javax.swing.JLabel();
         
         Css.cssPin(EnterPin, PinCode, PinAnimate, PinCodeText, MarkPinCodeExit, MarkPinCodeEnter);
+        PinAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/secAnim.gif"))); // NOI18N
+        
         PinCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //PinCodeActionPerformed(evt);
@@ -33,7 +35,6 @@ public class Pin {
         });
         
         PinCode.addFocusListener(new Listener.CheckFocus());
-        PinAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/secAnim.gif"))); // NOI18N
         
         JF.add(EnterPin);
     }
