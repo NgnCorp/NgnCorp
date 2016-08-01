@@ -2,7 +2,6 @@ package ngn.view;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
-import ngn.view.Css;
 
 /**
  *
@@ -23,6 +22,9 @@ public class Card {
         CardText = new javax.swing.JLabel();
         
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
+        CardCode.addActionListener((ActionEvent evt) -> {
+            //CardCodeActionPerformed(evt);
+        });
         CardAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
 
         JF.add(EnterCard);

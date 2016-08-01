@@ -46,12 +46,7 @@ public class Css extends Ngn {
 
         CardCode.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         CardCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        CardCode.setToolTipText("");
-        CardCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //CardCodeActionPerformed(evt);
-            }
-        });
+        
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
