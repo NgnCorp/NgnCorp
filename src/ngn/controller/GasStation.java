@@ -2,6 +2,7 @@ package ngn.controller;
 
 import java.awt.event.ActionEvent;
 import java.util.Locale;
+import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -15,8 +16,8 @@ public class GasStation {
 
     private static SerialPort KolonkaCOM3;
     static int komanda;
-    static javax.swing.Timer KolonkaStart;
-    static javax.swing.Timer ZaderzkaDoza;
+    static Timer KolonkaStart;
+    static Timer ZaderzkaDoza;
     static String PolozheniePistoleta;
     static String SchetLitrov;
     static String MoneySchetLitrov;
@@ -53,7 +54,7 @@ public class GasStation {
     }
 
     public static void TimerKolonkaStart() {
-        KolonkaStart = new javax.swing.Timer(600, (ActionEvent e) -> {
+        KolonkaStart = new Timer(600, (ActionEvent e) -> {
             try {
                 KolonkaCOM3.writeString("@10510045#");
                 komanda = 0;
