@@ -24,10 +24,10 @@ public class Card {
         CardAnimate = new javax.swing.JLabel();
         CardText = new javax.swing.JLabel();
         
+        JF.add(EnterCard);
+        
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
         CardAnimate.setIcon(new ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
-        
-        JF.add(EnterCard);
         
         CardCode.addActionListener(new Listener.CardCodeActionPerformed());
         CardCode.addFocusListener(new Listener.CheckFocus());

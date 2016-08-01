@@ -28,9 +28,9 @@ public class Css extends Ngn {
         MFrame.setDefaultCloseOperation(MFrame.EXIT_ON_CLOSE);
 
         MFrame.setUndecorated(true);
-        //window.pack();
+        MFrame.pack();
         MFrame.setSize(windowWidth, windowHeight);
-        //window.setLocationRelativeTo(null);
+        MFrame.setLocationRelativeTo(null);
         MFrame.setVisible(true);
     }
     

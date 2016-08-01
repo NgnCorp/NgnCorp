@@ -25,6 +25,8 @@ public class Pin {
         MarkPinCodeExit = new javax.swing.JLabel();
         MarkPinCodeEnter = new javax.swing.JLabel();
         
+        JF.add(EnterPin);
+        
         Css.cssPin(EnterPin, PinCode, PinAnimate, PinCodeText, MarkPinCodeExit, MarkPinCodeEnter);
         PinAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/secAnim.gif"))); // NOI18N
         
@@ -35,7 +37,5 @@ public class Pin {
         });
         
         PinCode.addFocusListener(new Listener.CheckFocus());
-        
-        JF.add(EnterPin);
     }
 }
