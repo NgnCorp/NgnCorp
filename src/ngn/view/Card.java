@@ -24,13 +24,13 @@ public class Card {
         
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
         CardAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
-
-        JF.add(EnterCard);
         
         CardCode.addActionListener((ActionEvent evt) -> {
             //CardCodeActionPerformed(evt);
         });
         
         CardCode.addFocusListener(new Listener.CheckFocus());
+        
+        JF.add(EnterCard);
     }
 }
