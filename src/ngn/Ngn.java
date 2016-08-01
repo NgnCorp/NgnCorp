@@ -27,13 +27,12 @@ public class Ngn extends JFrame {
             
             JFrame NGN = new JFrame();
             
+            Css.MainFrame(NGN);
             Litrs LITRS = new Litrs(NGN);
             Pin PIN = new Pin(NGN);
             Card CARD = new Card(NGN);
             
             // Styles //
-            
-            Css.MainFrame(NGN);
         }
     }
 }
