@@ -34,7 +34,6 @@ public class Ngn extends JFrame {
             // Styles //
             
             Css.MainFrame(NGN);
-            
         }
     }
 }

@@ -9,7 +9,7 @@ import ngn.controller.Listener;
  */
 public class Pin {
     
-    private final javax.swing.JPanel EnterPin;
+    public static javax.swing.JPanel EnterPin;
     private final javax.swing.JLabel MarkPinCodeEnter;
     private final javax.swing.JLabel MarkPinCodeExit;
     private final javax.swing.JLabel PinAnimate;

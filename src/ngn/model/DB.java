@@ -33,7 +33,7 @@ public class DB {
     private static final String DESCRIPTION = "Заправка на АЗС";
     private static final String MODULENAME = "TEST"; // ГЕОЛОКАЦИЯ !!!
 
-    protected static boolean cardCode(String cardcode) {
+    public static boolean cardCode(String cardcode) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);

@@ -2,6 +2,8 @@ package ngn.view;
 
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import ngn.controller.ChangePanel;
 import ngn.controller.Listener;
 
 /**
@@ -10,7 +12,7 @@ import ngn.controller.Listener;
  */
 public class Card {
 
-    private final javax.swing.JPanel EnterCard;
+    public static javax.swing.JPanel EnterCard;
     private final javax.swing.JPasswordField CardCode;
     private final javax.swing.JLabel CardAnimate;
     private final javax.swing.JLabel CardText;
@@ -23,14 +25,18 @@ public class Card {
         CardText = new javax.swing.JLabel();
         
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
-        CardAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
+        CardAnimate.setIcon(new ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
+        
+        JF.add(EnterCard);
         
         CardCode.addActionListener((ActionEvent evt) -> {
             //CardCodeActionPerformed(evt);
         });
         
         CardCode.addFocusListener(new Listener.CheckFocus());
-        
-        JF.add(EnterCard);
+    }
+    
+    public static void CardDo() {
+        ChangePanel.ChangePanel(EnterCard);        
     }
 }
