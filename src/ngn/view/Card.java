@@ -22,9 +22,6 @@ public class Card {
         CardAnimate = new javax.swing.JLabel();
         CardText = new javax.swing.JLabel();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        //getContentPane().setLayout(new java.awt.CardLayout());
-
         EnterCard.setBackground(new java.awt.Color(204, 0, 0));
         EnterCard.setLayout(new java.awt.GridBagLayout());
 
@@ -59,8 +56,6 @@ public class Card {
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
 
-        //getContentPane().add(EnterCard, "card2");
-        //Css.Css(EnterCard);
         JF.add(EnterCard);
     }
 }
