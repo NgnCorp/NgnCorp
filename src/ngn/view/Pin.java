@@ -1,8 +1,7 @@
 package ngn.view;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
 import javax.swing.JFrame;
+import ngn.controller.Listener;
 
 /**
  *
@@ -18,6 +17,7 @@ public class Pin {
     private final javax.swing.JLabel PinCodeText;
     
     public Pin(JFrame JF) {
+        
         EnterPin = new javax.swing.JPanel();
         PinCode = new javax.swing.JPasswordField();
         PinAnimate = new javax.swing.JLabel();
@@ -32,6 +32,7 @@ public class Pin {
             }
         });
         
+        PinCode.addFocusListener(new Listener.CheckFocus());
         PinAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/secAnim.gif"))); // NOI18N
         
         JF.add(EnterPin);
