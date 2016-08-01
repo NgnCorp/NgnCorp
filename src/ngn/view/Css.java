@@ -1,12 +1,12 @@
 package ngn.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import ngn.Ngn;
 
 /**
@@ -42,28 +42,28 @@ public class Css extends Ngn {
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText) {
 
         EnterCard.setBackground(new Color(204, 0, 0));
-        EnterCard.setLayout(new java.awt.GridBagLayout());
+        EnterCard.setLayout(new GridBagLayout());
 
-        CardCode.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        CardCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CardCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
+        CardCode.setHorizontalAlignment(JTextField.CENTER);
         
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 324;
         gridBagConstraints.ipady = 24;
         EnterCard.add(CardCode, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         EnterCard.add(CardAnimate, gridBagConstraints);
 
-        CardText.setFont(new java.awt.Font("Candara", 1, 48)); // NOI18N
+        CardText.setFont(new Font("Candara", 1, 48)); // NOI18N
         CardText.setForeground(new Color(255, 255, 255));
-        CardText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CardText.setHorizontalAlignment(SwingConstants.CENTER);
         CardText.setText("Поднесите карту к клавиатуре");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
@@ -72,61 +72,60 @@ public class Css extends Ngn {
     static void cssPin(JPanel EnterPin, JPasswordField PinCode, JLabel PinAnimate, JLabel PinCodeText, JLabel MarkPinCodeExit, JLabel MarkPinCodeEnter) {
         
         EnterPin.setBackground(new Color(204, 0, 0));
-        EnterPin.setLayout(new java.awt.GridBagLayout());
+        EnterPin.setLayout(new GridBagLayout());
 
-        PinCode.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        PinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        PinCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
+        PinCode.setHorizontalAlignment(JTextField.CENTER);
         
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 270;
         gridBagConstraints.ipady = 10;
         EnterPin.add(PinCode, gridBagConstraints);
         PinCode.setFocusable(true); // false!!!!!!!
-
         
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         EnterPin.add(PinAnimate, gridBagConstraints);
 
-        PinCodeText.setFont(new java.awt.Font("Candara", 1, 48));
+        PinCodeText.setFont(new Font("Candara", 1, 48));
         PinCodeText.setForeground(new Color(255, 255, 255));
-        PinCodeText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PinCodeText.setHorizontalAlignment(SwingConstants.CENTER);
         PinCodeText.setText("<html>Введите PIN-код");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 125, 0, 125);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(0, 125, 0, 125);
         EnterPin.add(PinCodeText, gridBagConstraints);
 
-        MarkPinCodeExit.setBackground(new java.awt.Color(204, 0, 0));
-        MarkPinCodeExit.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        MarkPinCodeExit.setForeground(new java.awt.Color(255, 255, 255));
-        MarkPinCodeExit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MarkPinCodeExit.setBackground(new Color(204, 0, 0));
+        MarkPinCodeExit.setFont(new Font("Candara", 1, 24)); // NOI18N
+        MarkPinCodeExit.setForeground(new Color(255, 255, 255));
+        MarkPinCodeExit.setHorizontalAlignment(SwingConstants.LEFT);
         MarkPinCodeExit.setText("Для ВЫХОДА нажмите звездочку (*) на клавиатуре.");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeExit, gridBagConstraints);
 
-        MarkPinCodeEnter.setBackground(new java.awt.Color(204, 0, 0));
-        MarkPinCodeEnter.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        MarkPinCodeEnter.setForeground(new java.awt.Color(255, 255, 255));
-        MarkPinCodeEnter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MarkPinCodeEnter.setBackground(new Color(204, 0, 0));
+        MarkPinCodeEnter.setFont(new Font("Candara", 1, 24)); // NOI18N
+        MarkPinCodeEnter.setForeground(new Color(255, 255, 255));
+        MarkPinCodeEnter.setHorizontalAlignment(SwingConstants.LEFT);
         MarkPinCodeEnter.setText("Для ПОДТВЕРЖДЕНИЯ pin-кода нажмите решетку (#) на клавиатуре.");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
     }
 }
