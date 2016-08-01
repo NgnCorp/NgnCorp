@@ -27,8 +27,8 @@ public class Ngn extends JFrame {
             
             JFrame NGN = new JFrame();
             Litrs LITRS = new Litrs(NGN);
-            //Pin PIN = new Pin(NGN);
-            //Card CARD = new Card(NGN);
+            Pin PIN = new Pin(NGN);
+            Card CARD = new Card(NGN);
             
             // Styles //
             
