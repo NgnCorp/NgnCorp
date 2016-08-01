@@ -261,4 +261,81 @@ public class Css extends Ngn {
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         EnterLitrs.add(ActionExitText, gridBagConstraints);
     }
+    static void cssFilling(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
+        
+        Working.setBackground(new Color(204, 0, 0));
+        Working.setLayout(new GridBagLayout());
+
+        PolozheniePistoleta.setBackground(Working.getBackground());
+        PolozheniePistoleta.setFont(new Font("Candara", 1, 24)); // NOI18N
+        PolozheniePistoleta.setForeground(new Color(255, 255, 255));
+        PolozheniePistoleta.setHorizontalAlignment(SwingConstants.CENTER);
+        PolozheniePistoleta.setToolTipText("");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new Insets(20, 0, 0, 0);
+        Working.add(PolozheniePistoleta, gridBagConstraints);
+
+        SchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        SchetLitrov.setFont(new Font("Candara", 1, 48)); // NOI18N
+        SchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        SchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        Working.add(SchetLitrov, gridBagConstraints);
+
+        MoneySchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        MoneySchetLitrov.setFont(new Font("Candara", 1, 48)); // NOI18N
+        MoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        MoneySchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(0, 50, 0, 0);
+        Working.add(MoneySchetLitrov, gridBagConstraints);
+
+        MarkSchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        MarkSchetLitrov.setFont(PolozheniePistoleta.getFont());
+        MarkSchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        MarkSchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        MarkSchetLitrov.setText("СЧЕТ ЛИТРОВ");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new Insets(0, 0, 20, 0);
+        Working.add(MarkSchetLitrov, gridBagConstraints);
+
+        MarkMoneySchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        MarkMoneySchetLitrov.setFont(PolozheniePistoleta.getFont());
+        MarkMoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        MarkMoneySchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        MarkMoneySchetLitrov.setText("ГРН:");
+        MarkMoneySchetLitrov.setToolTipText("");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        Working.add(MarkMoneySchetLitrov, gridBagConstraints);
+
+        Reklama.setBackground(PolozheniePistoleta.getBackground());
+        Reklama.setFont(PolozheniePistoleta.getFont());
+        Reklama.setForeground(PolozheniePistoleta.getForeground());
+        Reklama.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 50);
+        Working.add(Reklama, gridBagConstraints);
+    } 
 }
