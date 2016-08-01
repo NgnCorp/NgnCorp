@@ -16,10 +16,10 @@ public class Ngn extends JFrame {
         JFrame Ngn = new JFrame();
         Css.MainFrame(Ngn);
 
-        if (PreLoader.PreLoader()) {
-            Card card = new Card(Ngn);
-            Pin pin = new Pin();
-            Litrs litrs = new Litrs();
-        }
+        //if (PreLoader.PreLoader()) {
+            Card CARD = new Card(Ngn);
+            Pin PIN = new Pin();
+            Litrs LITRS = new Litrs();
+        //}
     }
 }
