@@ -28,7 +28,7 @@ public class Css extends Ngn {
     }
 
     public static void MainFrame(JFrame MFrame) {
-        MFrame.setDefaultCloseOperation(MFrame.EXIT_ON_CLOSE);
+        MFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         MFrame.setUndecorated(true);
         MFrame.pack();
