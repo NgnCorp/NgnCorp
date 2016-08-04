@@ -35,11 +35,14 @@ public class Listener {
 
     public static void actionPerfomed(ActionEvent e) {
         String CardCode = e.getActionCommand();
-        if (CardCode.length() == 10) {
+        ChangePanel.ChangePanel(Card.EnterCard, Pin.EnterPin);
+       /* if (CardCode.length() == 10) {
+            System.out.println(CardCode);
             if (DB.cardCode(CardCode)) {
-                ChangePanel.ChangePanel(Card.EnterCard, Pin.EnterPin);
+                
+                
             }
-        }
+        }*/
     }
 
 }
