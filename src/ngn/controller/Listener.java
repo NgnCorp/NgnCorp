@@ -83,5 +83,5 @@ public class Listener {
             //String eqHex = ConvertLitrsNumber.ConvertLitrsNumberToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения
 
         }
-
     }
+}
