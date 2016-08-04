@@ -1,5 +1,6 @@
 package ngn.view;
 
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 import ngn.controller.Listener;
 
@@ -45,10 +46,8 @@ public class Litrs {
         
         JF.add(EnterLitrs);
         
-        LitrsInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //LitrsInputActionPerformed(evt);
-            }
+        LitrsInput.addActionListener((ActionEvent evt) -> {
+            Listener.LitrsInputAction(evt);
         });
         
         LitrsInput.addFocusListener(new Listener.CheckFocus());

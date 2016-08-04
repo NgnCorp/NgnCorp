@@ -23,11 +23,11 @@ public class Wait {
         
         Css.cssWait(Waiting, Here, endTimer, btnYes);
         JF.add(Waiting);
-        btnYes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //btnYesActionPerformed(evt);
-            }
+        
+        btnYes.addActionListener((java.awt.event.ActionEvent evt) -> {
+            //btnYesActionPerformed(evt);
         });
+        
         Waiting.addFocusListener(new Listener.CheckFocus());
 
     }

@@ -1,6 +1,7 @@
 package ngn.view;
 
 import javax.swing.JFrame;
+import ngn.controller.Listener;
 
 /**
  *
@@ -20,5 +21,7 @@ public class Info {
         
         Css.cssInfo(InfoMassage, ErrorMassage, ServerTimer);
         JF.add(InfoMassage);
+        
+        InfoMassage.addFocusListener(new Listener.CheckFocus());
     }
 }

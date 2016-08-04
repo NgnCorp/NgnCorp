@@ -51,7 +51,6 @@ public class Css extends Ngn {
 
         CardCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
         CardCode.setHorizontalAlignment(JTextField.CENTER);
-        CardCode.setName("CardCode");
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -139,7 +138,7 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
 
-        //EnterPin.setVisible(false); // Hide panel after render
+        EnterPin.setVisible(false); // Hide panel after render
     }
 
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
