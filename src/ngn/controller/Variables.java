@@ -21,5 +21,4 @@ public class Variables {
         Wait.Waiting,
         Bye.GoodBye
     };
-    
 }
