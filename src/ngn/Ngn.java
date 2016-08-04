@@ -24,6 +24,7 @@ public class Ngn extends JFrame {
                 Listener ACTIONLISTENER = new Listener();
                 Timer TIMER = new Timer();
                 Variables VARIABLES = new Variables();
+  
 
                 // Frames //
                 JFrame NGN = new JFrame();
@@ -34,7 +35,7 @@ public class Ngn extends JFrame {
                 Litrs LITRS = new Litrs(NGN);
                 Work WORK = new Work(NGN);
                 Wait WAIT = new Wait(NGN);
-                
+                              
             });
         }
     }
