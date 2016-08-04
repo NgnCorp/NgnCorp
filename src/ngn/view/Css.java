@@ -1,6 +1,7 @@
 package ngn.view;
 
 import java.awt.*;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -356,5 +357,47 @@ public class Css extends Ngn {
         GoodBye.add(ThankYou, gridBagConstraints);
         
         GoodBye.setVisible(false); // Hide panel after render
+    }
+    static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer, JButton btnYes) {
+        
+        Waiting.setBackground(new Color(204, 0, 0));
+        Waiting.setLayout(new GridBagLayout());
+
+        Here.setFont(new Font("Candara", 1, 48));
+        Here.setForeground(new Color(255, 255, 255));
+        Here.setHorizontalAlignment(SwingConstants.CENTER);
+        Here.setText("<html><p style=\"text-align:center;\">Вы еще здесь?</p>");
+        Here.setAlignmentX(0.5F);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 296;
+        gridBagConstraints.ipady = 83;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
+        Waiting.add(Here, gridBagConstraints);
+
+        endTimer.setFont(new Font("Candara", 1, 18)); // NOI18N
+        endTimer.setForeground(new Color(255, 255, 255));
+        endTimer.setHorizontalAlignment(SwingConstants.CENTER);
+        endTimer.setText("<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: 15 секунд.</p>");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 736;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = GridBagConstraints.SOUTH;
+        Waiting.add(endTimer, gridBagConstraints);
+
+        btnYes.setText("ДА");
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 239;
+        gridBagConstraints.ipady = 77;
+        gridBagConstraints.insets = new Insets(150, 0, 100, 0);
+        Waiting.add(btnYes, gridBagConstraints);
+
+        Waiting.setVisible(true);
     }
 }
