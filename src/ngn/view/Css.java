@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import ngn.Ngn;
@@ -400,5 +401,43 @@ public class Css extends Ngn {
         Waiting.add(btnYes, gridBagConstraints);
 
         Waiting.setVisible(false);
+    }
+    static void cssInfo(JPanel InfoMassage, JLabel ErrorMassage, JLabel ServerTimer, JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
+        
+        InfoMassage.setBackground(new Color(204, 0, 0));
+        InfoMassage.setLayout(new CardLayout());
+
+        ErrorMassage.setFont(new Font("Candara", 1, 48)); // NOI18N
+        ErrorMassage.setForeground(new Color(255, 255, 255));
+        ErrorMassage.setHorizontalAlignment(SwingConstants.CENTER);
+        ErrorMassage.setToolTipText("");
+        InfoMassage.add(ErrorMassage, "card3");
+
+        ServerTimer.setFont(new Font("Candara", 1, 48)); // NOI18N
+        ServerTimer.setForeground(new Color(255, 255, 255));
+        ServerTimer.setHorizontalAlignment(SwingConstants.CENTER);
+        ServerTimer.setToolTipText("");
+        InfoMassage.add(ServerTimer, "card3");
+
+        InfoMassage.setVisible(true);
+
+        LoadingPanel.setVisible(false);
+        LoadingPanel.setBackground(new Color(0, 0, 0));
+        LoadingPanel.setLayout(new GridBagLayout());
+
+        LoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
+        LoadingText.setForeground(new Color(255, 255, 255));
+        LoadingText.setHorizontalAlignment(SwingConstants.CENTER);
+        LoadingText.setText("Подождите. Пропал интернет. Скоро появится...");
+        LoadingText.setToolTipText("");
+        LoadingPanel.add(LoadingText, new GridBagConstraints());
+
+        LoadingBar.setIndeterminate(true);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 10, 5, 10);
+        LoadingPanel.add(LoadingBar, gridBagConstraints);
     }
 }
