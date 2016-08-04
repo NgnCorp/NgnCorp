@@ -1,5 +1,6 @@
 package ngn;
 
+import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
@@ -14,8 +15,9 @@ import static ngn.view.Pin.EnterPin;
 public class Ngn extends JFrame {
 
     public static void main(String[] args) {
+        
         if (PreLoader.PreLoader()) {
-            
+            invokeLater(() -> {
             // Controllers //
             
             KeyPad KEYPAD = new KeyPad();
@@ -38,7 +40,8 @@ public class Ngn extends JFrame {
             //Work WORK = new Work(NGN);
             Card CARD = new Card(NGN);
             
-            ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
+            //ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
+        });
         }
     }
 }
