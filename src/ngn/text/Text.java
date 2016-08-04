@@ -6,7 +6,7 @@ package ngn.text;
  *
  * @author Офис
  */
-public class ErrorText {
+public class Text {
     static String nointernetatstart = "<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ 15 СЕКУНД.</p>";
     static String nointernetinend = "<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С ИНТЕРНЕТОМ!<br>ТРАНЗАКЦИЯ ПРОЙДЕТ ПОСЛЕ ПОЯВЛЕНИЯ СВЯЗИ.</p>";
     static String cardvalid = "<html><p style=\"text-align:center;\">КАРТА НЕ ПРОШЛА ПРОВЕРКУ!<br>ПОПРОБУЙТЕ ЕЩЕ РАЗ ПОЗЖЕ.</p>";
