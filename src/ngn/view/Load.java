@@ -8,9 +8,9 @@ import javax.swing.JFrame;
  */
 public class Load {
     
-        private final javax.swing.JPanel LoadingPanel;
-        private final javax.swing.JLabel LoadingText;
-        private final javax.swing.JProgressBar LoadingBar;
+        public static javax.swing.JPanel LoadingPanel;
+        public static javax.swing.JLabel LoadingText;
+        public static javax.swing.JProgressBar LoadingBar;
         
         public Load(JFrame JF) {
             

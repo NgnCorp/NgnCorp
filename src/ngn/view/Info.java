@@ -8,9 +8,9 @@ import javax.swing.JFrame;
  */
 public class Info {
     
-        private final javax.swing.JPanel InfoMassage;
-        private final javax.swing.JLabel ErrorMassage;
-        private final javax.swing.JLabel ServerTimer;
+        public static javax.swing.JPanel InfoMassage;
+        public static javax.swing.JLabel ErrorMassage;
+        public static javax.swing.JLabel ServerTimer;
         
     public Info(JFrame JF) {
         

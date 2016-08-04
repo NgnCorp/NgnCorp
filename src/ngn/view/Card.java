@@ -13,9 +13,9 @@ import ngn.controller.Listener;
 public class Card {
 
     public static javax.swing.JPanel EnterCard;
-    private final javax.swing.JPasswordField CardCode;
-    private final javax.swing.JLabel CardAnimate;
-    private final javax.swing.JLabel CardText;
+    public static javax.swing.JPasswordField CardCode;
+    public static javax.swing.JLabel CardAnimate;
+    public static javax.swing.JLabel CardText;
     
     public Card(JFrame JF) {
 
