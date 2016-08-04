@@ -398,6 +398,6 @@ public class Css extends Ngn {
         gridBagConstraints.insets = new Insets(150, 0, 100, 0);
         Waiting.add(btnYes, gridBagConstraints);
 
-        Waiting.setVisible(true);
+        Waiting.setVisible(false);
     }
 }
