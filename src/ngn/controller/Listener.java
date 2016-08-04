@@ -58,10 +58,8 @@ public class Listener {
                     try {
                         DB.con.close();
                         if (DB.con.isClosed()) {
-                            LoadingPanel.setVisible(false);
                         }
                     } catch (SQLException ex) {
-
                     }
                 }
                 ChangePanel.ShowPanel(Pin.EnterPin);

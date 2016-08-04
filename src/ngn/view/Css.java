@@ -11,6 +11,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import ngn.Ngn;
+import ngn.text.Text;
 
 /**
  *
@@ -68,7 +69,7 @@ public class Css extends Ngn {
         CardText.setFont(new Font("Candara", 1, 48)); // NOI18N
         CardText.setForeground(new Color(255, 255, 255));
         CardText.setHorizontalAlignment(SwingConstants.CENTER);
-        CardText.setText("Поднесите карту к клавиатуре");
+        CardText.setText(Text.h1CardPanel);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -103,7 +104,7 @@ public class Css extends Ngn {
         PinCodeText.setFont(new Font("Candara", 1, 48));
         PinCodeText.setForeground(new Color(255, 255, 255));
         PinCodeText.setHorizontalAlignment(SwingConstants.CENTER);
-        PinCodeText.setText("<html>Введите PIN-код");
+        PinCodeText.setText(Text.h1EnterPin);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -116,7 +117,7 @@ public class Css extends Ngn {
         MarkPinCodeExit.setFont(new Font("Candara", 1, 24)); // NOI18N
         MarkPinCodeExit.setForeground(new Color(255, 255, 255));
         MarkPinCodeExit.setHorizontalAlignment(SwingConstants.LEFT);
-        MarkPinCodeExit.setText("Для ВЫХОДА нажмите звездочку (*) на клавиатуре.");
+        MarkPinCodeExit.setText(Text.h1ExitStar);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -129,7 +130,7 @@ public class Css extends Ngn {
         MarkPinCodeEnter.setFont(new Font("Candara", 1, 24)); // NOI18N
         MarkPinCodeEnter.setForeground(new Color(255, 255, 255));
         MarkPinCodeEnter.setHorizontalAlignment(SwingConstants.LEFT);
-        MarkPinCodeEnter.setText("Для ПОДТВЕРЖДЕНИЯ pin-кода нажмите решетку (#) на клавиатуре.");
+        MarkPinCodeEnter.setText(Text.h1Confirm);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -148,7 +149,7 @@ public class Css extends Ngn {
         LitrsInputMark.setFont(new Font("Candara", 0, 36)); // NOI18N
         LitrsInputMark.setForeground(new Color(255, 255, 255));
         LitrsInputMark.setHorizontalAlignment(SwingConstants.CENTER);
-        LitrsInputMark.setText("<html><p>Введите количество литров</p>");
+        LitrsInputMark.setText(Text.h1SetLitrs);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -216,7 +217,7 @@ public class Css extends Ngn {
 
         NameMark.setFont(new Font("Candara", 1, 18)); // NOI18N
         NameMark.setForeground(new Color(255, 153, 51));
-        NameMark.setText("Владелец карты:");
+        NameMark.setText(Text.h1CardOwner);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -234,7 +235,7 @@ public class Css extends Ngn {
 
         CardMark.setFont(NameMark.getFont());
         CardMark.setForeground(NameMark.getForeground());
-        CardMark.setText("Номер карты:");
+        CardMark.setText(Text.h1CardNum);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -249,7 +250,7 @@ public class Css extends Ngn {
 
         ActionEnterText.setFont(new Font("Candara", 1, 24)); // NOI18N
         ActionEnterText.setForeground(new Color(255, 255, 255));
-        ActionEnterText.setText("Нажмите решетку (#) на клавиатуре для ПУСКА заправки.");
+        ActionEnterText.setText(Text.h1StartFilling);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -263,7 +264,7 @@ public class Css extends Ngn {
         ActionExitText.setFont(ActionEnterText.getFont());
         ActionExitText.setForeground(ActionEnterText.getForeground());
         ActionExitText.setHorizontalAlignment(ActionEnterText.getHorizontalAlignment());
-        ActionExitText.setText("Нажмите звездочку (*) на клавиатуре для ВЫХОДА.");
+        ActionExitText.setText(Text.h1ExitStar);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -321,7 +322,7 @@ public class Css extends Ngn {
         MarkSchetLitrov.setFont(PolozheniePistoleta.getFont());
         MarkSchetLitrov.setForeground(PolozheniePistoleta.getForeground());
         MarkSchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
-        MarkSchetLitrov.setText("СЧЕТ ЛИТРОВ");
+        MarkSchetLitrov.setText(Text.h1CountLitrs);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -335,7 +336,7 @@ public class Css extends Ngn {
         MarkMoneySchetLitrov.setFont(PolozheniePistoleta.getFont());
         MarkMoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
         MarkMoneySchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
-        MarkMoneySchetLitrov.setText("ГРН:");
+        MarkMoneySchetLitrov.setText(Text.h1UAH);
         MarkMoneySchetLitrov.setToolTipText("");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -368,7 +369,7 @@ public class Css extends Ngn {
         ThankYou.setFont(new Font("Candara", 1, 48));
         ThankYou.setForeground(new Color(255, 255, 255));
         ThankYou.setHorizontalAlignment(SwingConstants.CENTER);
-        ThankYou.setText("<html><p style=\"text-align:center;\">Транзакция прошла успешно!<br>Спасибо, что воспользовались услугой компании NGN!</p>");
+        ThankYou.setText(Text.h1TYforChoose);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -388,7 +389,7 @@ public class Css extends Ngn {
         Here.setFont(new Font("Candara", 1, 48));
         Here.setForeground(new Color(255, 255, 255));
         Here.setHorizontalAlignment(SwingConstants.CENTER);
-        Here.setText("<html><p style=\"text-align:center;\">Вы еще здесь?</p>");
+        Here.setText(Text.h1AreUHere);
         Here.setAlignmentX(0.5F);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -401,7 +402,7 @@ public class Css extends Ngn {
         endTimer.setFont(new Font("Candara", 1, 18)); // NOI18N
         endTimer.setForeground(new Color(255, 255, 255));
         endTimer.setHorizontalAlignment(SwingConstants.CENTER);
-        endTimer.setText("<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: 15 секунд.</p>");
+        endTimer.setText(Text.h1ClickIfUHere);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -410,7 +411,7 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.SOUTH;
         Waiting.add(endTimer, gridBagConstraints);
 
-        btnYes.setText("ДА");
+        btnYes.setText(Text.h1Yes);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -456,7 +457,7 @@ public class Css extends Ngn {
         LoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
         LoadingText.setForeground(new Color(255, 255, 255));
         LoadingText.setHorizontalAlignment(SwingConstants.CENTER);
-        LoadingText.setText("Подождите. Пропал интернет. Скоро появится...");
+        LoadingText.setText(Text.h1LostIntrCon);
         LoadingText.setToolTipText("");
         LoadingPanel.add(LoadingText, new GridBagConstraints());
 
