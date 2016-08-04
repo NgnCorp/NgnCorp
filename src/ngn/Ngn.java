@@ -15,14 +15,6 @@ public class Ngn extends JFrame {
 
         if (PreLoader.PreLoader()) {
             invokeLater(() -> {
-                
-                // Controllers //
-
-                KeyPad KEYPAD = new KeyPad();
-                GasStation GASSTATION = new GasStation();
-                Listener ACTIONLISTENER = new Listener();
-                Timer TIMER = new Timer();
-                Variables VARIABLES = new Variables();
 
                 // Frames //
                 JFrame NGN = new JFrame();
@@ -33,6 +25,14 @@ public class Ngn extends JFrame {
                 Litrs LITRS = new Litrs(NGN);
                 Work WORK = new Work(NGN);
                 Wait WAIT = new Wait(NGN);
+                
+                // Controllers //
+
+                KeyPad KEYPAD = new KeyPad();
+                GasStation GASSTATION = new GasStation();
+                Listener ACTIONLISTENER = new Listener();
+                Timer TIMER = new Timer();
+                Variables VARIABLES = new Variables();
             });
         }
     }
