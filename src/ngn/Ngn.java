@@ -34,7 +34,8 @@ public class Ngn extends JFrame {
             //Litrs LITRS = new Litrs(NGN);
             //Pin PIN = new Pin(NGN);
             //Work WORK = new Work(NGN);
-            Card CARD = new Card(NGN);
+            //Card CARD = new Card(NGN);
+            Bye BYE = new Bye(NGN);
             
             //ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
         });

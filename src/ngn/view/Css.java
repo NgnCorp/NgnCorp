@@ -341,4 +341,19 @@ public class Css extends Ngn {
         
         Working.setVisible(false); // Hide panel after render
     } 
+    static void cssBye(JPanel GoodBye, JLabel ThankYou) {
+        GoodBye.setBackground(new Color(204, 0, 0));
+        GoodBye.setLayout(new GridBagLayout());
+
+        ThankYou.setBackground(new Color(204, 0, 0));
+        ThankYou.setFont(new Font("Candara", 1, 48));
+        ThankYou.setForeground(new Color(255, 255, 255));
+        ThankYou.setHorizontalAlignment(SwingConstants.CENTER);
+        ThankYou.setText("<html><p style=\"text-align:center;\">Транзакция прошла успешно!<br>Спасибо, что воспользовались услугой компании NGN!</p>");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        GoodBye.add(ThankYou, gridBagConstraints);
+    }
 }
