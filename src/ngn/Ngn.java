@@ -30,9 +30,9 @@ public class Ngn extends JFrame {
             Css.MainFrame(NGN);
             
             //Litrs LITRS = new Litrs(NGN);
-            //Card CARD = new Card(NGN);
             //Pin PIN = new Pin(NGN);
             //Work WORK = new Work(NGN);
+            Card CARD = new Card(NGN);
             
             ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
         }
