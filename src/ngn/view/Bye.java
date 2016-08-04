@@ -8,8 +8,8 @@ import javax.swing.JFrame;
  */
 public class Bye {
         
-        private final javax.swing.JPanel GoodBye;
-        private final javax.swing.JLabel ThankYou;
+        public static javax.swing.JPanel GoodBye;
+        public static javax.swing.JLabel ThankYou;
         
     public Bye(JFrame JF){
         GoodBye = new javax.swing.JPanel();

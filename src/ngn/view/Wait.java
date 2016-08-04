@@ -9,10 +9,10 @@ import ngn.controller.Listener;
  */
 public class Wait {
     
-        private final javax.swing.JPanel Waiting;
-        private final javax.swing.JLabel Here;
-        private final javax.swing.JLabel endTimer;
-        private final javax.swing.JButton btnYes;
+        public static javax.swing.JPanel Waiting;
+        public static javax.swing.JLabel Here;
+        public static javax.swing.JLabel endTimer;
+        public static javax.swing.JButton btnYes;
         
     public Wait(JFrame JF) {
         

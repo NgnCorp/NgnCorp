@@ -11,13 +11,13 @@ import ngn.controller.Listener;
  */
 public class Work {
 
-    private final JPanel Working;
-    private final JLabel PolozheniePistoleta;
-    private final JLabel SchetLitrov;
-    private final JLabel MoneySchetLitrov;
-    private final JLabel MarkSchetLitrov;
-    private final JLabel MarkMoneySchetLitrov;
-    private final JLabel Reklama;
+    public static JPanel Working;
+    public static JLabel PolozheniePistoleta;
+    public static JLabel SchetLitrov;
+    public static JLabel MoneySchetLitrov;
+    public static JLabel MarkSchetLitrov;
+    public static JLabel MarkMoneySchetLitrov;
+    public static JLabel Reklama;
 
     public Work(JFrame JF) {
 
