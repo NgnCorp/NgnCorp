@@ -66,7 +66,6 @@ public class Css extends Ngn {
         EnterCard.add(CardText, gridBagConstraints);
         
         CardCode.setFocusable(true);
-        //EnterCard.setFocusable(false);
     }
     
     static void cssPin(JPanel EnterPin, JPasswordField PinCode, JLabel PinAnimate, JLabel PinCodeText, JLabel MarkPinCodeExit, JLabel MarkPinCodeEnter) {
@@ -355,5 +354,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         GoodBye.add(ThankYou, gridBagConstraints);
+        
+        GoodBye.setVisible(false); // Hide panel after render
     }
 }

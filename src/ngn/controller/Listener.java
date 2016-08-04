@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import ngn.model.*;
 import ngn.view.Card;
+import ngn.view.Pin;
 
 /**
  *
@@ -32,16 +33,13 @@ public class Listener {
         }
     }
 
-    public static class CardCodeActionPerformed implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String CardCode = e.getActionCommand();
-            if (CardCode.length() == 10) {
-                if (DB.cardCode(CardCode)) {
-                    //Card.CardDo();
-                }
+    public static void actionPerfomed(ActionEvent e) {
+        String CardCode = e.getActionCommand();
+        if (CardCode.length() == 10) {
+            if (DB.cardCode(CardCode)) {
+                ChangePanel.ChangePanel(Card.EnterCard, Pin.EnterPin);
             }
         }
     }
+
 }
