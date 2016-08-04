@@ -1,6 +1,7 @@
 package ngn.controller;
 
-import ngn.view.Pin;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -8,11 +9,19 @@ import ngn.view.Pin;
  */
 public class ChangePanel {
 
-    public static void ToPin() {      
-        for (int i = 0; i < Variables.PanelArray.length; i++) {
-            Variables.PanelArray[i].setVisible(false);
-        }        
-        Pin.EnterPin.setVisible(true);
+    public static void ShowPanel(JPanel Show) {
+        for (JPanel PanelArray : Variables.PanelArray) {
+            PanelArray.setVisible(false);
+        }
+        Show.setVisible(true);
+    }
+
+    public static void ShowPassword(JPasswordField Show) {
+        for (JPasswordField InputArray : Variables.InputArray) {
+            InputArray.setFocusable(false);
+        }
+        Show.setFocusable(true);
+        Show.requestFocusInWindow();
     }
 
 }
