@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ngn.view;
+
+import javax.swing.JFrame;
 
 /**
  *
@@ -11,4 +8,17 @@ package ngn.view;
  */
 public class Load {
     
+        private final javax.swing.JPanel LoadingPanel;
+        private final javax.swing.JLabel LoadingText;
+        private final javax.swing.JProgressBar LoadingBar;
+        
+        public Load(JFrame JF) {
+            
+            LoadingPanel = new javax.swing.JPanel();
+            LoadingText = new javax.swing.JLabel();
+            LoadingBar = new javax.swing.JProgressBar();
+            
+            Css.cssLoad(LoadingPanel, LoadingText, LoadingBar);
+            JF.add(LoadingPanel);
+        }
 }

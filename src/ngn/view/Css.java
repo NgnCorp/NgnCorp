@@ -264,6 +264,7 @@ public class Css extends Ngn {
         
         EnterLitrs.setVisible(false); // Hide panel after render
     }
+    
     static void cssWork(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
         
         Working.setBackground(new Color(204, 0, 0));
@@ -343,6 +344,7 @@ public class Css extends Ngn {
         
         Working.setVisible(false); // Hide panel after render
     } 
+    
     static void cssBye(JPanel GoodBye, JLabel ThankYou) {
         GoodBye.setBackground(new Color(204, 0, 0));
         GoodBye.setLayout(new GridBagLayout());
@@ -360,6 +362,7 @@ public class Css extends Ngn {
         
         GoodBye.setVisible(false); // Hide panel after render
     }
+    
     static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer, JButton btnYes) {
         
         Waiting.setBackground(new Color(204, 0, 0));
@@ -402,7 +405,8 @@ public class Css extends Ngn {
 
         Waiting.setVisible(false);
     }
-    static void cssInfo(JPanel InfoMassage, JLabel ErrorMassage, JLabel ServerTimer, JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
+    
+    static void cssInfo(JPanel InfoMassage, JLabel ErrorMassage, JLabel ServerTimer) {
         
         InfoMassage.setBackground(new Color(204, 0, 0));
         InfoMassage.setLayout(new CardLayout());
@@ -419,8 +423,11 @@ public class Css extends Ngn {
         ServerTimer.setToolTipText("");
         InfoMassage.add(ServerTimer, "card3");
 
-        InfoMassage.setVisible(true);
-
+        InfoMassage.setVisible(false);
+    }
+    
+    static void cssLoad(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
+        
         LoadingPanel.setVisible(false);
         LoadingPanel.setBackground(new Color(0, 0, 0));
         LoadingPanel.setLayout(new GridBagLayout());

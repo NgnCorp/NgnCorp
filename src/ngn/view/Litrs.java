@@ -10,19 +10,19 @@ import ngn.controller.Listener;
  */
 public class Litrs {
     
-    private final JPanel EnterLitrs;
-    private final JLabel ClientLitrs;
-    private final JLabel LitrsInputMark;
-    private final JLabel LitrsMark;
-    private final JTextField LitrsInput;
-    private final JLabel LogoNgn;
-    private final JPanel ClientInfo;
-    private final JLabel ClientName;
-    private final JLabel ClientCard;
-    private final JLabel NameMark;
-    private final JLabel CardMark;
-    private final JLabel ActionEnterText;
-    private final JLabel ActionExitText;
+    public static JPanel EnterLitrs;
+    public static JLabel ClientLitrs;
+    public static JLabel LitrsInputMark;
+    public static JLabel LitrsMark;
+    public static JTextField LitrsInput;
+    public static JLabel LogoNgn;
+    public static JPanel ClientInfo;
+    public static JLabel ClientName;
+    public static JLabel ClientCard;
+    public static JLabel NameMark;
+    public static JLabel CardMark;
+    public static JLabel ActionEnterText;
+    public static JLabel ActionExitText;
     
     public Litrs(JFrame JF) {
         
