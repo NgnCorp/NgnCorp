@@ -27,7 +27,7 @@ public class Ngn extends JFrame {
                 // Frames //
                 JFrame NGN = new JFrame();
                 Css.MainFrame(NGN);
-
+                
                 Wait WAIT = new Wait(NGN);
                 Work WORK = new Work(NGN);
                 Litrs LITRS = new Litrs(NGN);
