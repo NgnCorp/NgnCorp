@@ -32,6 +32,7 @@ public class Css extends Ngn {
         MFrame.pack();
         MFrame.setSize(windowWidth, windowHeight);
         MFrame.setLocationRelativeTo(null);
+        MFrame.setLayout(new CardLayout());
         MFrame.setVisible(true);
     }
 
@@ -127,7 +128,7 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
         
-        EnterPin.setVisible(false); // Hide panel after render
+        //EnterPin.setVisible(false); // Hide panel after render
     }
     
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {

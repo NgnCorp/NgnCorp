@@ -10,11 +10,11 @@ import ngn.controller.Listener;
 public class Pin {
     
     public static javax.swing.JPanel EnterPin;
-    private final javax.swing.JLabel MarkPinCodeEnter;
-    private final javax.swing.JLabel MarkPinCodeExit;
-    private final javax.swing.JLabel PinAnimate;
-    private final javax.swing.JPasswordField PinCode;
-    private final javax.swing.JLabel PinCodeText;
+    public static javax.swing.JLabel MarkPinCodeEnter;
+    public static javax.swing.JLabel MarkPinCodeExit;
+    public static javax.swing.JLabel PinAnimate;
+    public static javax.swing.JPasswordField PinCode;
+    public static javax.swing.JLabel PinCodeText;
     
     public Pin(JFrame JF) {
         
@@ -30,10 +30,8 @@ public class Pin {
         
         JF.add(EnterPin);
         
-        PinCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //PinCodeActionPerformed(evt);
-            }
+        PinCode.addActionListener((java.awt.event.ActionEvent evt) -> {
+            //PinCodeActionPerformed(evt);
         });
         
         PinCode.addFocusListener(new Listener.CheckFocus());
