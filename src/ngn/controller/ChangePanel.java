@@ -2,6 +2,7 @@ package ngn.controller;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,7 +17,15 @@ public class ChangePanel {
         Show.setVisible(true);
     }
 
-    public static void ShowPassword(JPasswordField Show) {
+    public static void FocusPassword(JPasswordField Show) {
+        for (JPasswordField InputArray : Variables.InputArray) {
+            InputArray.setFocusable(false);
+        }
+        Show.setFocusable(true);
+        Show.requestFocusInWindow();
+    }
+
+    public static void FocusLitrsInput(JTextField Show) {
         for (JPasswordField InputArray : Variables.InputArray) {
             InputArray.setFocusable(false);
         }
