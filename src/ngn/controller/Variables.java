@@ -14,17 +14,18 @@ import ngn.view.Work;
  * @author Офис
  */
 public class Variables {
-    static JPanel[] PanelArray = new JPanel[] {
-        Card.EnterCard, 
-        Pin.EnterPin, 
+
+    static JPanel[] PanelArray = new JPanel[]{
+        Card.EnterCard,
+        Pin.EnterPin,
         Litrs.EnterLitrs,
         Work.Working,
         Wait.Waiting,
         Bye.GoodBye
     };
-    
-    static JPasswordField[] InputArray = new JPasswordField[] {
+
+    static JPasswordField[] InputArray = new JPasswordField[]{
         Card.CardCode,
-        Pin.PinCode            
+        Pin.PinCode
     };
 }

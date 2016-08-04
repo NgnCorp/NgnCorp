@@ -25,6 +25,7 @@ public class Listener {
         @Override
         public void focusGained(FocusEvent e) {
             ObjectInFocus = e.getComponent().getName();
+            System.out.println(ObjectInFocus);
         }
 
         @Override
