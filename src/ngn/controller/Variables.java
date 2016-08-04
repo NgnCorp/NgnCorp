@@ -1,21 +1,25 @@
 package ngn.controller;
 
 import javax.swing.JPanel;
+import ngn.view.Bye;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
+import ngn.view.Wait;
+import ngn.view.Work;
 
 /**
  *
  * @author Офис
  */
 public class Variables {
-    
-    JPanel[] PanelArray = {
-        Card.EnterCard,
-        Pin.EnterPin,
-        Litrs.EnterLitrs,
-        
+    static JPanel[] PanelArray = new JPanel[] {
+        Card.EnterCard, 
+        Pin.EnterPin, 
+        Litrs.EnterLitrs
+        //Work.Working,
+        //Wait.Waiting,
+        //Bye.GoodBye
     };
     
 }
