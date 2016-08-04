@@ -355,5 +355,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         GoodBye.add(ThankYou, gridBagConstraints);
+        
+        GoodBye.setVisible(false);
     }
 }
