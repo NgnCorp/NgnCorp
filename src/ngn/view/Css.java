@@ -1,6 +1,7 @@
 package ngn.view;
 
 import java.awt.*;
+import java.awt.image.MemoryImageSource;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,16 +17,16 @@ import ngn.Ngn;
  * @author Офис
  */
 public class Css extends Ngn {
-    
+
     static java.awt.GridBagConstraints gridBagConstraints;
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int windowHeight = screenSize.height;
     public static int windowWidth = screenSize.width;
-    
+
     public Css() {
-        
+
     }
-    
+
     public static void MainFrame(JFrame MFrame) {
         MFrame.setDefaultCloseOperation(MFrame.EXIT_ON_CLOSE);
 
@@ -34,6 +35,11 @@ public class Css extends Ngn {
         MFrame.setSize(windowWidth, windowHeight);
         MFrame.setLocationRelativeTo(null);
         MFrame.setLayout(new CardLayout());
+        int[] pixels = new int[16 * 16];
+        Image image = Toolkit.getDefaultToolkit().createImage(
+                new MemoryImageSource(16, 16, pixels, 0, 16));
+        Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
+        MFrame.setCursor(transparentCursor);
         MFrame.setVisible(true);
     }
 
@@ -45,7 +51,7 @@ public class Css extends Ngn {
         CardCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
         CardCode.setHorizontalAlignment(JTextField.CENTER);
         CardCode.setName("CardCode");
-        
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -68,25 +74,25 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
-        
+
         CardCode.setFocusable(true);
     }
-    
+
     static void cssPin(JPanel EnterPin, JPasswordField PinCode, JLabel PinAnimate, JLabel PinCodeText, JLabel MarkPinCodeExit, JLabel MarkPinCodeEnter) {
-        
+
         EnterPin.setBackground(new Color(204, 0, 0));
         EnterPin.setLayout(new GridBagLayout());
 
         PinCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
         PinCode.setHorizontalAlignment(JTextField.CENTER);
-        
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 270;
         gridBagConstraints.ipady = 10;
         EnterPin.add(PinCode, gridBagConstraints);
-        
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -129,10 +135,10 @@ public class Css extends Ngn {
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
-        
+
         //EnterPin.setVisible(false); // Hide panel after render
     }
-    
+
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
         EnterLitrs.setBackground(new Color(204, 0, 0));
         EnterLitrs.setLayout(new GridBagLayout());
@@ -262,12 +268,12 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         EnterLitrs.add(ActionExitText, gridBagConstraints);
-        
+
         EnterLitrs.setVisible(false); // Hide panel after render
     }
-    
+
     static void cssWork(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
-        
+
         Working.setBackground(new Color(204, 0, 0));
         Working.setLayout(new GridBagLayout());
 
@@ -342,10 +348,10 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(0, 0, 0, 50);
         Working.add(Reklama, gridBagConstraints);
-        
+
         Working.setVisible(false); // Hide panel after render
-    } 
-    
+    }
+
     static void cssBye(JPanel GoodBye, JLabel ThankYou) {
         GoodBye.setBackground(new Color(204, 0, 0));
         GoodBye.setLayout(new GridBagLayout());
@@ -360,12 +366,12 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         GoodBye.add(ThankYou, gridBagConstraints);
-        
+
         GoodBye.setVisible(false); // Hide panel after render
     }
-    
+
     static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer, JButton btnYes) {
-        
+
         Waiting.setBackground(new Color(204, 0, 0));
         Waiting.setLayout(new GridBagLayout());
 
@@ -406,9 +412,9 @@ public class Css extends Ngn {
 
         Waiting.setVisible(false);
     }
-    
+
     static void cssInfo(JPanel InfoMassage, JLabel ErrorMassage, JLabel ServerTimer) {
-        
+
         InfoMassage.setBackground(new Color(204, 0, 0));
         InfoMassage.setLayout(new CardLayout());
 
@@ -426,9 +432,9 @@ public class Css extends Ngn {
 
         InfoMassage.setVisible(false);
     }
-    
+
     static void cssLoad(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
-        
+
         LoadingPanel.setVisible(false);
         LoadingPanel.setBackground(new Color(0, 0, 0));
         LoadingPanel.setLayout(new GridBagLayout());
