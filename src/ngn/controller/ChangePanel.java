@@ -23,5 +23,4 @@ public class ChangePanel {
         Show.setFocusable(true);
         Show.requestFocusInWindow();
     }
-
 }
