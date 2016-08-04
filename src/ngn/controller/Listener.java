@@ -33,11 +33,11 @@ public class Listener {
         }
     }
 
-    public static void actionPerfomed(ActionEvent e) {
+    public static void CardCodeAction(ActionEvent e) {
         String CardCode = e.getActionCommand();
         if (CardCode.length() == 10) {
             if (DB.cardCode(CardCode)) {
-                ChangePanel.ToPin();
+                ChangePanel.ShowPanel(Pin.EnterPin);
             }
         }
     }

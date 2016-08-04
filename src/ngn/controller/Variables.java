@@ -1,6 +1,7 @@
 package ngn.controller;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import ngn.view.Bye;
 import ngn.view.Card;
 import ngn.view.Litrs;
@@ -20,6 +21,11 @@ public class Variables {
         Work.Working,
         Wait.Waiting,
         Bye.GoodBye
+    };
+    
+    static JPasswordField[] InputArray = new JPasswordField[] {
+        Card.CardCode,
+        Pin.PinCode            
     };
     
 }

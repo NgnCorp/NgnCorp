@@ -30,7 +30,7 @@ public class Card {
         JF.add(EnterCard);
 
         CardCode.addActionListener((ActionEvent evt) -> {
-            Listener.actionPerfomed(evt);
+            Listener.CardCodeAction(evt);
         });
 
         CardCode.addFocusListener(new Listener.CheckFocus());
