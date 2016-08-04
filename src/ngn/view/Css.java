@@ -33,11 +33,6 @@ public class Css extends Ngn {
         MFrame.setLocationRelativeTo(null);
         MFrame.setVisible(true);
     }
-    
-    public static void JPanel(JPanel JP) {
-        JP.setSize(windowWidth, windowHeight);
-        JP.setBackground(new Color(204, 0, 0));
-    }
 
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText) {
 
@@ -69,6 +64,9 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
+        
+        //EnterCard.setFocusable(true);
+        //CardCode.requestFocusInWindow();
     }
     
     static void cssPin(JPanel EnterPin, JPasswordField PinCode, JLabel PinAnimate, JLabel PinCodeText, JLabel MarkPinCodeExit, JLabel MarkPinCodeEnter) {
@@ -85,7 +83,6 @@ public class Css extends Ngn {
         gridBagConstraints.ipadx = 270;
         gridBagConstraints.ipady = 10;
         EnterPin.add(PinCode, gridBagConstraints);
-        PinCode.setFocusable(true); // false!!!!!!!
         
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -129,6 +126,8 @@ public class Css extends Ngn {
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
+        
+        //EnterPin.setVisible(false); // Hide panel after render
     }
     
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
@@ -165,7 +164,6 @@ public class Css extends Ngn {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         EnterLitrs.add(LitrsInput, gridBagConstraints);
-        LitrsInput.setFocusable(true); //___________________ FALSE !!!!!!
 
         ClientInfo.setBackground(new Color(204, 0, 0));
         ClientInfo.setLayout(new GridBagLayout());
@@ -261,5 +259,86 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         EnterLitrs.add(ActionExitText, gridBagConstraints);
+        
+        EnterLitrs.setVisible(false); // Hide panel after render
     }
+    static void cssWork(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
+        
+        Working.setBackground(new Color(204, 0, 0));
+        Working.setLayout(new GridBagLayout());
+
+        PolozheniePistoleta.setBackground(Working.getBackground());
+        PolozheniePistoleta.setFont(new Font("Candara", 1, 24)); // NOI18N
+        PolozheniePistoleta.setForeground(new Color(255, 255, 255));
+        PolozheniePistoleta.setHorizontalAlignment(SwingConstants.CENTER);
+        PolozheniePistoleta.setToolTipText("");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new Insets(20, 0, 0, 0);
+        Working.add(PolozheniePistoleta, gridBagConstraints);
+
+        SchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        SchetLitrov.setFont(new Font("Candara", 1, 48)); // NOI18N
+        SchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        SchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        Working.add(SchetLitrov, gridBagConstraints);
+
+        MoneySchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        MoneySchetLitrov.setFont(new Font("Candara", 1, 48)); // NOI18N
+        MoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        MoneySchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(0, 50, 0, 0);
+        Working.add(MoneySchetLitrov, gridBagConstraints);
+
+        MarkSchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        MarkSchetLitrov.setFont(PolozheniePistoleta.getFont());
+        MarkSchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        MarkSchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        MarkSchetLitrov.setText("СЧЕТ ЛИТРОВ");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new Insets(0, 0, 20, 0);
+        Working.add(MarkSchetLitrov, gridBagConstraints);
+
+        MarkMoneySchetLitrov.setBackground(PolozheniePistoleta.getBackground());
+        MarkMoneySchetLitrov.setFont(PolozheniePistoleta.getFont());
+        MarkMoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
+        MarkMoneySchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        MarkMoneySchetLitrov.setText("ГРН:");
+        MarkMoneySchetLitrov.setToolTipText("");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        Working.add(MarkMoneySchetLitrov, gridBagConstraints);
+
+        Reklama.setBackground(PolozheniePistoleta.getBackground());
+        Reklama.setFont(PolozheniePistoleta.getFont());
+        Reklama.setForeground(PolozheniePistoleta.getForeground());
+        Reklama.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 50);
+        Working.add(Reklama, gridBagConstraints);
+        
+        Working.setVisible(false); // Hide panel after render
+    } 
 }

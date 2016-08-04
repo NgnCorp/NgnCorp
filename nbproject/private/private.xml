@@ -3,12 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/GitHub/NgnCorp/src/ngn/view/Card.java</file>
             <file>file:/D:/GitHub/NgnCorp/src/ngn/view/Css.java</file>
             <file>file:/D:/GitHub/NgnCorp/src/ngn/model/DB.java</file>
             <file>file:/D:/GitHub/NgnCorp/src/ngn/view/Litrs.java</file>
             <file>file:/D:/GitHub/NgnCorp/src/ngn/view/Pin.java</file>
             <file>file:/D:/GitHub/NgnCorp/src/ngn/Ngn.java</file>
+=======
+            <file>file:/D:/NgnCorp/src/ngn/controller/ChangePanel.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/view/Card.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/view/Css.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/view/Filling.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/Ngn.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/view/Error.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/text/ErrorText.java</file>
+            <file>file:/D:/NgnCorp/src/ngn/view/Pin.java</file>
+>>>>>>> origin/master
         </group>
     </open-files>
 </project-private>
