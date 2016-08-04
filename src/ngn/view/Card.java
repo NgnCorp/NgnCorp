@@ -29,18 +29,12 @@ public class Card {
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
         CardAnimate.setIcon(new ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
         
-
-<<<<<<< HEAD
-        CardCode.addActionListener(new Listener.CardCodeActionPerformed());
-        JF.add(EnterCard);
-=======
         JF.add(EnterCard);
         
         CardCode.addActionListener((ActionEvent evt) -> {
             //CardCodeActionPerformed(evt);
         });
         
->>>>>>> origin/master
         CardCode.addFocusListener(new Listener.CheckFocus());
     }
 }

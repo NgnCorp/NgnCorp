@@ -32,10 +32,6 @@ public class Ngn extends JFrame {
             Css.MainFrame(NGN);
             
             //Litrs LITRS = new Litrs(NGN);
-<<<<<<< HEAD
-=======
-            Card CARD = new Card(NGN);
->>>>>>> origin/master
             //Pin PIN = new Pin(NGN);
             //Work WORK = new Work(NGN);
             Card CARD = new Card(NGN);
