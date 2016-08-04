@@ -9,7 +9,7 @@ import ngn.controller.Listener;
  *
  * @author Офис
  */
-public class Filling {
+public class Work {
 
     private final JPanel Working;
     private final JLabel PolozheniePistoleta;
@@ -19,7 +19,7 @@ public class Filling {
     private final JLabel MarkMoneySchetLitrov;
     private final JLabel Reklama;
 
-    public Filling(JFrame JF) {
+    public Work(JFrame JF) {
 
         Working = new javax.swing.JPanel();
         PolozheniePistoleta = new javax.swing.JLabel();
@@ -29,7 +29,7 @@ public class Filling {
         MarkMoneySchetLitrov = new javax.swing.JLabel();
         Reklama = new JLabel();
 
-        Css.cssFilling(Working, PolozheniePistoleta, SchetLitrov, MoneySchetLitrov, MarkSchetLitrov, MarkMoneySchetLitrov, Reklama);
+        Css.cssWork(Working, PolozheniePistoleta, SchetLitrov, MoneySchetLitrov, MarkSchetLitrov, MarkMoneySchetLitrov, Reklama);
         
         Reklama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reklama.gif"))); // NOI18N
         

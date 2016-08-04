@@ -1,6 +1,8 @@
 package ngn.controller;
 
 import javax.swing.JPanel;
+import ngn.view.Card;
+import ngn.view.Pin;
 
 /**
  *
@@ -8,11 +10,11 @@ import javax.swing.JPanel;
  */
 public class ChangePanel {
 
-    public static void ChangePanel(JPanel Close) {
+    public static void ChangePanel(JPanel Close, JPanel Show) {
         Close.setVisible(false);
         Close.setFocusable(false);
-        //Show.setVisible(true);
-        //Show.setFocusable(true);
+        Show.setVisible(true);
+        Show.setFocusable(true);
     }
     
 }

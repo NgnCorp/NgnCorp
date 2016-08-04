@@ -33,11 +33,6 @@ public class Css extends Ngn {
         //window.setLocationRelativeTo(null);
         MFrame.setVisible(true);
     }
-    
-    public static void JPanel(JPanel JP) {
-        JP.setSize(windowWidth, windowHeight);
-        JP.setBackground(new Color(204, 0, 0));
-    }
 
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText) {
 
@@ -69,6 +64,9 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
+        
+        //EnterCard.setFocusable(true);
+        //CardCode.requestFocusInWindow();
     }
     
     static void cssPin(JPanel EnterPin, JPasswordField PinCode, JLabel PinAnimate, JLabel PinCodeText, JLabel MarkPinCodeExit, JLabel MarkPinCodeEnter) {
@@ -85,7 +83,6 @@ public class Css extends Ngn {
         gridBagConstraints.ipadx = 270;
         gridBagConstraints.ipady = 10;
         EnterPin.add(PinCode, gridBagConstraints);
-        PinCode.setFocusable(true); // false!!!!!!!
         
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -129,6 +126,8 @@ public class Css extends Ngn {
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         EnterPin.add(MarkPinCodeEnter, gridBagConstraints);
+        
+        //EnterPin.setVisible(false); // Hide panel after render
     }
     
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
@@ -165,7 +164,6 @@ public class Css extends Ngn {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         EnterLitrs.add(LitrsInput, gridBagConstraints);
-        LitrsInput.setFocusable(true); //___________________ FALSE !!!!!!
 
         ClientInfo.setBackground(new Color(204, 0, 0));
         ClientInfo.setLayout(new GridBagLayout());
@@ -261,8 +259,10 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         EnterLitrs.add(ActionExitText, gridBagConstraints);
+        
+        EnterLitrs.setVisible(false); // Hide panel after render
     }
-    static void cssFilling(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
+    static void cssWork(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
         
         Working.setBackground(new Color(204, 0, 0));
         Working.setLayout(new GridBagLayout());
@@ -338,5 +338,7 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(0, 0, 0, 50);
         Working.add(Reklama, gridBagConstraints);
+        
+        Working.setVisible(false); // Hide panel after render
     } 
 }

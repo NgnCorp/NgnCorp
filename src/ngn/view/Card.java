@@ -35,8 +35,4 @@ public class Card {
         
         CardCode.addFocusListener(new Listener.CheckFocus());
     }
-    
-    public static void CardDo() {
-        ChangePanel.ChangePanel(EnterCard);        
-    }
 }
