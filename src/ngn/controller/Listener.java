@@ -38,6 +38,7 @@ public class Listener {
         if (CardCode.length() == 10) {
             if (DB.cardCode(CardCode)) {
                 ChangePanel.ShowPanel(Pin.EnterPin);
+                ChangePanel.ShowPassword(Pin.PinCode);
             }
         }
     }

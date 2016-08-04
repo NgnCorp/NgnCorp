@@ -16,11 +16,12 @@ public class ChangePanel {
         Show.setVisible(true);
     }
 
-    public static void ShowPanel(JPasswordField Show) {
+    public static void ShowPassword(JPasswordField Show) {
         for (JPasswordField InputArray : Variables.InputArray) {
             InputArray.setFocusable(false);
         }
         Show.setFocusable(true);
+        Show.requestFocusInWindow();
     }
 
 }
