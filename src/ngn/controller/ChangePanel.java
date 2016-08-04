@@ -8,12 +8,11 @@ import ngn.view.Pin;
  */
 public class ChangePanel {
 
-    public static void ToPin() { 
-            System.out.println(Variables.PanelArray.length);       
+    public static void ToPin() {      
         for (int i = 0; i < Variables.PanelArray.length; i++) {
-            System.out.println(Variables.PanelArray[0]);
+            Variables.PanelArray[i].setVisible(false);
         }        
-        //Pin.EnterPin.setVisible(true);
+        Pin.EnterPin.setVisible(true);
     }
 
 }

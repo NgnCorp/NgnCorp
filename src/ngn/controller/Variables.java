@@ -16,10 +16,10 @@ public class Variables {
     static JPanel[] PanelArray = new JPanel[] {
         Card.EnterCard, 
         Pin.EnterPin, 
-        Litrs.EnterLitrs
-        //Work.Working,
-        //Wait.Waiting,
-        //Bye.GoodBye
+        Litrs.EnterLitrs,
+        Work.Working,
+        Wait.Waiting,
+        Bye.GoodBye
     };
     
 }

@@ -20,20 +20,21 @@ public class Ngn extends JFrame {
                 // Frames //
                 JFrame NGN = new JFrame();
                 Css.MainFrame(NGN);
-                
+
                 Card CARD = new Card(NGN);
                 Pin PIN = new Pin(NGN);
                 Litrs LITRS = new Litrs(NGN);
                 Work WORK = new Work(NGN);
                 Wait WAIT = new Wait(NGN);
-                
-                // Controllers //
+                Bye BYE = new Bye(NGN);
 
-                KeyPad KEYPAD = new KeyPad();
-                GasStation GASSTATION = new GasStation();
-                Listener ACTIONLISTENER = new Listener();
-                Timer TIMER = new Timer();
-                Variables VARIABLES = new Variables();
+                // Controllers //
+                
+                    KeyPad KEYPAD = new KeyPad();
+                    GasStation GASSTATION = new GasStation();
+                    Listener ACTIONLISTENER = new Listener();
+                    Timer TIMER = new Timer();
+                    Variables VARIABLES = new Variables();
             });
         }
     }

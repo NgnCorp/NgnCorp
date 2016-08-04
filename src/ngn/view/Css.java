@@ -51,6 +51,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 324;
         gridBagConstraints.ipady = 24;
+        EnterCard.setName("EnterCard");
         EnterCard.add(CardCode, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
