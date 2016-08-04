@@ -17,8 +17,8 @@ public class DB {
     private static final String USER = "daystar_ngn";
     private static final String PASSWORD = "fky9rpk3";
     private static final String DB_PREFIX = "ngn_";
-    protected static Connection con;
-    protected static ResultSet rs;
+    public static Connection con;
+    public static ResultSet rs;
     protected static boolean conStatus = true;
 
     /* Values of MODULENAME */

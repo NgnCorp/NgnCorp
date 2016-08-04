@@ -21,5 +21,6 @@ public class Text {
         String technic = "<html><p style=\"text-align:center\">ТЕХНИЧЕСКИЕ НЕПОЛАДКИ!<br>ПОЗВОНИТЕ ПО НОМЕРУ +38(093)674-64-54.</p>";
     
         //___________    T E X T___________//
+        
     }
 }
