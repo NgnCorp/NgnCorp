@@ -37,7 +37,7 @@ public class Listener {
         String CardCode = e.getActionCommand();
         if (CardCode.length() == 10) {
             if (DB.cardCode(CardCode)) {
-                ChangePanel.ChangePanel(Card.EnterCard, Pin.EnterPin);
+                ChangePanel.ToPin();
             }
         }
     }
