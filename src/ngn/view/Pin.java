@@ -25,10 +25,10 @@ public class Pin {
         MarkPinCodeExit = new javax.swing.JLabel();
         MarkPinCodeEnter = new javax.swing.JLabel();
         
-        JF.add(EnterPin);
-        
         Css.cssPin(EnterPin, PinCode, PinAnimate, PinCodeText, MarkPinCodeExit, MarkPinCodeEnter);
         PinAnimate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/secAnim.gif"))); // NOI18N
+        
+        JF.add(EnterPin);
         
         PinCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

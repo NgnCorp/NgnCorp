@@ -15,29 +15,28 @@ import static ngn.view.Pin.EnterPin;
 public class Ngn extends JFrame {
 
     public static void main(String[] args) {
-        
+
         if (PreLoader.PreLoader()) {
             invokeLater(() -> {
-            // Controllers //
-            
-            KeyPad KEYPAD = new KeyPad();
-            GasStation GASSTATION = new GasStation();
-            Listener ACTIONLISTENER = new Listener();
-            Timer TIMER = new Timer();
-            Variables VARIABLES = new Variables();
-            
-            // Frames //
-            
-            JFrame NGN = new JFrame();
-            Css.MainFrame(NGN);
-            
-            //Litrs LITRS = new Litrs(NGN);
-            //Pin PIN = new Pin(NGN);
-            //Work WORK = new Work(NGN);
-            Card CARD = new Card(NGN);
-            
-            //ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
-        });
+                // Controllers //
+
+                KeyPad KEYPAD = new KeyPad();
+                GasStation GASSTATION = new GasStation();
+                Listener ACTIONLISTENER = new Listener();
+                Timer TIMER = new Timer();
+                Variables VARIABLES = new Variables();
+
+                // Frames //
+                JFrame NGN = new JFrame();
+                Css.MainFrame(NGN);
+
+                Work WORK = new Work(NGN);
+                Litrs LITRS = new Litrs(NGN);
+                Pin PIN = new Pin(NGN);
+                Card CARD = new Card(NGN);
+                
+                ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
+            });
         }
     }
 }

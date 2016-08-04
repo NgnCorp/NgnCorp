@@ -43,6 +43,8 @@ public class Litrs {
         Css.cssLitrs(ActionExitText, ActionEnterText, CardMark, NameMark, ClientCard, ClientName, ClientInfo, LogoNgn, EnterLitrs, LitrsInputMark, LitrsInput, ClientLitrs, LitrsMark);
         LogoNgn.setIcon(new ImageIcon(getClass().getResource("/images/logo_ngn.png"))); // NOI18N
         
+        JF.add(EnterLitrs);
+        
         LitrsInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //LitrsInputActionPerformed(evt);
@@ -50,7 +52,5 @@ public class Litrs {
         });
         
         LitrsInput.addFocusListener(new Listener.CheckFocus());
-        
-        JF.add(EnterLitrs);
     }
 }
