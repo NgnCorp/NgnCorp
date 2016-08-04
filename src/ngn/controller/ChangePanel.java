@@ -11,13 +11,10 @@ import static ngn.view.Pin.EnterPin;
 public class ChangePanel {
 
     public static void ChangePanel(JPanel Close, JPanel Show) {
-        //Close.setVisible(false);
+        Close.setVisible(false);
         //Close.setFocusable(false);
-        //Show.setVisible(true);
+        Show.setVisible(true);
         //Show.requestFocusInWindow();
-        
-            EnterPin.setVisible(true);
-            EnterCard.setVisible(false);
     }
     
 }
