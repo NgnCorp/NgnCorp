@@ -28,11 +28,11 @@ public class Ngn extends JFrame {
                 JFrame NGN = new JFrame();
                 Css.MainFrame(NGN);
 
+                Wait WAIT = new Wait(NGN);
                 Work WORK = new Work(NGN);
                 Litrs LITRS = new Litrs(NGN);
                 Pin PIN = new Pin(NGN);
                 Card CARD = new Card(NGN);
-                Wait WAIT = new Wait(NGN);
                 
                 ChangePanel.ChangePanel(Pin.EnterPin, Card.EnterCard);
             });
