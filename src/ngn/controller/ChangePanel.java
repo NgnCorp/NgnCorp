@@ -14,7 +14,7 @@ public class ChangePanel {
         Close.setVisible(false);
         Close.setFocusable(false);
         Show.setVisible(true);
-        Show.setFocusable(true);
+        Show.requestFocusInWindow();
     }
     
 }

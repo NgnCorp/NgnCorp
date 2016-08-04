@@ -32,9 +32,9 @@ public class Work {
         Css.cssWork(Working, PolozheniePistoleta, SchetLitrov, MoneySchetLitrov, MarkSchetLitrov, MarkMoneySchetLitrov, Reklama);
         
         Reklama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reklama.gif"))); // NOI18N
-        
-        Working.addFocusListener(new Listener.CheckFocus());
 
         JF.add(Working);
+        
+        Working.addFocusListener(new Listener.CheckFocus());
     }
 }
