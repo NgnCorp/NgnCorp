@@ -27,6 +27,7 @@ public class Text {
     public static String h1SetLitrs     = "<html>Введите количество литров";
     public static String h1CardOwner    = "<html>Владелец карты:";
     public static String h1CardNum      = "<html>Номер карты:";
+    public static String h1LitrsStorage = "<html>Остаток литров:";
     public static String h1StartFilling = "<html>Нажмите решетку (#) на клавиатуре для ПУСКА заправки.";
     public static String h1CountLitrs   = "<html>СЧЕТ ЛИТРОВ";
     public static String h1UAH          = "<html>ГРН:";

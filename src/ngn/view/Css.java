@@ -225,7 +225,7 @@ public class Css extends Ngn {
 
         LitrsMark.setFont(NameMark.getFont());
         LitrsMark.setForeground(NameMark.getForeground());
-        LitrsMark.setText("Остаток литров:");
+        LitrsMark.setText(Text.h1LitrsStorage);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
