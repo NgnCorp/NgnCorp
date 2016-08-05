@@ -22,7 +22,7 @@ public class Text {
     
     public static String h1CardPanel    = "<html>Поднесите карту к клавиатуре";
     public static String h1EnterPin     = "<html>Введите PIN-код";
-    public static String h1ExitStar     = "<html>Для ВЫХОДА нажмите звездочку (*) на клавиатуре.";
+    public static String h1ExitStar     = "<html>Нажмите звездочку (*) на клавиатуре для ВЫХОДА.";
     public static String h1Confirm      = "<html>Для ПОДТВЕРЖДЕНИЯ pin-кода нажмите решетку (#) на клавиатуре.";
     public static String h1SetLitrs     = "<html>Введите количество литров";
     public static String h1CardOwner    = "<html>Владелец карты:";
