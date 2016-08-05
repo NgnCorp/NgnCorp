@@ -6,7 +6,8 @@ package ngn.text;
  */
 public class Text {
 
-    //___________E R R O R    T E X T___________//
+    //___________E R R O R S    T E X T___________//
+    
     static String nointernetatstart = "<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ 15 СЕКУНД.</p>";
     static String nointernetinend   = "<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С ИНТЕРНЕТОМ!<br>ТРАНЗАКЦИЯ ПРОЙДЕТ ПОСЛЕ ПОЯВЛЕНИЯ СВЯЗИ.</p>";
     static String cardvalid         = "<html><p style=\"text-align:center;\">КАРТА НЕ ПРОШЛА ПРОВЕРКУ!<br>ПОПРОБУЙТЕ ЕЩЕ РАЗ ПОЗЖЕ.</p>";
@@ -17,7 +18,8 @@ public class Text {
     static String getpistol         = "<html><p style=\"text-align:center\">Поднимите пистолет и вставьте в бак.<br>Затем снова нажмите кнопку #</p>";
     static String technic           = "<html><p style=\"text-align:center\">ТЕХНИЧЕСКИЕ НЕПОЛАДКИ!<br>ПОЗВОНИТЕ ПО НОМЕРУ +38(093)674-64-54.</p>";
 
-    //___________    T E X T___________//
+    //___________P A N E L S    T E X T___________//
+    
     public static String h1CardPanel    = "<html>Поднесите карту к клавиатуре";
     public static String h1EnterPin     = "<html>Введите PIN-код";
     public static String h1ExitStar     = "<html>Для ВЫХОДА нажмите звездочку (*) на клавиатуре.";
