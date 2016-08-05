@@ -3,7 +3,6 @@ package ngn.view;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
-import ngn.controller.ChangePanel;
 import ngn.controller.Listener;
 
 /**

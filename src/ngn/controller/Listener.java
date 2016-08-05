@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import ngn.model.*;
 import ngn.view.Litrs;
 import ngn.view.Pin;
+import ngn.view.Work;
 
 /**
  *
@@ -24,7 +25,11 @@ public class Listener {
 
         @Override
         public void focusGained(FocusEvent e) {
-            ObjectInFocus = e.getComponent().getName();
+            if (e.getComponent().getName() == null) {
+                ObjectInFocus = e.getComponent().getParent().getName();
+            } else {
+                ObjectInFocus = e.getComponent().getName();
+            }
             System.out.println(ObjectInFocus);
         }
 
@@ -82,6 +87,9 @@ public class Listener {
         if (LitrsInput.length() != 0 && Integer.valueOf(LitrsInput) > 0) { // Строка не пустая и значение строки больше ноля
             //String eqHex = ConvertLitrsNumber.ConvertLitrsNumberToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения
 
+            ChangePanel.ShowPanel(Work.Working);
+            Work.Working.setFocusable(true);
+            Work.Working.requestFocusInWindow();
         }
     }
 }

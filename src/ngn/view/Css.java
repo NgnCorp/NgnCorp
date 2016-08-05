@@ -144,6 +144,8 @@ public class Css extends Ngn {
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
         EnterLitrs.setBackground(new Color(204, 0, 0));
         EnterLitrs.setLayout(new GridBagLayout());
+        
+        EnterLitrs.setName("EnterLitrs");
                 
         LitrsInputMark.setFont(new Font("Candara", 0, 36)); // NOI18N
         LitrsInputMark.setForeground(new Color(255, 255, 255));
