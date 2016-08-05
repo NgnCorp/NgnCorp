@@ -88,7 +88,7 @@ public class Listener {
             //String eqHex = ConvertLitrsNumber.ConvertLitrsNumberToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения
 
             ChangePanel.ShowPanel(Work.Working);
-            Work.Working.setFocusable(true);
+            Litrs.LitrsInput.setFocusable(false);
             Work.Working.requestFocusInWindow();
         }
     }
