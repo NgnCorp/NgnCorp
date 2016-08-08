@@ -19,10 +19,6 @@ public class Listener {
 
     public static class CheckFocus implements FocusListener {
 
-        public CheckFocus() {
-
-        }
-
         @Override
         public void focusGained(FocusEvent e) {
             if (e.getComponent().getName() == null) {
