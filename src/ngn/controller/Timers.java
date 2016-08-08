@@ -1,34 +1,40 @@
 package ngn.controller;
 
 import java.awt.event.ActionEvent;
+import ngn.text.Text;
+import ngn.view.Info;
+import javax.swing.Timer;
+import ngn.view.Pin;
 
 /**
  *
  * @author Офис
  */
-public class Timer {
+public class Timers {
 
-    javax.swing.Timer errorCardLength;
-    javax.swing.Timer errorPin;
-    javax.swing.Timer errorLitrs;
-    javax.swing.Timer Success;
-    javax.swing.Timer youHere;
-    javax.swing.Timer timerText;
-    javax.swing.Timer ForceMajor;
-    javax.swing.Timer WaitForServer;
-    javax.swing.Timer TryToConnect;
-    javax.swing.Timer ServerWaiting;
-    javax.swing.Timer KyePadWorks;
-    javax.swing.Timer KyePadNotWorks;
+    Timer errorCardLength;
+    static Timer errorPin;
+    Timer errorLitrs;
+    Timer Success;
+    Timer youHere;
+    Timer timerText;
+    Timer ForceMajor;
+    Timer WaitForServer;
+    Timer TryToConnect;
+    Timer ServerWaiting;
+    Timer KeyPadWorks;
+    Timer KeyPadNotWorks;
 
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
     private static final int LAST_TIME = 30000;
 
-    public Timer() {
-        /*
+    public Timers() {
         
+    }
+        /*
+    public static void errorCardLength()
         errorCardLength = new javax.swing.Timer(5000, (ActionEvent e) -> {
             if (Validate.updateLitrs(newln, code)) {
                 Validate.writeResult(name, code, leftlitr, sdate); //Записываем операцию в таблицу
@@ -44,16 +50,22 @@ public class Timer {
                 Kolonka.StopStartCom3(false);
             }
         });        
+        */
+    public static void errorPin() {
+        
+        Info.ErrorMassage.setText(Text.pin);
+        ChangePanel.ShowPanel(Info.InfoMassage);
         
         errorPin = new Timer(ERRORTIME, (ActionEvent e) -> {
-            InfoMassage.setVisible(false);
-            EnterPin.setVisible(true);
-            PinCode.setFocusable(true);
-            PinCode.setText("");
-            PinCode.requestFocusInWindow();
+            Info.InfoMassage.setVisible(false);
+            ChangePanel.ShowPanel(Pin.EnterPin);
+            ChangePanel.FocusPassword(Pin.PinCode);
+            Pin.PinCode.setText("");
             errorPin.stop();
         });
-        
+        errorPin.restart();
+    }
+        /*
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
             InfoMassage.setVisible(false);
             EnterLitrs.setVisible(true);
@@ -261,6 +273,4 @@ public class Timer {
                         }
                     });
          */
-
-    }
 }

@@ -26,14 +26,15 @@ public class Ngn extends JFrame {
                 Litrs LITRS = new Litrs(NGN);
                 Work WORK = new Work(NGN);
                 Wait WAIT = new Wait(NGN);
+                Info INFO = new Info(NGN);
                 Bye BYE = new Bye(NGN);
 
                 // Controllers //
                 KeyPad KEYPAD = new KeyPad();
                 GasStation GASSTATION = new GasStation();
-                Timer TIMER = new Timer();
                 Variables VARIABLES = new Variables();
                 Listener ACTIONLISTENER = new Listener();
+                Timers TIMER = new Timers();
             });
         }
     }

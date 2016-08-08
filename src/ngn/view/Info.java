@@ -1,6 +1,8 @@
 package ngn.view;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import ngn.controller.Listener;
 
 /**
@@ -9,15 +11,15 @@ import ngn.controller.Listener;
  */
 public class Info {
     
-        public static javax.swing.JPanel InfoMassage;
-        public static javax.swing.JLabel ErrorMassage;
-        public static javax.swing.JLabel ServerTimer;
+        public static JPanel InfoMassage;
+        public static JLabel ErrorMassage;
+        public static JLabel ServerTimer;
         
     public Info(JFrame JF) {
         
-        InfoMassage = new javax.swing.JPanel();
-        ErrorMassage = new javax.swing.JLabel();
-        ServerTimer = new javax.swing.JLabel();
+        InfoMassage = new JPanel();
+        ErrorMassage = new JLabel();
+        ServerTimer = new JLabel();
         
         Css.cssInfo(InfoMassage, ErrorMassage, ServerTimer);
         JF.add(InfoMassage);

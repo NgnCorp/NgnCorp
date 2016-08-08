@@ -76,9 +76,21 @@ public class Listener {
         String PinCode = e.getActionCommand();
 
         if (PinCode.equals(Variables.pin)) {
+            //youHere.restart();
+            Litrs.ClientName.setText(Variables.name);
+            Litrs.ClientCard.setText(Variables.code);
+            System.out.println(Variables.isLimitClient);
+            if (Variables.limitDay != 0) {
+                Litrs.ClientLitrs.setText(String.valueOf(Variables.limitLitrs));
+            } else {
+                Litrs.ClientLitrs.setText(Variables.litrnum);
+            }
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
-            
+        } else {
+            //youHere.restart();
+            Timers.errorPin();
+            System.out.println("wrong password");
         }
     }
 
