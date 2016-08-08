@@ -78,6 +78,7 @@ public class Listener {
         if (PinCode.equals(Variables.pin)) {
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
+            
         }
     }
 
