@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import ngn.text.Text;
 import ngn.view.Info;
 import javax.swing.Timer;
+import ngn.model.DB;
+import ngn.view.Litrs;
 import ngn.view.Pin;
+import ngn.view.Work;
 
 /**
  *
@@ -12,9 +15,9 @@ import ngn.view.Pin;
  */
 public class Timers {
 
-    Timer errorCardLength;
+    static Timer errorCardLength;
     static Timer errorPin;
-    Timer errorLitrs;
+    static Timer errorLitrs;
     Timer Success;
     Timer youHere;
     Timer timerText;
@@ -34,11 +37,11 @@ public class Timers {
         
     }
         /*
-    public static void errorCardLength()
+    public static void errorCardLength() {
         errorCardLength = new javax.swing.Timer(5000, (ActionEvent e) -> {
-            if (Validate.updateLitrs(newln, code)) {
-                Validate.writeResult(name, code, leftlitr, sdate); //Записываем операцию в таблицу
-                Working.setVisible(false);
+            if (DB.updateLitrs(newln, code)) {
+                DB.writeResult(name, code, leftlitr, sdate); //Записываем операцию в таблицу
+                Work.Working.setVisible(false);
                 LitrsInput.setText("");
                 SchetLitrov.setText("");
                 Success();
@@ -50,6 +53,8 @@ public class Timers {
                 Kolonka.StopStartCom3(false);
             }
         });        
+        errorCardLength.restart();
+    }
         */
     public static void errorPin() {
         
@@ -65,15 +70,40 @@ public class Timers {
         });
         errorPin.restart();
     }
-        /*
+    
+    public static void errorLitrs(int error) {
+        switch (2) {
+            case 0:
+                Info.ErrorMassage.setText(Text.numlitres);
+                Litrs.LitrsInput.setText("");
+                break;
+            case 1:
+                Info.ErrorMassage.setText(Text.notenoughlitres);
+                Litrs.LitrsInput.setText("");
+                break;
+            case 2:
+                Info.ErrorMassage.setText(Text.getpistol);
+                break;
+            case 3:
+                Info.ErrorMassage.setText(Text.needlitres);
+                Litrs.LitrsInput.setText("");
+                break;
+        }
+        //youHere.restart();
+        Info.InfoMassage.setVisible(true);
+        Info.InfoMassage.requestFocusInWindow();
+        Litrs.EnterLitrs.setVisible(false);
+        Litrs.LitrsInput.setFocusable(false);
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
-            InfoMassage.setVisible(false);
-            EnterLitrs.setVisible(true);
-            LitrsInput.setFocusable(true);
-            LitrsInput.requestFocusInWindow();
+            Info.InfoMassage.setVisible(false);
+            Litrs.EnterLitrs.setVisible(true);
+            Litrs.LitrsInput.setFocusable(true);
+            Litrs.LitrsInput.requestFocusInWindow();
             errorLitrs.stop();
         });
-        
+        errorLitrs.restart();
+    }
+/*
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             GoodBye.setVisible(false);
             EnterCard.setVisible(true);
