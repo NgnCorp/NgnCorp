@@ -72,7 +72,7 @@ public class Timers {
     }
 
     public static void errorLitrs(int error) {
-        switch (2) {
+        switch (error) {
             case 0:
                 Info.ErrorMassage.setText(Text.numlitres);
                 break;
@@ -90,7 +90,7 @@ public class Timers {
         ChangePanel.ShowPanel(Info.InfoMassage);
         
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
-            ChangePanel.ShowPanel(Info.InfoMassage);
+            ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
             Litrs.LitrsInput.setText("");
             errorLitrs.stop();
