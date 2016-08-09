@@ -72,21 +72,18 @@ public class Timers {
     }
     
     public static void errorLitrs(int error) {
-        switch (2) {
+        switch (error) {
             case 0:
                 Info.ErrorMassage.setText(Text.numlitres);
-                Litrs.LitrsInput.setText("");
                 break;
             case 1:
                 Info.ErrorMassage.setText(Text.notenoughlitres);
-                Litrs.LitrsInput.setText("");
                 break;
             case 2:
                 Info.ErrorMassage.setText(Text.getpistol);
                 break;
             case 3:
                 Info.ErrorMassage.setText(Text.needlitres);
-                Litrs.LitrsInput.setText("");
                 break;
         }
         //youHere.restart();
@@ -95,10 +92,9 @@ public class Timers {
         Litrs.EnterLitrs.setVisible(false);
         Litrs.LitrsInput.setFocusable(false);
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
-            Info.InfoMassage.setVisible(false);
-            Litrs.EnterLitrs.setVisible(true);
-            Litrs.LitrsInput.setFocusable(true);
-            Litrs.LitrsInput.requestFocusInWindow();
+            ChangePanel.ShowPanel(Litrs.EnterLitrs);
+            ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
+            Litrs.LitrsInput.setText("");
             errorLitrs.stop();
         });
         errorLitrs.restart();
