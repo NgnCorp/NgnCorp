@@ -32,4 +32,18 @@ public class ChangePanel {
         Show.setFocusable(true);
         Show.requestFocusInWindow();
     }
+
+    public static void FocusOff(JTextField LitrsInput) {
+        for (JPasswordField InputArray : Variables.InputArray) {
+            InputArray.setFocusable(false);
+        }
+        LitrsInput.setFocusable(false);
+    }
+
+    public static void TextOff(JTextField LitrsInput) {
+        for (JPasswordField InputArray : Variables.InputArray) {
+            InputArray.setText("");
+        }
+        LitrsInput.setText("");
+    }
 }

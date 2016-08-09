@@ -11,17 +11,17 @@ public class Wait {
     
         public static javax.swing.JPanel Waiting;
         public static javax.swing.JLabel Here;
-        public static javax.swing.JLabel endTimer;
+        public static javax.swing.JLabel WaitingSeconds;
         public static javax.swing.JButton btnYes;
         
     public Wait(JFrame JF) {
         
         Waiting = new javax.swing.JPanel();
         Here = new javax.swing.JLabel();
-        endTimer = new javax.swing.JLabel();
+        WaitingSeconds = new javax.swing.JLabel();
         btnYes = new javax.swing.JButton();
         
-        Css.cssWait(Waiting, Here, endTimer, btnYes);
+        Css.cssWait(Waiting, Here, WaitingSeconds, btnYes);
         JF.add(Waiting);
         
         btnYes.addActionListener((java.awt.event.ActionEvent evt) -> {

@@ -5,8 +5,10 @@ import ngn.text.Text;
 import ngn.view.Info;
 import javax.swing.Timer;
 import ngn.model.DB;
+import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
+import ngn.view.Wait;
 import ngn.view.Work;
 
 /**
@@ -18,20 +20,21 @@ public class Timers {
     static Timer errorCardLength;
     static Timer errorPin;
     static Timer errorLitrs;
-    Timer Success;
-    Timer youHere;
-    Timer timerText;
-    Timer ForceMajor;
-    Timer WaitForServer;
-    Timer TryToConnect;
-    Timer ServerWaiting;
-    Timer KeyPadWorks;
-    Timer KeyPadNotWorks;
+    static Timer Success;
+    static Timer WaitForClient;
+    static Timer ChangeSecondsValue;
+    static Timer ForceMajor;
+    static Timer WaitForServer;
+    static Timer TryToConnect;
+    static Timer ServerWaiting;
+    static Timer KeyPadWorks;
+    static Timer KeyPadNotWorks;
 
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
     private static final int LAST_TIME = 30000;
+    private static int SECONDSVALUE = 15;
 
     public Timers() {
 
@@ -86,9 +89,9 @@ public class Timers {
                 Info.ErrorMassage.setText(Text.needlitres);
                 break;
         }
-        //youHere.restart();
+        //WaitForClient.restart();
         ChangePanel.ShowPanel(Info.InfoMassage);
-        
+
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
@@ -97,6 +100,7 @@ public class Timers {
         });
         errorLitrs.restart();
     }
+
     /*
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             GoodBye.setVisible(false);
@@ -110,44 +114,33 @@ public class Timers {
             Kolonka.MoneySchetLitrov = "";
             Success.stop();
         });
-        
-        youHere = new Timer(LAST_TIME, (ActionEvent e) -> {
-            endTimer.setText("<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: 10 секунд.</p>");
-            Waiting.setVisible(true);
-            Waiting.requestFocusInWindow();
-            PinCode.setFocusable(false);
-            LitrsInput.setFocusable(false);
-            CardCode.setFocusable(false);
-            EnterCard.setVisible(false);
-            EnterPin.setVisible(false);
-            EnterLitrs.setVisible(false);
-            youHere.stop();
-            value = 10;
-            timerText.restart();
-            SwingUtilities.getRootPane(btnYes).setDefaultButton(btnYes);
+     */
+    public static void WaitForClient() {
+        WaitForClient = new Timer(LAST_TIME, (ActionEvent e) -> {
+            Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
+            ChangePanel.ShowPanel(Wait.Waiting);
+            ChangePanel.FocusOff(Litrs.LitrsInput);
+            WaitForClient.stop();
+            SECONDSVALUE = 15;
+            ChangeSecondsValue.restart();
         });
-        
-        timerText = new Timer(TIMER_TIME, (ActionEvent e) -> {
-            if (value <= 0) {
-                Waiting.setVisible(false);
-                EnterPin.setVisible(false);
-                EnterLitrs.setVisible(false);
-                LitrsInput.setText("");
-                PinCode.setText("");
-                CardCode.setText("");
-                PinCode.setFocusable(false);
-                LitrsInput.setFocusable(false);
-                CardCode.setFocusable(true);
-                EnterCard.setVisible(true);
-                CardCode.requestFocusInWindow();
-                timerText.stop();
-                SwingUtilities.getRootPane(btnYes).setDefaultButton(null);
+    }
+    
+    public static void ChangeSecondsValue() {
+        ChangeSecondsValue = new Timer(TIMER_TIME, (ActionEvent e) -> {
+            if (SECONDSVALUE <= 0) {
+                ChangePanel.ShowPanel(Card.EnterCard);
+                ChangePanel.FocusPassword(Card.CardCode);
+                ChangePanel.TextOff(Litrs.LitrsInput);
+                ChangeSecondsValue.stop();
             } else {
-                value--;
-                endTimer.setText("<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: " + value + " секунд.</p>");
+                SECONDSVALUE--;
+                Wait.WaitingSeconds.setText(Text.WaitingText + SECONDSVALUE + " секунд.</p>");
             }
         });
+    }
         
+    /*
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
                         PolozheniePistoleta.setText("НЕ ЗАБУДЬТЕ ПОВЕСИТЬ ПИСТОЛЕТ ПОСЛЕ ЗАПРАВКИ!");
                         SchetLitrov.setText(Kolonka.SchetLitrov);

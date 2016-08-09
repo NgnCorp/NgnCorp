@@ -30,10 +30,11 @@ public class Text {
     public static String h1LitrsStorage = "<html>Остаток литров:";
     public static String h1StartFilling = "<html>Нажмите решетку (#) на клавиатуре для ПУСКА заправки.";
     public static String h1CountLitrs   = "<html>СЧЕТ ЛИТРОВ";
-    public static String h1UAH          = "<html>ГРН:";
+    public static String h1UAH          = "<html>ГРН: ";
     public static String h1TYforChoose  = "<html><p style=\"text-align:center;\">Транзакция прошла успешно!<br>Спасибо, что воспользовались услугой компании NGN!</p>";
     public static String h1AreUHere     = "<html><p style=\"text-align:center;\">Вы еще здесь?</p>";
     public static String h1ClickIfUHere = "<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: 15 секунд.</p>";
-    public static String h1Yes          ="<html>ДА";
+    public static String h1Yes          = "<html>ДА";
     public static String h1LostIntrCon  = "<html>Подождите. Пропал интернет. Скоро появится...";
+    public static String WaitingText    = "<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: ";
 }
