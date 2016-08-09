@@ -380,7 +380,7 @@ public class Css extends Ngn {
         GoodBye.setVisible(false); // Hide panel after render
     }
 
-    static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer, JButton btnYes) {
+    static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer, JLabel ClockImg) {
 
         Waiting.setBackground(new Color(204, 0, 0));
         Waiting.setLayout(new GridBagLayout());
@@ -411,6 +411,11 @@ public class Css extends Ngn {
         gridBagConstraints.ipady = 50;
         gridBagConstraints.anchor = GridBagConstraints.SOUTH;
         Waiting.add(endTimer, gridBagConstraints);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        Waiting.add(ClockImg, gridBagConstraints);
 
         Waiting.setVisible(false);
     }
