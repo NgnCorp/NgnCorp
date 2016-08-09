@@ -4,12 +4,10 @@ import java.awt.event.ActionEvent;
 import ngn.text.Text;
 import ngn.view.Info;
 import javax.swing.Timer;
-import ngn.model.DB;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
 import ngn.view.Wait;
-import ngn.view.Work;
 
 /**
  *
@@ -89,7 +87,7 @@ public class Timers {
                 Info.ErrorMassage.setText(Text.needlitres);
                 break;
         }
-        //WaitForClient.restart();
+        WaitForClient.restart();
         ChangePanel.ShowPanel(Info.InfoMassage);
 
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
@@ -101,20 +99,7 @@ public class Timers {
         errorLitrs.restart();
     }
 
-    /*
-        Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
-            GoodBye.setVisible(false);
-            EnterCard.setVisible(true);
-            PinCode.setFocusable(false);
-            LitrsInput.setFocusable(false);
-            CardCode.setFocusable(true);
-            CardCode.setText("");
-            CardCode.requestFocusInWindow();
-            Kolonka.SchetLitrov = "";
-            Kolonka.MoneySchetLitrov = "";
-            Success.stop();
-        });
-     */
+// One Timer For Open Waiting Panel And Another One For Change Seconds Value <    
     public static void WaitForClient() {
         WaitForClient = new Timer(LAST_TIME, (ActionEvent e) -> {
             Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
@@ -125,7 +110,7 @@ public class Timers {
             ChangeSecondsValue.restart();
         });
     }
-    
+
     public static void ChangeSecondsValue() {
         ChangeSecondsValue = new Timer(TIMER_TIME, (ActionEvent e) -> {
             if (SECONDSVALUE <= 0) {
@@ -139,7 +124,8 @@ public class Timers {
             }
         });
     }
-        
+// >
+
     /*
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
                         PolozheniePistoleta.setText("НЕ ЗАБУДЬТЕ ПОВЕСИТЬ ПИСТОЛЕТ ПОСЛЕ ЗАПРАВКИ!");
@@ -289,5 +275,18 @@ public class Timers {
                         } catch (SerialPortException ex_kpdw) {
                         }
                     });
+    
+        Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
+            GoodBye.setVisible(false);
+            EnterCard.setVisible(true);
+            PinCode.setFocusable(false);
+            LitrsInput.setFocusable(false);
+            CardCode.setFocusable(true);
+            CardCode.setText("");
+            CardCode.requestFocusInWindow();
+            Kolonka.SchetLitrov = "";
+            Kolonka.MoneySchetLitrov = "";
+            Success.stop();
+        });
      */
 }

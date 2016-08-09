@@ -4,7 +4,6 @@ import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
-import static ngn.view.Card.EnterCard;
 
 /**
  *

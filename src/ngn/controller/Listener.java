@@ -3,13 +3,7 @@ package ngn.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.sql.SQLException;
-import java.util.Locale;
-import javax.swing.Timer;
 import ngn.model.*;
 import ngn.view.Litrs;
 import static ngn.view.Litrs.ClientLitrs;
@@ -59,7 +53,22 @@ public class Listener {
                     Variables.limitDay = DB.rs.getInt("limit_day");
                     Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
                     Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
-                    //System.out.println(limitDay + " " + limitLitrs + " " + usedLimitLitrs);
+                    /*
+                    System.out.println(
+                            "customerId: " + Variables.customerId + 
+                            " pin: " + Variables.pin + 
+                            " name: " + Variables.name + 
+                            " litrnum: " + Variables.litrnum + 
+                            " code: " + Variables.code +
+                            " customerID: " + Variables.customerId +
+                            " customerPrice: " + Variables.customerPrice +
+                            " UAHBalance: " + Variables.uahBalance +
+                            " purse: " + Variables.purse +
+                            " limitDay: " + Variables.limitDay +
+                            " limitLitrs: " + Variables.limitLitrs +
+                            " usedLimitLitrs: " + Variables.usedLimitLitrs
+                    );
+                    */
                 } catch (SQLException ex) {
                 } finally {
                     try {
