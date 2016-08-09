@@ -413,8 +413,8 @@ public class Css extends Ngn {
         Waiting.add(endTimer, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         Waiting.add(ClockImg, gridBagConstraints);
 
         Waiting.setVisible(false);
