@@ -31,7 +31,7 @@ public class Timers {
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
-    private static final int WAIT_TIME = 10000;
+    private static final int WAIT_TIME = 30000;
     private static int SECONDSVALUE = 15;
 
     public Timers() {

@@ -380,14 +380,14 @@ public class Css extends Ngn {
         GoodBye.setVisible(false); // Hide panel after render
     }
 
-    static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer, JLabel ClockImg) {
+    static void cssWait(JPanel Waiting, JLabel Here, JLabel endTimer/*, JLabel ClockImg*/) {
 
         Waiting.setBackground(new Color(204, 0, 0));
         Waiting.setLayout(new GridBagLayout());
         
         Waiting.setName("Waiting");
 
-        Here.setFont(new Font("Candara", 1, 48));
+        Here.setFont(new Font("Candara", 1, 68));
         Here.setForeground(new Color(255, 255, 255));
         Here.setHorizontalAlignment(SwingConstants.CENTER);
         Here.setText(Text.h1AreUHere);
@@ -396,27 +396,29 @@ public class Css extends Ngn {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 296;
-        gridBagConstraints.ipady = 83;
+        gridBagConstraints.ipady = 50;
         gridBagConstraints.anchor = GridBagConstraints.NORTH;
         Waiting.add(Here, gridBagConstraints);
 
-        endTimer.setFont(new Font("Candara", 1, 18)); // NOI18N
+        endTimer.setFont(new Font("Candara", 1, 28)); // NOI18N
         endTimer.setForeground(new Color(255, 255, 255));
         endTimer.setHorizontalAlignment(SwingConstants.CENTER);
         endTimer.setText(Text.h1ClickIfUHere);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 736;
-        gridBagConstraints.ipady = 50;
+        gridBagConstraints.ipady = 0;
         gridBagConstraints.anchor = GridBagConstraints.SOUTH;
         Waiting.add(endTimer, gridBagConstraints);
-
+/*
         gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 239;
+        gridBagConstraints.ipady = 77;
         Waiting.add(ClockImg, gridBagConstraints);
-
+*/
         Waiting.setVisible(false);
     }
 
