@@ -87,9 +87,9 @@ public class Listener {
 
     public static void PinCodeAction(ActionEvent e) {
         String PinCode = e.getActionCommand();
-
+        System.out.println("pin");
         if (PinCode.equals(Variables.pin)) {
-            Timers.WaitForClient.restart();
+            //Timers.WaitForClient.restart();
             Litrs.ClientName.setText(Variables.name);
             Litrs.ClientCard.setText(Variables.code);
             System.out.println(Variables.isLimitClient);
@@ -101,7 +101,7 @@ public class Listener {
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
         } else {
-            Timers.WaitForClient.restart();
+            //Timers.WaitForClient.restart();
             Timers.errorPin();
         }
     }
