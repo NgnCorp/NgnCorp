@@ -11,25 +11,25 @@ public class Converter {
     }
     
  public static String ConvertToHex(String litrs) {
-        int convertLitrs = Integer.valueOf(litrs); // Вытягиваем значение вводимых клиентом литров
-        int mililitr = convertLitrs * 100;
-        String hexMililitrs = Integer.toHexString(mililitr);
-        int hexLength = hexMililitrs.length();
+        //int convertLitrs = Integer.valueOf(litrs); // Вытягиваем значение вводимых клиентом литров
+        //int mililitr = convertLitrs * 100;
+        String hexMililitrs = Integer.toHexString(Integer.valueOf(litrs) * 100);
+        //int hexLength = hexMililitrs.length();
         char[] litrHex = new char[8];
         int needlenght = 8;
-        int stoplength = needlenght - hexLength;
+        int stoplength = litrHex.length - hexMililitrs.length();
         for (; stoplength >= 0; stoplength--) {
             litrHex[stoplength] = '0';
         }
-        stoplength = needlenght - hexLength;
+        stoplength = needlenght - hexMililitrs.length();
         int d = 0;
         for (; stoplength < 8; stoplength++) {
             litrHex[stoplength] = hexMililitrs.charAt(d);
             d++;
         }
         String lhex = new String(litrHex); // Хексовое значение кол-ва литров без контрольной суммы
-        String newlhex = lhex.toUpperCase();
-        String eqHex = newlhex; // Блок из восьми чисел для колонки
+        String eqHex = lhex.toUpperCase();
+        //String eqHex = newlhex; // Блок из восьми чисел для колонки
         return eqHex;
     }
 
