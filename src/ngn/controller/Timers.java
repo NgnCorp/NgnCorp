@@ -87,16 +87,12 @@ public class Timers {
                 break;
         }
         //youHere.restart();
-        Info.InfoMassage.setVisible(true);
-        Litrs.LitrsInput.setText("");
-        Info.InfoMassage.requestFocusInWindow();
-        Litrs.EnterLitrs.setVisible(false);
-        Litrs.LitrsInput.setFocusable(false);
+        ChangePanel.ShowPanel(Info.InfoMassage);
+        
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
-            Info.InfoMassage.setVisible(false);
-            Litrs.EnterLitrs.setVisible(true);
-            Litrs.LitrsInput.setFocusable(true);
-            Litrs.LitrsInput.requestFocusInWindow();
+            ChangePanel.ShowPanel(Info.InfoMassage);
+            ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
+            Litrs.LitrsInput.setText("");
             errorLitrs.stop();
         });
         errorLitrs.restart();
