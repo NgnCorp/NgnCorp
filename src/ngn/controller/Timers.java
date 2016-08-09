@@ -31,7 +31,7 @@ public class Timers {
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
-    private static final int LAST_TIME = 30000;
+    private static final int WAIT_TIME = 10000;
     private static int SECONDSVALUE = 15;
 
     public Timers() {
@@ -101,14 +101,15 @@ public class Timers {
 
 // One Timer For Open Waiting Panel And Another One For Change Seconds Value <    
     public static void WaitForClient() {
-        WaitForClient = new Timer(LAST_TIME, (ActionEvent e) -> {
+        WaitForClient = new Timer(WAIT_TIME, (ActionEvent e) -> {
             Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
             ChangePanel.ShowPanel(Wait.Waiting);
             ChangePanel.FocusOff(Litrs.LitrsInput);
             WaitForClient.stop();
             SECONDSVALUE = 15;
-            ChangeSecondsValue.restart();
+            ChangeSecondsValue();
         });
+        WaitForClient.restart();
     }
 
     public static void ChangeSecondsValue() {
@@ -123,6 +124,7 @@ public class Timers {
                 Wait.WaitingSeconds.setText(Text.WaitingText + SECONDSVALUE + " секунд.</p>");
             }
         });
+        ChangeSecondsValue.restart();
     }
 // >
 

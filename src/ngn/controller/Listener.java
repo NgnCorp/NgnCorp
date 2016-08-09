@@ -26,6 +26,7 @@ public class Listener {
                 ObjectInFocus = e.getComponent().getParent().getName();
             } else {
                 ObjectInFocus = e.getComponent().getName();
+            System.out.println(ObjectInFocus);
             }
             System.out.println(ObjectInFocus);
         }
@@ -53,21 +54,21 @@ public class Listener {
                     Variables.limitDay = DB.rs.getInt("limit_day");
                     Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
                     Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
-                    
+
                     System.out.println(
-                            "customerId: " + Variables.customerId + 
-                            " pin: " + Variables.pin + 
-                            " name: " + Variables.name + 
-                            " litrnum: " + Variables.litrnum + 
-                            " code: " + Variables.code +
-                            " customerPrice: " + Variables.customerPrice +
-                            " UAHBalance: " + Variables.uahBalance +
-                            " purse: " + Variables.purse +
-                            " limitDay: " + Variables.limitDay +
-                            " limitLitrs: " + Variables.limitLitrs +
-                            " usedLimitLitrs: " + Variables.usedLimitLitrs
+                            "customerId: " + Variables.customerId
+                            + " pin: " + Variables.pin
+                            + " name: " + Variables.name
+                            + " litrnum: " + Variables.litrnum
+                            + " code: " + Variables.code
+                            + " customerPrice: " + Variables.customerPrice
+                            + " UAHBalance: " + Variables.uahBalance
+                            + " purse: " + Variables.purse
+                            + " limitDay: " + Variables.limitDay
+                            + " limitLitrs: " + Variables.limitLitrs
+                            + " usedLimitLitrs: " + Variables.usedLimitLitrs
                     );
-                    
+
                 } catch (SQLException ex) {
                 } finally {
                     try {
@@ -77,6 +78,7 @@ public class Listener {
                     } catch (SQLException ex) {
                     }
                 }
+                Timers.WaitForClient();
                 Converter.chekLimit();
                 ChangePanel.ShowPanel(Pin.EnterPin);
                 ChangePanel.FocusPassword(Pin.PinCode);
