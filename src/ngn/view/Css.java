@@ -412,16 +412,6 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.SOUTH;
         Waiting.add(endTimer, gridBagConstraints);
 
-        btnYes.setText(Text.h1Yes);
-
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 239;
-        gridBagConstraints.ipady = 77;
-        gridBagConstraints.insets = new Insets(150, 0, 100, 0);
-        Waiting.add(btnYes, gridBagConstraints);
-
         Waiting.setVisible(false);
     }
 
