@@ -74,7 +74,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
-        
+
         CardCode.setFocusable(true);
     }
 
@@ -92,9 +92,9 @@ public class Css extends Ngn {
         gridBagConstraints.ipadx = 270;
         gridBagConstraints.ipady = 10;
         EnterPin.add(PinCode, gridBagConstraints);
-        
+
         EnterPin.setName("EnterPin");
-        
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -144,9 +144,9 @@ public class Css extends Ngn {
     static void cssLitrs(JLabel ActionExitText, JLabel ActionEnterText, JLabel CardMark, JLabel NameMark, JLabel ClientCard, JLabel ClientName, JPanel ClientInfo, JLabel LogoNgn, JPanel EnterLitrs, JLabel LitrsInputMark, JTextField LitrsInput, JLabel ClientLitrs, JLabel LitrsMark) {
         EnterLitrs.setBackground(new Color(204, 0, 0));
         EnterLitrs.setLayout(new GridBagLayout());
-        
+
         EnterLitrs.setName("EnterLitrs");
-                
+
         LitrsInputMark.setFont(new Font("Candara", 0, 36)); // NOI18N
         LitrsInputMark.setForeground(new Color(255, 255, 255));
         LitrsInputMark.setHorizontalAlignment(SwingConstants.CENTER);
@@ -180,7 +180,7 @@ public class Css extends Ngn {
 
         ClientInfo.setBackground(new Color(204, 0, 0));
         ClientInfo.setLayout(new GridBagLayout());
-        
+
         ClientInfo.setName("ClientInfo");
 
         ClientName.setBackground(new Color(204, 0, 0));
@@ -282,9 +282,9 @@ public class Css extends Ngn {
 
         Working.setBackground(new Color(204, 0, 0));
         Working.setLayout(new GridBagLayout());
-        
+
         Working.setName("Working");
-        
+
         PolozheniePistoleta.setBackground(Working.getBackground());
         PolozheniePistoleta.setFont(new Font("Candara", 1, 24)); // NOI18N
         PolozheniePistoleta.setForeground(new Color(255, 255, 255));
@@ -363,9 +363,9 @@ public class Css extends Ngn {
     static void cssBye(JPanel GoodBye, JLabel ThankYou) {
         GoodBye.setBackground(new Color(204, 0, 0));
         GoodBye.setLayout(new GridBagLayout());
-        
+
         GoodBye.setName("GoodBye");
-        
+
         ThankYou.setBackground(new Color(204, 0, 0));
         ThankYou.setFont(new Font("Candara", 1, 48));
         ThankYou.setForeground(new Color(255, 255, 255));
@@ -384,7 +384,7 @@ public class Css extends Ngn {
 
         Waiting.setBackground(new Color(204, 0, 0));
         Waiting.setLayout(new GridBagLayout());
-        
+
         Waiting.setName("Waiting");
 
         Here.setFont(new Font("Candara", 1, 68));
@@ -419,7 +419,7 @@ public class Css extends Ngn {
 
         InfoMassage.setBackground(new Color(204, 0, 0));
         InfoMassage.setLayout(new CardLayout());
-        
+
         InfoMassage.setName("InfoMassage");
 
         ErrorMassage.setFont(new Font("Candara", 1, 48)); // NOI18N
@@ -442,7 +442,7 @@ public class Css extends Ngn {
         LoadingPanel.setVisible(false);
         LoadingPanel.setBackground(new Color(0, 0, 0));
         LoadingPanel.setLayout(new GridBagLayout());
-        
+
         LoadingPanel.setName("LoadingPanel");
 
         LoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
