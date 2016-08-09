@@ -53,14 +53,13 @@ public class Listener {
                     Variables.limitDay = DB.rs.getInt("limit_day");
                     Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
                     Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
-                    /*
+                    
                     System.out.println(
                             "customerId: " + Variables.customerId + 
                             " pin: " + Variables.pin + 
                             " name: " + Variables.name + 
                             " litrnum: " + Variables.litrnum + 
                             " code: " + Variables.code +
-                            " customerID: " + Variables.customerId +
                             " customerPrice: " + Variables.customerPrice +
                             " UAHBalance: " + Variables.uahBalance +
                             " purse: " + Variables.purse +
@@ -68,7 +67,7 @@ public class Listener {
                             " limitLitrs: " + Variables.limitLitrs +
                             " usedLimitLitrs: " + Variables.usedLimitLitrs
                     );
-                    */
+                    
                 } catch (SQLException ex) {
                 } finally {
                     try {
@@ -78,6 +77,7 @@ public class Listener {
                     } catch (SQLException ex) {
                     }
                 }
+                Converter.chekLimit();
                 ChangePanel.ShowPanel(Pin.EnterPin);
                 ChangePanel.FocusPassword(Pin.PinCode);
             }
@@ -92,7 +92,7 @@ public class Listener {
             Litrs.ClientName.setText(Variables.name);
             Litrs.ClientCard.setText(Variables.code);
             System.out.println(Variables.isLimitClient);
-            if (Variables.limitDay != 0) {
+            if (Variables.isLimitClient) {
                 Litrs.ClientLitrs.setText(String.valueOf(Variables.limitLitrs));
             } else {
                 Litrs.ClientLitrs.setText(Variables.litrnum);
@@ -115,7 +115,7 @@ public class Listener {
                 if (GasStation.PolozheniePistoleta.equals("ПИСТОЛЕТ ПОВЕШЕН")) { // Ожидаем снятия пистолета
                     Timers.errorLitrs("getpistol"); // Пистолет не подняли после ввода количества литров
                 } else {
-                    //youHere.stop(); // Останавливаем проверку наличия клиента на время заправки
+                    Timers.WaitForClient.stop(); // Останавливаем проверку наличия клиента на время заправки
                     ChangePanel.ShowPanel(Work.Working);
                     Work.Working.requestFocusInWindow(); // Отображаем окно процесса заправки
                     String komDoza = Converter.HexDozaForKolonka(eqHex); // Получили команду для старта

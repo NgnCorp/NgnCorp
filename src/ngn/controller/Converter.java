@@ -1,5 +1,8 @@
 package ngn.controller;
 
+import java.util.Locale;
+import static ngn.controller.Variables.limitLitrs;
+
 /**
  *
  * @author Офис
@@ -50,5 +53,24 @@ public class Converter {
         String pihex = Integer.toHexString(crc);
         String komDoza = "@10440501" + eqHex + pihex + "#";
         return komDoza;
+    }
+    
+    public static void chekLimit() {
+        if (Variables.limitDay != 0 & Variables.limitLitrs != 0) {
+                    Variables.isLimitClient = true;
+                    Double rest;
+                    if (Variables.usedLimitLitrs != null) {
+                        rest = Variables.limitLitrs - Variables.usedLimitLitrs; //Разница между установленным лимитом литров и использованными
+                    } else {
+                        rest = Variables.limitLitrs;
+                    }
+                    if (rest < 1) {
+                        //errorCardLength(1);
+                    } else {
+                        Variables.limitLitrnum = String.format(Locale.ENGLISH, "%(.2f", rest);
+                    }
+                } else {
+                    Variables.isLimitClient = false;
+                }
     }
 }
