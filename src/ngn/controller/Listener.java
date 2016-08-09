@@ -3,9 +3,16 @@ package ngn.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.SQLException;
+import java.util.Locale;
+import javax.swing.Timer;
 import ngn.model.*;
 import ngn.view.Litrs;
+import static ngn.view.Litrs.ClientLitrs;
 import ngn.view.Pin;
 import ngn.view.Work;
 
@@ -94,11 +101,28 @@ public class Listener {
         String LitrsInput = e.getActionCommand();
 
         if (LitrsInput.length() != 0 && Integer.valueOf(LitrsInput) > 0) { // Строка не пустая и значение строки больше ноля
-            //String eqHex = ConvertLitrsNumber.ConvertLitrsNumberToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения
-
-            ChangePanel.ShowPanel(Work.Working);
-            Litrs.LitrsInput.setFocusable(false);
-            Work.Working.requestFocusInWindow();
+            String eqHex = Converter.ConvertToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения     
+            if (Converter.ConvertToDouble(String.valueOf(LitrsInput), ClientLitrs.getText())) { // Проверяем разницу имеющихся литров на карте и вводимого (больше или равно нулю)
+                if (GasStation.PolozheniePistoleta.equals("ПИСТОЛЕТ ПОВЕШЕН")) { // Ожидаем снятия пистолета
+                    Timers.errorLitrs("getpistol"); // Пистолет не подняли после ввода количества литров
+                } else {
+                    //youHere.stop(); // Останавливаем проверку наличия клиента на время заправки
+                    ChangePanel.ShowPanel(Work.Working);
+                    Work.Working.requestFocusInWindow(); // Отображаем окно процесса заправки
+                    String komDoza = Converter.HexDozaForKolonka(eqHex); // Получили команду для старта
+                    GasStation.TimerZaderzkaDoza(komDoza);
+                    Work.SchetLitrov.setText("");
+                    //Timers.ForceMajor();
+                    /* Нужно проверить человеческий фактор дергания руки. Существует
+                       возможность после поднятия пистолета, его мгновенное опускание.*/
+                }
+            } else if (Variables.isLimitClient) {
+                Timers.errorLitrs("needlitres");
+            } else {
+                Timers.errorLitrs("notenoughlitres");
+            }
+        } else {
+            Timers.errorLitrs("numlitres");
         }
     }
 }
