@@ -102,7 +102,7 @@ public class Listener {
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
         } else {
-            Timers.WaitForClient.restart();
+            Timers.WaitForClient();
             Timers.errorPin();
         }
     }
