@@ -71,18 +71,18 @@ public class Timers {
         errorPin.restart();
     }
 
-    public static void errorLitrs(int error) {
+    public static void errorLitrs(String error) {
         switch (error) {
-            case 0:
+            case "numlitres":
                 Info.ErrorMassage.setText(Text.numlitres);
                 break;
-            case 1:
+            case "notenoughlitres":
                 Info.ErrorMassage.setText(Text.notenoughlitres);
                 break;
-            case 2:
+            case "getpistol":
                 Info.ErrorMassage.setText(Text.getpistol);
                 break;
-            case 3:
+            case "needlitres":
                 Info.ErrorMassage.setText(Text.needlitres);
                 break;
         }
