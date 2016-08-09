@@ -34,9 +34,10 @@ public class Timers {
     private static final int LAST_TIME = 30000;
 
     public Timers() {
-        
+
     }
-        /*
+
+    /*
     public static void errorCardLength() {
         errorCardLength = new javax.swing.Timer(5000, (ActionEvent e) -> {
             if (DB.updateLitrs(newln, code)) {
@@ -55,14 +56,13 @@ public class Timers {
         });        
         errorCardLength.restart();
     }
-        */
+     */
     public static void errorPin() {
-        
+
         Info.ErrorMassage.setText(Text.pin);
         ChangePanel.ShowPanel(Info.InfoMassage);
-        
+
         errorPin = new Timer(ERRORTIME, (ActionEvent e) -> {
-            Info.InfoMassage.setVisible(false);
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);
             Pin.PinCode.setText("");
@@ -70,27 +70,25 @@ public class Timers {
         });
         errorPin.restart();
     }
-    
+
     public static void errorLitrs(int error) {
         switch (2) {
             case 0:
                 Info.ErrorMassage.setText(Text.numlitres);
-                Litrs.LitrsInput.setText("");
                 break;
             case 1:
                 Info.ErrorMassage.setText(Text.notenoughlitres);
-                Litrs.LitrsInput.setText("");
                 break;
             case 2:
                 Info.ErrorMassage.setText(Text.getpistol);
                 break;
             case 3:
                 Info.ErrorMassage.setText(Text.needlitres);
-                Litrs.LitrsInput.setText("");
                 break;
         }
         //youHere.restart();
         Info.InfoMassage.setVisible(true);
+        Litrs.LitrsInput.setText("");
         Info.InfoMassage.requestFocusInWindow();
         Litrs.EnterLitrs.setVisible(false);
         Litrs.LitrsInput.setFocusable(false);
@@ -103,7 +101,7 @@ public class Timers {
         });
         errorLitrs.restart();
     }
-/*
+    /*
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             GoodBye.setVisible(false);
             EnterCard.setVisible(true);
@@ -302,5 +300,5 @@ public class Timers {
                         } catch (SerialPortException ex_kpdw) {
                         }
                     });
-         */
+     */
 }
