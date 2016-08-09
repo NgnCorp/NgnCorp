@@ -1,7 +1,6 @@
 package ngn.controller;
 
 import java.awt.event.ActionEvent;
-import java.util.Locale;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;

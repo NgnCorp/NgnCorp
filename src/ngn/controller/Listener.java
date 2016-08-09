@@ -8,6 +8,7 @@ import ngn.model.*;
 import ngn.view.Litrs;
 import static ngn.view.Litrs.ClientLitrs;
 import ngn.view.Pin;
+import ngn.view.Wait;
 import ngn.view.Work;
 
 /**
@@ -88,7 +89,7 @@ public class Listener {
         String PinCode = e.getActionCommand();
 
         if (PinCode.equals(Variables.pin)) {
-            //youHere.restart();
+            Timers.WaitForClient.restart();
             Litrs.ClientName.setText(Variables.name);
             Litrs.ClientCard.setText(Variables.code);
             System.out.println(Variables.isLimitClient);
@@ -100,9 +101,8 @@ public class Listener {
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
         } else {
-            //youHere.restart();
+            Timers.WaitForClient.restart();
             Timers.errorPin();
-            System.out.println("wrong password");
         }
     }
 
