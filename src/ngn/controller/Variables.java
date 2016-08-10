@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import ngn.view.Bye;
 import ngn.view.Card;
+import ngn.view.Info;
 import ngn.view.Litrs;
 import ngn.view.Pin;
 import ngn.view.Wait;
@@ -35,6 +36,7 @@ public class Variables {
         Litrs.EnterLitrs,
         Work.Working,
         Wait.Waiting,
+        Info.InfoMassage,
         Bye.GoodBye
     };
 

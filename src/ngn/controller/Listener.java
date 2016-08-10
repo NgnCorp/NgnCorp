@@ -53,7 +53,7 @@ public class Listener {
                     Variables.limitDay = DB.rs.getInt("limit_day");
                     Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
                     Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
-/*
+                    /*
                     System.out.println(
                             "customerId: " + Variables.customerId
                             + " pin: " + Variables.pin
@@ -67,7 +67,7 @@ public class Listener {
                             + " limitLitrs: " + Variables.limitLitrs
                             + " usedLimitLitrs: " + Variables.usedLimitLitrs
                     );
-*/
+                     */
                 } catch (SQLException ex) {
                 } finally {
                     try {
@@ -91,7 +91,6 @@ public class Listener {
         String PinCode = e.getActionCommand();
 
         if (PinCode.equals(Variables.pin)) {
-            Timers.WaitForClient.restart();
             Litrs.ClientName.setText(Variables.name);
             Litrs.ClientCard.setText(Variables.code);
             System.out.println(Variables.isLimitClient);

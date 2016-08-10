@@ -47,4 +47,14 @@ public class ChangePanel {
         }
         LitrsInput.setText("");
     }
+
+    public static String CheckVisibility() {
+        String VisiblePanel = "";
+        for (JPanel PanelArray : Variables.PanelArray) {
+            if (PanelArray.isVisible()) {
+                VisiblePanel = PanelArray.getName();
+            }
+        }
+        return VisiblePanel;
+    }
 }

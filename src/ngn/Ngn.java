@@ -31,10 +31,9 @@ public class Ngn extends JFrame {
                 // Controllers //
                 KeyPad KEYPAD = new KeyPad();
                 GasStation GASSTATION = new GasStation();
-                Variables VARIABLES = new Variables();
                 Listener ACTIONLISTENER = new Listener();
                 Timers TIMER = new Timers();
-                Location.getIpGeoBaseDataByIp();
+                Variables VARIABLES = new Variables();
             });
         }
     }
