@@ -7,7 +7,7 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
-import static ngn.controller.Listener.ObjectInFocus;
+import static ngn.controller.ChangePanel.CheckVisibility;
 import static ngn.controller.Timers.ChangeSecondsValue;
 import static ngn.controller.Timers.WaitForClient;
 import ngn.view.Card;
@@ -43,38 +43,38 @@ public class KeyPad {
                 try {
                     String dataCOM4 = KyePadCOM4.readHexString(1);
                     //ADMIN PASS NEED HERE
-                    if (dataCOM4.contains("25") && (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs"))) {
+                    if (dataCOM4.contains("25")) {
                         String knopkaHex = KyePadCOM4.readHexString(2);
 
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
-                        if (ObjectInFocus.equals("Waiting") && KNOPKA != null) {
+                        if (CheckVisibility().equals("Waiting") && KNOPKA != null) {
                             ChangePanel.ShowPanel(Card.EnterCard);
                             ChangePanel.FocusPassword(Card.CardCode);
                             ChangePanel.TextOff(Litrs.LitrsInput);
                             Wait.Waiting.setFocusable(false);
                             ChangeSecondsValue.stop();
                             WaitForClient.stop();
-                        } else if ("B".equals(KNOPKA)) {
+                        } else if ("B".equals(KNOPKA) && (CheckVisibility().equals("EnterPin") || CheckVisibility().equals("EnterLitrs"))) {
                             try {
                                 Robot robot = new Robot();
                                 robot.keyPress(KeyEvent.VK_ENTER);
                                 robot.keyRelease(KeyEvent.VK_ENTER);
                             } catch (AWTException ex) {
                             }
-                        } else if ("A".equals(KNOPKA) && !ObjectInFocus.equals("Working")) {System.out.println(ObjectInFocus);
-                            if (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs")) {
+                        } else if ("A".equals(KNOPKA) && !CheckVisibility().equals("Working")) {
+                            if (CheckVisibility().equals("EnterPin") || CheckVisibility().equals("EnterLitrs")) {
                                 Timers.WaitForClient.stop();
                                 ChangePanel.TextOff(Litrs.LitrsInput);
                                 ChangePanel.ShowPanel(Card.EnterCard);
                                 ChangePanel.FocusPassword(Card.CardCode);
                             }
                         } else {
-                            if (ObjectInFocus.equals("EnterPin")) {
+                            if (CheckVisibility().equals("EnterPin")) {
                                 char[] p = Pin.PinCode.getPassword();
                                 String pin = String.copyValueOf(p);
                                 Pin.PinCode.setText(pin + KNOPKA);
                             }
-                            if (ObjectInFocus.equals("EnterLitrs")) {
+                            if (CheckVisibility().equals("EnterLitrs")) {
                                 String enterl = Litrs.LitrsInput.getText();
                                 Litrs.LitrsInput.setText(enterl + KNOPKA);
                             }
@@ -90,7 +90,7 @@ public class KeyPad {
                         }
 
                         String KARTA = String.valueOf(kartaArray);
-                        if (ObjectInFocus.equals("EnterCard")) {
+                        if (CheckVisibility().equals("EnterCard")) {
                             Card.CardCode.setText(KARTA);
                             try {
                                 Robot robot = new Robot();

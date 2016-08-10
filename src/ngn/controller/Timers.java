@@ -33,11 +33,55 @@ public class Timers {
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
-    private static final int WAIT_TIME = 3000;
+    private static final int WAIT_TIME = 5000;
     private static int SECONDSVALUE = 15;
 
     public Timers() {
+        
+        WaitForClient = new Timer(WAIT_TIME, (ActionEvent e) -> {
+            Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
+            ChangePanel.ShowPanel(Wait.Waiting);
+            ChangePanel.FocusOff(Litrs.LitrsInput);
+            Wait.Waiting.setFocusable(true);
+            Wait.Waiting.requestFocusInWindow();
+            WaitForClient.stop();
+            ChangeSecondsValue();
+        });
 
+        errorCard = new Timer(ERRORTIME, (ActionEvent e) -> {
+            ChangePanel.ShowPanel(Card.EnterCard);
+            ChangePanel.FocusPassword(Card.CardCode);
+            Card.CardCode.setText("");
+            Info.InfoMassage.setFocusable(false);
+            errorCard.stop();
+        });
+
+        errorPin = new Timer(ERRORTIME, (ActionEvent e) -> {
+            ChangePanel.ShowPanel(Pin.EnterPin);
+            ChangePanel.FocusPassword(Pin.PinCode);
+            Pin.PinCode.setText("");
+            errorPin.stop();
+        });
+
+        errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
+            ChangePanel.ShowPanel(Litrs.EnterLitrs);
+            ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
+            Litrs.LitrsInput.setText("");
+            errorLitrs.stop();
+        });
+        
+        ChangeSecondsValue = new Timer(TIMER_TIME, (ActionEvent e) -> {
+            if (SECONDSVALUE <= 0) {
+                ChangePanel.ShowPanel(Card.EnterCard);
+                ChangePanel.FocusPassword(Card.CardCode);
+                ChangePanel.TextOff(Litrs.LitrsInput);
+                Wait.Waiting.setFocusable(false);
+                ChangeSecondsValue.stop();
+            } else {
+                SECONDSVALUE--;
+                Wait.WaitingSeconds.setText(Text.WaitingText + SECONDSVALUE + " секунд.</p>");
+            }
+        });
     }
 
     /*
@@ -61,32 +105,16 @@ public class Timers {
     }
      */
     public static void errorCard() {
-
         Info.ErrorMassage.setText(Text.cardvalid);
         ChangePanel.ShowPanel(Info.InfoMassage);
         Info.InfoMassage.setFocusable(true);
-        
-        errorCard = new Timer(ERRORTIME, (ActionEvent e) -> {
-            ChangePanel.ShowPanel(Card.EnterCard);
-            ChangePanel.FocusPassword(Card.CardCode);
-            Card.CardCode.setText("");
-            Info.InfoMassage.setFocusable(false);
-            errorCard.stop();
-        });
+        WaitForClient.restart();
         errorCard.restart();
     }
 
     public static void errorPin() {
-
         Info.ErrorMassage.setText(Text.pin);
         ChangePanel.ShowPanel(Info.InfoMassage);
-
-        errorPin = new Timer(ERRORTIME, (ActionEvent e) -> {
-            ChangePanel.ShowPanel(Pin.EnterPin);
-            ChangePanel.FocusPassword(Pin.PinCode);
-            Pin.PinCode.setText("");
-            errorPin.stop();
-        });
         errorPin.restart();
     }
 
@@ -105,46 +133,19 @@ public class Timers {
                 Info.ErrorMassage.setText(Text.needlitres);
                 break;
         }
+        
         WaitForClient.restart();
         ChangePanel.ShowPanel(Info.InfoMassage);
-
-        errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
-            ChangePanel.ShowPanel(Litrs.EnterLitrs);
-            ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
-            Litrs.LitrsInput.setText("");
-            errorLitrs.stop();
-        });
         errorLitrs.restart();
     }
 
 // One Timer For Open Waiting Panel And Another One For Change Seconds Value <    
     public static void WaitForClient() {
-        WaitForClient = new Timer(WAIT_TIME, (ActionEvent e) -> {
-            Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
-            ChangePanel.ShowPanel(Wait.Waiting);
-            ChangePanel.FocusOff(Litrs.LitrsInput);
-            Wait.Waiting.setFocusable(true);
-            Wait.Waiting.requestFocusInWindow();
-            WaitForClient.stop();
-            ChangeSecondsValue();
-        });
         WaitForClient.restart();
     }
 
     public static void ChangeSecondsValue() {
         SECONDSVALUE = 15;
-        ChangeSecondsValue = new Timer(TIMER_TIME, (ActionEvent e) -> {
-            if (SECONDSVALUE <= 0) {
-                ChangePanel.ShowPanel(Card.EnterCard);
-                ChangePanel.FocusPassword(Card.CardCode);
-                ChangePanel.TextOff(Litrs.LitrsInput);
-                Wait.Waiting.setFocusable(false);
-                ChangeSecondsValue.stop();
-            } else {
-                SECONDSVALUE--;
-                Wait.WaitingSeconds.setText(Text.WaitingText + SECONDSVALUE + " секунд.</p>");
-            }
-        });
         ChangeSecondsValue.restart();
     }
 // >
