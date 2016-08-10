@@ -5,7 +5,6 @@ import ngn.text.Text;
 import ngn.view.Info;
 import javax.swing.Timer;
 import ngn.view.Card;
-import static ngn.view.Card.CardCode;
 import ngn.view.Litrs;
 import ngn.view.Pin;
 import ngn.view.Wait;
@@ -33,7 +32,7 @@ public class Timers {
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
-    private static final int WAIT_TIME = 5000;
+    private static final int WAIT_TIME = 30000;
     private static int SECONDSVALUE = 15;
 
     public Timers() {
