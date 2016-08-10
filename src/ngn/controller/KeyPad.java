@@ -40,7 +40,7 @@ public class KeyPad {
                 try {
                     String dataCOM4 = KyePadCOM4.readHexString(1);
                     //ADMIN PASS HERE NEED
-                    if (dataCOM4.contains("25") && ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs")) {
+                    if (dataCOM4.contains("25") && (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs"))) {
                         String knopkaHex = KyePadCOM4.readHexString(2);
                         
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
