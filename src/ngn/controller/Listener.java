@@ -27,7 +27,7 @@ public class Listener {
             } else {
                 ObjectInFocus = e.getComponent().getName();
             }
-            System.out.println(ObjectInFocus);
+            //System.out.println(ObjectInFocus);
         }
 
         @Override
@@ -77,10 +77,10 @@ public class Listener {
                     } catch (SQLException ex) {
                     }
                 }
-                Timers.WaitForClient();
                 Converter.chekLimit();
                 ChangePanel.ShowPanel(Pin.EnterPin);
                 ChangePanel.FocusPassword(Pin.PinCode);
+                Timers.WaitForClient();
             }
         } else {
             Timers.errorCard();

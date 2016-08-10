@@ -124,11 +124,11 @@ public class Timers {
             ChangePanel.ShowPanel(Wait.Waiting);
             ChangePanel.FocusOff(Litrs.LitrsInput);
             Wait.Waiting.setFocusable(true);
+            Wait.Waiting.requestFocusInWindow();
             WaitForClient.stop();
             ChangeSecondsValue();
-            System.out.println("zhopa");
         });
-        //WaitForClient.restart();
+        WaitForClient.restart();
     }
 
     public static void ChangeSecondsValue() {

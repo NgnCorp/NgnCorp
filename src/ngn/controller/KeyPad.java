@@ -9,6 +9,7 @@ import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import static ngn.controller.Listener.ObjectInFocus;
 import static ngn.controller.Timers.ChangeSecondsValue;
+import static ngn.controller.Timers.WaitForClient;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
@@ -41,10 +42,9 @@ public class KeyPad {
             if (event.isRXCHAR() && event.getEventValue() != 0) {
                 try {
                     String dataCOM4 = KyePadCOM4.readHexString(1);
-                    //ADMIN PASS HERE NEED
+                    //ADMIN PASS NEED HERE
                     if (dataCOM4.contains("25") && (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs"))) {
                         String knopkaHex = KyePadCOM4.readHexString(2);
-                            System.out.println(ObjectInFocus);
 
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
                         if (ObjectInFocus.equals("Waiting") && KNOPKA != null) {
@@ -53,6 +53,7 @@ public class KeyPad {
                             ChangePanel.TextOff(Litrs.LitrsInput);
                             Wait.Waiting.setFocusable(false);
                             ChangeSecondsValue.stop();
+                            WaitForClient.stop();
                         } else if ("B".equals(KNOPKA)) {
                             try {
                                 Robot robot = new Robot();
@@ -60,7 +61,7 @@ public class KeyPad {
                                 robot.keyRelease(KeyEvent.VK_ENTER);
                             } catch (AWTException ex) {
                             }
-                        } else if ("A".equals(KNOPKA) && !ObjectInFocus.equals("Working")) {
+                        } else if ("A".equals(KNOPKA) && !ObjectInFocus.equals("Working")) {System.out.println(ObjectInFocus);
                             if (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs")) {
                                 Timers.WaitForClient.stop();
                                 ChangePanel.TextOff(Litrs.LitrsInput);
