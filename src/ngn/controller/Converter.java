@@ -1,7 +1,6 @@
 package ngn.controller;
 
 import java.util.Locale;
-import static ngn.controller.Variables.limitLitrs;
 
 /**
  *
