@@ -33,7 +33,7 @@ public class Timers {
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
-    private static final int WAIT_TIME = 30000;
+    private static final int WAIT_TIME = 10000;
     private static int SECONDSVALUE = 15;
 
     public Timers() {
@@ -125,13 +125,14 @@ public class Timers {
             ChangePanel.FocusOff(Litrs.LitrsInput);
             Wait.Waiting.setFocusable(true);
             WaitForClient.stop();
-            SECONDSVALUE = 15;
             ChangeSecondsValue();
+            System.out.println("zhopa");
         });
-        WaitForClient.restart();
+        //WaitForClient.restart();
     }
 
     public static void ChangeSecondsValue() {
+        SECONDSVALUE = 15;
         ChangeSecondsValue = new Timer(TIMER_TIME, (ActionEvent e) -> {
             if (SECONDSVALUE <= 0) {
                 ChangePanel.ShowPanel(Card.EnterCard);

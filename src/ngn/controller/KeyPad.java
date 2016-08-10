@@ -8,9 +8,11 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import static ngn.controller.Listener.ObjectInFocus;
+import static ngn.controller.Timers.ChangeSecondsValue;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
+import ngn.view.Wait;
 
 /**
  *
@@ -42,15 +44,15 @@ public class KeyPad {
                     //ADMIN PASS HERE NEED
                     if (dataCOM4.contains("25") && (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs"))) {
                         String knopkaHex = KyePadCOM4.readHexString(2);
-                        
+                            System.out.println(ObjectInFocus);
+
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
                         if (ObjectInFocus.equals("Waiting") && KNOPKA != null) {
-                            try {
-                                Robot robot = new Robot();
-                                robot.keyPress(KeyEvent.VK_ENTER);
-                                robot.keyRelease(KeyEvent.VK_ENTER);
-                            } catch (AWTException ex) {
-                            }
+                            ChangePanel.ShowPanel(Card.EnterCard);
+                            ChangePanel.FocusPassword(Card.CardCode);
+                            ChangePanel.TextOff(Litrs.LitrsInput);
+                            Wait.Waiting.setFocusable(false);
+                            ChangeSecondsValue.stop();
                         } else if ("B".equals(KNOPKA)) {
                             try {
                                 Robot robot = new Robot();

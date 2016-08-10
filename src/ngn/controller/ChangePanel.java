@@ -13,6 +13,7 @@ public class ChangePanel {
     public static void ShowPanel(JPanel Show) {
         for (JPanel PanelArray : Variables.PanelArray) {
             PanelArray.setVisible(false);
+            PanelArray.setFocusable(false);
         }
         Show.setVisible(true);
     }
