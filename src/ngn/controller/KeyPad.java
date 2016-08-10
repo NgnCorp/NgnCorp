@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import java.awt.AWTException;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -8,6 +9,8 @@ import static ngn.controller.Listener.ObjectInFocus;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -37,7 +40,7 @@ public class KeyPad {
                 try {
                     String dataCOM4 = KyePadCOM4.readHexString(1);
                     //ADMIN PASS HERE NEED
-                    if (dataCOM4.contains("25") && ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs")) {
+                    if (dataCOM4.contains("25") && (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs"))) {
                         String knopkaHex = KyePadCOM4.readHexString(2);
                         
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
