@@ -92,10 +92,12 @@ public class GasStation {
                             decimal[col] = dataOffCrx.charAt(col);
                             crc ^= decimal[col]; // CRC (контрольная сумма)
                         }
+                        /*
                         String pihex = Integer.toHexString(crc);
                         if (pihex.equals(controlNumber)) {
                             System.out.println(OtvetKolonki);
                         }
+                         */
                         if (komanda == 0) {
                             switch (OtvetKolonki.indexOf("#")) {
                                 case 11:
@@ -162,5 +164,5 @@ public class GasStation {
         } catch (SerialPortException ex) {
         }
     }
-    
+
 }

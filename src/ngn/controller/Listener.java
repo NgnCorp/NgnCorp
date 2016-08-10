@@ -26,7 +26,6 @@ public class Listener {
                 ObjectInFocus = e.getComponent().getParent().getName();
             } else {
                 ObjectInFocus = e.getComponent().getName();
-            System.out.println(ObjectInFocus);
             }
             System.out.println(ObjectInFocus);
         }

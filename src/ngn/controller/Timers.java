@@ -8,6 +8,7 @@ import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
 import ngn.view.Wait;
+import static ngn.view.Wait.Here;
 
 /**
  *
@@ -105,6 +106,7 @@ public class Timers {
             Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
             ChangePanel.ShowPanel(Wait.Waiting);
             ChangePanel.FocusOff(Litrs.LitrsInput);
+            Wait.Waiting.setFocusable(true);
             WaitForClient.stop();
             SECONDSVALUE = 15;
             ChangeSecondsValue();
@@ -118,6 +120,7 @@ public class Timers {
                 ChangePanel.ShowPanel(Card.EnterCard);
                 ChangePanel.FocusPassword(Card.CardCode);
                 ChangePanel.TextOff(Litrs.LitrsInput);
+                Wait.Waiting.setFocusable(false);
                 ChangeSecondsValue.stop();
             } else {
                 SECONDSVALUE--;
