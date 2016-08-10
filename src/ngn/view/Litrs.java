@@ -50,6 +50,6 @@ public class Litrs {
             Listener.LitrsInputAction(evt);
         });
         
-        LitrsInput.addFocusListener(new Listener.CheckFocus());
+        EnterLitrs.addFocusListener(new Listener.CheckFocus());
     }
 }

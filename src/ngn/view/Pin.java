@@ -35,6 +35,6 @@ public class Pin {
             Listener.PinCodeAction(evt);
         });
         
-        PinCode.addFocusListener(new Listener.CheckFocus());
+        EnterPin.addFocusListener(new Listener.CheckFocus());
     }
 }
