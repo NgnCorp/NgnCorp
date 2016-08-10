@@ -4,6 +4,10 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import static ngn.controller.Listener.ObjectInFocus;
+import ngn.view.Card;
+import ngn.view.Litrs;
+import ngn.view.Pin;
 
 /**
  *
@@ -32,12 +36,12 @@ public class KeyPad {
             if (event.isRXCHAR() && event.getEventValue() != 0) {
                 try {
                     String dataCOM4 = KyePadCOM4.readHexString(1);
-                    /*
-                    if (dataCOM4.contains("25") && fokus) {
+                    //ADMIN PASS HERE NEED
+                    if (dataCOM4.contains("25") && ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs")) {
                         String knopkaHex = KyePadCOM4.readHexString(2);
-
+                        
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
-                        if (Waiting.isVisible() && KNOPKA != null) {
+                        if (ObjectInFocus.equals("Waiting") && KNOPKA != null) {
                             try {
                                 Robot robot = new Robot();
                                 robot.keyPress(KeyEvent.VK_ENTER);
@@ -51,28 +55,23 @@ public class KeyPad {
                                 robot.keyRelease(KeyEvent.VK_ENTER);
                             } catch (AWTException ex) {
                             }
-                        } else if ("A".equals(KNOPKA) && !Working.isVisible()) {
-                            if (toBeorNottoBe) {
-                            } else {
-                                youHere.stop();
-                                PinCode.setText("");
-                                CardCode.setText("");
-                                EnterPin.setVisible(false);
-                                EnterLitrs.setVisible(false);
-                                GoodBye.setVisible(false);
-                                InfoMassage.setVisible(false);
-                                PinCode.setFocusable(false);
-                                LitrsInput.setFocusable(false);
-                                EnterCard.setVisible(true);
-                                CardCode.setFocusable(true);
-                                CardCode.requestFocusInWindow();
+                        } else if ("A".equals(KNOPKA) && !ObjectInFocus.equals("Working")) {
+                            if (ObjectInFocus.equals("EnterPin") || ObjectInFocus.equals("EnterLitrs")) {
+                                Timers.WaitForClient.stop();
+                                ChangePanel.TextOff(Litrs.LitrsInput);
+                                ChangePanel.ShowPanel(Card.EnterCard);
+                                ChangePanel.FocusPassword(Card.CardCode);
                             }
                         } else {
-                            char[] p = PinCode.getPassword();
-                            String pin = String.copyValueOf(p);
-                            PinCode.setText(pin + KNOPKA);
-                            String enterl = LitrsInput.getText();
-                            LitrsInput.setText(enterl + KNOPKA);
+                            if (ObjectInFocus.equals("EnterPin")) {
+                                char[] p = Pin.PinCode.getPassword();
+                                String pin = String.copyValueOf(p);
+                                Pin.PinCode.setText(pin + KNOPKA);
+                            }
+                            if (ObjectInFocus.equals("EnterLitrs")) {
+                                String enterl = Litrs.LitrsInput.getText();
+                                Litrs.LitrsInput.setText(enterl + KNOPKA);
+                            }
                         }
                     }
                     if (dataCOM4.contains("23")) {
@@ -85,8 +84,8 @@ public class KeyPad {
                         }
 
                         String KARTA = String.valueOf(kartaArray);
-                        if (EnterCard.isVisible()) {
-                            CardCode.setText(KARTA);
+                        if (ObjectInFocus.equals("EnterCard")) {
+                            Card.CardCode.setText(KARTA);
                             try {
                                 Robot robot = new Robot();
                                 robot.keyPress(KeyEvent.VK_ENTER);
@@ -95,7 +94,6 @@ public class KeyPad {
                             }
                         }
                     }
-*/
                 } catch (SerialPortException ex) {
                 }
             }
