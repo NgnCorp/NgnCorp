@@ -34,6 +34,7 @@ public class Ngn extends JFrame {
                 Variables VARIABLES = new Variables();
                 Listener ACTIONLISTENER = new Listener();
                 Timers TIMER = new Timers();
+                Location.getIpGeoBaseDataByIp();
             });
         }
     }
