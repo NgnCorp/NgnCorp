@@ -32,6 +32,6 @@ public class Card {
             Listener.CardCodeAction(evt);
         });
 
-        EnterCard.addFocusListener(new Listener.CheckFocus());
+        CardCode.addFocusListener(new Listener.CheckFocus());
     }
 }

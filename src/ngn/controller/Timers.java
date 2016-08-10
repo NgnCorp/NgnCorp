@@ -5,6 +5,7 @@ import ngn.text.Text;
 import ngn.view.Info;
 import javax.swing.Timer;
 import ngn.view.Card;
+import static ngn.view.Card.CardCode;
 import ngn.view.Litrs;
 import ngn.view.Pin;
 import ngn.view.Wait;
@@ -16,6 +17,7 @@ import ngn.view.Wait;
 public class Timers {
 
     static Timer errorCardLength;
+    static Timer errorCard;
     static Timer errorPin;
     static Timer errorLitrs;
     static Timer Success;
@@ -58,6 +60,22 @@ public class Timers {
         errorCardLength.restart();
     }
      */
+    public static void errorCard() {
+
+        Info.ErrorMassage.setText(Text.cardvalid);
+        ChangePanel.ShowPanel(Info.InfoMassage);
+        Info.InfoMassage.setFocusable(true);
+        
+        errorCard = new Timer(ERRORTIME, (ActionEvent e) -> {
+            ChangePanel.ShowPanel(Card.EnterCard);
+            ChangePanel.FocusPassword(Card.CardCode);
+            Card.CardCode.setText("");
+            Info.InfoMassage.setFocusable(false);
+            errorCard.stop();
+        });
+        errorCard.restart();
+    }
+
     public static void errorPin() {
 
         Info.ErrorMassage.setText(Text.pin);

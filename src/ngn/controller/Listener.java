@@ -27,6 +27,7 @@ public class Listener {
             } else {
                 ObjectInFocus = e.getComponent().getName();
             }
+            System.out.println(ObjectInFocus);
         }
 
         @Override
@@ -81,6 +82,8 @@ public class Listener {
                 ChangePanel.ShowPanel(Pin.EnterPin);
                 ChangePanel.FocusPassword(Pin.PinCode);
             }
+        } else {
+            Timers.errorCard();
         }
     }
 
