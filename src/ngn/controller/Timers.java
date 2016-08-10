@@ -8,7 +8,6 @@ import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
 import ngn.view.Wait;
-import static ngn.view.Wait.Here;
 
 /**
  *
