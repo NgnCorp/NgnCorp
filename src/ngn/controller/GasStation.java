@@ -1,6 +1,7 @@
 package ngn.controller;
 
 import java.awt.event.ActionEvent;
+import java.util.Locale;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -32,7 +33,7 @@ public class GasStation {
             KolonkaCOM3.addEventListener(new EventListener());
             TimerKolonkaStart();
         } catch (SerialPortException ex) {
-            System.out.println(ex);
+            //System.out.println(ex);
         }
     }
 
@@ -43,9 +44,8 @@ public class GasStation {
                 ZaderzkaDoza.stop();
                 komanda = 1;
                 KolonkaCOM3.writeString(doza); // Отправляем на колонку количество литров на отдачу
-                System.out.println("Отдали дозу");
             } catch (SerialPortException ex) {
-                System.out.println(ex);
+                //System.out.println(ex);
             }
         });
         KolonkaStart.stop();
@@ -58,7 +58,7 @@ public class GasStation {
                 KolonkaCOM3.writeString("@10510045#");
                 komanda = 0;
             } catch (SerialPortException ex) {
-                System.out.println(ex);
+                //System.out.println(ex);
             }
         });
         KolonkaStart.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"
@@ -94,7 +94,7 @@ public class GasStation {
                         }
                         String pihex = Integer.toHexString(crc);
                         if (pihex.equals(controlNumber)) {
-                            System.out.println(OtvetKolonki);
+                            //System.out.println(OtvetKolonki);
                         }
                         if (komanda == 0) {
                             switch (OtvetKolonki.indexOf("#")) {
@@ -109,12 +109,11 @@ public class GasStation {
                                 //String schetLitrov = proverkaSvyazi + poluchenieOtcheta;
                                 ////////////////////////////Читаем 19 байт и проверяем наличие решетки в конце//////////////////////////////////////
                                 case 19:
-                                    //System.out.println(schetLitrov);
                                     String hexNUM = new String(OtvetKolonki.toCharArray(), 9, 8);
                                     double litrbez = Integer.decode("0x" + hexNUM) / 100.0;
                                     PolozheniePistoleta = "ИДЕТ ПРОЦЕСС ЗАПРАВКИ...";
                                     SchetLitrov = String.valueOf(litrbez);
-                                    //MoneySchetLitrov = String.format(Locale.ENGLISH, "%(.2f", NgnApp.customerPrice * litrbez);
+                                    MoneySchetLitrov = String.format(Locale.ENGLISH, "%(.2f", Variables.customerPrice * litrbez);
                                     break;
                                 default:
                                     komanda = 1;
@@ -127,9 +126,7 @@ public class GasStation {
                                 if (OtvetKolonki.equals("@0144010141#")) {
                                     KolonkaCOM3.writeString("@1047010142#"); //PUSK
                                     TimerKolonkaStart();
-                                    System.out.println("ДАЛИ ПУСК");
                                 } else {
-                                    //System.out.println(OtvetPoDoze);
                                     //ZaderzkaDoza.restart();
                                 }
                             } catch (SerialPortException ex) {
@@ -158,7 +155,6 @@ public class GasStation {
     public static void KomandaStop() {
         try {
             KolonkaCOM3.writeString("@015801014C#");
-            System.out.println("СТОП КОЛОНКА");
         } catch (SerialPortException ex) {
         }
     }

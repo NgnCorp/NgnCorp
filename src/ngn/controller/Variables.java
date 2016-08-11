@@ -34,7 +34,7 @@ public class Variables {
     static String leftlitr;
     static Integer litrPlace;
     static Object sdate;
-    String[] ClientInfo;
+    static String[] ClientInfo;
 
     static JPanel[] PanelArray = new JPanel[]{
         Card.EnterCard,
