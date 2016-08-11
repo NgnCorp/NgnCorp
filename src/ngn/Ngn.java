@@ -26,6 +26,7 @@ public class Ngn extends JFrame {
                 Work WORK = new Work(NGN);
                 Wait WAIT = new Wait(NGN);
                 Info INFO = new Info(NGN);
+                Load LOAD = new Load(NGN);
                 Bye BYE = new Bye(NGN);
 
                 // Controllers //

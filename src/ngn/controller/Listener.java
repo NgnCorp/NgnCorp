@@ -117,7 +117,7 @@ public class Listener {
                     String komDoza = Converter.HexDozaForKolonka(eqHex); // Получили команду для старта
                     GasStation.TimerZaderzkaDoza(komDoza);
                     Work.SchetLitrov.setText("");
-                    //Timers.ForceMajor();
+                    Timers.ForceMajor();
                     /* Нужно проверить человеческий фактор дергания руки. Существует
                        возможность после поднятия пистолета, его мгновенное опускание.*/
                 }
