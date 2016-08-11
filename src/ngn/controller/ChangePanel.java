@@ -3,6 +3,7 @@ package ngn.controller;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import ngn.view.Litrs;
 
 /**
  *
@@ -26,26 +27,12 @@ public class ChangePanel {
         Show.requestFocusInWindow();
     }
 
-    public static void FocusLitrsInput(JTextField Show) {
+    public static void FocusLitrsInput() {
         for (JPasswordField InputArray : Variables.InputArray) {
             InputArray.setFocusable(false);
         }
-        Show.setFocusable(true);
-        Show.requestFocusInWindow();
-    }
-
-    public static void FocusOff(JTextField LitrsInput) {
-        for (JPasswordField InputArray : Variables.InputArray) {
-            InputArray.setFocusable(false);
-        }
-        LitrsInput.setFocusable(false);
-    }
-
-    public static void TextOff(JTextField LitrsInput) {
-        for (JPasswordField InputArray : Variables.InputArray) {
-            InputArray.setText("");
-        }
-        LitrsInput.setText("");
+        Litrs.LitrsInput.setFocusable(true);
+        Litrs.LitrsInput.requestFocusInWindow();
     }
 
     public static String CheckVisibility() {

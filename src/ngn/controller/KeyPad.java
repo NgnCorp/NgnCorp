@@ -50,7 +50,7 @@ public class KeyPad {
                         if (CheckVisibility().equals("Waiting") && KNOPKA != null) {
                             ChangePanel.ShowPanel(Card.EnterCard);
                             ChangePanel.FocusPassword(Card.CardCode);
-                            ChangePanel.TextOff(Litrs.LitrsInput);
+                            ToZero.TextOff();
                             Wait.Waiting.setFocusable(false);
                             ChangeSecondsValue.stop();
                             WaitForClient.stop();
@@ -64,7 +64,7 @@ public class KeyPad {
                         } else if ("A".equals(KNOPKA) && !CheckVisibility().equals("Working")) {
                             if (CheckVisibility().equals("EnterPin") || CheckVisibility().equals("EnterLitrs")) {
                                 Timers.WaitForClient.stop();
-                                ChangePanel.TextOff(Litrs.LitrsInput);
+                                ToZero.TextOff();
                                 ChangePanel.ShowPanel(Card.EnterCard);
                                 ChangePanel.FocusPassword(Card.CardCode);
                             }

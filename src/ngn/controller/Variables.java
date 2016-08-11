@@ -28,7 +28,11 @@ public class Variables {
     static Double limitLitrs;
     static Double usedLimitLitrs;
     static Boolean isLimitClient; // По умолчанию false
-    static String limitLitrnum;
+    static String limitLitrnum;    
+    static String newln;
+    static String leftlitr;
+    static Integer litrPlace;
+    static Object sdate;
     
     static JPanel[] PanelArray = new JPanel[]{
         Card.EnterCard,

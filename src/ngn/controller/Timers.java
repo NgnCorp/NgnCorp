@@ -1,13 +1,11 @@
 package ngn.controller;
 
 import java.awt.event.ActionEvent;
+import java.util.Locale;
 import ngn.text.Text;
-import ngn.view.Info;
 import javax.swing.Timer;
-import ngn.view.Card;
-import ngn.view.Litrs;
-import ngn.view.Pin;
-import ngn.view.Wait;
+import ngn.model.DB;
+import ngn.view.*;
 
 /**
  *
@@ -36,11 +34,11 @@ public class Timers {
     private static int SECONDSVALUE = 15;
 
     public Timers() {
-        
+
         WaitForClient = new Timer(WAIT_TIME, (ActionEvent e) -> {
             Wait.WaitingSeconds.setText(Text.h1ClickIfUHere);
             ChangePanel.ShowPanel(Wait.Waiting);
-            ChangePanel.FocusOff(Litrs.LitrsInput);
+            ToZero.FocusOff();
             Wait.Waiting.setFocusable(true);
             Wait.Waiting.requestFocusInWindow();
             WaitForClient.stop();
@@ -64,16 +62,16 @@ public class Timers {
 
         errorLitrs = new Timer(ERRORTIME, (ActionEvent e) -> {
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
-            ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
-            Litrs.LitrsInput.setText("");
+            ChangePanel.FocusLitrsInput();
+            ToZero.TextOff();
             errorLitrs.stop();
         });
-        
+
         ChangeSecondsValue = new Timer(TIMER_TIME, (ActionEvent e) -> {
             if (SECONDSVALUE <= 0) {
                 ChangePanel.ShowPanel(Card.EnterCard);
                 ChangePanel.FocusPassword(Card.CardCode);
-                ChangePanel.TextOff(Litrs.LitrsInput);
+                ToZero.TextOff();
                 Wait.Waiting.setFocusable(false);
                 ChangeSecondsValue.stop();
             } else {
@@ -81,28 +79,143 @@ public class Timers {
                 Wait.WaitingSeconds.setText(Text.WaitingText + SECONDSVALUE + " секунд.</p>");
             }
         });
+
+        errorCardLength = new Timer(5000, (ActionEvent e) -> {
+            if (DB.updateLitrs(Variables.newln, Variables.code)) {
+                DB.writeResult(
+                        Variables.name,
+                        Variables.code,
+                        Variables.leftlitr,
+                        Variables.sdate
+                ); //Записываем операцию в таблицу
+                ChangePanel.ShowPanel(Bye.GoodBye);
+                ToZero.TextOff();
+                GasStation.StopStartCom3(false);
+                Success();
+                errorCardLength.stop();
+            }
+        });
+
+        ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
+            Work.PolozheniePistoleta.setText("НЕ ЗАБУДЬТЕ ПОВЕСИТЬ ПИСТОЛЕТ ПОСЛЕ ЗАПРАВКИ!");
+            Work.SchetLitrov.setText(GasStation.SchetLitrov);
+            Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
+            if (GasStation.PolozheniePistoleta.equals("ПИСТОЛЕТ ПОВЕШЕН")) { // Ждем повешанья пистолета после заправки
+                // Если что, проблему искать тут. Форс мажор таймер.
+                ForceMajor.stop();
+                if (Work.SchetLitrov.getText().equals("")) { //Исправление бага "моментальное повешанье пистолета"
+                    Work.SchetLitrov.setText("0.0");
+                }
+                double litriDouble = Double.valueOf(Work.SchetLitrov.getText());
+                double formatnewln = Double.valueOf(Litrs.ClientLitrs.getText()) - litriDouble;
+                // NEWLN - Разница между литрами на карте и заправленными
+                Variables.leftlitr = String.format(Locale.ENGLISH, "%(.2f", litriDouble);
+                Variables.newln = String.format(Locale.ENGLISH, "%(.2f", formatnewln);
+                // Date 
+                java.util.Date udate = new java.util.Date();
+                Variables.sdate = new java.sql.Timestamp(udate.getTime());
+                /* Записываем операцию в лог 
+                logHistory = "\r\n" + name + "\t" + code + "\t" + leftlitr + "\t" + sdate;
+                try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:/NgnApp/log/transactions.txt", true), "cp1251"))) {
+                    writer.write(logHistory);
+                    writer.flush();
+                } catch (IOException ex) {
+                }
+                 */
+//////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
+                if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
+                    DB.writeResult(
+                            Variables.name,
+                            Variables.code,
+                            Variables.leftlitr,
+                            Variables.sdate
+                    );//Записываем операцию в таблицу
+                    ChangePanel.ShowPanel(Bye.GoodBye);
+                    Litrs.LitrsInput.setText("");
+                    Work.SchetLitrov.setText("");
+                    Success();
+                    GasStation.CustomerInfoToZero();
+                    ToZero.CustomerInfo(); // обнуляем данные
+                } else if (InternetConn.InternetConn()) {
+                    Info.ErrorMassage.setText(Text.nointernetatstart);
+                    ChangePanel.ShowPanel(Info.InfoMassage);
+                    ServerWaiting();
+                } else {
+                    noInternetInEnd(
+                            Variables.newln,
+                            Variables.code,
+                            Variables.name,
+                            Variables.leftlitr,
+                            Variables.sdate
+                    );
+                }
+            }
+        });
+
+        errorCardLength = new Timer(5000, (ActionEvent e) -> {
+            if (Variables.litrPlace == 1 && DB.writeResultToBalance(
+                    Variables.name,
+                    Variables.code,
+                    String.format(Locale.ENGLISH, "%(.2f", Variables.newln),
+                    Variables.sdate)) {
+                ChangePanel.ShowPanel(Bye.GoodBye);
+                Litrs.LitrsInput.setText("");
+                Work.SchetLitrov.setText("");
+                Success();
+                GasStation.CustomerInfoToZero();
+                ToZero.CustomerInfo(); // обнуляем данные
+                errorCardLength.stop();
+            } else if (Variables.litrPlace != 1 && DB.updateLitrs(
+                    String.format(Locale.ENGLISH, "%(.2f", Variables.newln),
+                    Variables.code)) { // Отдаем для записи данные по заправке
+                DB.writeResult(
+                        Variables.name,
+                        Variables.code,
+                        Variables.leftlitr,
+                        Variables.sdate
+                );//Записываем операцию в таблицу
+                ChangePanel.ShowPanel(Bye.GoodBye);
+                Litrs.LitrsInput.setText("");
+                Work.SchetLitrov.setText("");
+                Success();
+                GasStation.CustomerInfoToZero();
+                ToZero.CustomerInfo(); // обнуляем данные
+                errorCardLength.stop();
+            }
+        });
+
+        Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
+            ChangePanel.ShowPanel(Card.EnterCard);
+            ChangePanel.FocusPassword(Card.CardCode);
+            ToZero.TextOff();
+            GasStation.SchetLitrov = "";
+            GasStation.MoneySchetLitrov = "";
+            Success.stop();
+        });
+
+        ServerWaiting = new Timer(1000, (ActionEvent p) -> {
+            if (SECONDSVALUE <= 0) {
+                ServerWaiting.stop();
+                GasStation.StopStartCom3(false);
+                noInternetInEnd(
+                        Variables.newln,
+                        Variables.code,
+                        Variables.name,
+                        Variables.leftlitr,
+                        Variables.sdate
+                );
+            } else {
+                SECONDSVALUE--;
+                Info.ErrorMassage.setText(Text.ServerText + SECONDSVALUE + " СЕКУНД.</p>");
+                ServerWaiting.restart();
+            }
+        });
     }
 
-    /*
     public static void errorCardLength() {
-        errorCardLength = new javax.swing.Timer(5000, (ActionEvent e) -> {
-            if (DB.updateLitrs(newln, code)) {
-                DB.writeResult(name, code, leftlitr, sdate); //Записываем операцию в таблицу
-                Work.Working.setVisible(false);
-                LitrsInput.setText("");
-                SchetLitrov.setText("");
-                Success();
-                GoodBye.setVisible(true);
-                GoodBye.requestFocusInWindow();
-                InfoMassage.setVisible(false);
-                errorCardLength.stop();
-                toBeorNottoBe = false;
-                Kolonka.StopStartCom3(false);
-            }
-        });        
         errorCardLength.restart();
     }
-     */
+
     public static void errorCard() {
         Info.ErrorMassage.setText(Text.cardvalid);
         ChangePanel.ShowPanel(Info.InfoMassage);
@@ -132,7 +245,7 @@ public class Timers {
                 Info.ErrorMassage.setText(Text.needlitres);
                 break;
         }
-        
+
         WaitForClient.restart();
         ChangePanel.ShowPanel(Info.InfoMassage);
         errorLitrs.restart();
@@ -147,73 +260,28 @@ public class Timers {
         SECONDSVALUE = 15;
         ChangeSecondsValue.restart();
     }
+
+    public static void Success() {
+        Success.restart();
+    }
 // >
 
+    public static void ForceMajor() {
+        ForceMajor.restart();
+    }
+
+    public static void ServerWaiting() {
+        SECONDSVALUE = 15;
+        ServerWaiting.restart();
+    }
+
+    private void noInternetInEnd(String newln, String code, String name, String leftlitr, Object sdate) {
+        Info.ErrorMassage.setText(Text.nointernetinend);
+        ChangePanel.ShowPanel(Info.InfoMassage);
+        GasStation.StopStartCom3(true);
+        errorCardLength.restart();
+    }
     /*
-        ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
-                        PolozheniePistoleta.setText("НЕ ЗАБУДЬТЕ ПОВЕСИТЬ ПИСТОЛЕТ ПОСЛЕ ЗАПРАВКИ!");
-                        SchetLitrov.setText(Kolonka.SchetLitrov);
-                        MoneySchetLitrov.setText(Kolonka.MoneySchetLitrov);
-                        if (Kolonka.PolozheniePistoleta.equals("ПИСТОЛЕТ ПОВЕШЕН")) { // Ждем повешанья пистолета после заправки
-                            // Если что, проблему искать тут. Форс мажор таймер.
-                            ForceMajor.stop();
-                            LoadingPanel.setVisible(true);
-                            if (SchetLitrov.getText().equals("")) { //Исправление бага "моментальное повешанье пистолета"
-                                SchetLitrov.setText("0.0");
-                            }
-                            double litriDouble = Double.valueOf(SchetLitrov.getText());
-                            double formatnewln = Double.valueOf(litrnum) - litriDouble;
-                            // NEWLN - Разница между литрами на карте и заправленными
-                            String leftlitr = String.format(Locale.ENGLISH, "%(.2f", litriDouble);
-                            String newln = String.format(Locale.ENGLISH, "%(.2f", formatnewln);
-                            // Date 
-                            java.util.Date udate = new java.util.Date();
-                            Object sdate = new java.sql.Timestamp(udate.getTime());
-                            // Записываем операцию в лог 
-                            logHistory = "\r\n" + name + "\t" + code + "\t" + leftlitr + "\t" + sdate;
-                            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:/NgnApp/log/transactions.txt", true), "cp1251"))) {
-                                writer.write(logHistory);
-                                writer.flush();
-                            } catch (IOException ex) {
-                            }
-//////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
-                            if (Validate.updateLitrs(newln, code)) { // Записываем в базу новое число литров
-                                Validate.writeResult(name, code, leftlitr, sdate);//Записываем операцию в таблицу
-                                Working.setVisible(false);
-                                LitrsInput.setText("");
-                                SchetLitrov.setText("");
-                                LoadingPanel.setVisible(false);
-                                GoodBye.setVisible(true);
-                                GoodBye.requestFocusInWindow();
-                                Success();
-                                Kolonka.CustomerInfoToZero();
-                                CustomerInfoZero(); // обнуляем данные
-                            } else if (InternetConn.InternetConn()) {
-                                ErrorMassage.setText(Errors.nointernetatstart);
-                                InfoMassage.setVisible(true);
-                                InfoMassage.requestFocusInWindow();
-                                Working.setVisible(false);
-                                LoadingPanel.setVisible(false);
-                                showSeconds = 30;
-                                ServerWaiting = new Timer(1000, (ActionEvent p) -> {
-                                    if (showSeconds <= 0) {
-                                        ServerWaiting.stop();
-                                        Kolonka.StopStartCom3(false);
-                                        toBeorNottoBe = false;
-                                        noInternetInEnd(newln, code, name, leftlitr, sdate);
-                                    } else {
-                                        showSeconds--;
-                                        ErrorMassage.setText("<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ " + showSeconds + " СЕКУНД.</p>");
-                                        ServerWaiting.restart();
-                                    }
-                                });
-                                ServerWaiting.restart();
-                            } else {
-                                noInternetInEnd(newln, code, name, leftlitr, sdate);
-                            }
-                        }
-                    });     
-        
         WaitForServer = new Timer(1000, (ActionEvent e) -> {
             if (showSeconds <= 0) {
                 CardCode.setText("");
@@ -298,18 +366,5 @@ public class Timers {
                         } catch (SerialPortException ex_kpdw) {
                         }
                     });
-    
-        Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
-            GoodBye.setVisible(false);
-            EnterCard.setVisible(true);
-            PinCode.setFocusable(false);
-            LitrsInput.setFocusable(false);
-            CardCode.setFocusable(true);
-            CardCode.setText("");
-            CardCode.requestFocusInWindow();
-            Kolonka.SchetLitrov = "";
-            Kolonka.MoneySchetLitrov = "";
-            Success.stop();
-        });
      */
 }

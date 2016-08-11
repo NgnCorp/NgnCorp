@@ -57,7 +57,7 @@ public class DB {
         }
     }
 
-    protected static boolean updateLitrs(String newln, String cardnum) {
+    public static boolean updateLitrs(String newln, String cardnum) {
         try {
             Double checkLitr = 0.00;
             Class.forName("com.mysql.jdbc.Driver");
@@ -90,7 +90,7 @@ public class DB {
         return true;
     }
 
-    protected static boolean writeResult(String name, String code, String leftlitrs, Object sdate) {
+    public static boolean writeResult(String name, String code, String leftlitrs, Object sdate) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -116,7 +116,7 @@ public class DB {
         return true;
     }
 
-    protected static boolean writeResultToBalance(String name, String code, String leftlitrs, Object sdate) {
+    public static boolean writeResultToBalance(String name, String code, String leftlitrs, Object sdate) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);

@@ -53,6 +53,7 @@ public class Listener {
                     Variables.limitDay = DB.rs.getInt("limit_day");
                     Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
                     Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
+                    Variables.litrPlace = DB.rs.getInt("litr_place");
                     /*
                     System.out.println(
                             "customerId: " + Variables.customerId
@@ -100,7 +101,7 @@ public class Listener {
                 Litrs.ClientLitrs.setText(Variables.litrnum);
             }
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
-            ChangePanel.FocusLitrsInput(Litrs.LitrsInput);
+            ChangePanel.FocusLitrsInput();
         } else {
             Timers.WaitForClient();
             Timers.errorPin();
@@ -112,7 +113,7 @@ public class Listener {
 
         if (LitrsInput.length() != 0 && Integer.valueOf(LitrsInput) > 0) { // Строка не пустая и значение строки больше ноля
             String eqHex = Converter.ConvertToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения     
-            if (Converter.ConvertToDouble(String.valueOf(LitrsInput), ClientLitrs.getText())) { // Проверяем разницу имеющихся литров на карте и вводимого (больше или равно нулю)
+            if (Converter.ConvertToDouble(LitrsInput, ClientLitrs.getText())) { // Проверяем разницу имеющихся литров на карте и вводимого (больше или равно нулю)
                 if (GasStation.PolozheniePistoleta.equals("ПИСТОЛЕТ ПОВЕШЕН")) { // Ожидаем снятия пистолета
                     Timers.errorLitrs("getpistol"); // Пистолет не подняли после ввода количества литров
                 } else {
