@@ -21,7 +21,5 @@ public class Load {
 
         Css.cssLoad(LoadingPanel, LoadingText, LoadingBar);
         JF.add(LoadingPanel);
-
-        LoadingPanel.addFocusListener(new Listener.CheckFocus());
     }
 }

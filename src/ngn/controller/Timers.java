@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.util.Locale;
 import ngn.text.Text;
 import javax.swing.Timer;
+import jssc.SerialPort;
+import jssc.SerialPortException;
 import ngn.model.DB;
 import ngn.view.*;
 
@@ -210,6 +212,62 @@ public class Timers {
                 ServerWaiting.restart();
             }
         });
+
+        WaitForServer = new Timer(1000, (ActionEvent e) -> {
+            if (SECONDSVALUE <= 0) {
+                ChangePanel.ShowPanel(Card.EnterCard);
+                ChangePanel.FocusPassword(Card.CardCode);
+                ToZero.TextOff();
+                GasStation.StopStartCom3(false);
+                WaitForServer.stop();
+            } else {
+                SECONDSVALUE--;
+                Info.ErrorMassage.setText(Text.ServerText + SECONDSVALUE + " СЕКУНД.</p>");
+                WaitForServer.restart();
+            }
+        });
+
+        TryToConnect = new Timer(15000, (ActionEvent e) -> {
+            if (InternetConn.InternetConn()) {
+                GasStation.StopStartCom3(false);
+                ChangePanel.ShowPanel(Card.EnterCard);
+                ChangePanel.FocusPassword(Card.CardCode);
+                ToZero.TextOff();
+                TryToConnect.stop();
+            } else {
+                TryToConnect.restart();
+            }
+        });
+
+        KeyPadWorks = new Timer(1000, (ActionEvent e) -> {
+            try {
+                Boolean testSignal = KeyPad.KeyPadCOM4.writeString("00");
+                if (!testSignal) {
+                    KeyPadWorks.stop();
+                    KeyPadNotWorks.restart();
+                }
+            } catch (SerialPortException ex_kpw) {
+            }
+        });
+
+        KeyPadNotWorks = new Timer(1000, (ActionEvent f) -> {
+            System.out.println("Klava NE Rabotaet");
+            try {
+                KeyPad.KeyPadCOM4 = new SerialPort("COM4");
+                try {
+                    KeyPad.KeyPadCOM4.openPort();
+                    KeyPad.KeyPadCOM4.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+                    KeyPad.KeyPadCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
+                    KeyPad.KeyPadCOM4.addEventListener(new KeyPad.EventListener());
+                } catch (SerialPortException ex) {
+                }
+                if (KeyPad.KeyPadCOM4.writeString("00")) {
+                    KeyPadWorks.restart();
+                    KeyPadNotWorks.stop();
+                }
+            } catch (SerialPortException ex_kpdw) {
+            }
+        });
     }
 
     public static void errorCardLength() {
@@ -281,90 +339,23 @@ public class Timers {
         GasStation.StopStartCom3(true);
         errorCardLength.restart();
     }
-    /*
-        WaitForServer = new Timer(1000, (ActionEvent e) -> {
-            if (showSeconds <= 0) {
-                CardCode.setText("");
-                CardCode.setFocusable(true);
-                EnterCard.setVisible(true);
-                CardCode.requestFocusInWindow();
-                InfoMassage.setVisible(false);
-                WaitForServer.stop();
-                Kolonka.StopStartCom3(false);
-                toBeorNottoBe = false;
-            } else {
-                showSeconds--;
-                ErrorMassage.setText("<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ " + showSeconds + " СЕКУНД.</p>");
-                WaitForServer.restart();
-            }
-        });
-        
-        TryToConnect = new Timer(15000, (ActionEvent e) -> {
-                    if (InternetConn.InternetConn()) {
-                        LoadingPanel.setVisible(false);
-                        Kolonka.StopStartCom3(false);
-                        toBeorNottoBe = false;
-                        EnterCard.setVisible(true);
-                        CardCode.setText("");
-                        CardCode.setFocusable(true);
-                        CardCode.requestFocusInWindow();
-                        TryToConnect.stop();
-                    } else {
-                        TryToConnect.restart();
-                    }
-                });
-        
-        ServerWaiting = new Timer(1000, (ActionEvent p) -> {
-                                    if (showSeconds <= 0) {
-                                        ServerWaiting.stop();
-                                        Kolonka.StopStartCom3(false);
-                                        toBeorNottoBe = false;
-                                        noInternetInEnd(newln, code, name, leftlitr, sdate);
-                                    } else {
-                                        showSeconds--;
-                                        ErrorMassage.setText("<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ " + showSeconds + " СЕКУНД.</p>");
-                                        ServerWaiting.restart();
-                                    }
-                                });
-        
-        KyePadWorks = new Timer(1000, (ActionEvent e) -> {
-            try {
-                if (!klaviaturaCOM4.writeString("00")) {
-                    KyePadWorks.stop();
-                    KyePadNotWorks = new Timer(1000, (ActionEvent f) -> {
-                        try {
-                            klaviaturaCOM4 = new SerialPort("COM4");
-                            try {
-                                klaviaturaCOM4.openPort();
-                                klaviaturaCOM4.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-                                klaviaturaCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
-                                klaviaturaCOM4.addEventListener(new EventListener());
-                            } catch (SerialPortException ex) {
-                            }
-                            if (klaviaturaCOM4.writeString("00")) {
-                                KyePadWorks.restart();
-                                KyePadNotWorks.stop();
-                            }
-                        } catch (SerialPortException ex_kpdw) {
-                        }
-                    });
-        
-        KyePadNotWorks = new Timer(1000, (ActionEvent f) -> {
-                        try {
-                            klaviaturaCOM4 = new SerialPort("COM4");
-                            try {
-                                klaviaturaCOM4.openPort();
-                                klaviaturaCOM4.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-                                klaviaturaCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
-                                klaviaturaCOM4.addEventListener(new EventListener());
-                            } catch (SerialPortException ex) {
-                            }
-                            if (klaviaturaCOM4.writeString("00")) {
-                                KyePadWorks.restart();
-                                KyePadNotWorks.stop();
-                            }
-                        } catch (SerialPortException ex_kpdw) {
-                        }
-                    });
-     */
+
+    public static void WaitForServer() {
+        Info.ErrorMassage.setText(Text.nointernetatstart);
+        ChangePanel.ShowPanel(Info.InfoMassage);
+        GasStation.StopStartCom3(true);
+        SECONDSVALUE = 15;
+        WaitForServer.restart();
+    }
+
+    public static void TryToConnect() {
+        GasStation.StopStartCom3(true);
+        ChangePanel.ShowPanel(Load.LoadingPanel);
+        ToZero.FocusOff();
+        TryToConnect.restart();
+    }
+
+    public static void KyePadWorks() {
+        KeyPadWorks.restart();
+    }
 }

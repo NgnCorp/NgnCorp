@@ -16,26 +16,6 @@ import ngn.view.Work;
  */
 public class Listener {
 
-    public static String ObjectInFocus;
-
-    public static class CheckFocus implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-            if (e.getComponent().getName() == null) {
-                ObjectInFocus = e.getComponent().getParent().getName();
-            } else {
-                ObjectInFocus = e.getComponent().getName();
-            }
-            //System.out.println(ObjectInFocus);
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-
-        }
-    }
-
     public static void CardCodeAction(ActionEvent e) {
         String CardCode = e.getActionCommand();
 

@@ -1,7 +1,6 @@
 package ngn.view;
 
 import javax.swing.JFrame;
-import ngn.controller.Listener;
 
 /**
  *
@@ -22,8 +21,6 @@ public class Wait {
         Css.cssWait(Waiting, Here, WaitingSeconds);
 
         JF.add(Waiting);
-
-        Waiting.addFocusListener(new Listener.CheckFocus());
 
     }
 }

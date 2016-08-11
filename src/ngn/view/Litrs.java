@@ -49,7 +49,5 @@ public class Litrs {
         LitrsInput.addActionListener((ActionEvent evt) -> {
             Listener.LitrsInputAction(evt);
         });
-        
-        LitrsInput.addFocusListener(new Listener.CheckFocus());
     }
 }

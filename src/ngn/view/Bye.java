@@ -1,7 +1,6 @@
 package ngn.view;
 
 import javax.swing.JFrame;
-import ngn.controller.Listener;
 
 /**
  *
@@ -18,7 +17,5 @@ public class Bye {
         
         Css.cssBye(GoodBye, ThankYou);
         JF.add(GoodBye);
-
-        GoodBye.addFocusListener(new Listener.CheckFocus());
     }
 }

@@ -31,7 +31,5 @@ public class Card {
         CardCode.addActionListener((ActionEvent evt) -> {
             Listener.CardCodeAction(evt);
         });
-
-        CardCode.addFocusListener(new Listener.CheckFocus());
     }
 }

@@ -34,7 +34,5 @@ public class Pin {
         PinCode.addActionListener((ActionEvent evt) -> {
             Listener.PinCodeAction(evt);
         });
-        
-        PinCode.addFocusListener(new Listener.CheckFocus());
     }
 }

@@ -3,7 +3,6 @@ package ngn.view;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import ngn.controller.Listener;
 
 /**
  *
@@ -34,7 +33,5 @@ public class Work {
         Reklama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reklama.gif"))); // NOI18N
 
         JF.add(Working);
-        
-        Working.addFocusListener(new Listener.CheckFocus());
     }
 }

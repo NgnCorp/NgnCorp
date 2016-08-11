@@ -6,6 +6,7 @@ import ngn.view.Bye;
 import ngn.view.Card;
 import ngn.view.Info;
 import ngn.view.Litrs;
+import ngn.view.Load;
 import ngn.view.Pin;
 import ngn.view.Wait;
 import ngn.view.Work;
@@ -41,6 +42,7 @@ public class Variables {
         Work.Working,
         Wait.Waiting,
         Info.InfoMassage,
+        Load.LoadingPanel,
         Bye.GoodBye
     };
 
