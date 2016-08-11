@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.SQLException;
+import static ngn.controller.Variables.customerId;
 import ngn.model.*;
 import ngn.view.Litrs;
 import static ngn.view.Litrs.ClientLitrs;
@@ -34,6 +35,19 @@ public class Listener {
                     Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
                     Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
                     Variables.litrPlace = DB.rs.getInt("litr_place");
+
+                    Variables.ClientInfo = new String[]{
+                        String.valueOf(Variables.customerId),
+                        Variables.name,
+                        Variables.litrnum,
+                        Variables.code,
+                        String.valueOf(Variables.customerPrice),
+                        String.valueOf(Variables.uahBalance),
+                        Variables.purse,
+                        String.valueOf(Variables.limitDay),
+                        String.valueOf(Variables.limitLitrs),
+                        String.valueOf(Variables.usedLimitLitrs)
+                    };
                     /*
                     System.out.println(
                             "customerId: " + Variables.customerId

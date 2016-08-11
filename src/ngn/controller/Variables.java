@@ -16,7 +16,7 @@ import ngn.view.Work;
  * @author Офис
  */
 public class Variables {
-    
+
     static Integer customerId;
     static String pin;
     static String name;
@@ -29,12 +29,13 @@ public class Variables {
     static Double limitLitrs;
     static Double usedLimitLitrs;
     static Boolean isLimitClient; // По умолчанию false
-    static String limitLitrnum;    
+    static String limitLitrnum;
     static String newln;
     static String leftlitr;
     static Integer litrPlace;
     static Object sdate;
-    
+    String[] ClientInfo;
+
     static JPanel[] PanelArray = new JPanel[]{
         Card.EnterCard,
         Pin.EnterPin,

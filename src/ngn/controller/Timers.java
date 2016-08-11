@@ -116,6 +116,7 @@ public class Timers {
                 // Date 
                 java.util.Date udate = new java.util.Date();
                 Variables.sdate = new java.sql.Timestamp(udate.getTime());
+                writeWithoutInternet.writeWithoutInternet(Variables.ClientInfo);
                 /* Записываем операцию в лог 
                 logHistory = "\r\n" + name + "\t" + code + "\t" + leftlitr + "\t" + sdate;
                 try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:/NgnApp/log/transactions.txt", true), "cp1251"))) {
