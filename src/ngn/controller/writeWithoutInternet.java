@@ -12,13 +12,13 @@ import java.sql.Array;
 public class writeWithoutInternet {
 
     public static void writeWithoutInternet(String[] Arr) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("/Data/FillingData.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("D:/FillingData.txt",true))) {
             for (String item : Arr) {
                 bw.write(item + ",");
             }
             bw.write("\r\n");
         } catch (IOException ex) {
-            ex.getMessage();
+            System.out.println(ex.getMessage());
         }
     }
 }
