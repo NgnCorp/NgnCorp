@@ -1,4 +1,6 @@
-package ngn.controller;
+package Preload;
+
+import ngn.controller.InternetConn;
 
 public class PreLoader {
 
@@ -7,8 +9,11 @@ public class PreLoader {
     // Запись в БД даных записаных без интернета на модуле
     // Ожидание ответа сервера
     public static boolean PreLoader() {
-
-        return true;
+        PortCheck.PortCheck();
+        if(InternetConn.InternetConn()) {
+            return true;
+        }
+        return false;
     }
 
 }

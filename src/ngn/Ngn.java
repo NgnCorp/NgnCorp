@@ -1,5 +1,6 @@
 package ngn;
 
+import Preload.PreLoader;
 import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
 import ngn.view.*;
