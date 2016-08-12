@@ -8,9 +8,9 @@ import java.io.IOException;
  *
  * @author Офис
  */
-public class writeWithoutInternet {
+public class WriteWI {
 
-    public static void writeWithoutInternet(String[] Arr) {
+    public static void WriteWI(String[] Arr) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("D:/FillingData.txt", true))) {
             for (String item : Arr) {
                 bw.write(item + ",");
