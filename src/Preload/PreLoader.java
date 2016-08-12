@@ -10,10 +10,7 @@ public class PreLoader {
     // Ожидание ответа сервера
     public static boolean PreLoader() {
         PortCheck.PortCheck();
-        if(InternetConn.InternetConn()) {
-            return true;
-        }
-        return false;
+        return InternetConn.InternetConn();
     }
 
 }
