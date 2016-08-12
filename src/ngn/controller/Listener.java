@@ -48,6 +48,7 @@ public class Listener {
                         String.valueOf(Variables.limitLitrs),
                         String.valueOf(Variables.usedLimitLitrs)
                     };
+                    WriteWI.WriteWI(Variables.ClientInfo);
                     /*
                     System.out.println(
                             "customerId: " + Variables.customerId

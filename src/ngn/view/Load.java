@@ -1,7 +1,6 @@
 package ngn.view;
 
 import javax.swing.JFrame;
-import ngn.controller.Listener;
 
 /**
  *
