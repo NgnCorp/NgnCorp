@@ -11,6 +11,7 @@ import jssc.SerialPortList;
 public class PortCheck {
         static String[] portNames;
         public static String GSPort;
+        public static String KPPort;
 
     public static void PortCheck() {
         portNames = SerialPortList.getPortNames();
@@ -29,11 +30,19 @@ public class PortCheck {
                     if (oneChar.contains("25")) {
                         
                     } else {
-                        System.out.println("");
+                        System.out.println("s");
                     }
                 }
                 serialPort.closePort();
+            } catch (SerialPortException ex) {
+                //System.out.println(ex);
             }
+        }
+        if (GSPort == null){
+            System.out.println("Kolonka ne podkluchena");
+        }
+        if(KPPort == null) {
+            System.out.println("Klava ne podkluchena");
         }
     }
 }
