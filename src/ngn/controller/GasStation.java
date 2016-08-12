@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import Preload.PortCheck;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
 import javax.swing.Timer;
@@ -25,7 +26,7 @@ public class GasStation {
     static String OtvetKolonki;
 
     public GasStation() {
-        KolonkaCOM3 = new SerialPort("COM3");
+        KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
         try {
             KolonkaCOM3.openPort();
             KolonkaCOM3.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);

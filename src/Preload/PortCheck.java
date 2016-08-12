@@ -10,6 +10,7 @@ import jssc.SerialPortList;
  */
 public class PortCheck {
         static String[] portNames;
+        public static String GSPort;
 
     public static void PortCheck() {
         portNames = SerialPortList.getPortNames();
@@ -21,17 +22,17 @@ public class PortCheck {
                 serialPort.writeString("@10510045#");
                 String oneChar = serialPort.readString(1);
                 if (oneChar.equals("@")){
-                    
+                    GSPort = portNames[i];
                 } else {
                     serialPort.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
                     oneChar = serialPort.readHexString(1);
                     if (oneChar.contains("25")) {
                         
+                    } else {
+                        System.out.println("");
                     }
                 }
                 serialPort.closePort();
-            } catch (SerialPortException ex) {
-                System.out.println(ex);
             }
         }
     }
