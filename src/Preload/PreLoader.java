@@ -9,7 +9,7 @@ public class PreLoader {
     // Запись в БД даных записаных без интернета на модуле
     // Ожидание ответа сервера
     public static boolean PreLoader() {
-        PortCheck.PortCheck();
+        //PortCheck.PortCheck();
         if(InternetConn.InternetConn()) {
             return true;
         }
