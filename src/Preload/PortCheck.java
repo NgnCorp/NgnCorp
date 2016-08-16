@@ -16,16 +16,18 @@ public class PortCheck {
     public static String GSPort;
     public static String KPPort;
 
-    public static void PortCheck() {
+    public static boolean PortCheck() {
+        System.out.println("PorCheck Starts");
         portNames = SerialPortList.getPortNames();
         for (String portName : portNames) {
+            System.out.println(portName);
             PortToCheck = new SerialPort(portName);
             try {
                 PortToCheck.openPort();
-                PortToCheck.getLinesStatus();
                 PortToCheck.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
                 PortToCheck.writeString("@10510045#");
                 String oneChar = PortToCheck.readString(1);
+            System.out.println(oneChar);
                 if (oneChar.equals("@")) {
                     GSPort = portName;
                 } else {
@@ -39,7 +41,7 @@ public class PortCheck {
                 }
                 PortToCheck.closePort();
             } catch (SerialPortException ex) {
-                //System.out.println(ex);
+                System.out.println(ex);
             }
         }
         if (GSPort == null) {
@@ -49,5 +51,6 @@ public class PortCheck {
             System.out.println("Klava ne podkluchena");
         }
         System.out.println(GSPort + " " + KPPort);
+        return true;
     }
 }
