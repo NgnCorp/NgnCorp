@@ -14,12 +14,12 @@ public class Ngn extends JFrame {
 
     public static void main(String[] args) {
 
+        // Frames //
+        JFrame NGN = new JFrame();
+        Css.MainFrame(NGN);
+
         if (PreLoader.PreLoader()) {
             invokeLater(() -> {
-
-                // Frames //
-                JFrame NGN = new JFrame();
-                Css.MainFrame(NGN);
 
                 Card CARD = new Card(NGN);
                 Pin PIN = new Pin(NGN);
