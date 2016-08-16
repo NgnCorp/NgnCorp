@@ -439,7 +439,7 @@ public class Css extends Ngn {
     static void cssLoad(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
 
         LoadingPanel.setVisible(false);
-        LoadingPanel.setBackground(new Color(0, 0, 0));
+        LoadingPanel.setBackground(new Color(204, 0, 0));
         LoadingPanel.setLayout(new GridBagLayout());
 
         LoadingPanel.setName("LoadingPanel");
@@ -448,6 +448,29 @@ public class Css extends Ngn {
         LoadingText.setForeground(new Color(255, 255, 255));
         LoadingText.setHorizontalAlignment(SwingConstants.CENTER);
         LoadingText.setText(Text.h1LostIntrCon);
+        LoadingText.setToolTipText("");
+        LoadingPanel.add(LoadingText, new GridBagConstraints());
+
+        LoadingBar.setIndeterminate(true);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 10, 5, 10);
+        LoadingPanel.add(LoadingBar, gridBagConstraints);
+    }
+    static void cssBeforeStart(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
+
+        LoadingPanel.setVisible(false);
+        LoadingPanel.setBackground(new Color(204, 0, 0));
+        LoadingPanel.setLayout(new GridBagLayout());
+
+        LoadingPanel.setName("LoadingPanel");
+
+        LoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
+        LoadingText.setForeground(new Color(255, 255, 255));
+        LoadingText.setHorizontalAlignment(SwingConstants.CENTER);
+        LoadingText.setText(Text.h1BeforeStart);
         LoadingText.setToolTipText("");
         LoadingPanel.add(LoadingText, new GridBagConstraints());
 

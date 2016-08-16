@@ -36,6 +36,7 @@ public class Text {
     public static String h1ClickIfUHere = "<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: 15 секунд.</p>";
     public static String h1Yes          = "<html>ДА";
     public static String h1LostIntrCon  = "<html>Подождите. Пропал интернет. Скоро появится...";
+    public static String h1BeforeStart  = "<html>Подождите. Идет настройка приложения...";
     
     //__________D I N A M I C   T E X T____________//
     

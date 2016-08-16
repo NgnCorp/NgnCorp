@@ -58,7 +58,7 @@ public class Update {
                             System.out.println("Can't find new version");
                         } else {
                             try {
-                                download("http://"+SERVER+"/"+ftpFile.getName(), "update\\"+ftpFile.getName());
+                                download("http://"+SERVER+"/"+ftpFile.getName(), "Data\\"+ftpFile.getName());
                             } catch (IOException ex) {
                                 
                             }

@@ -17,7 +17,8 @@ public class Ngn extends JFrame {
         // Frames //
         JFrame NGN = new JFrame();
         Css.MainFrame(NGN);
-
+        BeforeStart BEFORESTART = new BeforeStart(NGN);
+        
         if (PreLoader.PreLoader()) {
             invokeLater(() -> {
 
