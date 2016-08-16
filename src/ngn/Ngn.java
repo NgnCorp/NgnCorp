@@ -17,14 +17,17 @@ public class Ngn extends JFrame {
     static Timer AppStart;
 
     public static void main(String[] args) {
-
-        // Frames //
+        
         JFrame NGN = new JFrame();
-        Css.MainFrame(NGN);
-        BeforeStart BEFORESTART = new BeforeStart(NGN);
+        
+        invokeLater(() -> {
+            // Frames //
+            Css.MainFrame(NGN);
+            BeforeStart BEFORESTART = new BeforeStart(NGN);
+        });
 
         AppStart = new Timer(1000, (ActionEvent e) -> {
-            
+
             if (LoadingText.getText().equals("Настройка завершена")) {
                 invokeLater(() -> {
 
