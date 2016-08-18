@@ -1,8 +1,9 @@
 package Preload;
 
-import java.util.Arrays;
+import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -16,73 +17,85 @@ import jssc.SerialPortList;
 public class PortCheck {
 
     static String[] portNames;
+    static String PN;
     static SerialPort PortToCheck;
     public static String GSPort;
     public static String KPPort;
+    static String data;
+    static Integer n = 0;
+
+    static Timer WaitForAnswer;
 
     public static boolean PortCheck() {
-        System.out.println("PorCheck Starts");
+
         portNames = SerialPortList.getPortNames();
         for (String portName : portNames) {
             System.out.println(portName);
+            PN = portName;
             PortToCheck = new SerialPort(portName);
             try {
                 PortToCheck.openPort();
-                PortToCheck.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
                 PortToCheck.addEventListener(new PortListener());
-                PortToCheck.writeString("programming");
+                DoWithPort(0);
                 try {
-                    PortToCheck.wait(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(PortCheck.class.getName()).log(Level.SEVERE, null, ex);
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
                 }
-                PortToCheck.writeString("kill");
-                byte[] data = PortToCheck.readBytes();
-                System.out.println(Arrays.toString(data));
-                //PortToCheck.writeString("kill");
-                /*
-                String oneChar = PortToCheck.readString(1);
-                if (oneChar.equals("@")) {
-                    GSPort = portName;
-                } else {
-                    PortToCheck.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
-                    PortToCheck.writeString("@10510045#");
-                    System.out.println(oneChar);
-                    if (oneChar.contains("25")) {
-
-                    } else {
-                        System.out.println("s");
-                    }
+                DoWithPort(1);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
                 }
-                 */
-                PortToCheck.closePort();
+                System.out.println(GSPort + " " + KPPort);
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }
         }
-        if (GSPort == null) {
-            System.out.println("Kolonka ne podkluchena");
-        }
-        if (KPPort == null) {
-            System.out.println("Klava ne podkluchena");
-        }
-        System.out.println(GSPort + " " + KPPort);
         return true;
     }
 
-    public static class PortListener implements SerialPortEventListener {
+    public static void DoWithPort(int trying) {
+        try {
+            if (trying == 0) {
+                System.out.println("2400");
+                n = 20;
+                PortToCheck.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+                PortToCheck.writeString("programming");
+            }
+            if (trying == 1) {
+                System.out.println("9600");
+                n = 12;
+                PortToCheck.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
+                PortToCheck.setEventsMask(SerialPort.MASK_RXCHAR);
+                PortToCheck.writeString("@10510045#");
+            }
+        } catch (SerialPortException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    private static class PortListener implements SerialPortEventListener {
 
         @Override
         public void serialEvent(SerialPortEvent spe) {
             if (spe.isRXCHAR() && spe.getEventValue() != 0) {
                 try {
-                    String data = PortToCheck.readString();
+                    data = PortToCheck.readString(n);
                     System.out.println(data);
-                    //PortToCheck.writeString("kill");
+                    if (data.contains("V")) {
+                        KPPort = PN;
+                        PortToCheck.writeString("1Q");
+                    }
+                    if (data.contains("@")) {
+                        GSPort = PN;
+                    }
                 } catch (SerialPortException ex) {
+                    System.out.println(ex);
                 }
             }
-        }
 
+        }
     }
 }

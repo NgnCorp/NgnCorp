@@ -1,5 +1,7 @@
 package Preload;
 
+import static Preload.PortCheck.GSPort;
+import static Preload.PortCheck.KPPort;
 import ngn.controller.InternetConn;
 
 public class PreLoader {
@@ -8,11 +10,11 @@ public class PreLoader {
     // Обновление приложения
     // Запись в БД даных записаных без интернета на модуле
     // Ожидание ответа сервера
-    public static boolean PreLoader() {
-        /*if (PortCheck.PortCheck()) {
-            return InternetConn.InternetConn();
-        }*/
-        return true;
+    public static void PreLoader() {
+        
+        if (PortCheck.PortCheck()) {
+            //System.out.println(GSPort + " " + KPPort);
+        }
+        //InternetConn.InternetConn();
     }
-
 }

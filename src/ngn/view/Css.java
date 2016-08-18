@@ -1,7 +1,6 @@
 package ngn.view;
 
 import java.awt.*;
-import java.awt.image.MemoryImageSource;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,11 +34,6 @@ public class Css extends Ngn {
         MFrame.setSize(windowWidth, windowHeight);
         MFrame.setLocationRelativeTo(null);
         MFrame.setLayout(new CardLayout());
-        int[] pixels = new int[16 * 16];
-        Image image = Toolkit.getDefaultToolkit().createImage(
-                new MemoryImageSource(16, 16, pixels, 0, 16));
-        Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
-        MFrame.setCursor(transparentCursor);
         MFrame.setVisible(true);
     }
 
