@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import Preload.PortCheck;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -24,7 +25,7 @@ public class KeyPad {
     public static SerialPort KeyPadCOM4;
 
     public KeyPad() {
-        KeyPadCOM4 = new SerialPort("COM4");
+        KeyPadCOM4 = new SerialPort(PortCheck.KPPort);
         try {
             KeyPadCOM4.openPort();
             KeyPadCOM4.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);

@@ -26,7 +26,7 @@ public class PortCheck {
 
     static Timer WaitForAnswer;
 
-    public static boolean PortCheck() {
+    public static void PortCheck() {
 
         portNames = SerialPortList.getPortNames();
         for (String portName : portNames) {
@@ -53,7 +53,6 @@ public class PortCheck {
                 System.out.println(ex);
             }
         }
-        return true;
     }
 
     public static void DoWithPort(String port) {
