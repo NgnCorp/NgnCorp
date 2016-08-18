@@ -16,6 +16,7 @@ public class Update {
     private static final int PORT = 21;
     private static final String USER = "daystar_alex";
     private static final String PASS = "3mni537k";
+    private static String nameOfVer;
 
     private static void showServerReply(FTPClient ftpClient) {
         String[] replies = ftpClient.getReplyStrings();
@@ -52,13 +53,14 @@ public class Update {
         try {
             FTPFile[] files = ftpClient.listFiles();
             for (FTPFile ftpFile : files) {
+                nameOfVer = ftpFile.getName();
                 if (ftpFile.getType() == FTPFile.FILE_TYPE) {
-                    if ("ver".equals(ftpFile.getName().substring(0, 3))) {
-                        if (Double.valueOf(ftpFile.getName().substring(4, 8)) < VER) { // перевірка на нову версію
+                    if ("ver".equals(nameOfVer.substring(0, 3))) {
+                        if (Double.valueOf(nameOfVer.substring(4, 8)) < VER) { // перевірка на нову версію
                             System.out.println("Can't find new version");
                         } else {
                             try {
-                                download("http://"+SERVER+"/"+ftpFile.getName(), "Data\\"+ftpFile.getName()); // Шлях до нової версії програми
+                                download("http://"+SERVER+"/"+nameOfVer, "Data\\"+nameOfVer); // Шлях до нової версії програми
                             } catch (IOException ex) {
                                 
                             }
