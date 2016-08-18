@@ -22,7 +22,7 @@ public class PortCheck {
     public static String GSPort;
     public static String KPPort;
     static String data;
-    static Integer n = 0;
+    static Integer NumberOfSymbols = 0;
 
     static Timer WaitForAnswer;
 
@@ -36,15 +36,15 @@ public class PortCheck {
             try {
                 PortToCheck.openPort();
                 PortToCheck.addEventListener(new PortListener());
-                DoWithPort(0);
+                DoWithPort("KP");
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
-                DoWithPort(1);
+                DoWithPort("GS");
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
@@ -56,17 +56,17 @@ public class PortCheck {
         return true;
     }
 
-    public static void DoWithPort(int trying) {
+    public static void DoWithPort(String port) {
         try {
-            if (trying == 0) {
+            if (port.equals("KP")) {
                 System.out.println("2400");
-                n = 20;
+                NumberOfSymbols = 20;
                 PortToCheck.setParams(2400, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
                 PortToCheck.writeString("programming");
             }
-            if (trying == 1) {
+            if (port.equals("GS")) {
                 System.out.println("9600");
-                n = 12;
+                NumberOfSymbols = 12;
                 PortToCheck.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
                 PortToCheck.setEventsMask(SerialPort.MASK_RXCHAR);
                 PortToCheck.writeString("@10510045#");
@@ -82,7 +82,7 @@ public class PortCheck {
         public void serialEvent(SerialPortEvent spe) {
             if (spe.isRXCHAR() && spe.getEventValue() != 0) {
                 try {
-                    data = PortToCheck.readString(n);
+                    data = PortToCheck.readString(NumberOfSymbols);
                     System.out.println(data);
                     if (data.contains("V")) {
                         KPPort = PN;
