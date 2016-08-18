@@ -39,7 +39,7 @@ public class PortCheck {
                     System.out.println(e);
                 }
                 LoadingText.setText(Text.h1CheckFacilities);
-                
+
                 DoWithPort("KP");
                 try {
                     Thread.sleep(2000);
@@ -49,6 +49,15 @@ public class PortCheck {
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }
+        }
+        if (GSPort != null) {
+            if (KPPort != null) {
+                LoadingText.setText(Text.PortsON);
+            } else {
+                LoadingText.setText(Text.KPPortOff);
+            }
+        } else {
+            LoadingText.setText(Text.GSPortOff);
         }
     }
 

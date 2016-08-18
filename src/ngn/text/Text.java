@@ -40,6 +40,12 @@ public class Text {
      //__________P R E L O A D   T E X T____________//
     public static String h1BeforeStart      = "<html>Подождите. Идет настройка приложения...";
     public static String h1CheckFacilities  = "<html>Определяем оборудование...";
+    public static String PortsON            = "<html>Оборудование на месте";
+    
+    // PORTS ERRORS
+    public static String KPPortOff  = "<html>Клавиатура не найдена!";
+    public static String GSPortOff  = "<html>Колонка не найдена!";
+    
     
     //__________D I N A M I C   T E X T____________//
     
