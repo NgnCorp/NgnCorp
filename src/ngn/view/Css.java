@@ -1,6 +1,7 @@
 package ngn.view;
 
 import java.awt.*;
+import java.awt.image.MemoryImageSource;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,6 +36,12 @@ public class Css extends Ngn {
         MFrame.setLocationRelativeTo(null);
         MFrame.setLayout(new CardLayout());
         MFrame.setVisible(true);
+
+        int[] pixels = new int[16 * 16];
+        Image image = Toolkit.getDefaultToolkit().createImage(
+                new MemoryImageSource(16, 16, pixels, 0, 16));
+        Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
+        MFrame.setCursor(transparentCursor);
     }
 
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText) {
@@ -68,6 +75,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridwidth = 2;
         EnterCard.add(CardText, gridBagConstraints);
 
+        CardCode.setVisible(true);
         CardCode.setFocusable(true);
     }
 
@@ -453,6 +461,7 @@ public class Css extends Ngn {
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
         LoadingPanel.add(LoadingBar, gridBagConstraints);
     }
+
     static void cssBeforeStart(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
 
         LoadingPanel.setVisible(true);

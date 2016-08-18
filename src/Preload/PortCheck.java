@@ -1,9 +1,7 @@
 package Preload;
 
-import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -23,8 +21,6 @@ public class PortCheck {
     public static String KPPort;
     static String data;
     static Integer NumberOfSymbols = 0;
-
-    static Timer WaitForAnswer;
 
     public static void PortCheck() {
 
@@ -48,7 +44,6 @@ public class PortCheck {
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
-                System.out.println(GSPort + " " + KPPort);
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }
@@ -72,6 +67,19 @@ public class PortCheck {
             }
         } catch (SerialPortException ex) {
             System.out.println(ex);
+        }
+    }
+
+    public static void ClosePorts() {
+        for (String portName : portNames) {
+            PortToCheck = new SerialPort(portName);
+            if (PortToCheck.isOpened()) {
+                try {
+                    PortToCheck.closePort();
+                } catch (SerialPortException ex) {
+                    System.out.println(ex);
+                }
+            }
         }
     }
 

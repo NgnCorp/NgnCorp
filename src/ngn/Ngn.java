@@ -1,18 +1,11 @@
 package ngn;
 
+import Preload.BackendTimers;
 import Preload.PreLoader;
-import java.awt.Cursor;
 import static java.awt.EventQueue.invokeLater;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.image.MemoryImageSource;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 import ngn.view.*;
 import ngn.controller.*;
-import static ngn.view.BeforeStart.LoadingText;
 
 /**
  *
@@ -20,50 +13,42 @@ import static ngn.view.BeforeStart.LoadingText;
  */
 public class Ngn extends JFrame {
 
-    static Timer AppStart;
+    static JFrame NGN = new JFrame();
 
     public static void main(String[] args) {
 
-        JFrame NGN = new JFrame();
-
         invokeLater(() -> {
             // Frames //
-            //Css.MainFrame(NGN);
-            PreLoader.PreLoader();
+            Css.MainFrame(NGN);
+
+            // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
+            BackendTimers BACKENDTIMERS = new BackendTimers();
+
+            invokeLater(() -> {
+                // Settings for App //
+                PreLoader.PreLoader();
+                BackendTimers.AppStart();
+            });
         });
+    }
 
-        AppStart = new Timer(1000, (ActionEvent e) -> {
-            
-            int[] pixels = new int[16 * 16];
-            Image image = Toolkit.getDefaultToolkit().createImage(
-                    new MemoryImageSource(16, 16, pixels, 0, 16));
-            Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
-            NGN.setCursor(transparentCursor);
+    public static void AppContent() {
 
-            if (LoadingText.getText().equals("Настройка завершена")) {
-                invokeLater(() -> {
+        Card CARD = new Card(NGN);
+        Pin PIN = new Pin(NGN);
+        Litrs LITRS = new Litrs(NGN);
+        Work WORK = new Work(NGN);
+        Wait WAIT = new Wait(NGN);
+        Info INFO = new Info(NGN);
+        Load LOAD = new Load(NGN);
+        Bye BYE = new Bye(NGN);
 
-                    Card CARD = new Card(NGN);
-                    Pin PIN = new Pin(NGN);
-                    Litrs LITRS = new Litrs(NGN);
-                    Work WORK = new Work(NGN);
-                    Wait WAIT = new Wait(NGN);
-                    Info INFO = new Info(NGN);
-                    Load LOAD = new Load(NGN);
-                    Bye BYE = new Bye(NGN);
-
-                    // Controllers //
-                    KeyPad KEYPAD = new KeyPad();
-                    GasStation GASSTATION = new GasStation();
-                    Listener ACTIONLISTENER = new Listener();
-                    Timers TIMER = new Timers();
-                    Variables VARIABLES = new Variables();
-                });
-            } else {
-                AppStart.restart();
-            }
-        });
-        AppStart.start();
+        // Controllers //
+        KeyPad KEYPAD = new KeyPad();
+        GasStation GASSTATION = new GasStation();
+        Listener ACTIONLISTENER = new Listener();
+        Timers TIMER = new Timers();
+        Variables VARIABLES = new Variables();
     }
 }

@@ -1,8 +1,8 @@
 package Preload;
 
-import static Preload.PortCheck.GSPort;
-import static Preload.PortCheck.KPPort;
-import ngn.controller.InternetConn;
+import static Preload.BackendTimers.WaitForAnswer;
+import static Preload.PortCheck.PortCheck;
+import static ngn.view.BeforeStart.LoadingText;
 
 public class PreLoader {
 
@@ -12,9 +12,12 @@ public class PreLoader {
     // Ожидание ответа сервера
     public static void PreLoader() {
         
+        LoadingText.setText("Настройка приложения");
         //if (PortCheck.PortCheck()) {
             //System.out.println(GSPort + " " + KPPort);
         //}
         //InternetConn.InternetConn();
+        WaitForAnswer();
+        PortCheck();
     }
 }
