@@ -5,39 +5,43 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import static ngn.text.Text.h1CheckUpdate;
+import static ngn.view.BeforeStart.LoadingText;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {
 
-    private static final Double VER = 0.00;
-    private static final String SERVER = "daystar.ftp.ukraine.com.ua";
+    private static final Double VER = 0.10;
+    private static final String SERVER = "aftjokers.esy.es";//"daystar.ftp.ukraine.com.ua";
     private static final int PORT = 21;
-    private static final String USER = "daystar_alex";
-    private static final String PASS = "3mni537k";
+    private static final String USER = "u940880703";//"daystar_alex";
+    private static final String PASS = "saniyaext_25";//"3mni537k";
     private static String nameOfVer;
+    private static Boolean checkNewVers = false;
+    private static String vers;
 
-    private static void showServerReply(FTPClient ftpClient) {
+    /*    private static void showServerReply(FTPClient ftpClient) {
         String[] replies = ftpClient.getReplyStrings();
         if (replies != null && replies.length > 0) {
             for (String aReply : replies) {
                 System.out.println("SERVER: " + aReply);
             }
         }
-    }
-
-    public static void Update() {
+    }*/
+    public static void Update() throws InterruptedException {
+        LoadingText.setText(h1CheckUpdate);
         FTPClient ftpClient = new FTPClient();
         try {
             ftpClient.connect(SERVER, PORT); // підключення до серверу
-            showServerReply(ftpClient);
+            //showServerReply(ftpClient);
             int replyCode = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
                 System.out.println("Невозможно подключится к серверу: " + replyCode);
             }
             boolean success = ftpClient.login(USER, PASS); // підключення до акаунта
-            showServerReply(ftpClient);
+            //showServerReply(ftpClient);
             if (!success) {
                 System.out.println("Авторизация не пройдена!");
             } else {
@@ -48,31 +52,48 @@ public class Update {
             System.out.println("Щось сталось!");
         }
     }
+    
+    public static void OpenandShut() throws InterruptedException {
+        try {
+            Runtime.getRuntime().exec("D:\\NgnCorp\\dist\\NgnApp.exe"); // Запуск програми РОЗАРХІВУВАННЯ (Update, потрібно змінити)!!!!!!!
+            Thread.sleep(500);
+        } catch (IOException ex) {
 
-    public static void list(FTPClient ftpClient) {
+        }
+        Runtime.getRuntime().exit(0);
+    }
+    
+    public static void list(FTPClient ftpClient) throws InterruptedException {
         try {
             FTPFile[] files = ftpClient.listFiles();
             for (FTPFile ftpFile : files) {
                 nameOfVer = ftpFile.getName();
                 if (ftpFile.getType() == FTPFile.FILE_TYPE) {
                     if ("ver".equals(nameOfVer.substring(0, 3))) {
-                        if (Double.valueOf(nameOfVer.substring(4, 8)) < VER) { // перевірка на нову версію
-                            System.out.println("Can't find new version");
+                        if (Double.valueOf(nameOfVer.substring(4, 8)) > VER) { // перевірка на нову версію
+                            checkNewVers = true;
+                            vers = nameOfVer;
                         } else {
-                            try {
-                                download("http://"+SERVER+"/"+nameOfVer, "Data\\"+nameOfVer); // Шлях до нової версії програми
-                            } catch (IOException ex) {
-                                
-                            }
+                            System.out.println("Can't find new version");
                         }
                     }
                 }
             }
         } catch (IOException ex) {
-            
+
+        }
+        if (checkNewVers) {
+            try {
+                download("http://" + SERVER + "/" + vers, "C:\\Data\\" + vers); // Шлях до нової версії програми (потрібно змінити)!!!!!!!
+                System.out.println("Download new vers");
+                OpenandShut();
+            } catch (IOException ex) {
+
+            }
         }
     }
 // Скачування нової версії програми
+
     private static void download(String server, String file) throws IOException {
         URL url = new URL(server);
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());
