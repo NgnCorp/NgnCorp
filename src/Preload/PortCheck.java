@@ -1,12 +1,12 @@
 package Preload;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
+import ngn.text.Text;
+import static ngn.view.BeforeStart.LoadingText;
 
 /**
  *
@@ -32,15 +32,17 @@ public class PortCheck {
             try {
                 PortToCheck.openPort();
                 PortToCheck.addEventListener(new PortListener());
-                DoWithPort("KP");
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
                 DoWithPort("GS");
                 try {
                     Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
+                }
+                LoadingText.setText(Text.h1CheckFacilities);
+                
+                DoWithPort("KP");
+                try {
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }

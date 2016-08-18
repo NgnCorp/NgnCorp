@@ -2,7 +2,6 @@ package Preload;
 
 import static Preload.BackendTimers.WaitForAnswer;
 import static Preload.PortCheck.PortCheck;
-import static ngn.view.BeforeStart.LoadingText;
 
 public class PreLoader {
 
@@ -12,7 +11,6 @@ public class PreLoader {
     // Ожидание ответа сервера
     public static void PreLoader() {
         
-        LoadingText.setText("Настройка приложения");
         //if (PortCheck.PortCheck()) {
             //System.out.println(GSPort + " " + KPPort);
         //}
