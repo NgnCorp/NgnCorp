@@ -14,7 +14,7 @@ public class PreLoader {
         
         //if (PortCheck.PortCheck()) {
             //System.out.println(GSPort + " " + KPPort);
-        }
+        //}
         //InternetConn.InternetConn();
     }
 }
