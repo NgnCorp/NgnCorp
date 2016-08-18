@@ -12,7 +12,7 @@ public class PreLoader {
     // Ожидание ответа сервера
     public static void PreLoader() {
         
-        if (PortCheck.PortCheck()) {
+        //if (PortCheck.PortCheck()) {
             //System.out.println(GSPort + " " + KPPort);
         }
         //InternetConn.InternetConn();
