@@ -29,13 +29,13 @@ public class Update {
     public static void Update() {
         FTPClient ftpClient = new FTPClient();
         try {
-            ftpClient.connect(SERVER, PORT);
+            ftpClient.connect(SERVER, PORT); // підключення до серверу
             showServerReply(ftpClient);
             int replyCode = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
                 System.out.println("Невозможно подключится к серверу: " + replyCode);
             }
-            boolean success = ftpClient.login(USER, PASS);
+            boolean success = ftpClient.login(USER, PASS); // підключення до акаунта
             showServerReply(ftpClient);
             if (!success) {
                 System.out.println("Авторизация не пройдена!");
@@ -54,11 +54,11 @@ public class Update {
             for (FTPFile ftpFile : files) {
                 if (ftpFile.getType() == FTPFile.FILE_TYPE) {
                     if ("ver".equals(ftpFile.getName().substring(0, 3))) {
-                        if (Double.valueOf(ftpFile.getName().substring(4, 8)) < VER) {
+                        if (Double.valueOf(ftpFile.getName().substring(4, 8)) < VER) { // перевірка на нову версію
                             System.out.println("Can't find new version");
                         } else {
                             try {
-                                download("http://"+SERVER+"/"+ftpFile.getName(), "Data\\"+ftpFile.getName());
+                                download("http://"+SERVER+"/"+ftpFile.getName(), "Data\\"+ftpFile.getName()); // Шлях до нової версії програми
                             } catch (IOException ex) {
                                 
                             }
@@ -70,7 +70,7 @@ public class Update {
             
         }
     }
-
+// Скачування нової версії програми
     private static void download(String server, String file) throws IOException {
         URL url = new URL(server);
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());

@@ -6,7 +6,7 @@ public class CmdReload {
 
     public static void CmdReload() throws Exception {
         ProcessBuilder builder = new ProcessBuilder(
-                "cmd.exe", "/c", "shutdown.exe /r /t 0");
+                "cmd.exe", "/c", "taskkill /f /im javaw.exe");
         builder.redirectErrorStream(true);
         Process p = builder.start();
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream(), "CP866"));
