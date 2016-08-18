@@ -23,10 +23,6 @@ public class Css extends Ngn {
     public static int windowHeight = screenSize.height;
     public static int windowWidth = screenSize.width;
 
-    public Css() {
-
-    }
-
     public static void MainFrame(JFrame MFrame) {
         MFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -461,14 +457,14 @@ public class Css extends Ngn {
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
         LoadingPanel.add(LoadingBar, gridBagConstraints);
     }
-
+    
     static void cssBeforeStart(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
 
         LoadingPanel.setVisible(true);
         LoadingPanel.setBackground(new Color(204, 0, 0));
         LoadingPanel.setLayout(new GridBagLayout());
 
-        LoadingPanel.setName("LoadingPanel");
+        LoadingPanel.setName("BeforeStartLoadingPanel");
 
         LoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
         LoadingText.setForeground(new Color(255, 255, 255));

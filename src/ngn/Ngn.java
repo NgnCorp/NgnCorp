@@ -17,6 +17,12 @@ public class Ngn extends JFrame {
 
     public static void main(String[] args) {
 
+        Runnable runnable = () -> {
+            // Settings for App //
+            PreLoader.PreLoader();
+            BackendTimers.AppStart();
+        };
+        
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -25,11 +31,8 @@ public class Ngn extends JFrame {
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
 
-            invokeLater(() -> {
-                // Settings for App //
-                PreLoader.PreLoader();
-                BackendTimers.AppStart();
-            });
+            Thread thread = new Thread(runnable);
+            thread.start();
         });
     }
 

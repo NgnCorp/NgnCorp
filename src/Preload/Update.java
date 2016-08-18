@@ -12,10 +12,10 @@ import org.apache.commons.net.ftp.FTPReply;
 public class Update {
 
     private static final Double VER = 0.00;
-    private static final String SERVER = "aftjokers.esy.es";
+    private static final String SERVER = "daystar.ftp.ukraine.com.ua";
     private static final int PORT = 21;
-    private static final String USER = "u940880703";
-    private static final String PASS = "saniyaext_25";
+    private static final String USER = "daystar_alex";
+    private static final String PASS = "3mni537k";
 
     private static void showServerReply(FTPClient ftpClient) {
         String[] replies = ftpClient.getReplyStrings();
