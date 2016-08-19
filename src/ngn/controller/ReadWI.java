@@ -9,21 +9,23 @@ import java.io.IOException;
  * @author Офис
  */
 public class ReadWI {
+
+    public static StringBuilder allText;
+    public static String[] mas;
     
     public static void ReadWI() {
-        try(BufferedReader br = new BufferedReader (new FileReader("D:/FillingData.txt")))
-        {
-           // чтение посимвольно
-            StringBuilder allText = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader("D:/FillingData.txt"))) {
+            // чтение посимвольно
+            allText = new StringBuilder();
             char[] buff = new char[1];
             int c;
-            while((c=br.read(buff))!=-1) {
+            while ((c = br.read(buff)) != -1) {
                 allText.append(buff, 0, c);
             }
             System.out.println(allText);
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        } 
+        }
+        mas = String.valueOf(allText).split(",");
     }
 }

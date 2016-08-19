@@ -4,8 +4,6 @@ import Preload.BackendTimers;
 import Preload.PreLoader;
 import Preload.Update;
 import static java.awt.EventQueue.invokeLater;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
@@ -17,22 +15,26 @@ import ngn.controller.*;
 public class Ngn extends JFrame {
 
     static JFrame NGN = new JFrame();
+    static Runnable runCheckPorts;
+    static Runnable runUpdate;
+    public static Thread CheckPorts;
+    public static Thread Upd;
 
     public static void main(String[] args) throws InterruptedException {
-        Runnable runUpdate = () -> {
+        runUpdate = () -> {
             try {
                 Update.Update();
             } catch (InterruptedException ex) {
-                Logger.getLogger(Ngn.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
-            BackendTimers.AppStart();
         };
-        Runnable runnable = () -> {
+
+        runCheckPorts = () -> {
             // Settings for App //
             PreLoader.PreLoader();
             BackendTimers.AppStart();
         };
-        
+
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -40,10 +42,10 @@ public class Ngn extends JFrame {
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
-            Thread Upd = new Thread (runUpdate);
+            ReadWI.ReadWI();
+            Upd = new Thread(runUpdate);
             Upd.start();
-            Thread thread = new Thread(runnable);
-            thread.start();
+            CheckPorts = new Thread(runCheckPorts);
         });
     }
 

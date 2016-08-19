@@ -9,6 +9,7 @@ import static ngn.text.Text.h1CheckUpdate;
 import static ngn.view.BeforeStart.LoadingText;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import ngn.Ngn;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {
@@ -58,7 +59,7 @@ public class Update {
             Runtime.getRuntime().exec("D:\\NgnCorp\\dist\\NgnApp.exe"); // Запуск програми РОЗАРХІВУВАННЯ (Update, потрібно змінити)!!!!!!!
             Thread.sleep(500);
         } catch (IOException ex) {
-
+            System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);
     }
@@ -80,7 +81,7 @@ public class Update {
                 }
             }
         } catch (IOException ex) {
-
+            System.out.println(ex);
         }
         if (checkNewVers) {
             try {
@@ -88,8 +89,10 @@ public class Update {
                 System.out.println("Download new vers");
                 OpenandShut();
             } catch (IOException ex) {
-
+                System.out.println(ex);
             }
+        } else {
+            //Ngn.CheckPorts.start();
         }
     }
 // Скачування нової версії програми
