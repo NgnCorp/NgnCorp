@@ -1,8 +1,11 @@
 package ngn.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import static ngn.text.Text.h1CheckUpdate;
+import static ngn.view.BeforeStart.LoadingText;
 
 /**
  *
@@ -12,9 +15,13 @@ public class ReadWI {
 
     public static StringBuilder allText;
     public static String[] mas;
+    private static final String path= "D:/FillingData.txt";
     
     public static void ReadWI() {
-        try (BufferedReader br = new BufferedReader(new FileReader("D:/FillingData.txt"))) {
+        File file = new File(path);
+        System.out.println(file.exists());
+        if(file.exists()){
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             // чтение посимвольно
             allText = new StringBuilder();
             char[] buff = new char[1];
@@ -27,5 +34,8 @@ public class ReadWI {
             System.out.println(ex.getMessage());
         }
         mas = String.valueOf(allText).split(",");
+        } else {
+            LoadingText.setText("Не удается найти файл: "+path);
+        }
     }
 }
