@@ -15,12 +15,9 @@ public class ReadWI {
 
     public static StringBuilder allText;
     public static String[] mas;
-    private static final String path= "D:/FillingData.txt";
+    public static final String path= "D:/FillingData.txt";
     
     public static void ReadWI() {
-        File file = new File(path);
-        System.out.println(file.exists());
-        if(file.exists()){
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             // чтение посимвольно
             allText = new StringBuilder();
@@ -34,8 +31,5 @@ public class ReadWI {
             System.out.println(ex.getMessage());
         }
         mas = String.valueOf(allText).split(",");
-        } else {
-            LoadingText.setText("Не удается найти файл: "+path);
-        }
     }
 }

@@ -1,5 +1,6 @@
 package Preload;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +11,7 @@ import static ngn.view.BeforeStart.LoadingText;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import ngn.Ngn;
+import ngn.controller.ReadWI;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {
@@ -92,8 +94,15 @@ public class Update {
                 System.out.println(ex);
             }
         } else {
-            //Ngn.CheckPorts.start();
+        File file = new File(ReadWI.path);
+        System.out.println(file.exists());
+        if(file.exists()){
+                ReadWI.ReadWI();
+                Ngn.CheckPorts.start();
+        } else {
+            LoadingText.setText("Не удается найти файл: "+ReadWI.path);
         }
+    }
     }
 // Скачування нової версії програми
 

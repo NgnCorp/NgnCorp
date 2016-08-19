@@ -42,7 +42,6 @@ public class Ngn extends JFrame {
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
-            ReadWI.ReadWI();
             Upd = new Thread(runUpdate);
             Upd.start();
             CheckPorts = new Thread(runCheckPorts);
