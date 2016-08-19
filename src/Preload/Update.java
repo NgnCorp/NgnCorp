@@ -66,7 +66,7 @@ public class Update {
         Runtime.getRuntime().exit(0);
     }
 
-    public static void list(FTPClient ftpClient) throws InterruptedException {
+    public static void list(FTPClient ftpClient) throws InterruptedException, IOException {
         try {
             FTPFile[] files = ftpClient.listFiles();
             for (FTPFile ftpFile : files) {
@@ -101,6 +101,8 @@ public class Update {
                 Ngn.CheckPorts.start();
             } else {
                 LoadingText.setText("Не удается найти файл: " + ReadWI.path);
+                file.createNewFile();
+                Ngn.CheckPorts.start();
             }
         }
     }
