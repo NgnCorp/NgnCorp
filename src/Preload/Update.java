@@ -55,7 +55,7 @@ public class Update {
             System.out.println("Щось сталось!");
         }
     }
-    
+
     public static void OpenandShut() throws InterruptedException {
         try {
             Runtime.getRuntime().exec("D:\\NgnCorp\\dist\\NgnApp.exe"); // Запуск програми РОЗАРХІВУВАННЯ (Update, потрібно змінити)!!!!!!!
@@ -65,7 +65,7 @@ public class Update {
         }
         Runtime.getRuntime().exit(0);
     }
-    
+
     public static void list(FTPClient ftpClient) throws InterruptedException {
         try {
             FTPFile[] files = ftpClient.listFiles();
@@ -94,15 +94,15 @@ public class Update {
                 System.out.println(ex);
             }
         } else {
-        File file = new File(ReadWI.path);
-        System.out.println(file.exists());
-        if(file.exists()){
+            File file = new File(ReadWI.path);
+            System.out.println(file.exists());
+            if (file.exists()) {
                 ReadWI.ReadWI();
                 Ngn.CheckPorts.start();
-        } else {
-            LoadingText.setText("Не удается найти файл: "+ReadWI.path);
+            } else {
+                LoadingText.setText("Не удается найти файл: " + ReadWI.path);
+            }
         }
-    }
     }
 // Скачування нової версії програми
 
