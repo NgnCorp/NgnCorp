@@ -101,8 +101,11 @@ public class Update {
                 Ngn.CheckPorts.start();
             } else {
                 LoadingText.setText("Не удается найти файл: " + ReadWI.path);
-                file.createNewFile();
-                Ngn.CheckPorts.start();
+                if (file.createNewFile()) {
+                    Ngn.CheckPorts.start();
+                } else {
+                    LoadingText.setText("Не удается создать файл: " + ReadWI.path);
+                }
             }
         }
     }
