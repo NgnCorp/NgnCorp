@@ -92,7 +92,7 @@ public class Update {
                 System.out.println(ex);
             }
         } else {
-            //Ngn.CheckPorts.start();
+            Ngn.CheckPorts.start();
         }
     }
 // Скачування нової версії програми
