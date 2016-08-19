@@ -58,7 +58,7 @@ public class Update {
 
     public static void OpenandShut() throws InterruptedException {
         try {
-            Runtime.getRuntime().exec("D:\\NgnCorp\\dist\\NgnApp.exe"); // Запуск програми РОЗАРХІВУВАННЯ (Update, потрібно змінити)!!!!!!!
+            Runtime.getRuntime().exec("C:\\NgnUpdater\\Update.exe"); // Запуск програми РОЗАРХІВУВАННЯ
             Thread.sleep(500);
         } catch (IOException ex) {
             System.out.println(ex);
@@ -87,7 +87,7 @@ public class Update {
         }
         if (checkNewVers) {
             try {
-                download("http://" + SERVER + "/" + vers, "C:\\Data\\" + vers); // Шлях до нової версії програми (потрібно змінити)!!!!!!!
+                download("http://" + SERVER + "/" + vers, "C:\\Updater\\Updates\\" + vers); // Шлях до нової версії програми
                 System.out.println("Download new vers");
                 OpenandShut();
             } catch (IOException ex) {

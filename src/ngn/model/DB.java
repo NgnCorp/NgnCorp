@@ -1,5 +1,8 @@
 package ngn.model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,8 +34,25 @@ public class DB {
     //Конотоп
     //Павлоград
     private static final String DESCRIPTION = "Заправка на АЗС";
-    private static final String MODULENAME = "TEST"; // ГЕОЛОКАЦИЯ !!!
-
+    private static String MODULENAME; // ГЕОЛОКАЦИЯ !!!
+    public static StringBuilder allText;
+    public static final String PATH= "D:/NgnUpdater/ModuleName.txt";
+    
+    public static void GetModuleName() {
+        try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
+            // чтение посимвольно
+            allText = new StringBuilder();
+            char[] buff = new char[1];
+            int c;
+            while ((c = br.read(buff)) != -1) {
+                allText.append(buff, 0, c);
+            }
+            MODULENAME = String.valueOf(allText);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public static boolean cardCode(String cardcode) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
