@@ -3,6 +3,8 @@ package Preload;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import ngn.Ngn;
+import static java.awt.EventQueue.invokeLater;
+import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.PortsON;
 import static ngn.text.Text.h1SettingsDone;
 import static ngn.view.BeforeStart.BSLoadingText;
@@ -20,8 +22,11 @@ public class BackendTimers {
         AppStart = new Timer(1000, (ActionEvent e) -> {
 
             if (BSLoadingText.getText().equals(h1SettingsDone)) {
-                Ngn.AppContent();
-                AppStart.stop();
+                invokeLater(() -> {
+                    Ngn.AppContent();
+                    BSLoadingPanel.setVisible(false);
+                    AppStart.stop();
+                });
             } else {
                 AppStart.restart();
             }

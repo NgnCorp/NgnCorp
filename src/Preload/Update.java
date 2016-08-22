@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import static ngn.view.BeforeStart.BSLoadingText;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import ngn.Ngn;
 import ngn.controller.ReadWI;
 import static ngn.text.Text.*;
+import static ngn.view.BeforeStart.BSLoadingText;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {

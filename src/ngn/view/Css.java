@@ -457,6 +457,7 @@ public class Css extends Ngn {
     
     static void cssBeforeStart(JPanel BSLoadingPanel, JLabel BSLoadingText, JProgressBar BSLoadingBar) {
         
+        BSLoadingPanel.setVisible(true);
         BSLoadingPanel.setBackground(new Color(204, 0, 0));
         BSLoadingPanel.setLayout(new GridBagLayout());
 
@@ -475,6 +476,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
-        BSLoadingPanel.add(BSLoadingBar, gridBagConstraints);        
+        
+        BSLoadingPanel.add(BSLoadingBar, gridBagConstraints);
     }
 }
