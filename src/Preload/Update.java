@@ -76,8 +76,6 @@ public class Update {
                         if (Double.valueOf(nameOfVer.substring(4, 8)) > VER) { // перевірка на нову версію
                             checkNewVers = true;
                             vers = nameOfVer;
-                        } else {
-                            System.out.println("Can't find new version");
                         }
                     }
                 }
