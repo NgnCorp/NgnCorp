@@ -34,24 +34,10 @@ public class DB {
     //Конотоп
     //Павлоград
     private static final String DESCRIPTION = "Заправка на АЗС";
-    private static String MODULENAME; // ГЕОЛОКАЦИЯ !!!
+    private static String MODULENAME = GetModuleName(); // ГЕОЛОКАЦИЯ !!!
     public static StringBuilder allText;
     public static final String PATH= "D:/NgnUpdater/ModuleName.txt";
     
-    public static void GetModuleName() {
-        try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
-            // чтение посимвольно
-            allText = new StringBuilder();
-            char[] buff = new char[1];
-            int c;
-            while ((c = br.read(buff)) != -1) {
-                allText.append(buff, 0, c);
-            }
-            MODULENAME = String.valueOf(allText);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
     
     public static boolean cardCode(String cardcode) {
         try {
@@ -74,6 +60,21 @@ public class DB {
         } catch (ClassNotFoundException | SQLException e) {
             conStatus = false;
             return false;
+        }
+    }
+    public static String GetModuleName() {
+        try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
+            // чтение посимвольно
+            allText = new StringBuilder();
+            char[] buff = new char[1];
+            int c;
+            while ((c = br.read(buff)) != -1) {
+                allText.append(buff, 0, c);
+            }
+            return String.valueOf(allText);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return "";
         }
     }
 
