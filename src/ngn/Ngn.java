@@ -21,19 +21,7 @@ public class Ngn extends JFrame {
     public static Thread Upd;
 
     public static void main(String[] args) throws InterruptedException {
-        runUpdate = () -> {
-            try {
-                Update.Update();
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
-        };
-
-        runCheckPorts = () -> {
-            // Settings for App //
-            PreLoader.PreLoader();
-        };
-
+        NgnPreload(); //Start with COM ports check
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -44,11 +32,12 @@ public class Ngn extends JFrame {
             Upd = new Thread(runUpdate);
             Upd.start();
             CheckPorts = new Thread(runCheckPorts);
+            //AppContent(); //Start without COM ports check
         });
     }
 
     public static void AppContent() {
-        
+
         invokeLater(() -> {
             Card CARD = new Card(NGN);
             Pin PIN = new Pin(NGN);
@@ -65,9 +54,25 @@ public class Ngn extends JFrame {
             Listener ACTIONLISTENER = new Listener();
             Timers TIMER = new Timers();
             Variables VARIABLES = new Variables();
-            
+
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
         });
+    }
+
+    public static void NgnPreload() {
+        runUpdate = () -> {
+            try {
+                Update.Update();
+            } catch (InterruptedException ex) {
+                System.out.println(ex);
+            }
+        };
+/*
+        runCheckPorts = () -> {
+            // Settings for App //
+            PreLoader.PreLoader();
+        };
+    */
     }
 }

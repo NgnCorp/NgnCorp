@@ -87,7 +87,8 @@ public class Update {
         }
         if (checkNewVers) {
             try {
-                download("http://" + SERVER + "/" + vers, "C:\\Updater\\Updates\\" + vers); // Шлях до нової версії програми
+                System.out.println("Download");
+                download("http://" + SERVER + "/" + vers, "C:\\NgnUpdater\\Updates\\" + vers); // Шлях до нової версії програми
                 BSLoadingText.setText(downlNEW);
                 OpenandShut();
             } catch (IOException ex) {
