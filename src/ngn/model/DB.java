@@ -36,7 +36,7 @@ public class DB {
     private static final String DESCRIPTION = "Заправка на АЗС";
     private static String MODULENAME = GetModuleName(); // ГЕОЛОКАЦИЯ !!!
     public static StringBuilder allText;
-    public static final String PATH= "D:/NgnUpdater/ModuleName.txt";
+    public static final String PATH= "С:/NgnUpdater/ModuleName.txt";
     
     
     public static boolean cardCode(String cardcode) {

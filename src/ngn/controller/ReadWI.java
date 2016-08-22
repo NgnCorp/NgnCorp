@@ -1,11 +1,8 @@
 package ngn.controller;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import static ngn.text.Text.h1CheckUpdate;
-import static ngn.view.BeforeStart.LoadingText;
 
 /**
  *
@@ -15,7 +12,7 @@ public class ReadWI {
 
     public static StringBuilder allText;
     public static String[] mas;
-    public static final String path= "D:/FillingData.txt";
+    public static final String path= "С:/NgnUpdater/FillingData.txt";
     
     public static void ReadWI() {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
