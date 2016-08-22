@@ -73,7 +73,7 @@ public class Update {
                 nameOfVer = ftpFile.getName();
                 if (ftpFile.getType() == FTPFile.FILE_TYPE) {
                     if ("ver".equals(nameOfVer.substring(0, 3))) {
-                        if (Double.valueOf(nameOfVer.substring(4, 8)) > VER) { // перевірка на нову версію
+                        if (Double.valueOf(nameOfVer.substring(4, 8)) > VER) { // перевірка на нову версію 
                             checkNewVers = true;
                             vers = nameOfVer;
                         }
@@ -94,7 +94,6 @@ public class Update {
             }
         } else {
             File file = new File(ReadWI.PATH);
-            System.out.println(file.exists());
             if (file.exists()) {
                 ReadWI.ReadWI();
                 Ngn.CheckPorts.start();
