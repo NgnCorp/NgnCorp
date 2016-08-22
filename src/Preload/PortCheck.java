@@ -1,5 +1,7 @@
 package Preload;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -48,6 +50,12 @@ public class PortCheck {
                 }
             } catch (SerialPortException ex) {
                 System.out.println(ex);
+            } finally {
+                try {
+                    PortToCheck.closePort();
+                } catch (SerialPortException ex) {
+                    System.out.println(ex);
+                }
             }
         }
         if (GSPort != null) {

@@ -1,12 +1,10 @@
 package Preload;
 
-import static Preload.PortCheck.ClosePorts;
-import static Preload.PortCheck.GSPort;
-import static Preload.PortCheck.KPPort;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import ngn.Ngn;
-import static java.awt.EventQueue.invokeLater;
+import static ngn.text.Text.PortsON;
+import static ngn.text.Text.h1SettingsDone;
 import static ngn.view.BeforeStart.LoadingPanel;
 import static ngn.view.BeforeStart.LoadingText;
 
@@ -22,20 +20,19 @@ public class BackendTimers {
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
 
-            if (LoadingText.getText().equals("Настройка завершена")) {
-                invokeLater(() -> {
-                    Ngn.AppContent();
-                    LoadingPanel.setVisible(false);
-                    AppStart.stop();
-                });
+            if (LoadingText.getText().equals(h1SettingsDone)) {
+                Ngn.AppContent();
+                AppStart.stop();
             } else {
                 AppStart.restart();
             }
+            System.out.println("AppStart Timer Works");
         });
 
         WaitForAnswer = new Timer(1000, (ActionEvent e) -> {
-            if (GSPort != null && KPPort != null) {
-                ClosePorts();
+            if (LoadingText.getText().equals(PortsON)) {
+                //ClosePorts();
+                LoadingText.setText(h1SettingsDone);
             } else {
                 WaitForAnswer.restart();
             }

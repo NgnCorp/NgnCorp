@@ -460,7 +460,7 @@ public class Css extends Ngn {
     
     static void cssBeforeStart(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
 
-        LoadingPanel.setVisible(true);
+        LoadingPanel.setVisible(false);
         LoadingPanel.setBackground(new Color(204, 0, 0));
         LoadingPanel.setLayout(new GridBagLayout());
 

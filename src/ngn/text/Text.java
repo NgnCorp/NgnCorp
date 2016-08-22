@@ -42,6 +42,7 @@ public class Text {
     public static String h1CheckFacilities  = "<html>Определяем оборудование...";
     public static String PortsON            = "<html>Оборудование на месте";
     public static String h1CheckUpdate      = "<html>Проверка обновления";
+    public static String h1SettingsDone     = "<html>Настройка завершена";
     
     // PORTS ERRORS
     public static String KPPortOff  = "<html>Клавиатура не найдена!";
