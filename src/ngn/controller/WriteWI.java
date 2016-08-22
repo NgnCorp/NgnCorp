@@ -11,7 +11,7 @@ import java.io.IOException;
 public class WriteWI {
 
     public static void WriteWI(String[] Arr) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("С:/NgnUpdater/FillingData.txt", true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ReadWI.path, true))) {
             for (String item : Arr) {
                 bw.write(item + ",");
             }

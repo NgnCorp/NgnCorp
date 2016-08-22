@@ -41,18 +41,18 @@ public class Update {
             //showServerReply(ftpClient);
             int replyCode = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-                System.out.println("Невозможно подключится к серверу: " + replyCode);
+                LoadingText.setText("Не удается подключится к серверу!");
             }
             boolean success = ftpClient.login(USER, PASS); // підключення до акаунта
             //showServerReply(ftpClient);
             if (!success) {
-                System.out.println("Авторизация не пройдена!");
+                LoadingText.setText("Авторизация не пройдена!");
             } else {
-                System.out.println("Авторизированы!");
+                LoadingText.setText("Авторизация пройшла успешно!");
                 list(ftpClient);
             }
         } catch (IOException ex) {
-            System.out.println("Щось сталось!");
+            
         }
     }
 
@@ -88,7 +88,7 @@ public class Update {
         if (checkNewVers) {
             try {
                 download("http://" + SERVER + "/" + vers, "C:\\Updater\\Updates\\" + vers); // Шлях до нової версії програми
-                System.out.println("Download new vers");
+                LoadingText.setText("Скачивание новой версии программы");
                 OpenandShut();
             } catch (IOException ex) {
                 System.out.println(ex);

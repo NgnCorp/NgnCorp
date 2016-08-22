@@ -12,7 +12,7 @@ public class ReadWI {
 
     public static StringBuilder allText;
     public static String[] mas;
-    public static final String path= "С:/NgnUpdater/FillingData.txt";
+    public static final String path= "C:\\NgnUpdater\\FillingData.txt";
     
     public static void ReadWI() {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
