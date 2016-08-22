@@ -1,8 +1,9 @@
 package ngn.controller;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 /**
  *
@@ -11,7 +12,7 @@ import java.io.IOException;
 public class WriteWI {
 
     public static void WriteWI(String[] Arr) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ReadWI.PATH, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ReadWI.PATH, true), "cp1251"))) {
             for (String item : Arr) {
                 bw.write(item + ",");
             }

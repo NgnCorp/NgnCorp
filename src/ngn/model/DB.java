@@ -36,9 +36,25 @@ public class DB {
     private static final String DESCRIPTION = "Заправка на АЗС";
     private static final String MODULENAME = GetModuleName(); // ГЕОЛОКАЦИЯ !!!
     public static StringBuilder allText;
-    public static final String PATH= "С:\\NgnUpdater\\ModuleName.txt";
-    
-    
+    public static final String PATH = "C:\\NgnUpdater\\ModuleName.txt";
+
+    public static String GetModuleName() {
+        try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
+            // чтение посимвольно
+            allText = new StringBuilder();
+            char[] buff = new char[1];
+            int c;
+            while ((c = br.read(buff)) != -1) {
+                allText.append(buff, 0, c);
+            }
+            System.out.println(String.valueOf(allText));
+            return String.valueOf(allText);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return "";
+        }
+    }
+
     public static boolean cardCode(String cardcode) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -60,21 +76,6 @@ public class DB {
         } catch (ClassNotFoundException | SQLException e) {
             conStatus = false;
             return false;
-        }
-    }
-    public static String GetModuleName() {
-        try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
-            // чтение посимвольно
-            allText = new StringBuilder();
-            char[] buff = new char[1];
-            int c;
-            while ((c = br.read(buff)) != -1) {
-                allText.append(buff, 0, c);
-            }
-            return String.valueOf(allText);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            return "";
         }
     }
 
@@ -102,7 +103,7 @@ public class DB {
                 pst.setString(2, cardnum);
                 pst.executeUpdate();
                 con.setAutoCommit(true);
-                conStatus = true;                
+                conStatus = true;
             }
         } catch (ClassNotFoundException | SQLException e) {
             conStatus = false;
