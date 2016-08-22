@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import static ngn.view.BeforeStart.LoadingText;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import ngn.Ngn;
 import ngn.controller.ReadWI;
 import static ngn.text.Text.*;
+import static ngn.view.BeforeStart.BSLoadingText;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {
@@ -34,21 +34,21 @@ public class Update {
         }
     }*/
     public static void Update() throws InterruptedException {
-        LoadingText.setText(h1CheckUpdate);
+        BSLoadingText.setText(h1CheckUpdate);
         FTPClient ftpClient = new FTPClient();
         try {
             ftpClient.connect(SERVER, PORT); // підключення до серверу
             //showServerReply(ftpClient);
             int replyCode = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-                LoadingText.setText(cantConn);
+                BSLoadingText.setText(cantConn);
             }
             boolean success = ftpClient.login(USER, PASS); // підключення до акаунта
             //showServerReply(ftpClient);
             if (!success) {
-                LoadingText.setText(authNOT);
+                BSLoadingText.setText(authNOT);
             } else {
-                LoadingText.setText(authSUCS);
+                BSLoadingText.setText(authSUCS);
                 list(ftpClient);
             }
         } catch (IOException ex) {
@@ -88,7 +88,7 @@ public class Update {
         if (checkNewVers) {
             try {
                 download("http://" + SERVER + "/" + vers, "C:\\Updater\\Updates\\" + vers); // Шлях до нової версії програми
-                LoadingText.setText(downlNEW);
+                BSLoadingText.setText(downlNEW);
                 OpenandShut();
             } catch (IOException ex) {
                 System.out.println(ex);
@@ -100,11 +100,11 @@ public class Update {
                 ReadWI.ReadWI();
                 Ngn.CheckPorts.start();
             } else {
-                LoadingText.setText(cantFIND + ReadWI.PATH);
+                BSLoadingText.setText(cantFIND + ReadWI.PATH);
                 if (file.createNewFile()) {
                     Ngn.CheckPorts.start();
                 } else {
-                    LoadingText.setText(cantCREATE + ReadWI.PATH);
+                    BSLoadingText.setText(cantCREATE + ReadWI.PATH);
                 }
             }
         }

@@ -458,28 +458,27 @@ public class Css extends Ngn {
         LoadingPanel.add(LoadingBar, gridBagConstraints);
     }
     
-    static void cssBeforeStart(JPanel LoadingPanel, JLabel LoadingText, JProgressBar LoadingBar) {
+    static void cssBeforeStart(JPanel BSLoadingPanel, JLabel BSLoadingText, JProgressBar BSLoadingBar) {
 
-        LoadingPanel.setVisible(true);
-        LoadingPanel.setBackground(new Color(204, 0, 0));
-        LoadingPanel.setLayout(new GridBagLayout());
+        BSLoadingPanel.setVisible(true);
+        BSLoadingPanel.setBackground(new Color(204, 0, 0));
+        BSLoadingPanel.setLayout(new GridBagLayout());
 
-        LoadingPanel.setName("BeforeStartLoadingPanel");
+        BSLoadingPanel.setName("BeforeStartLoadingPanel");
 
-        LoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
-        LoadingText.setForeground(new Color(255, 255, 255));
-        LoadingText.setHorizontalAlignment(SwingConstants.CENTER);
-        LoadingText.setText(Text.h1BeforeStart);
-        LoadingText.setToolTipText("");
-        LoadingPanel.add(LoadingText, new GridBagConstraints());
+        BSLoadingText.setFont(new Font("Candara", 1, 24)); // NOI18N
+        BSLoadingText.setForeground(new Color(255, 255, 255));
+        BSLoadingText.setHorizontalAlignment(SwingConstants.CENTER);
+        BSLoadingText.setText(Text.h1BeforeStart);
+        BSLoadingText.setToolTipText("");
+        BSLoadingPanel.add(BSLoadingText, new GridBagConstraints());
 
-        LoadingBar.setIndeterminate(true);
+        BSLoadingBar.setIndeterminate(true);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
-        LoadingPanel.add(LoadingBar, gridBagConstraints);
-        
+        BSLoadingPanel.add(BSLoadingBar, gridBagConstraints);
     }
 }

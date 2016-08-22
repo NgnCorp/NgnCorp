@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import ngn.Ngn;
 import static java.awt.EventQueue.invokeLater;
-import static ngn.view.BeforeStart.LoadingPanel;
-import static ngn.view.BeforeStart.LoadingText;
+import static ngn.view.BeforeStart.BSLoadingPanel;
+import static ngn.view.BeforeStart.BSLoadingText;
 
 /**
  *
@@ -22,10 +22,10 @@ public class BackendTimers {
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
 
-            if (LoadingText.getText().equals("Настройка завершена")) {
+            if (BSLoadingText.getText().equals("Настройка завершена")) {
                 invokeLater(() -> {
                     Ngn.AppContent();
-                    LoadingPanel.setVisible(false);
+                    BSLoadingPanel.setVisible(false);
                     AppStart.stop();
                 });
             } else {
