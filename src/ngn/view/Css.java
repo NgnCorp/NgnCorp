@@ -480,5 +480,6 @@ public class Css extends Ngn {
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
         LoadingPanel.add(LoadingBar, gridBagConstraints);
+        
     }
 }
