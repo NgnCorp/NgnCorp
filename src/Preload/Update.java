@@ -114,10 +114,8 @@ public class Update {
 
     private static void download(String server, String file) throws IOException {
         URL url = new URL(server);
-        ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-        fos.close();
-        rbc.close();
+        try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
     }
 }
