@@ -18,7 +18,7 @@ public class ReadWI {
 
     public static void ReadWI() {
 
-        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "cp1251")) {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "windows-1251")) {
             // чтение посимвольно
             allText = new StringBuilder();
             char[] buff = new char[1];
@@ -30,6 +30,6 @@ public class ReadWI {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        mas = String.valueOf(allText).split(",");
+        //mas = String.valueOf(allText).split(",");
     }
 }

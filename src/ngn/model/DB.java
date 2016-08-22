@@ -1,13 +1,16 @@
 package ngn.model;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static ngn.controller.ReadWI.PATH;
 
 public class DB {
 
@@ -39,12 +42,12 @@ public class DB {
     public static final String PATH = "C:\\NgnUpdater\\ModuleName.txt";
 
     public static String GetModuleName() {
-        try (BufferedReader br = new BufferedReader(new FileReader(PATH))) {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "windows-1251")) {
             // чтение посимвольно
             allText = new StringBuilder();
             char[] buff = new char[1];
             int c;
-            while ((c = br.read(buff)) != -1) {
+            while ((c = isr.read(buff)) != -1) {
                 allText.append(buff, 0, c);
             }
             System.out.println(String.valueOf(allText));

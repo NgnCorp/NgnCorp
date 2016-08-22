@@ -12,7 +12,7 @@ import java.io.OutputStreamWriter;
 public class WriteWI {
 
     public static void WriteWI(String[] Arr) {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ReadWI.PATH, true), "cp1251"))) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ReadWI.PATH, true), "windows-1251"))) {
             for (String item : Arr) {
                 bw.write(item + ",");
             }
