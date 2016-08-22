@@ -52,7 +52,7 @@ public class Update {
                 list(ftpClient);
             }
         } catch (IOException ex) {
-            System.out.println("Щось сталось!");
+            System.out.println("Не удалось подключиться к серверу!");
         }
     }
 
@@ -94,17 +94,17 @@ public class Update {
                 System.out.println(ex);
             }
         } else {
-            File file = new File(ReadWI.path);
+            File file = new File(ReadWI.PATH);
             System.out.println(file.exists());
             if (file.exists()) {
                 ReadWI.ReadWI();
                 Ngn.CheckPorts.start();
             } else {
-                LoadingText.setText("Не удается найти файл: " + ReadWI.path);
+                LoadingText.setText("Не удается найти файл: " + ReadWI.PATH);
                 if (file.createNewFile()) {
                     Ngn.CheckPorts.start();
                 } else {
-                    LoadingText.setText("Не удается создать файл: " + ReadWI.path);
+                    LoadingText.setText("Не удается создать файл: " + ReadWI.PATH);
                 }
             }
         }
