@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import static ngn.text.Text.h1CheckUpdate;
 import static ngn.view.BeforeStart.LoadingText;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import ngn.Ngn;
 import ngn.controller.ReadWI;
+import static ngn.text.Text.*;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {
@@ -41,18 +41,18 @@ public class Update {
             //showServerReply(ftpClient);
             int replyCode = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(replyCode)) {
-                LoadingText.setText("Не удается подключится к серверу!");
+                LoadingText.setText(cantConn);
             }
             boolean success = ftpClient.login(USER, PASS); // підключення до акаунта
             //showServerReply(ftpClient);
             if (!success) {
-                LoadingText.setText("Авторизация не пройдена!");
+                LoadingText.setText(authNOT);
             } else {
-                LoadingText.setText("Авторизация пройшла успешно!");
+                LoadingText.setText(authSUCS);
                 list(ftpClient);
             }
         } catch (IOException ex) {
-            System.out.println("Не удалось подключиться к серверу!");
+            System.out.println(cantConn);
         }
     }
 
@@ -88,7 +88,7 @@ public class Update {
         if (checkNewVers) {
             try {
                 download("http://" + SERVER + "/" + vers, "C:\\Updater\\Updates\\" + vers); // Шлях до нової версії програми
-                LoadingText.setText("Скачивание новой версии программы");
+                LoadingText.setText(downlNEW);
                 OpenandShut();
             } catch (IOException ex) {
                 System.out.println(ex);
@@ -100,11 +100,11 @@ public class Update {
                 ReadWI.ReadWI();
                 Ngn.CheckPorts.start();
             } else {
-                LoadingText.setText("Не удается найти файл: " + ReadWI.PATH);
+                LoadingText.setText(cantFIND + ReadWI.PATH);
                 if (file.createNewFile()) {
                     Ngn.CheckPorts.start();
                 } else {
-                    LoadingText.setText("Не удается создать файл: " + ReadWI.PATH);
+                    LoadingText.setText(cantCREATE + ReadWI.PATH);
                 }
             }
         }
