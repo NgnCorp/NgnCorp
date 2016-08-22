@@ -1,5 +1,6 @@
 package Preload;
 
+import static Preload.BackendTimers.AppStart;
 import static Preload.BackendTimers.WaitForAnswer;
 import static Preload.PortCheck.PortCheck;
 
@@ -16,6 +17,7 @@ public class PreLoader {
         //}
         //InternetConn.InternetConn();
         WaitForAnswer();
+        AppStart();
         PortCheck();
     }
 }

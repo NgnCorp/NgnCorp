@@ -42,6 +42,7 @@ public class Text {
     public static String h1CheckFacilities  = "<html>Определяем оборудование...";
     public static String PortsON            = "<html>Оборудование на месте";
     public static String h1CheckUpdate      = "<html>Проверка обновления";
+    public static String h1SettingsDone     = "<html>Настройка завершена";
     public static String cantConn           = "<html>Не удается подключится к серверу!";
     public static String authNOT            = "<html>Авторизация не пройдена!";
     public static String authSUCS           = "<html>Авторизация прошла успешно!";

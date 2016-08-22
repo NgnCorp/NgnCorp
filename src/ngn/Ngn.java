@@ -7,6 +7,7 @@ import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
+import static ngn.view.Card.EnterCard;
 
 /**
  *
@@ -32,7 +33,6 @@ public class Ngn extends JFrame {
         runCheckPorts = () -> {
             // Settings for App //
             PreLoader.PreLoader();
-            BackendTimers.AppStart();
         };
 
         invokeLater(() -> {
@@ -49,21 +49,23 @@ public class Ngn extends JFrame {
     }
 
     public static void AppContent() {
+        
+        invokeLater(() -> {
+            Card CARD = new Card(NGN);
+            Pin PIN = new Pin(NGN);
+            Litrs LITRS = new Litrs(NGN);
+            Work WORK = new Work(NGN);
+            Wait WAIT = new Wait(NGN);
+            Info INFO = new Info(NGN);
+            Load LOAD = new Load(NGN);
+            Bye BYE = new Bye(NGN);
 
-        Card CARD = new Card(NGN);
-        Pin PIN = new Pin(NGN);
-        Litrs LITRS = new Litrs(NGN);
-        Work WORK = new Work(NGN);
-        Wait WAIT = new Wait(NGN);
-        Info INFO = new Info(NGN);
-        Load LOAD = new Load(NGN);
-        Bye BYE = new Bye(NGN);
-
-        // Controllers //
-        KeyPad KEYPAD = new KeyPad();
-        GasStation GASSTATION = new GasStation();
-        Listener ACTIONLISTENER = new Listener();
-        Timers TIMER = new Timers();
-        Variables VARIABLES = new Variables();
+            // Controllers //
+            KeyPad KEYPAD = new KeyPad();
+            GasStation GASSTATION = new GasStation();
+            Listener ACTIONLISTENER = new Listener();
+            Timers TIMER = new Timers();
+            Variables VARIABLES = new Variables();
+        });
     }
 }
