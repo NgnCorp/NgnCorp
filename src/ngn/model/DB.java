@@ -1,8 +1,6 @@
 package ngn.model;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -10,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static ngn.controller.ReadWI.PATH;
 
 public class DB {
 
@@ -39,19 +36,21 @@ public class DB {
     private static final String DESCRIPTION = "Заправка на АЗС";
     private static final String MODULENAME = GetModuleName(); // ГЕОЛОКАЦИЯ !!!
     public static StringBuilder allText;
+    public static int data;
+    public static String[] mas;
     public static final String PATH = "C:\\NgnUpdater\\ModuleName.txt";
 
     public static String GetModuleName() {
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "windows-1251")) {
             // чтение посимвольно
-            allText = new StringBuilder();
-            char[] buff = new char[1];
-            int c;
-            while ((c = isr.read(buff)) != -1) {
-                allText.append(buff, 0, c);
+            data = isr.read();
+            allText = new StringBuilder(data);
+            while (data != -1) {
+                allText.append((char) data);
+                data = isr.read();
             }
-            System.out.println(String.valueOf(allText));
-            return String.valueOf(allText);
+            mas = String.valueOf(allText).split(",");
+            return String.valueOf(mas);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             return "";

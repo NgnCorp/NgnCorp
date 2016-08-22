@@ -87,7 +87,7 @@ public class Update {
         }
         if (checkNewVers) {
             try {
-                download("http://" + SERVER + "/" + vers, "C:\\Updater\\Updates\\" + vers); // Шлях до нової версії програми
+                download("http://" + SERVER + "/" + vers, "C:\\NgnUpdater\\Updates\\" + vers); // Шлях до нової версії програми
                 BSLoadingText.setText(downlNEW);
                 OpenandShut();
             } catch (IOException ex) {
@@ -113,10 +113,8 @@ public class Update {
 
     private static void download(String server, String file) throws IOException {
         URL url = new URL(server);
-        ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-        fos.close();
-        rbc.close();
+        try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
     }
 }
