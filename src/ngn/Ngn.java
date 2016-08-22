@@ -7,8 +7,6 @@ import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
-import static ngn.view.BeforeStart.LoadingPanel;
-import static ngn.view.Card.EnterCard;
 
 /**
  *
@@ -67,6 +65,9 @@ public class Ngn extends JFrame {
             Listener ACTIONLISTENER = new Listener();
             Timers TIMER = new Timers();
             Variables VARIABLES = new Variables();
+            
+            ChangePanel.ShowPanel(Card.EnterCard);
+            ChangePanel.FocusPassword(Card.CardCode);
         });
     }
 }

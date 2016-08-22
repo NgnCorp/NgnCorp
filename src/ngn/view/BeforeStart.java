@@ -8,17 +8,17 @@ import javax.swing.JFrame;
  */
 public class BeforeStart {
 
-    public static javax.swing.JPanel LoadingPanel;
-    public static javax.swing.JLabel LoadingText;
-    public static javax.swing.JProgressBar LoadingBar;
+    public static javax.swing.JPanel BSLoadingPanel;
+    public static javax.swing.JLabel BSLoadingText;
+    public static javax.swing.JProgressBar BSLoadingBar;
 
     public BeforeStart(JFrame JF) {
 
-        LoadingPanel = new javax.swing.JPanel();
-        LoadingText = new javax.swing.JLabel();
-        LoadingBar = new javax.swing.JProgressBar();
+        BSLoadingPanel = new javax.swing.JPanel();
+        BSLoadingText = new javax.swing.JLabel();
+        BSLoadingBar = new javax.swing.JProgressBar();
 
-        Css.cssBeforeStart(LoadingPanel, LoadingText, LoadingBar);
-        JF.add(LoadingPanel);
+        Css.cssBeforeStart(BSLoadingPanel, BSLoadingText, BSLoadingBar);
+        JF.add(BSLoadingPanel);
     }
 }

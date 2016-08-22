@@ -1,14 +1,12 @@
 package Preload;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 import ngn.text.Text;
-import static ngn.view.BeforeStart.LoadingText;
+import static ngn.view.BeforeStart.BSLoadingText;
 
 /**
  *
@@ -40,7 +38,7 @@ public class PortCheck {
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
-                LoadingText.setText(Text.h1CheckFacilities);
+                BSLoadingText.setText(Text.h1CheckFacilities);
 
                 DoWithPort("KP");
                 try {
@@ -60,12 +58,12 @@ public class PortCheck {
         }
         if (GSPort != null) {
             if (KPPort != null) {
-                LoadingText.setText(Text.PortsON);
+                BSLoadingText.setText(Text.PortsON);
             } else {
-                LoadingText.setText(Text.KPPortOff);
+                BSLoadingText.setText(Text.KPPortOff);
             }
         } else {
-            LoadingText.setText(Text.GSPortOff);
+            BSLoadingText.setText(Text.GSPortOff);
         }
     }
 

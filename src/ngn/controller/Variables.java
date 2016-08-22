@@ -2,6 +2,7 @@ package ngn.controller;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import ngn.view.BeforeStart;
 import ngn.view.Bye;
 import ngn.view.Card;
 import ngn.view.Info;
@@ -37,6 +38,7 @@ public class Variables {
     static String[] ClientInfo;
 
     static JPanel[] PanelArray = new JPanel[]{
+        BeforeStart.BSLoadingPanel,
         Card.EnterCard,
         Pin.EnterPin,
         Litrs.EnterLitrs,
