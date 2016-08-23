@@ -8,15 +8,16 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ngn.Ngn;
-import static ngn.Ngn.CheckPorts;
 import ngn.controller.ReadWI;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
-    
-    private static final Double VER = 0.10;
+
+    private static final Double VER = 0.01;
 
     private static final String URL = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
     private static final String USER = "u940880703";//daystar_alex, u940880703
@@ -92,12 +93,17 @@ public class Update {
         try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         }
+        OpenandShut();
     }
 
-    public static void OpenandShut() throws InterruptedException {
+    public static void OpenandShut() {
         try {
             Runtime.getRuntime().exec("C:\\NgnUpdater\\dist\\Unzip.exe"); // Запуск програми РОЗАРХІВУВАННЯ
-            Thread.sleep(500);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                System.out.println(ex);
+            }
         } catch (IOException ex) {
             System.out.println(ex);
         }
