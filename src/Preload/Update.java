@@ -9,12 +9,13 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
 import ngn.Ngn;
+import static ngn.Ngn.CheckPorts;
 import ngn.controller.ReadWI;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
-
+    
     private static final Double VER = 0.10;
 
     private static final String URL = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es

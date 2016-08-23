@@ -64,7 +64,6 @@ public class Ngn extends JFrame {
         runUpdate = () -> {
             Update.Update();
         };
-        
         runCheckPorts = () -> {
             // Settings for App //
             PreLoader.PreLoader();
