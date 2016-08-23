@@ -62,17 +62,12 @@ public class Ngn extends JFrame {
 
     public static void NgnPreload() {
         runUpdate = () -> {
-            try {
-                Update.Update();
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
+            Update.Update();
         };
-/*
+        
         runCheckPorts = () -> {
             // Settings for App //
             PreLoader.PreLoader();
         };
-    */
     }
 }

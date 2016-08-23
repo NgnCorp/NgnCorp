@@ -48,6 +48,7 @@ public class Text {
     public static String authSUCS           = "<html>Авторизация прошла успешно!";
     public static String downlNEW           = "<html>Скачивание новой версии программы";
     public static String cantFIND           = "<html>Не удается найти файл: ";
+    public static String createFile         = "<html>Файл создан: ";
     public static String cantCREATE         = "<html>Не удается создать файл: ";
     
     // PORTS ERRORS
