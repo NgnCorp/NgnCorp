@@ -58,7 +58,7 @@ public class Update {
 
     public static void OpenandShut() throws InterruptedException {
         try {
-            Runtime.getRuntime().exec(ReadWI.PATH); // Запуск програми РОЗАРХІВУВАННЯ
+            Runtime.getRuntime().exec(""); // Запуск програми РОЗАРХІВУВАННЯ
             Thread.sleep(500);
         } catch (IOException ex) {
             System.out.println(ex);
@@ -95,6 +95,7 @@ public class Update {
         } else {
             File file = new File(ReadWI.PATH);
             if (file.exists()) {
+                System.out.println("FILE");
                 ReadWI.ReadWI();
                 Ngn.CheckPorts.start();
             } else {
