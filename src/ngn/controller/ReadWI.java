@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import static ngn.text.Text.downlNEW;
+import static ngn.view.BeforeStart.BSLoadingText;
 
 /**
  *
@@ -23,13 +25,15 @@ public class ReadWI {
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "windows-1251")) {
             // чтение посимвольно
             data = isr.read();
-            allText = new StringBuilder(data);
-            while (data != -1) {
-                allText.append((char) data);
-                data = isr.read();
+            if (data > 0) {
+                allText = new StringBuilder(data);
+                while (data != -1) {
+                    allText.append((char) data);
+                    data = isr.read();
+                }
             }
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            BSLoadingText.setText("Error!");
         }
         mas = String.valueOf(allText).split(",");
     }

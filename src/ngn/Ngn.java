@@ -68,11 +68,9 @@ public class Ngn extends JFrame {
                 System.out.println(ex);
             }
         };
-/*
         runCheckPorts = () -> {
             // Settings for App //
             PreLoader.PreLoader();
         };
-    */
     }
 }
