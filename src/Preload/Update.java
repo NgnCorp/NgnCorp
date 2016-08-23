@@ -16,7 +16,7 @@ import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
-
+    
     private static final Double VER = 0.01;
 
     private static final String URL = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
