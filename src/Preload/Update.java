@@ -17,10 +17,10 @@ import org.apache.commons.net.ftp.FTPReply;
 public class Update {
 
     private static final Double VER = 0.10;
-    private static final String SERVER = "aftjokers.esy.es";//"daystar.ftp.ukraine.com.ua";
+    private static final String SERVER = "daystar.ftp.ukraine.com.ua";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
     private static final int PORT = 21;
-    private static final String USER = "u940880703";//"daystar_alex";
-    private static final String PASS = "saniyaext_25";//"3mni537k";
+    private static final String USER = "daystar_alex";//daystar_alex, u940880703
+    private static final String PASS = "3mni537k";//3mni537k, saniyaext_25
     private static String nameOfVer;
     private static Boolean checkNewVers = false;
     private static String vers;
