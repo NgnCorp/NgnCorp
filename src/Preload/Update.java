@@ -16,7 +16,7 @@ import org.apache.commons.net.ftp.FTPReply;
 
 public class Update {
 
-    private static final Double VER = 0.10;
+    private static final Double VER = 0.11;
     private static final String SERVER = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
     private static final int PORT = 21;
     private static final String USER = "u940880703";//daystar_alex, u940880703
