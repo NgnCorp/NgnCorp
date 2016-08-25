@@ -34,10 +34,9 @@ public class DB {
     //Конотоп
     //Павлоград
     private static final String DESCRIPTION = "Заправка на АЗС";
-    private static final String MODULENAME = GetModuleName(); // ГЕОЛОКАЦИЯ !!!
+    private static final String MODULENAME = GetModuleName();
     public static StringBuilder allText;
     public static int data;
-    public static String[] mas;
     public static final String PATH = "C:\\NgnUpdater\\ModuleName.txt";
 
     public static String GetModuleName() {
@@ -49,8 +48,8 @@ public class DB {
                 allText.append((char) data);
                 data = isr.read();
             }
-            mas = String.valueOf(allText).split(",");
-            return String.valueOf(mas);
+            System.out.println(String.valueOf(allText));
+            return String.valueOf(allText);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             return "";

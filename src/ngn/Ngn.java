@@ -39,21 +39,21 @@ public class Ngn extends JFrame {
     public static void AppContent() {
 
         invokeLater(() -> {
-            Card CARD = new Card(NGN);
-            Pin PIN = new Pin(NGN);
+            Card CARD   = new Card(NGN);
+            Pin PIN     = new Pin(NGN);
             Litrs LITRS = new Litrs(NGN);
-            Work WORK = new Work(NGN);
-            Wait WAIT = new Wait(NGN);
-            Info INFO = new Info(NGN);
-            Load LOAD = new Load(NGN);
-            Bye BYE = new Bye(NGN);
+            Work WORK   = new Work(NGN);
+            Wait WAIT   = new Wait(NGN);
+            Info INFO   = new Info(NGN);
+            Load LOAD   = new Load(NGN);
+            Bye BYE     = new Bye(NGN);
 
             // Controllers //
-            KeyPad KEYPAD = new KeyPad();
-            GasStation GASSTATION = new GasStation();
+            KeyPad KEYPAD           = new KeyPad();
+            GasStation GASSTATION   = new GasStation();
             Listener ACTIONLISTENER = new Listener();
-            Timers TIMER = new Timers();
-            Variables VARIABLES = new Variables();
+            Timers TIMER            = new Timers();
+            Variables VARIABLES     = new Variables();
 
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
