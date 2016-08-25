@@ -48,7 +48,6 @@ public class DB {
                 allText.append((char) data);
                 data = isr.read();
             }
-            System.out.println(String.valueOf(allText));
             return String.valueOf(allText);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

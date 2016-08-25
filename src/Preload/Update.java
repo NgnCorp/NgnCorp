@@ -57,6 +57,7 @@ public class Update {
                 BSLoadingText.setText(downlNEW);
                 download(upload, place);
             } catch (IOException ex) {
+                BSLoadingText.setText(cantdownlNEW);
                 System.out.println(ex);
             }
         } else {
@@ -95,6 +96,7 @@ public class Update {
                 System.out.println(ex);
             }
         } catch (IOException ex) {
+            BSLoadingText.setText(cantRunProg);
             System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);
