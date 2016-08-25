@@ -51,6 +51,7 @@ public class PortCheck {
             } finally {
                 try {
                     PortToCheck.closePort();
+                    System.out.println(portName + " IS CLOSED");
                 } catch (SerialPortException ex) {
                     System.out.println(ex);
                 }

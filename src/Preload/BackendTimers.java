@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import ngn.Ngn;
 import static java.awt.EventQueue.invokeLater;
+import jssc.SerialPortException;
+import ngn.controller.KeyPad;
 import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.PortsON;
 import static ngn.text.Text.h1SettingsDone;
@@ -17,6 +19,8 @@ public class BackendTimers {
 
     public static Timer AppStart;
     public static Timer WaitForAnswer;
+    public static Timer KyePadWorks;
+    public static Timer KyePadNotWorks;
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -30,16 +34,34 @@ public class BackendTimers {
             } else {
                 AppStart.restart();
             }
-            System.out.println("AppStart Timer Works");
         });
 
         WaitForAnswer = new Timer(1000, (ActionEvent e) -> {
             if (BSLoadingText.getText().equals(PortsON)) {
-                //ClosePorts();
                 BSLoadingText.setText(h1SettingsDone);
                 WaitForAnswer.stop();
             } else {
                 WaitForAnswer.restart();
+            }
+        });
+
+        KyePadWorks = new Timer(1000, (ActionEvent e) -> {
+            try {
+                Boolean TestSignal = KeyPad.KeyPadCOM4.writeString("00");
+                if (!TestSignal) {
+                    KyePadWorks.stop();
+                    KyePadNotWorks.restart();
+                }
+            } catch (SerialPortException ex) {
+                System.out.println(ex);
+            }
+        });
+
+        KyePadNotWorks = new Timer(1000, (ActionEvent e) -> {
+            KeyPad.KeyPadSettings();
+            if (KeyPad.KeyPadCOM4.isOpened()) {
+                KyePadWorks.restart();
+                KyePadNotWorks.stop();
             }
         });
     }

@@ -8,8 +8,6 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ngn.Ngn;
 import ngn.controller.ReadWI;
 import static ngn.text.Text.*;
@@ -17,22 +15,14 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
     
-    private static final Double VER = 0.01;
+    private static final Double VER = 0.02;
 
     private static final String URL = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
     private static final String USER = "u940880703";//daystar_alex, u940880703
     private static final String PASS = "saniyaext_25";//3mni537k, saniyaext_25
     private static final String KEYWORD = "ver";
     private static URL con;
-
-    /*    private static void showServerReply(FTPClient ftpClient) {
-        String[] replies = ftpClient.getReplyStrings();
-        if (replies != null && replies.length > 0) {
-            for (String aReply : replies) {
-                System.out.println("SERVER: " + aReply);
-            }
-        }
-    }*/
+    
     public static void Update() {
         BSLoadingText.setText(h1CheckUpdate);
         try {
