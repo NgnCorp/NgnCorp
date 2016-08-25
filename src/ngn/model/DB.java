@@ -37,7 +37,6 @@ public class DB {
     private static final String MODULENAME = GetModuleName(); // ГЕОЛОКАЦИЯ !!!
     public static StringBuilder allText;
     public static int data;
-    public static String[] mas;
     public static final String PATH = "C:\\NgnUpdater\\ModuleName.txt";
 
     public static String GetModuleName() {
@@ -49,8 +48,7 @@ public class DB {
                 allText.append((char) data);
                 data = isr.read();
             }
-            mas = String.valueOf(allText).split(",");
-            return String.valueOf(mas);
+            return String.valueOf(allText);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             return "";

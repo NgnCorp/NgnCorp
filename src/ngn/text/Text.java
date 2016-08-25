@@ -50,6 +50,8 @@ public class Text {
     public static String cantFIND           = "<html>Не удается найти файл: ";
     public static String createFile         = "<html>Файл создан: ";
     public static String cantCREATE         = "<html>Не удается создать файл: ";
+    public static String cantdownlNEW       = "<html>Не удалось скачать обновление";
+    public static String cantRunProg        = "<html>Невозможно открыть програму обновления";
     
     // PORTS ERRORS
     public static String KPPortOff  = "<html>Клавиатура не найдена!";
