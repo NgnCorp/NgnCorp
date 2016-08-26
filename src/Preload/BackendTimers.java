@@ -21,6 +21,9 @@ public class BackendTimers {
     public static Timer WaitForAnswer;
     public static Timer KyePadWorks;
     public static Timer KyePadNotWorks;
+    public static Timer LocalDBUpdate;
+
+    Integer LDBTime = 30 * 1000;//30 * 60 * 1000 = 30 минут
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -64,6 +67,10 @@ public class BackendTimers {
                 KyePadNotWorks.stop();
             }
         });
+
+        LocalDBUpdate = new Timer(LDBTime, (ActionEvent e) -> {
+            Threads.LOCALDB();
+        });
     }
 
     public static void AppStart() {
@@ -72,5 +79,9 @@ public class BackendTimers {
 
     public static void WaitForAnswer() {
         WaitForAnswer.restart();
+    }
+
+    public static void LocalDBUpdate() {
+        LocalDBUpdate.restart();
     }
 }

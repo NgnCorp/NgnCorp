@@ -27,6 +27,7 @@ public class Ngn extends JFrame {
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
             Threads.UPD();
+            BackendTimers.LocalDBUpdate();
             AppContent(); GSPort = "COM3"; KPPort = "COM4"; //Start without COM ports check
         });
     }
