@@ -7,7 +7,7 @@ import static java.awt.EventQueue.invokeLater;
 import jssc.SerialPortException;
 import ngn.controller.KeyPad;
 import static ngn.view.BeforeStart.BSLoadingPanel;
-import static ngn.text.Text.PortsON;
+import static ngn.text.Text.LDBdone;
 import static ngn.text.Text.h1SettingsDone;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -23,7 +23,7 @@ public class BackendTimers {
     public static Timer KyePadNotWorks;
     public static Timer LocalDBUpdate;
 
-    Integer LDBTime = 10 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 30 * 60 * 1000;//30 * 60 * 1000 = 30 минут
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -40,7 +40,7 @@ public class BackendTimers {
         });
 
         WaitForAnswer = new Timer(1000, (ActionEvent e) -> {
-            if (BSLoadingText.getText().equals(PortsON)) {
+            if (BSLoadingText.getText().equals(LDBdone)) {
                 BSLoadingText.setText(h1SettingsDone);
                 WaitForAnswer.stop();
             } else {

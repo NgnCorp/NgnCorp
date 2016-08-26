@@ -60,6 +60,7 @@ public class PortCheck {
         if (GSPort != null) {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
+                Threads.LOCALDB();
             } else {
                 BSLoadingText.setText(Text.KPPortOff);
             }

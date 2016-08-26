@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import ngn.controller.WriteWI;
+import ngn.text.Text;
+import static ngn.view.BeforeStart.BSLoadingText;
 
 /**
  *
@@ -31,7 +33,7 @@ public class LocalDB {
     public static ResultSet rsLDB;
 
     public static void LocalDB() {
-        System.out.println("LDB Write");
+        BSLoadingText.setText(Text.createLDB);
         WriteWI.LDBToZero();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -46,23 +48,24 @@ public class LocalDB {
                     + "LEFT JOIN " + DB_PREFIX + "customer cu ON cc.customer_id=cu.customer_id "
                     + "LEFT JOIN " + DB_PREFIX + "custom_field_value_description cfvd ON cfvd.custom_field_value_id=SUBSTRING(cu.custom_field,7,1)");
             rsLDB = pst.executeQuery();
-            while(rsLDB.next()) {
-                    String[] LocalClientInfo = new String[]{
-                        rsLDB.getString("c.cardcode"),
-                        rsLDB.getString("c.name"),
-                        rsLDB.getString("c.litrnum"),
-                        rsLDB.getString("c.code"),
-                        String.valueOf(rsLDB.getDouble("cu.customer_price")),
-                        String.valueOf(rsLDB.getDouble("totalprice")),
-                        rsLDB.getString("purse"),
-                        String.valueOf(rsLDB.getInt("limit_day")),
-                        String.valueOf(rsLDB.getInt("limit_litrs")),
-                        String.valueOf(rsLDB.getDouble("used_limit_litrs"))
-                    };
-                    WriteWI.WriteLDB(LocalClientInfo);
+            while (rsLDB.next()) {
+                String[] LocalClientInfo = new String[]{
+                    rsLDB.getString("c.cardcode"),
+                    rsLDB.getString("c.name"),
+                    rsLDB.getString("c.litrnum"),
+                    rsLDB.getString("c.code"),
+                    String.valueOf(rsLDB.getDouble("cu.customer_price")),
+                    String.valueOf(rsLDB.getDouble("totalprice")),
+                    rsLDB.getString("purse"),
+                    String.valueOf(rsLDB.getInt("limit_day")),
+                    String.valueOf(rsLDB.getInt("limit_litrs")),
+                    String.valueOf(rsLDB.getDouble("used_limit_litrs"))
+                };
+                WriteWI.WriteLDB(LocalClientInfo);
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        BSLoadingText.setText(Text.LDBdone);
     }
 }

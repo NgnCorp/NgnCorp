@@ -42,7 +42,6 @@ public class Text {
     public static String h1CheckFacilities  = "<html>Определяем оборудование...";
     public static String PortsON            = "<html>Оборудование на месте";
     public static String h1CheckUpdate      = "<html>Проверка обновления";
-    public static String h1SettingsDone     = "<html>Настройка завершена";
     public static String cantConn           = "<html>Не удается подключится к серверу!";
     public static String authNOT            = "<html>Авторизация не пройдена!";
     public static String authSUCS           = "<html>Авторизация прошла успешно!";
@@ -52,6 +51,9 @@ public class Text {
     public static String cantCREATE         = "<html>Не удается создать файл: ";
     public static String cantdownlNEW       = "<html>Не удалось скачать обновление";
     public static String cantRunProg        = "<html>Невозможно открыть програму обновления";
+    public static String createLDB          = "<html>Проверяем данные с сервера";
+    public static String LDBdone            = "<html>Проверка данных завершена";
+    public static String h1SettingsDone     = "<html>Настройка завершена";
     
     // PORTS ERRORS
     public static String KPPortOff  = "<html>Клавиатура не найдена!";
