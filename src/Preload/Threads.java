@@ -36,16 +36,19 @@ public class Threads {
     }
 
     public static void UPD() {
+        Upd = null;
         Upd = new Thread(runUpdate);
         Upd.start();
     }
 
     public static void CHECKPORTS() {
+        CheckPorts = null;
         CheckPorts = new Thread(runCheckPorts);
         CheckPorts.start();
     }
 
     public static void LOCALDB() {
+        LocalDb = null;
         LocalDb = new Thread(runLocalDB);
         LocalDb.start();
     }
