@@ -8,13 +8,12 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
-import ngn.Ngn;
 import ngn.controller.ReadWI;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
-    
+
     private static final Double VER = 0.02;
 
     private static final String URL = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
@@ -22,7 +21,7 @@ public class Update {
     private static final String PASS = "saniyaext_25";//3mni537k, saniyaext_25
     private static final String KEYWORD = "ver";
     private static URL con;
-    
+
     public static void Update() {
         BSLoadingText.setText(h1CheckUpdate);
         try {
@@ -64,13 +63,13 @@ public class Update {
             File file = new File(ReadWI.PATH);
             if (file.exists()) {
                 ReadWI.ReadWI();
-                Ngn.CheckPorts.start();
+                Threads.CHECKPORTS();
             } else {
                 BSLoadingText.setText(cantFIND + ReadWI.PATH);
                 try {
                     if (file.createNewFile()) {
                         BSLoadingText.setText(createFile + ReadWI.PATH);
-                        Ngn.CheckPorts.start();
+                        Threads.CHECKPORTS();
                     }
                 } catch (IOException ex) {
                     BSLoadingText.setText(cantCREATE + ReadWI.PATH);

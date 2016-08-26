@@ -1,8 +1,8 @@
 package ngn;
 
 import Preload.BackendTimers;
-import Preload.PreLoader;
-import Preload.Update;
+import static Preload.PortCheck.*;
+import Preload.Threads;
 import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
 import ngn.view.*;
@@ -15,13 +15,9 @@ import ngn.controller.*;
 public class Ngn extends JFrame {
 
     static JFrame NGN = new JFrame();
-    static Runnable runCheckPorts;
-    static Runnable runUpdate;
-    public static Thread CheckPorts;
-    public static Thread Upd;
 
     public static void main(String[] args) throws InterruptedException {
-        NgnPreload(); //Start with COM ports check
+        //NgnPreload(); //Start with COM ports check
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -29,10 +25,9 @@ public class Ngn extends JFrame {
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
-            Upd = new Thread(runUpdate);
-            Upd.start();
-            CheckPorts = new Thread(runCheckPorts);
-            //AppContent(); //Start without COM ports check
+            Threads THREADS = new Threads();
+            Threads.UPD();
+            AppContent(); GSPort = "COM3"; KPPort = "COM4"; //Start without COM ports check
         });
     }
 
@@ -58,15 +53,5 @@ public class Ngn extends JFrame {
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
         });
-    }
-
-    public static void NgnPreload() {
-        runUpdate = () -> {
-            Update.Update();
-        };
-        runCheckPorts = () -> {
-            // Settings for App //
-            PreLoader.PreLoader();
-        };
     }
 }

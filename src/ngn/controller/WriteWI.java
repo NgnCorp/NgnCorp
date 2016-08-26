@@ -21,4 +21,15 @@ public class WriteWI {
             System.out.println(ex.getMessage());
         }
     }
+
+    public static void WriteLDB(String[] Arr) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ReadWI.PATH, false), "windows-1251"))) {
+            for (String item : Arr) {
+                bw.write(item + ",");
+            }
+            bw.write("\r\n");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
