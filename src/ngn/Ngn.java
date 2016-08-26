@@ -2,6 +2,7 @@ package ngn;
 
 import Preload.BackendTimers;
 import static Preload.PortCheck.*;
+import Preload.PreLoader;
 import Preload.Threads;
 import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ public class Ngn extends JFrame {
     static JFrame NGN = new JFrame();
 
     public static void main(String[] args) throws InterruptedException {
-        //Ngn.Preload(); //Start with COM ports check
+        
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -26,9 +27,9 @@ public class Ngn extends JFrame {
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
-            Threads.UPD();
+            Threads.UPD();                                    //Start with COM ports check
             BackendTimers.LocalDBUpdate();
-            AppContent(); GSPort = "COM3"; KPPort = "COM4"; //Start without COM ports check
+            //AppContent(); GSPort = "COM3"; KPPort = "COM4";   //Start without COM ports check
         });
     }
 
