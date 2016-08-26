@@ -17,7 +17,7 @@ public class Ngn extends JFrame {
     static JFrame NGN = new JFrame();
 
     public static void main(String[] args) throws InterruptedException {
-        //NgnPreload(); //Start with COM ports check
+        //Ngn.Preload(); //Start with COM ports check
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -28,7 +28,7 @@ public class Ngn extends JFrame {
             Threads THREADS = new Threads();
             Threads.UPD();
             BackendTimers.LocalDBUpdate();
-            AppContent(); GSPort = "COM3"; KPPort = "COM4"; //Start without COM ports check
+            //AppContent(); GSPort = "COM3"; KPPort = "COM4"; //Start without COM ports check
         });
     }
 

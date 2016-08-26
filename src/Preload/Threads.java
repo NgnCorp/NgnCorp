@@ -23,30 +23,30 @@ public class Threads {
         runUpdate = () -> {
             Update.Update();
         };
-        Upd = new Thread(runUpdate);
 
         runCheckPorts = () -> {
             // Settings for App //
             PreLoader.PreLoader();
         };
-        CheckPorts = new Thread(runCheckPorts);
 
         runLocalDB = () -> {
             LocalDB.LocalDB();
         };
-        LocalDb = new Thread(runLocalDB);
 
     }
 
     public static void UPD() {
+        Upd = new Thread(runUpdate);
         Upd.start();
     }
 
     public static void CHECKPORTS() {
+        CheckPorts = new Thread(runCheckPorts);
         CheckPorts.start();
     }
 
     public static void LOCALDB() {
+        LocalDb = new Thread(runLocalDB);
         LocalDb.start();
     }
 

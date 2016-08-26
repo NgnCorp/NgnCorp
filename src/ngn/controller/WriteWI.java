@@ -29,7 +29,7 @@ public class WriteWI {
             for (String item : Arr) {
                 bw.write(item + " ");
             }
-            bw.write(",\r\n");
+            bw.write("|\r\n");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

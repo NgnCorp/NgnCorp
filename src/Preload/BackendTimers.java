@@ -23,7 +23,7 @@ public class BackendTimers {
     public static Timer KyePadNotWorks;
     public static Timer LocalDBUpdate;
 
-    Integer LDBTime = 30 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 10 * 1000;//30 * 60 * 1000 = 30 минут
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
