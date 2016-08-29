@@ -14,18 +14,7 @@ public class WriteWI {
 
     public static final String PATHLDB = "C:\\NgnUpdater\\LDB.txt";
 
-    public static void WriteWI(String[] Arr) {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Paths.PATH, false), "windows-1251"))) {
-            for (String item : Arr) {
-                bw.write(item + ",");
-            }
-            bw.write("\r\n");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public static void WriteLDB(String[] Arr, String path) {
+    public static void Write(String[] Arr, String path) {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true), "windows-1251"))) {
             for (String item : Arr) {
                 bw.write(item + "=>");
@@ -35,17 +24,6 @@ public class WriteWI {
             System.out.println(ex.getMessage());
         }
     }
-
-    /*public static void WriteInNewFile(String[] custCard) {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D:\\in.txt", true), "windows-1251"))) {
-            for (String item : custCard) {
-                bw.write(item + " ");
-            }
-            bw.write("|\n");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }*/
 
     public static void LDBToZero() {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, false), "windows-1251"))) {
