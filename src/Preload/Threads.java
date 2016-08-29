@@ -14,9 +14,11 @@ public class Threads {
     static Runnable runCheckPorts;
     static Runnable runUpdate;
     static Runnable runLocalDB;
+    static Runnable runInternetConn;
     public static Thread CheckPorts;
     public static Thread Upd;
     public static Thread LocalDb;
+    public static Thread InternetConn;
 
     public Threads() {
 
@@ -32,7 +34,10 @@ public class Threads {
         runLocalDB = () -> {
             LocalDB.LocalDB();
         };
-
+        
+        runInternetConn = () -> {
+            BackendTimers.InternetStatus();
+        };
     }
 
     public static void UPD() {
@@ -53,4 +58,9 @@ public class Threads {
         LocalDb.start();
     }
 
+    public static void INTERNETCONN() {
+        InternetConn = null;
+        InternetConn = new Thread(runInternetConn);
+        InternetConn.start();
+    }
 }
