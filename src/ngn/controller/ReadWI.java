@@ -28,8 +28,8 @@ public class ReadWI {
 
     public static void ReadWI() {
 
-        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.PATH), "windows-1251")) {
-            // чтение посимвольно
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.TRANSACTIONPATH), "windows-1251")) {
+            // чтение транзакций и запись их на сервер
             data = isr.read();
             if (data > 0) {
                 allText = new StringBuilder(data);
@@ -41,7 +41,7 @@ public class ReadWI {
         } catch (IOException ex) {
             BSLoadingText.setText("Error!");
         }
-        mas = String.valueOf(allText).split(",");
+        mas = String.valueOf(allText).split("=>");
     }
 
     public static void CreateLocalDB() {

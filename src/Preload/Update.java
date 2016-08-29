@@ -66,19 +66,19 @@ public class Update {
                 System.out.println(ex);
             }
         } else {
-            File file = new File(Paths.PATH);
+            File file = new File(Paths.TRANSACTIONPATH);
             if (file.exists()) {
                 ReadWI.ReadWI();
                 Threads.CHECKPORTS();
             } else {
-                BSLoadingText.setText(cantFIND + Paths.PATH);
+                BSLoadingText.setText(cantFIND + Paths.TRANSACTIONPATH);
                 try {
                     if (file.createNewFile()) {
-                        BSLoadingText.setText(createFile + Paths.PATH);
+                        BSLoadingText.setText(createFile + Paths.TRANSACTIONPATH);
                         Threads.CHECKPORTS();
                     }
                 } catch (IOException ex) {
-                    BSLoadingText.setText(cantCREATE + Paths.PATH);
+                    BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
                 }
             }
         }
