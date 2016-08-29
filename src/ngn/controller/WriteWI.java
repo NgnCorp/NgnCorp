@@ -35,6 +35,17 @@ public class WriteWI {
         }
     }
 
+    public static void WriteInNewFile(String[] custCard) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D:\\in.txt", true), "windows-1251"))) {
+            for (String item : custCard) {
+                bw.write(item + " ");
+            }
+            bw.write("|\n");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     public static void LDBToZero() {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, false), "windows-1251"))) {
             bw.write("");
