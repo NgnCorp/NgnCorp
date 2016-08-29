@@ -63,15 +63,13 @@ public class ReadWI {
         }
         customerInfo = String.valueOf(allDB).split("\\|");
     }
-    public static void FindCardName(String cardName) throws IOException {
+    public static void FindCardName(String cardName) {
 
         for (String custCard : customerInfo) {
-            //System.out.println(custCard.split(" ")[0]);
-            if (custCard.split(" ")[0].contains(cardName)) {
+            //
+            if (custCard.split("=>")[0].contains(cardName)) {
                 personalInfo = custCard.split("=>");
-                System.out.println(custCard.split(" ")[0]);
-            } else {
-                WriteWI.WriteLDB(custCard.split("=>"), PATH);
+                System.out.println(Arrays.toString(custCard.split("=>")));
             }
             //else {
             //    WriteWI.WriteInNewFile(custCard.split(" "));
