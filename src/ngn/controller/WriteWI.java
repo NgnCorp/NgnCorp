@@ -24,8 +24,8 @@ public class WriteWI {
         }
     }
 
-    public static void WriteLDB(String[] Arr) {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, true), "windows-1251"))) {
+    public static void WriteLDB(String[] Arr, String path) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true), "windows-1251"))) {
             for (String item : Arr) {
                 bw.write(item + " ");
             }
@@ -35,7 +35,7 @@ public class WriteWI {
         }
     }
 
-    public static void WriteInNewFile(String[] custCard) {
+    /*public static void WriteInNewFile(String[] custCard) {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D:\\in.txt", true), "windows-1251"))) {
             for (String item : custCard) {
                 bw.write(item + " ");
@@ -44,7 +44,7 @@ public class WriteWI {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-    }
+    }*/
 
     public static void LDBToZero() {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, false), "windows-1251"))) {

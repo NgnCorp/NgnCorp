@@ -22,8 +22,8 @@ public class ReadWI {
     public static final String PATH = "C:\\NgnUpdater\\FillingData.txt";
     public static final String PATH1 = "D:\\LDB.txt";
     public static final String PATH2 = "D:\\LDB1.txt";
-    public static File sourceFile = new File("D:\\out.txt");
-    public static File outputFile = new File("D:\\in.txt");
+    public static File sourceFile = new File(PATH1);
+    public static File outputFile = new File(PATH2);
 
     public static void ReadWI() {
 
@@ -66,10 +66,10 @@ public class ReadWI {
         for (String custCard : customerInfo) {
             //System.out.println(custCard.split(" ")[0]);
             if (custCard.split(" ")[0].contains(cardName)) {
-                personalInfo = custCard.split(" ");
+                personalInfo = custCard.split("=>");
                 System.out.println(custCard.split(" ")[0]);
             } else {
-                WriteWI.WriteInNewFile(custCard.split(" "));
+                WriteWI.WriteLDB(custCard.split("=>"), PATH);
             }
             //System.out.println(cardName);
         }
