@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import ngn.text.Paths;
 
 /**
  *
@@ -14,8 +13,8 @@ public class WriteWI {
 
     public static final String PATHLDB = "C:\\NgnUpdater\\LDB.txt";
 
-    public static void Write(String[] Arr, String path) {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true), "windows-1251"))) {
+    public static void Write(String[] Arr, String path, Boolean Rewrite) {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, Rewrite), "windows-1251"))) {
             for (String item : Arr) {
                 bw.write(item + "=>");
             }

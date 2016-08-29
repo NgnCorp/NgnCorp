@@ -41,7 +41,6 @@ public class Listener {
                 String.valueOf(Variables.limitLitrs),
                 String.valueOf(Variables.usedLimitLitrs)
             };
-            //WriteWI.Write(Variables.ClientInfo, Paths.PATH);
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);

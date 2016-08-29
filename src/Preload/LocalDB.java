@@ -61,7 +61,7 @@ public class LocalDB {
                     String.valueOf(rsLDB.getDouble("used_limit_litrs")),
                     String.valueOf(rsLDB.getInt("c.litr_place"))
                 };
-                WriteWI.Write(LocalClientInfo, WriteWI.PATHLDB);
+                WriteWI.Write(LocalClientInfo, WriteWI.PATHLDB, true);
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
