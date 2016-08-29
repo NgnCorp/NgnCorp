@@ -55,6 +55,7 @@ public class DB {
         }
     }
 
+    /*
     public static boolean cardCode(String cardcode) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -78,7 +79,7 @@ public class DB {
             return false;
         }
     }
-
+     */
     public static boolean updateLitrs(String newln, String cardnum) {
         try {
             Double checkLitr = 0.00;

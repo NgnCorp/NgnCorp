@@ -61,14 +61,14 @@ public class ReadWI {
         }
         customerInfo = String.valueOf(allDB).split("\\|");
     }
-    
- public static void FindCardName(String cardName) {        
+
+    public static boolean FindCardName(String cardName) {
         String CardCode = cardName.toUpperCase();
-        
-        for (String custCard : customerInfo) {            
+
+        for (String custCard : customerInfo) {
             if (custCard.split("=>")[0].toUpperCase().contains(CardCode)) {
-                personalInfo = custCard.split("=>");                
-                System.out.println(Arrays.toString(custCard.split("=>")));
+                personalInfo = custCard.split("=>");
+                return true;
             }
             //else {
             //    WriteWI.WriteInNewFile(custCard.split(" "));
@@ -83,5 +83,6 @@ public class ReadWI {
             System.out.println(ex);
         }
          */
+        return false;
     }
 }

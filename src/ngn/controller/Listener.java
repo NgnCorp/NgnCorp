@@ -1,10 +1,6 @@
 package ngn.controller;
 
 import java.awt.event.ActionEvent;
-import java.sql.SQLException;
-import java.util.Arrays;
-import static ngn.controller.ReadWI.customerInfo;
-import ngn.model.*;
 import ngn.view.Litrs;
 import static ngn.view.Litrs.ClientLitrs;
 import ngn.view.Pin;
@@ -20,8 +16,7 @@ public class Listener {
         String CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10) {
-            ReadWI.FindCardName(CardCode);
-            if (DB.cardCode(CardCode)) {
+            if (ReadWI.FindCardName(CardCode)) {
                 Variables.customerId = Integer.valueOf(ReadWI.personalInfo[1]);
                 Variables.pin = ReadWI.personalInfo[2];
                 Variables.name = ReadWI.personalInfo[3];

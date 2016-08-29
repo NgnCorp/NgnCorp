@@ -57,6 +57,7 @@ public class PortCheck {
                 }
             }
         }
+        /*
         if (GSPort != null) {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
@@ -67,6 +68,9 @@ public class PortCheck {
         } else {
             BSLoadingText.setText(Text.GSPortOff);
         }
+*/
+                BSLoadingText.setText(Text.PortsON);
+                Threads.LOCALDB();
     }
 
     public static void DoWithPort(String port) {
