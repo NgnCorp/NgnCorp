@@ -23,18 +23,18 @@ public class Listener {
             ReadWI.FindCardName(CardCode);
             if (DB.cardCode(CardCode)) {
                 try {
-                    Variables.pin = DB.rs.getString("c.pin");
-                    Variables.name = DB.rs.getString("c.name");
-                    Variables.litrnum = DB.rs.getString("c.litrnum");
-                    Variables.code = DB.rs.getString("c.code");
-                    Variables.customerId = DB.rs.getInt("cu.customer_id");
-                    Variables.customerPrice = DB.rs.getDouble("cu.customer_price");
-                    Variables.uahBalance = DB.rs.getDouble("totalprice");
-                    Variables.purse = DB.rs.getString("purse");
-                    Variables.limitDay = DB.rs.getInt("limit_day");
-                    Variables.limitLitrs = DB.rs.getDouble("limit_litrs");
-                    Variables.usedLimitLitrs = DB.rs.getDouble("used_limit_litrs");
-                    Variables.litrPlace = DB.rs.getInt("litr_place");
+                    Variables.pin = ReadWI.personalInfo[2];//DB.rs.getString("c.pin");
+                    Variables.name = ReadWI.personalInfo[3];//DB.rs.getString("c.name");
+                    Variables.litrnum = ReadWI.personalInfo[4];//DB.rs.getString("c.litrnum");
+                    Variables.code = ReadWI.personalInfo[5];//DB.rs.getString("c.code");
+                    Variables.customerId = Integer.valueOf(ReadWI.personalInfo[2]);//DB.rs.getInt("cu.customer_id");
+                    Variables.customerPrice = Double.valueOf(ReadWI.personalInfo[6]);//DB.rs.getDouble("cu.customer_price");
+                    Variables.uahBalance = Double.valueOf(ReadWI.personalInfo[7]);//DB.rs.getDouble("totalprice");
+                    Variables.purse = ReadWI.personalInfo[8];//DB.rs.getString("purse");
+                    Variables.limitDay = Integer.valueOf(ReadWI.personalInfo[9]);//DB.rs.getInt("limit_day");
+                    Variables.limitLitrs = Double.valueOf(ReadWI.personalInfo[10]);//DB.rs.getDouble("limit_litrs");
+                    Variables.usedLimitLitrs = Double.valueOf(ReadWI.personalInfo[11]);//DB.rs.getDouble("used_limit_litrs");
+                    Variables.litrPlace = Integer.valueOf(ReadWI.personalInfo[12]);//DB.rs.getInt("litr_place");
 
                     Variables.ClientInfo = new String[]{
                         String.valueOf(Variables.customerId),
