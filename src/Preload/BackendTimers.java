@@ -5,6 +5,7 @@ import javax.swing.Timer;
 import ngn.Ngn;
 import static java.awt.EventQueue.invokeLater;
 import jssc.SerialPortException;
+import static ngn.controller.ChangePanel.CheckVisibility;
 import ngn.controller.KeyPad;
 import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.LDBdone;
@@ -72,11 +73,18 @@ public class BackendTimers {
         });
 
         LocalDBUpdate = new Timer(LDBTime, (ActionEvent e) -> {
-            Threads.LOCALDB();
+            if (CheckVisibility().equals("EnterCard")) {
+                //Need check for Internet, set Info window and write transactions to DB
+                Threads.LOCALDB();
+                LDBTime = 30 * 60 * 1000;//Back to normal time
+            } else {
+                LDBTime = 15000;
+                LocalDBUpdate.restart();
+            }
         });
-        
+
         WaitForInternet = new Timer(3000, (ActionEvent e) -> {
-            if(InternetConn.InternetConn()) {
+            if (InternetConn.InternetConn()) {
                 WaitForInternet.stop();
                 Update.Update();
             } else {
@@ -100,7 +108,7 @@ public class BackendTimers {
     public static void LocalDBUpdate() {
         LocalDBUpdate.restart();
     }
-    
+
     public static void WaitForInternet() {
         WaitForInternet.restart();
     }
