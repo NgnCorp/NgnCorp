@@ -48,6 +48,7 @@ public class LocalDB {
             while (rsLDB.next()) {
                 String[] LocalClientInfo = new String[]{
                     rsLDB.getString("c.cardcode"),
+                    rsLDB.getString("c.pin"),
                     rsLDB.getString("c.name"),
                     rsLDB.getString("c.litrnum"),
                     rsLDB.getString("c.code"),
