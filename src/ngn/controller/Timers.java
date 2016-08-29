@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import Preload.BackendTimers;
 import Preload.InternetConn;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
@@ -139,7 +140,7 @@ public class Timers {
                     Success();
                     GasStation.CustomerInfoToZero();
                     ToZero.CustomerInfo(); // обнуляем данные
-                } else if (InternetConn.InternetConn()) {
+                } else if (BackendTimers.InternetCheck) {
                     Info.ErrorMassage.setText(Text.nointernetatstart);
                     ChangePanel.ShowPanel(Info.InfoMassage);
                     ServerWaiting();
@@ -229,7 +230,7 @@ public class Timers {
         });
 
         TryToConnect = new Timer(15000, (ActionEvent e) -> {
-            if (InternetConn.InternetConn()) {
+            if (BackendTimers.InternetCheck) {
                 GasStation.StopStartCom3(false);
                 ChangePanel.ShowPanel(Card.EnterCard);
                 ChangePanel.FocusPassword(Card.CardCode);

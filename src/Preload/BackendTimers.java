@@ -73,8 +73,8 @@ public class BackendTimers {
         });
 
         LocalDBUpdate = new Timer(LDBTime, (ActionEvent e) -> {
-            if (CheckVisibility().equals("EnterCard")) {
-                //Need check for Internet, set Info window and write transactions to DB
+            if (CheckVisibility().equals("EnterCard") && InternetCheck) {
+                //Set Info window and write transactions to DB
                 Threads.LOCALDB();
                 LDBTime = 30 * 60 * 1000;//Back to normal time
             } else {
@@ -84,7 +84,7 @@ public class BackendTimers {
         });
 
         WaitForInternet = new Timer(3000, (ActionEvent e) -> {
-            if (InternetConn.InternetConn()) {
+            if (InternetCheck) {
                 WaitForInternet.stop();
                 Update.Update();
             } else {

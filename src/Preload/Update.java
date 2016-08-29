@@ -25,7 +25,7 @@ public class Update {
 
     public static void Update() {
         BSLoadingText.setText(h1CheckUpdate);
-        if (InternetConn.InternetConn()) {
+        if (BackendTimers.InternetCheck) {
             try {
                 BSLoadingText.setText(authSUCS);
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
