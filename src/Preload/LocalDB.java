@@ -58,7 +58,8 @@ public class LocalDB {
                     rsLDB.getString("purse"),
                     String.valueOf(rsLDB.getInt("limit_day")),
                     String.valueOf(rsLDB.getInt("limit_litrs")),
-                    String.valueOf(rsLDB.getDouble("used_limit_litrs"))
+                    String.valueOf(rsLDB.getDouble("used_limit_litrs")),
+                    String.valueOf(rsLDB.getInt("c.litr_place"))
                 };
                 WriteWI.WriteLDB(LocalClientInfo, WriteWI.PATHLDB);
             }

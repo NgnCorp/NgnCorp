@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ngn.text.Paths;
 import static ngn.view.BeforeStart.BSLoadingText;
 
 /**
@@ -22,15 +23,12 @@ public class ReadWI {
     public static String[] customerInfo;
     public static String[] personalInfo;
     public static String[] mas;
-    public static final String PATH = "C:\\NgnUpdater\\FillingData.txt";
-    public static final String PATH1 = "C:\\NgnUpdater\\LDB.txt";
-    public static final String PATH2 = "D:\\LDB1.txt";
-    public static File sourceFile = new File(PATH1);
-    public static File outputFile = new File(PATH2);
+    public static File sourceFile = new File(Paths.LDBPATH);
+    public static File outputFile = new File(Paths.PATH2);
 
     public static void ReadWI() {
 
-        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "windows-1251")) {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.PATH), "windows-1251")) {
             // чтение посимвольно
             data = isr.read();
             if (data > 0) {
@@ -48,7 +46,7 @@ public class ReadWI {
 
     public static void CreateLocalDB() {
 
-        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH1), "windows-1251")) {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.LDBPATH), "windows-1251")) {
             // чтение посимвольно
             text = isr.read();
             if (text > 0) {

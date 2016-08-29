@@ -9,6 +9,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
 import ngn.controller.ReadWI;
+import ngn.text.Paths;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -65,19 +66,19 @@ public class Update {
                 System.out.println(ex);
             }
         } else {
-            File file = new File(ReadWI.PATH);
+            File file = new File(Paths.PATH);
             if (file.exists()) {
                 ReadWI.ReadWI();
                 Threads.CHECKPORTS();
             } else {
-                BSLoadingText.setText(cantFIND + ReadWI.PATH);
+                BSLoadingText.setText(cantFIND + Paths.PATH);
                 try {
                     if (file.createNewFile()) {
-                        BSLoadingText.setText(createFile + ReadWI.PATH);
+                        BSLoadingText.setText(createFile + Paths.PATH);
                         Threads.CHECKPORTS();
                     }
                 } catch (IOException ex) {
-                    BSLoadingText.setText(cantCREATE + ReadWI.PATH);
+                    BSLoadingText.setText(cantCREATE + Paths.PATH);
                 }
             }
         }
