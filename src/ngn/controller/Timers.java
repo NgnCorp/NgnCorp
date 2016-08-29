@@ -129,6 +129,7 @@ public class Timers {
                 };
                 WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, false);// Записываем операцию в FillingData.txt                
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
+/*
                 if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
                     DB.writeResult(
                             Variables.name,
@@ -155,6 +156,7 @@ public class Timers {
                             Variables.sdate
                     );
                 }
+                 */
             }
         });
 

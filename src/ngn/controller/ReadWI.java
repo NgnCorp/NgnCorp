@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ngn.text.Paths;
+import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
 
 /**
@@ -39,9 +40,11 @@ public class ReadWI {
                 }
             }
         } catch (IOException ex) {
-            BSLoadingText.setText("Error!");
+            BSLoadingText.setText(Text.cannotreadTR);
+            System.out.println(ex);
         }
         mas = String.valueOf(allText).split("=>");
+        System.out.println(Arrays.toString(mas));
     }
 
     public static void CreateLocalDB() {
@@ -57,7 +60,8 @@ public class ReadWI {
                 }
             }
         } catch (IOException ex) {
-            //BSLoadingText.setText("Error!");
+            BSLoadingText.setText(Text.cannotreadDB);
+            System.out.println(ex);
         }
         customerInfo = String.valueOf(allDB).split("\\|");
     }

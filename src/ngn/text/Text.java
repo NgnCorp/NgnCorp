@@ -60,6 +60,10 @@ public class Text {
     public static String KPPortOff  = "<html>Клавиатура не найдена!";
     public static String GSPortOff  = "<html>Колонка не найдена!";
     
+    //READ\WRITE ERRORS
+    public static String cannotreadTR     = "Не удалось прочитать данные по транзакциям.";
+    public static String cannotreadDB     = "Не удалось прочитать данные по клиенту.";
+    
     
     //__________D I N A M I C   T E X T____________//
     
