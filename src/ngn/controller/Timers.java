@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import Preload.InternetConn;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
 import ngn.text.Text;

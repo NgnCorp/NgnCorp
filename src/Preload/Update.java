@@ -24,26 +24,31 @@ public class Update {
 
     public static void Update() {
         BSLoadingText.setText(h1CheckUpdate);
-        try {
-            BSLoadingText.setText(authSUCS);
-            con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
-        } catch (MalformedURLException ex) {
-            BSLoadingText.setText(cantConn);
-            System.out.println(ex);
-        }
-        try {
-            Scanner scan = new Scanner(con.openStream());
-            while (scan.hasNext()) {
-                String line = scan.nextLine();
-                if (line.contains(KEYWORD)) {
-                    String ZipVer = line.substring(line.length() - 8, line.length() - 4);
-                    String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
-                    CheckNewVersion(ZipVer, ZipName);
-                }
+        if (InternetConn.InternetConn()) {
+            try {
+                BSLoadingText.setText(authSUCS);
+                con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
+            } catch (MalformedURLException ex) {
+                BSLoadingText.setText(cantConn);
+                System.out.println(ex);
             }
-        } catch (IOException ex) {
-            BSLoadingText.setText(authNOT);
-            System.out.println(ex);
+            try {
+                Scanner scan = new Scanner(con.openStream());
+                while (scan.hasNext()) {
+                    String line = scan.nextLine();
+                    if (line.contains(KEYWORD)) {
+                        String ZipVer = line.substring(line.length() - 8, line.length() - 4);
+                        String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
+                        CheckNewVersion(ZipVer, ZipName);
+                    }
+                }
+            } catch (IOException ex) {
+                BSLoadingText.setText(authNOT);
+                System.out.println(ex);
+            }
+        } else { // No Internet
+            BSLoadingText.setText(cantConnInet);
+            BackendTimers.WaitForInternet();
         }
     }
 

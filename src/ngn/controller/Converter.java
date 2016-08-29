@@ -7,12 +7,12 @@ import java.util.Locale;
  * @author Офис
  */
 public class Converter {
-    
+
     public Converter() {
-    
+
     }
-    
- public static String ConvertToHex(String litrs) {
+
+    public static String ConvertToHex(String litrs) {
         //int convertLitrs = Integer.valueOf(litrs); // Вытягиваем значение вводимых клиентом литров
         //int mililitr = convertLitrs * 100;
         String hexMililitrs = Integer.toHexString(Integer.valueOf(litrs) * 100);
@@ -53,23 +53,33 @@ public class Converter {
         String komDoza = "@10440501" + eqHex + pihex + "#";
         return komDoza;
     }
-    
+
     public static void chekLimit() {
         if (Variables.limitDay != 0 & Variables.limitLitrs != 0) {
-                    Variables.isLimitClient = true;
-                    Double rest;
-                    if (Variables.usedLimitLitrs != null) {
-                        rest = Variables.limitLitrs - Variables.usedLimitLitrs; //Разница между установленным лимитом литров и использованными
-                    } else {
-                        rest = Variables.limitLitrs;
-                    }
-                    if (rest < 1) {
-                        //errorCardLength(1);
-                    } else {
-                        Variables.limitLitrnum = String.format(Locale.ENGLISH, "%(.2f", rest);
-                    }
-                } else {
-                    Variables.isLimitClient = false;
-                }
+            Variables.isLimitClient = true;
+            Double rest;
+            if (Variables.usedLimitLitrs != null) {
+                rest = Variables.limitLitrs - Variables.usedLimitLitrs; //Разница между установленным лимитом литров и использованными
+            } else {
+                rest = Variables.limitLitrs;
+            }
+            if (rest < 1) {
+                //errorCardLength(1);
+            } else {
+                Variables.limitLitrnum = String.format(Locale.ENGLISH, "%(.2f", rest);
+            }
+        } else {
+            Variables.isLimitClient = false;
+        }
+    }
+
+    public static String DeleteSymbols(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetterOrDigit(s.charAt(i))) {
+                sb.append(s.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 }

@@ -1,8 +1,7 @@
 package ngn;
 
 import Preload.BackendTimers;
-import static Preload.PortCheck.*;
-import Preload.PreLoader;
+import Preload.PortCheck;
 import Preload.Threads;
 import static java.awt.EventQueue.invokeLater;
 import javax.swing.JFrame;
@@ -27,9 +26,9 @@ public class Ngn extends JFrame {
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
-            Threads.UPD();  //Start with COM ports check
+            //Threads.UPD();  //Start with COM ports check
             BackendTimers.LocalDBUpdate();
-            //AppContent(); GSPort = "COM3"; KPPort = "COM4";   //Start without COM ports check
+            AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4";   //Start without COM ports check
         });
     }
 

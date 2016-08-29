@@ -22,6 +22,7 @@ public class BackendTimers {
     public static Timer KyePadWorks;
     public static Timer KyePadNotWorks;
     public static Timer LocalDBUpdate;
+    public static Timer WaitForInternet;
 
     Integer LDBTime = 30 * 60 * 1000;//30 * 60 * 1000 = 30 минут
 
@@ -71,6 +72,15 @@ public class BackendTimers {
         LocalDBUpdate = new Timer(LDBTime, (ActionEvent e) -> {
             Threads.LOCALDB();
         });
+        
+        WaitForInternet = new Timer(3000, (ActionEvent e) -> {
+            if(InternetConn.InternetConn()) {
+                WaitForInternet.stop();
+                Update.Update();
+            } else {
+                WaitForInternet.restart();
+            }
+        });
     }
 
     public static void AppStart() {
@@ -83,5 +93,9 @@ public class BackendTimers {
 
     public static void LocalDBUpdate() {
         LocalDBUpdate.restart();
+    }
+    
+    public static void WaitForInternet() {
+        WaitForInternet.restart();
     }
 }

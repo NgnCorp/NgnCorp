@@ -15,7 +15,7 @@ import ngn.view.Work;
 public class Listener {
 
     public static void CardCodeAction(ActionEvent e) {
-        String CardCode = e.getActionCommand();
+        String CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10) {
             if (DB.cardCode(CardCode)) {
@@ -81,7 +81,7 @@ public class Listener {
     }
 
     public static void PinCodeAction(ActionEvent e) {
-        String PinCode = e.getActionCommand();
+        String PinCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (PinCode.equals(Variables.pin)) {
             Litrs.ClientName.setText(Variables.name);
@@ -101,7 +101,7 @@ public class Listener {
     }
 
     public static void LitrsInputAction(ActionEvent e) {
-        String LitrsInput = e.getActionCommand();
+        String LitrsInput = Converter.DeleteSymbols(e.getActionCommand());
 
         if (LitrsInput.length() != 0 && Integer.valueOf(LitrsInput) > 0) { // Строка не пустая и значение строки больше ноля
             String eqHex = Converter.ConvertToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения     
