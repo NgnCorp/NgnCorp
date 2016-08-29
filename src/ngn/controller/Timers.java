@@ -9,6 +9,7 @@ import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import ngn.model.DB;
+import ngn.text.Paths;
 import ngn.view.*;
 
 /**
@@ -118,14 +119,15 @@ public class Timers {
                 // Date 
                 java.util.Date udate = new java.util.Date();
                 Variables.sdate = new java.sql.Timestamp(udate.getTime());
-                /* Записываем операцию в лог 
-                logHistory = "\r\n" + name + "\t" + code + "\t" + leftlitr + "\t" + sdate;
-                try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:/NgnApp/log/transactions.txt", true), "cp1251"))) {
-                    writer.write(logHistory);
-                    writer.flush();
-                } catch (IOException ex) {
-                }
-                 */
+                // Transaction Data
+                String[] Transaction = new String[]{
+                    Variables.newln,
+                    Variables.name,
+                    Variables.code,
+                    Variables.leftlitr,
+                    String.valueOf(Variables.sdate)
+                };
+                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, false);// Записываем операцию в FillingData.txt                
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
                 if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
                     DB.writeResult(
