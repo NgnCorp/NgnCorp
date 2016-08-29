@@ -25,8 +25,8 @@ public class ReadWI {
     public static final String PATH = "C:\\NgnUpdater\\FillingData.txt";
     public static final String PATH1 = "C:\\NgnUpdater\\LDB.txt";
     public static final String PATH2 = "D:\\LDB1.txt";
-    public static File sourceFile = new File("D:\\out.txt");
-    public static File outputFile = new File("D:\\in.txt");
+    public static File sourceFile = new File(PATH1);
+    public static File outputFile = new File(PATH2);
 
     public static void ReadWI() {
 
@@ -63,14 +63,15 @@ public class ReadWI {
         }
         customerInfo = String.valueOf(allDB).split("\\|");
     }
+    public static void FindCardName(String cardName) throws IOException {
 
-    public static void FindCardName(String cardName) {        
-        String CardCode = cardName.toUpperCase();
-        
-        for (String custCard : customerInfo) {            
-            if (custCard.split("=>")[0].toUpperCase().contains(CardCode)) {
-                personalInfo = custCard.split("=>");                
-                System.out.println(Arrays.toString(custCard.split("=>")));
+        for (String custCard : customerInfo) {
+            //System.out.println(custCard.split(" ")[0]);
+            if (custCard.split(" ")[0].contains(cardName)) {
+                personalInfo = custCard.split("=>");
+                System.out.println(custCard.split(" ")[0]);
+            } else {
+                WriteWI.WriteLDB(custCard.split("=>"), PATH);
             }
             //else {
             //    WriteWI.WriteInNewFile(custCard.split(" "));
