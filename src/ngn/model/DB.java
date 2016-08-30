@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import ngn.text.Paths;
 
 public class DB {
 
@@ -37,7 +38,8 @@ public class DB {
     private static final String MODULENAME = GetModuleName();
     public static StringBuilder allText;
     public static int data;
-    public static final String PATH = "C:\\NgnUpdater\\ModuleName.txt";
+    public static final String PATH = Paths.ModuleNamePATH;
+    public static String[] TransInfo;
 
     public static String GetModuleName() {
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(PATH), "windows-1251")) {
@@ -80,6 +82,23 @@ public class DB {
         }
     }
      */
+    public static boolean SendTransactionsToDB(String[] Transactions) {
+        String sql = "INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description) VALUES ";
+        for (String custTrans : Transactions) {
+            TransInfo = custTrans.split("=>");
+            sql += "(" + TransInfo[0] + "," + TransInfo[1] + "," + TransInfo[2] + "," + TransInfo[3] + "),";
+        }
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement pst = con.prepareStatement(sql);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
     public static boolean updateLitrs(String newln, String cardnum) {
         try {
             Double checkLitr = 0.00;
@@ -130,7 +149,7 @@ public class DB {
             pstBallance.setString(3, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
             pstBallance.setString(4, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
             pstBallance.setObject(5, sdate);
-            */
+             */
             pst.executeUpdate();
             //pstBallance.executeUpdate();
             con.setAutoCommit(true);

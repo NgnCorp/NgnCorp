@@ -24,12 +24,11 @@ public class ReadWI {
     public static int text;
     public static String[] customerInfo;
     public static String[] personalInfo;
-    public static String[] TransInfo;
     public static String[] mas;
     public static File sourceFile = new File(Paths.LDBPATH);
     public static File outputFile = new File(Paths.PATH2);
 
-    public static void ReadWI() throws InterruptedException {
+    public static void ReadWI() {
 
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.TRANSACTIONPATH), "windows-1251")) {
             // чтение транзакций и запись их на сервер
@@ -46,12 +45,7 @@ public class ReadWI {
             System.out.println(ex);
         }
         mas = String.valueOf(allText).split("\\|");
-        for (String custTrans : mas) {
-            TransInfo = custTrans.split("=>");
-            System.out.println(Arrays.toString(TransInfo));
-            DB.writeResult(TransInfo[0],TransInfo[1],TransInfo[2],TransInfo[3]);
-            Thread.sleep(1000);
-        }
+        DB.SendTransactionsToDB(mas);
     }
 
     public static void CreateLocalDB() {
