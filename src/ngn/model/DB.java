@@ -84,20 +84,22 @@ public class DB {
      */
     public static boolean SendTransactionsToDB(String[] Transactions) {
         int i = 0;
-        String sql = "INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description) VALUES ";
+        String sql = "INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description, date) VALUES ";
         for (String custTrans : Transactions) {
             i++;
             TransInfo = custTrans.split("=>");
             if (i < Transactions.length) {
-                sql += "(" + TransInfo[0] + "," + TransInfo[1] + "," + TransInfo[2] + "," + TransInfo[3] + "),";
+                sql += "('" + TransInfo[0] + "','" + TransInfo[1] + "','" + TransInfo[2] + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransInfo[3] + "'),";
             } else {
-                sql += "(" + TransInfo[0] + "," + TransInfo[1] + "," + TransInfo[2] + "," + TransInfo[3] + ")";
+                sql += "('" + TransInfo[0] + "','" + TransInfo[1] + "','" + TransInfo[2] + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransInfo[3] + "')";
             }
         }
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             PreparedStatement pst = con.prepareStatement(sql);
+            pst.executeUpdate();
+            con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
             return false;
