@@ -7,6 +7,7 @@ import static java.awt.EventQueue.invokeLater;
 import jssc.SerialPortException;
 import static ngn.controller.ChangePanel.CheckVisibility;
 import ngn.controller.KeyPad;
+import ngn.controller.ReadWI;
 import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.LDBdone;
 import static ngn.text.Text.h1SettingsDone;
@@ -74,7 +75,7 @@ public class BackendTimers {
 
         LocalDBUpdate = new Timer(LDBTime, (ActionEvent e) -> {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
-                //Set Info window and write transactions to DB
+                ReadWI.ReadWI();
                 Threads.LOCALDB();
                 LDBTime = 30 * 60 * 1000;//Back to normal time
             } else {

@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import ngn.text.Paths;
 
 /**
  *
@@ -11,7 +12,7 @@ import java.io.OutputStreamWriter;
  */
 public class WriteWI {
 
-    public static final String PATHLDB = "C:\\NgnUpdater\\LDB.txt";
+    public static final String PATHLDB = Paths.LDBPATH;
 
     public static void Write(String[] Arr, String path, Boolean Rewrite) {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, Rewrite), "windows-1251"))) {

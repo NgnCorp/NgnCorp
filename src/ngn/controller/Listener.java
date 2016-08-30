@@ -16,18 +16,18 @@ public class Listener {
         String CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10 && ReadWI.FindCardName(CardCode)) {
-            Variables.customerId     = Integer.valueOf(ReadWI.personalInfo[1]);
-            Variables.pin            = ReadWI.personalInfo[2];
-            Variables.name           = ReadWI.personalInfo[3];
-            Variables.litrnum        = ReadWI.personalInfo[4];
-            Variables.code           = ReadWI.personalInfo[5];
-            Variables.customerPrice  = Double.valueOf(ReadWI.personalInfo[6]);
-            Variables.uahBalance     = Double.valueOf(ReadWI.personalInfo[7]);
-            Variables.purse          = ReadWI.personalInfo[8];
-            Variables.limitDay       = Integer.valueOf(ReadWI.personalInfo[9]);
-            Variables.limitLitrs     = Double.valueOf(ReadWI.personalInfo[10]);
-            Variables.usedLimitLitrs = Double.valueOf(ReadWI.personalInfo[11]);
-            Variables.litrPlace      = Integer.valueOf(ReadWI.personalInfo[12]);
+            Variables.customerId     = Integer.valueOf(ReadWI.PersonalInfo[1]);
+            Variables.pin            = ReadWI.PersonalInfo[2];
+            Variables.name           = ReadWI.PersonalInfo[3];
+            Variables.litrnum        = ReadWI.PersonalInfo[4];
+            Variables.code           = ReadWI.PersonalInfo[5];
+            Variables.customerPrice  = Double.valueOf(ReadWI.PersonalInfo[6]);
+            Variables.uahBalance     = Double.valueOf(ReadWI.PersonalInfo[7]);
+            Variables.purse          = ReadWI.PersonalInfo[8];
+            Variables.limitDay       = Integer.valueOf(ReadWI.PersonalInfo[9]);
+            Variables.limitLitrs     = Double.valueOf(ReadWI.PersonalInfo[10]);
+            Variables.usedLimitLitrs = Double.valueOf(ReadWI.PersonalInfo[11]);
+            Variables.litrPlace      = Integer.valueOf(ReadWI.PersonalInfo[12]);
 
             Variables.ClientInfo = new String[]{
                 String.valueOf(Variables.customerId),

@@ -18,25 +18,23 @@ import static ngn.view.BeforeStart.BSLoadingText;
  */
 public class ReadWI {
 
-    public static StringBuilder allText;
-    public static StringBuilder allDB;
+    public static StringBuilder Content;
+    public static StringBuilder LDB;
     public static int data;
-    public static int text;
-    public static String[] customerInfo;
-    public static String[] personalInfo;
-    public static String[] mas;
+    public static String[] CustomerInfo;
+    public static String[] PersonalInfo;
+    public static String[] Transactions;
     public static File sourceFile = new File(Paths.LDBPATH);
     public static File outputFile = new File(Paths.PATH2);
 
     public static void ReadWI() {
 
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.TRANSACTIONPATH), "windows-1251")) {
-            // чтение транзакций и запись их на сервер
             data = isr.read();
             if (data > 0) {
-                allText = new StringBuilder(data);
+                Content = new StringBuilder(data);
                 while (data != -1) {
-                    allText.append((char) data);
+                    Content.append((char) data);
                     data = isr.read();
                 }
             }
@@ -44,35 +42,35 @@ public class ReadWI {
             BSLoadingText.setText(Text.cannotreadTR);
             System.out.println(ex);
         }
-        mas = String.valueOf(allText).split("\\|");
-        DB.SendTransactionsToDB(mas);
+        Transactions = String.valueOf(Content).split("\\|");
+        DB.SendTransactionsToDB(Transactions);
     }
 
     public static void CreateLocalDB() {
 
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.LDBPATH), "windows-1251")) {
             // чтение посимвольно
-            text = isr.read();
-            if (text > 0) {
-                allDB = new StringBuilder(text);
-                while (text != -1) {
-                    allDB.append((char) text);
-                    text = isr.read();
+            data = isr.read();
+            if (data > 0) {
+                LDB = new StringBuilder(data);
+                while (data != -1) {
+                    LDB.append((char) data);
+                    data = isr.read();
                 }
             }
         } catch (IOException ex) {
             BSLoadingText.setText(Text.cannotreadDB);
             System.out.println(ex);
         }
-        customerInfo = String.valueOf(allDB).split("\\|");
+        CustomerInfo = String.valueOf(LDB).split("\\|");
     }
 
     public static boolean FindCardName(String cardName) {
         String CardCode = cardName.toUpperCase();
 
-        for (String custCard : customerInfo) {
+        for (String custCard : CustomerInfo) {
             if (custCard.split("=>")[0].toUpperCase().contains(CardCode)) {
-                personalInfo = custCard.split("=>");
+                PersonalInfo = custCard.split("=>");
                 return true;
             }
             //else {

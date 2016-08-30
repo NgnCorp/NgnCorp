@@ -38,7 +38,7 @@ public class DB {
     private static final String MODULENAME = GetModuleName();
     public static StringBuilder allText;
     public static int data;
-    public static final String PATH = Paths.ModuleNamePATH;
+    public static final String PATH = Paths.MODULENAMEPATH;
     public static String[] TransInfo;
 
     public static String GetModuleName() {
