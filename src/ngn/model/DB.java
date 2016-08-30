@@ -123,14 +123,16 @@ public class DB {
             pst.setString(3, leftlitrs);
             pst.setString(4, MODULENAME);
             pst.setString(5, DESCRIPTION);
+            /*
             PreparedStatement pstBallance = con.prepareStatement("INSERT INTO " + DB_PREFIX + "customer_reward (customer_id, litrsoff, description, comment_m, date_added) VALUES (?, ?, ?, ?, ?)");
-            //pstBallance.setString(1, Integer.toString(NgnApp.customerId));
+            pstBallance.setString(1, Integer.toString(NgnApp.customerId));
             pstBallance.setString(2, "-" + leftlitrs);
             pstBallance.setString(3, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
             pstBallance.setString(4, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
             pstBallance.setObject(5, sdate);
+            */
             pst.executeUpdate();
-            pstBallance.executeUpdate();
+            //pstBallance.executeUpdate();
             con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);

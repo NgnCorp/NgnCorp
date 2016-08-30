@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
@@ -23,11 +24,12 @@ public class ReadWI {
     public static int text;
     public static String[] customerInfo;
     public static String[] personalInfo;
+    public static String[] TransInfo;
     public static String[] mas;
     public static File sourceFile = new File(Paths.LDBPATH);
     public static File outputFile = new File(Paths.PATH2);
 
-    public static void ReadWI() {
+    public static void ReadWI() throws InterruptedException {
 
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.TRANSACTIONPATH), "windows-1251")) {
             // чтение транзакций и запись их на сервер
@@ -43,8 +45,13 @@ public class ReadWI {
             BSLoadingText.setText(Text.cannotreadTR);
             System.out.println(ex);
         }
-        mas = String.valueOf(allText).split("=>");
-        System.out.println(Arrays.toString(mas));
+        mas = String.valueOf(allText).split("\\|");
+        for (String custTrans : mas) {
+            TransInfo = custTrans.split("=>");
+            System.out.println(Arrays.toString(TransInfo));
+            DB.writeResult(TransInfo[0],TransInfo[1],TransInfo[2],TransInfo[3]);
+            Thread.sleep(1000);
+        }
     }
 
     public static void CreateLocalDB() {
