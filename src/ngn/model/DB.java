@@ -83,10 +83,16 @@ public class DB {
     }
      */
     public static boolean SendTransactionsToDB(String[] Transactions) {
+        int i = 0;
         String sql = "INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description) VALUES ";
         for (String custTrans : Transactions) {
+            i++;
             TransInfo = custTrans.split("=>");
-            sql += "(" + TransInfo[0] + "," + TransInfo[1] + "," + TransInfo[2] + "," + TransInfo[3] + "),";
+            if (i < Transactions.length) {
+                sql += "(" + TransInfo[0] + "," + TransInfo[1] + "," + TransInfo[2] + "," + TransInfo[3] + "),";
+            } else {
+                sql += "(" + TransInfo[0] + "," + TransInfo[1] + "," + TransInfo[2] + "," + TransInfo[3] + ")";
+            }
         }
         try {
             Class.forName("com.mysql.jdbc.Driver");
