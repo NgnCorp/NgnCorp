@@ -11,12 +11,7 @@ import java.sql.SQLException;
 import ngn.text.Paths;
 
 public class DB {
-
-    /*
-    private static final String URL = "jdbc:mysql://93.73.14.218:3306/ngn";
-    private static final String USER = "ValeWar";
-    private static final String PASSWORD = "?/09`Yuri_06)Lahno^19Admin#84";
-     */
+    
     private static final String URL = "jdbc:mysql://daystar.mysql.ukraine.com.ua:3306/daystar_ngn";
     private static final String USER = "daystar_ngn";
     private static final String PASSWORD = "fky9rpk3";
