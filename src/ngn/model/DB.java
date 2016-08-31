@@ -8,14 +8,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import ngn.text.Config;
 import ngn.text.Paths;
 
 public class DB {
     
-    private static final String URL = "jdbc:mysql://daystar.mysql.ukraine.com.ua:3306/daystar_ngn";
-    private static final String USER = "daystar_ngn";
-    private static final String PASSWORD = "fky9rpk3";
-    private static final String DB_PREFIX = "ngn_";
+    private static final String URL = Config.DB_URL;
+    private static final String USER = Config.DB_USER;
+    private static final String PASSWORD = Config.DB_PASS;
+    private static final String DB_PREFIX = Config.DB_PREFIX;
     public static Connection con;
     public static ResultSet rs;
     protected static boolean conStatus = true;

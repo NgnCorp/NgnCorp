@@ -5,9 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ngn.controller.WriteWI;
+import ngn.text.Config;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -17,10 +16,10 @@ import static ngn.view.BeforeStart.BSLoadingText;
  */
 public class LocalDB {
     
-    private static final String URL = "jdbc:mysql://daystar.mysql.ukraine.com.ua:3306/daystar_ngn";
-    private static final String USER = "daystar_ngn";
-    private static final String PASSWORD = "fky9rpk3";
-    private static final String DB_PREFIX = "ngn_";
+    private static final String URL = Config.DB_URL;
+    private static final String USER = Config.DB_USER;
+    private static final String PASSWORD = Config.DB_PASS;
+    private static final String DB_PREFIX = Config.DB_PREFIX;
     public static Connection conLDB;
     public static ResultSet rsLDB;
 

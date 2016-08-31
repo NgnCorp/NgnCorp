@@ -51,13 +51,11 @@ public class PortCheck {
             } finally {
                 try {
                     PortToCheck.closePort();
-                    System.out.println(portName + " IS CLOSED");
                 } catch (SerialPortException ex) {
                     System.out.println(ex);
                 }
             }
         }
-        /*
         if (GSPort != null) {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
@@ -68,9 +66,6 @@ public class PortCheck {
         } else {
             BSLoadingText.setText(Text.GSPortOff);
         }
-*/
-                BSLoadingText.setText(Text.PortsON);
-                Threads.LOCALDB();
     }
 
     public static void DoWithPort(String port) {

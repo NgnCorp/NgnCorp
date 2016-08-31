@@ -9,6 +9,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
 import ngn.controller.ReadWI;
+import ngn.text.Config;
 import ngn.text.Paths;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
@@ -17,9 +18,9 @@ public class Update {
 
     private static final Double VER = 0.02;
 
-    private static final String URL = "aftjokers.esy.es";//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
-    private static final String USER = "u940880703";//daystar_alex, u940880703
-    private static final String PASS = "saniyaext_25";//3mni537k, saniyaext_25
+    private static final String URL = Config.URL;//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
+    private static final String USER = Config.USER;//daystar_alex, u940880703
+    private static final String PASS = Config.PASS;//3mni537k, saniyaext_25
     private static final String KEYWORD = "ver";
     private static URL con;
 
@@ -48,7 +49,7 @@ public class Update {
                 System.out.println(ex);
             }
         } else { // No Internet
-            BSLoadingText.setText(cantConnInet);
+            BSLoadingText.setText(tryConnInet);
             BackendTimers.WaitForInternet();
         }
     }
