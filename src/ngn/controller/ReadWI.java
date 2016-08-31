@@ -43,7 +43,11 @@ public class ReadWI {
             System.out.println(ex);
         }
         Transactions = String.valueOf(Content).split("\\|");
-        DB.SendTransactionsToDB(Transactions);
+        if(DB.SendTransactionsToDB(Transactions)){
+            System.out.println("Send");            
+        } else {
+            System.out.println("Oops");            
+        }
     }
 
     public static void CreateLocalDB() {

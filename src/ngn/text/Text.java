@@ -37,6 +37,11 @@ public class Text {
     public static String h1Yes          = "<html>ДА";
     public static String h1LostIntrCon  = "<html>Подождите. Пропал интернет. Скоро появится...";
     
+    //___________G A S  S T A T I O N    T E X T___________//
+    
+    public static String rememberAboutPistol  = "НЕ ЗАБУДЬТЕ ПОВЕСИТЬ ПИСТОЛЕТ ПОСЛЕ ЗАПРАВКИ!";
+    public static String pistolOnGS           = "ПИСТОЛЕТ ПОВЕШЕН";
+    
      //__________P R E L O A D   T E X T____________//
     public static String h1BeforeStart      = "<html>Подождите. Идет настройка приложения...";
     public static String h1CheckFacilities  = "<html>Определяем оборудование...";

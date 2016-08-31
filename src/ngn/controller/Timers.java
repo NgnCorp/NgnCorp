@@ -1,7 +1,6 @@
 package ngn.controller;
 
 import Preload.BackendTimers;
-import Preload.InternetConn;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
 import ngn.text.Text;
@@ -102,10 +101,10 @@ public class Timers {
         });
 
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
-            Work.PolozheniePistoleta.setText("НЕ ЗАБУДЬТЕ ПОВЕСИТЬ ПИСТОЛЕТ ПОСЛЕ ЗАПРАВКИ!");
+            Work.PolozheniePistoleta.setText(Text.rememberAboutPistol);
             Work.SchetLitrov.setText(GasStation.SchetLitrov);
             Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
-            if (GasStation.PolozheniePistoleta.equals("ПИСТОЛЕТ ПОВЕШЕН")) { // Ждем повешанья пистолета после заправки
+            if (GasStation.PolozheniePistoleta.equals(Text.pistolOnGS)) { // Ждем повешанья пистолета после заправки
                 // Если что, проблему искать тут. Форс мажор таймер.
                 ForceMajor.stop();
                 if (Work.SchetLitrov.getText().equals("")) { //Исправление бага "моментальное повешанье пистолета"
@@ -127,9 +126,16 @@ public class Timers {
                     Variables.leftlitr,
                     String.valueOf(Variables.sdate)
                 };
-                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt                
+                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt  
+                    ChangePanel.ShowPanel(Bye.GoodBye);
+                    Litrs.LitrsInput.setText("");
+                    Work.SchetLitrov.setText("");
+                    Success();
+                    GasStation.CustomerInfoToZero();
+                    ToZero.CustomerInfo();              
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
-                if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
+/*               
+if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
                     DB.writeResult(
                             Variables.name,
                             Variables.code,
@@ -155,6 +161,7 @@ public class Timers {
                             Variables.sdate
                     );
                 }
+                 */
             }
         });
 
@@ -255,7 +262,6 @@ public class Timers {
         });
 
         KeyPadNotWorks = new Timer(1000, (ActionEvent f) -> {
-            System.out.println("Klava NE Rabotaet");
             try {
                 KeyPad.KeyPadCOM4 = new SerialPort("COM4");
                 try {
