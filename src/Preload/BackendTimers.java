@@ -28,7 +28,7 @@ public class BackendTimers {
     public static Timer InternetStatus;
     public static boolean InternetCheck;
 
-    Integer LDBTime = 30 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -77,7 +77,7 @@ public class BackendTimers {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
                 ReadWI.ReadWI();
                 Threads.LOCALDB();
-                LDBTime = 30 * 60 * 1000;//Back to normal time
+                LDBTime = 10 * 60 * 1000;//Back to normal time
             } else {
                 LDBTime = 15000;
                 LocalDBUpdate.restart();
