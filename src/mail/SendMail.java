@@ -1,4 +1,4 @@
-package mail1;
+package mail;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMultipart;
 /**
  * @author Svitlyk
  */
-public class Mail1 {
+public class SendMail {
 
     private static final String FROM = "ngnservise@mail.ru";
     private static final String SMTPHOST = "smtp.mail.ru";
@@ -29,12 +29,7 @@ public class Mail1 {
     private static Multipart mp;
     private static MimeBodyPart mbp;
 
-    public static void main(String[] args) throws MessagingException, UnsupportedEncodingException {
-        sendEmail("How are u?", "Hi", TO);
-    }
-
-    public static void sendEmail(String body, String subject, String recipient) throws MessagingException,
-            UnsupportedEncodingException {
+    public static void sendEmail(String body, String subject, String recipient) throws MessagingException, UnsupportedEncodingException {
 
         Properties mailProps = new Properties();
         mailProps.put("mail.smtp.host", SMTPHOST);
