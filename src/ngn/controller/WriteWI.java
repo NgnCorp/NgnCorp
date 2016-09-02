@@ -15,11 +15,17 @@ public class WriteWI {
     public static final String PATHLDB = Paths.LDBPATH;
 
     public static void Write(String[] Arr, String path, Boolean Rewrite) {
+        int counter = 0;
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, Rewrite), "windows-1251"))) {
             for (String item : Arr) {
-                bw.write(item + "=>");
+                if (counter < Arr.length) {
+                    bw.write(item + "=>");
+                    counter++;
+                } else {
+                    bw.write(item + "|\r\n");
+                }
+            System.out.println(counter);
             }
-            bw.write("|\r\n");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
