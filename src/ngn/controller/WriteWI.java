@@ -20,11 +20,11 @@ public class WriteWI {
         int counter = 0;
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, Rewrite), "windows-1251"))) {
             for (String item : Arr) {
+                counter++;
                 if (counter < Arr.length) {
                     bw.write(item + "=>");
-                    counter++;
                 } else {
-                    System.out.println(counter);
+                    bw.write(item);
                 }
             }
             bw.write("|\r\n");

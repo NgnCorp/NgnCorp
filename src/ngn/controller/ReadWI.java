@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
@@ -71,6 +72,7 @@ public class ReadWI {
             System.out.println(ex);
         }
         CustomerInfo = String.valueOf(LDB).split("\\|");
+            System.out.println(Arrays.toString(CustomerInfo));
     }
 
     public static boolean FindCardName(String cardName) {

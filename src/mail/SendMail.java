@@ -1,6 +1,5 @@
 package mail;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +26,7 @@ public class SendMail {
     private static final String PORT = "2525";
     private static final String LOGIN = "ngnservise@mail.ru";
     private static final String PASSWORD = "NgnAdmin2016";
-    private static final String TO = "ngnservise@mail.ru";
+    private static final String TO = "lcf666666lcf@gmail.com";
     private static Session mailSession;
     private static MimeMessage message;
     private static Multipart mp;

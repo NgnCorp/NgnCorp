@@ -82,7 +82,7 @@ public class DB {
     }
      */
     public static boolean SendTransactionsToDB(String[] Transactions) {
-        int transactionsnum = 0;
+        int transactionsnum = 1;
         boolean ClientTypeBalanceExist = false;
         boolean ClientTypeCardBalanceExist = false;
 
@@ -93,37 +93,38 @@ public class DB {
         for (String custTrans : Transactions) {
 
             TransInfo = custTrans.split("=>");
-            System.out.println(Arrays.toString(TransInfo));
-            String ClientType = TransInfo[0]; //1 = balance, 0 = card balance
-            String ClientId = TransInfo[1];
-            String ClientNewLitrs = TransInfo[2];
-            String ClientName = TransInfo[3];
-            String ClientCardCode = TransInfo[4];
-            String ClientLeftLitrs = TransInfo[5];
-            String TransactionDate = TransInfo[6];
-            String ClientCardId = TransInfo[7];
-
-            if ("1".equals(ClientType)) { // Balance
-                sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
-                sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
-                if (transactionsnum < Transactions.length) {
-                    sqlCardsHistory += ",";
-                    sqlCustomerReward += ",";
+            if (TransInfo.length == 8) {
+                String ClientType = TransInfo[0]; //1 = balance, 0 = card balance
+                String ClientId = TransInfo[1];
+                String ClientNewLitrs = TransInfo[2];
+                String ClientName = TransInfo[3];
+                String ClientCardCode = TransInfo[4];
+                String ClientLeftLitrs = TransInfo[5];
+                String TransactionDate = TransInfo[6];
+                String ClientCardId = TransInfo[7];
+                if (ClientType.contains("1")) { // Balance
+                    sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
+                    sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
+                    if (transactionsnum < Transactions.length - 1) {
+                        System.out.println(transactionsnum);
+                        sqlCardsHistory += ",";
+                        sqlCustomerReward += ",";
+                    }
+                    ClientTypeBalanceExist = true;
                 }
-                ClientTypeBalanceExist = true;
-            }
 
-            if ("0".equals(ClientType)) { // CardBalance
-                sqlCouponSelect += "('" + ClientCardCode + "')";
-                sqlCouponInsert += "('" + ClientCardId + "','" + ClientNewLitrs + "')";
-                if (transactionsnum < Transactions.length) {
-                    sqlCouponSelect += ",";
-                    sqlCouponInsert += ",";
+                if ("0".equals(ClientType)) { // CardBalance
+                    sqlCouponSelect += "('" + ClientCardCode + "')";
+                    sqlCouponInsert += "('" + ClientCardId + "','" + ClientNewLitrs + "')";
+                    if (transactionsnum < Transactions.length - 1) {
+                        sqlCouponSelect += ",";
+                        sqlCouponInsert += ",";
+                    }
+                    ClientTypeCardBalanceExist = true;
+                    sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = VALUES(`litrnum`)";
                 }
-                ClientTypeCardBalanceExist = true;
-                sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = VALUES(`litrnum`)";
+                transactionsnum++;
             }
-            transactionsnum++;
         }
         System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponSelect + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
         /*

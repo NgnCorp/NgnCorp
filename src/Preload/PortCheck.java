@@ -5,6 +5,7 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
+import mail.SendMail;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
 
