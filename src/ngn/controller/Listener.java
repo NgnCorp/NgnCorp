@@ -28,6 +28,7 @@ public class Listener {
             Variables.limitLitrs     = Double.valueOf(ReadWI.PersonalInfo[10]);
             Variables.usedLimitLitrs = Double.valueOf(ReadWI.PersonalInfo[11]);
             Variables.litrPlace      = Integer.valueOf(ReadWI.PersonalInfo[12]);
+            Variables.couponId       = Integer.valueOf(ReadWI.PersonalInfo[13]);
 
             Variables.ClientInfo = new String[]{
                 String.valueOf(Variables.customerId),

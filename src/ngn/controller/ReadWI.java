@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import Preload.BackendTimers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,11 +43,15 @@ public class ReadWI {
             BSLoadingText.setText(Text.cannotreadTR);
             System.out.println(ex);
         }
-        Transactions = String.valueOf(Content).split("\\|");
-        if(DB.SendTransactionsToDB(Transactions)){
-            System.out.println("Send");            
+        if (Content != null) {
+            Transactions = String.valueOf(Content).split("\\|");
+            if (BackendTimers.InternetCheck && DB.SendTransactionsToDB(Transactions)) {
+                System.out.println("Transactions were send");
+            } else {
+                System.out.println("Can't connect to server DB");
+            }
         } else {
-            System.out.println("Oops");            
+            System.out.println("No transactions.");
         }
     }
 

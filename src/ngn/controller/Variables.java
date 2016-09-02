@@ -19,6 +19,7 @@ import ngn.view.Work;
 public class Variables {
 
     static Integer customerId;
+    static Integer couponId;
     static String pin;
     static String name;
     static String litrnum;

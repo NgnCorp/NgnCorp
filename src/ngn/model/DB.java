@@ -8,11 +8,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ngn.text.Config;
 import ngn.text.Paths;
 
 public class DB {
-    
+
     private static final String URL = Config.DB_URL;
     private static final String USER = Config.DB_USER;
     private static final String PASSWORD = Config.DB_PASS;
@@ -79,23 +81,96 @@ public class DB {
     }
      */
     public static boolean SendTransactionsToDB(String[] Transactions) {
-        int i = 0;
-        String sql = "INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description, date) VALUES ";
+        int transactionsnum = 0;
+        boolean ClientTypeBalanceExist = false;
+        boolean ClientTypeCardBalanceExist = false;
+
+        String sqlCardsHistory = "INSERT INTO `" + DB_PREFIX + "cards_history` (name, code, leftlitrs, modulename, description, date) VALUES ";
+        String sqlCustomerReward = "INSERT INTO `" + DB_PREFIX + "customer_reward` (customer_id, points, description, comment_m, date_added) VALUES ";
+        String sqlCouponSelect = "SELECT litrnum FROM `" + DB_PREFIX + "coupon` WHERE code IN ";
+        String sqlCouponInsert = "INSERT INTO `" + DB_PREFIX + "coupon` (coupon_id, litrnum) VALUES ";
         for (String custTrans : Transactions) {
-            i++;
+
             TransInfo = custTrans.split("=>");
-            if (i < Transactions.length) {
-                sql += "('" + TransInfo[0] + "','" + TransInfo[1] + "','" + TransInfo[2] + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransInfo[3] + "'),";
-            } else {
-                sql += "('" + TransInfo[0] + "','" + TransInfo[1] + "','" + TransInfo[2] + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransInfo[3] + "')";
+            String ClientType = TransInfo[0]; //1 = balance, 0 = card balance
+            String ClientId = TransInfo[1];
+            String ClientNewLitrs = TransInfo[2];
+            String ClientName = TransInfo[3];
+            String ClientCardCode = TransInfo[4];
+            String ClientLeftLitrs = TransInfo[5];
+            String TransactionDate = TransInfo[6];
+            String ClientCardId = TransInfo[7];
+
+            if ("1".equals(ClientType)) { // Balance
+                sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
+                sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
+                if (transactionsnum < Transactions.length) {
+                    sqlCardsHistory += ",";
+                    sqlCustomerReward += ",";
+                }
+                ClientTypeBalanceExist = true;
+            }
+
+            if ("0".equals(ClientType)) { // CardBalance
+                sqlCouponSelect += "('" + ClientCardCode + "')";
+                sqlCouponInsert += "('" + ClientCardId + "','" + ClientNewLitrs + "')";
+                if (transactionsnum < Transactions.length) {
+                    sqlCouponSelect += ",";
+                    sqlCouponInsert += ",";
+                }
+                ClientTypeCardBalanceExist = true;
+                sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = VALUES(`litrnum`)";
+            }
+            transactionsnum++;
+        }
+        System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponSelect + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
+        /*
+        if (ClientTypeBalanceExist) {
+            if (!ClientTypeBalance(sqlCardsHistory, sqlCustomerReward)) {
+                return false;
             }
         }
+        if (ClientTypeCardBalanceExist) {
+            if (!ClientTypeCardBalance(sqlCouponSelect, sqlCouponInsert)) {
+                return false;
+            }
+        }
+         */
+        return true;
+    }
+
+    public static boolean ClientTypeBalance(String QueryCardsHistory, String QueryCustomerReward) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.executeUpdate();
+            PreparedStatement pst1 = con.prepareStatement(QueryCardsHistory);
+            PreparedStatement pst2 = con.prepareStatement(QueryCustomerReward);
+            pst1.executeUpdate();
+            pst2.executeUpdate();
             con.setAutoCommit(true);
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean ClientTypeCardBalance(String QueryCouponSelect, String QueryCouponInsert) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement pst3 = con.prepareStatement(QueryCouponSelect);
+            rs = pst3.executeQuery();
+            if (rs.next()) {
+                Double checkLitr = rs.getDouble("litrnum");// - Double.valueOf(Query);
+                PreparedStatement pst = con.prepareStatement("UPDATE " + DB_PREFIX + "coupon set litrnum=? WHERE code=?");
+
+                pst.executeUpdate();
+                con.setAutoCommit(true);
+                conStatus = true;
+            } else {
+                System.out.println("THIS IS WHY WE NEED TO DO DOUBLE UPDATE");
+            }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
             return false;

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import ngn.controller.ReadWI;
 import ngn.controller.WriteWI;
 import ngn.text.Config;
 import ngn.text.Text;
@@ -30,7 +31,7 @@ public class LocalDB {
             Class.forName("com.mysql.jdbc.Driver");
             conLDB = DriverManager.getConnection(URL, USER, PASSWORD);
             PreparedStatement pst = conLDB.prepareStatement(
-                    "SELECT c.cardcode, cu.customer_id, cu.credit, c.name, c.litr_place, c.litrnum, c.code, c.pin, cu.customer_price, cu.customer_price*c.litrnum AS totalprice, cfvd.name AS purse, ("
+                    "SELECT c.coupon_id, c.cardcode, cu.customer_id, cu.credit, c.name, c.litr_place, c.litrnum, c.code, c.pin, cu.customer_price, cu.customer_price*c.litrnum AS totalprice, cfvd.name AS purse, ("
                     + "SELECT cl.text FROM " + DB_PREFIX + "coupon_limit cl WHERE cl.limit_id=12 AND cl.coupon_id=c.coupon_id) AS limit_day, ("
                     + "SELECT cl.text FROM " + DB_PREFIX + "coupon_limit cl WHERE cl.limit_id=13 AND cl.coupon_id=c.coupon_id) AS limit_litrs, ("
                     + "SELECT SUM(ch.leftlitrs) FROM " + DB_PREFIX + "cards_history ch WHERE ch.code=c.code AND DATE(ch.date) BETWEEN DATE(CURDATE()) AND DATE(CURDATE() + INTERVAL limit_day DAY)) AS used_limit_litrs, ("
@@ -53,7 +54,8 @@ public class LocalDB {
                     String.valueOf(rsLDB.getInt("limit_day")),
                     String.valueOf(rsLDB.getInt("limit_litrs")),
                     String.valueOf(rsLDB.getDouble("used_limit_litrs")),
-                    String.valueOf(rsLDB.getInt("c.litr_place"))
+                    String.valueOf(rsLDB.getInt("c.litr_place")),
+                    String.valueOf(rsLDB.getInt("c.coupon_id"))
                 };
                 WriteWI.Write(LocalClientInfo, WriteWI.PATHLDB, true);
             }
@@ -66,6 +68,7 @@ public class LocalDB {
                 System.out.println(ex);
             }
         }
+        ReadWI.CreateLocalDB();
         BSLoadingText.setText(Text.LDBdone);
     }
 }

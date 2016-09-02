@@ -120,19 +120,27 @@ public class Timers {
                 Variables.sdate = new java.sql.Timestamp(udate.getTime());
                 // Transaction Data
                 String[] Transaction = new String[]{
+                    String.valueOf(Variables.litrPlace),
+                    String.valueOf(Variables.customerId),
                     Variables.newln,
                     Variables.name,
                     Variables.code,
                     Variables.leftlitr,
-                    String.valueOf(Variables.sdate)
+                    String.valueOf(Variables.sdate),
+                    String.valueOf(Variables.couponId)
                 };
-                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt  
+                if (BackendTimers.InternetCheck) {
+                    WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                    
                     ChangePanel.ShowPanel(Bye.GoodBye);
                     Litrs.LitrsInput.setText("");
                     Work.SchetLitrov.setText("");
                     Success();
                     GasStation.CustomerInfoToZero();
-                    ToZero.CustomerInfo();              
+                    ToZero.CustomerInfo();
+                } else {
+                    System.out.println("No Internet");
+                }
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
 /*               
 if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
