@@ -50,12 +50,6 @@ public class ReadWI {
             }
         } else {
             System.out.println("No transactions.");
-            Transactions = String.valueOf(Content).split("\\|");
-            if (DB.SendTransactionsToDB(Transactions)) {
-                System.out.println("Send");
-            } else {
-                System.out.println("Oops");
-            }
         }
     }
 
