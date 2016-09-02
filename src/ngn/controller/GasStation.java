@@ -36,7 +36,7 @@ public class GasStation {
             KolonkaCOM3.addEventListener(new EventListener());
             TimerKolonkaStart();
         } catch (SerialPortException ex) {
-            SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+            //System.out.println(ex);
         }
     }
 
