@@ -5,11 +5,6 @@
  */
 package Preload;
 
-import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.MessagingException;
-
 /**
  *
  * @author Валерик
@@ -37,13 +32,7 @@ public class Threads {
         };
 
         runLocalDB = () -> {
-            try {
-                LocalDB.LocalDB();
-            } catch (MessagingException ex) {
-                Logger.getLogger(Threads.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (UnsupportedEncodingException ex) {
-                Logger.getLogger(Threads.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            LocalDB.LocalDB();
         };
         
         runInternetConn = () -> {

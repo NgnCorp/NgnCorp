@@ -4,12 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import javax.mail.MessagingException;
 import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
-import ngn.text.Text;
 
 /**
  *
@@ -30,7 +27,7 @@ public class WriteWI {
         }
     }
 
-    public static void LDBToZero() throws MessagingException, UnsupportedEncodingException {
+    public static void LDBToZero() {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, false), "windows-1251"))) {
             bw.write("");
         } catch (IOException ex) {

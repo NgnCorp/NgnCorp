@@ -3,13 +3,11 @@ package Preload;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
-import javax.mail.MessagingException;
 import mail.SendMail;
 import ngn.controller.ReadWI;
 import ngn.model.DB;
@@ -29,7 +27,7 @@ public class Update {
     private static final String KEYWORD = "ver";
     private static URL con;
 
-    public static void Update() throws MessagingException, UnsupportedEncodingException {
+    public static void Update() {
         BSLoadingText.setText(h1CheckUpdate);
         if (BackendTimers.InternetCheck) {
             try {
@@ -61,7 +59,7 @@ public class Update {
         }
     }
 
-    private static void CheckNewVersion(String ZipVer, String ZipName) throws MessagingException, UnsupportedEncodingException {
+    private static void CheckNewVersion(String ZipVer, String ZipName) {
 
         if (Double.valueOf(ZipVer) > VER) {// перевірка на нову версію
             String upload = con + ZipName;
@@ -94,7 +92,7 @@ public class Update {
         }
     }
 
-    private static void download(String urlStr, String file) throws IOException, MessagingException {
+    private static void download(String urlStr, String file) throws MalformedURLException, IOException {
         URL url = new URL(urlStr);
         try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
@@ -102,7 +100,7 @@ public class Update {
         OpenandShut();
     }
 
-    public static void OpenandShut() throws MessagingException, UnsupportedEncodingException {
+    public static void OpenandShut() {
         try {
             Runtime.getRuntime().exec("C:\\NgnUpdater\\dist\\Unzip.exe"); // Запуск програми РОЗАРХІВУВАННЯ
             try {

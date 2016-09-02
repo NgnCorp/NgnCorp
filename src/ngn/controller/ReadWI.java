@@ -4,11 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.MessagingException;
 import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
@@ -53,7 +48,7 @@ public class ReadWI {
         }
     }
 
-    public static void CreateLocalDB() throws MessagingException, UnsupportedEncodingException {
+    public static void CreateLocalDB() {
 
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.LDBPATH), "windows-1251")) {
             // чтение посимвольно
