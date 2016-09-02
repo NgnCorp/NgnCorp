@@ -27,7 +27,8 @@ public class SendMail {
     private static final String PORT = "2525";
     private static final String LOGIN = "ngnservise@mail.ru";
     private static final String PASSWORD = "NgnAdmin2016";
-    private static final String TO = "ngnservise@mail.ru";
+    private static final String TOVALERA = "ngnservise@mail.ru";
+    private static final String TOSASHA = "svitlyk.oleksandr@mail.ru";
     private static Session mailSession;
     private static MimeMessage message;
     private static Multipart mp;
@@ -59,12 +60,12 @@ public class SendMail {
         } catch (MessagingException ex) {
             Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String[] emails = {TO};
+        String[] emails = {TOVALERA, TOSASHA};
         InternetAddress dests[] = new InternetAddress[emails.length];
         for (int i = 0; i < emails.length; i++) {
             try {
                 dests[i] = new InternetAddress(emails[i].trim().toLowerCase());
-                message.setRecipients(Message.RecipientType.TO, dests);
+                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA +","+TOSASHA));
                 message.setSubject(subject, "UTF-8");
                 mp = new MimeMultipart();
                 mbp = new MimeBodyPart();
