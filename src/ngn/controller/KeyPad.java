@@ -5,13 +5,19 @@ import Preload.PortCheck;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import mail.SendMail;
 import static ngn.controller.ChangePanel.CheckVisibility;
 import static ngn.controller.Timers.ChangeSecondsValue;
 import static ngn.controller.Timers.WaitForClient;
+import ngn.model.DB;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
@@ -38,7 +44,6 @@ public class KeyPad {
             KeyPadCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
             KeyPadCOM4.addEventListener(new EventListener());
         } catch (SerialPortException ex) {
-            System.out.println(ex);
         }
     }
 

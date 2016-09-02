@@ -2,12 +2,16 @@ package ngn.controller;
 
 import Preload.PortCheck;
 import java.awt.event.ActionEvent;
+import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+import javax.mail.MessagingException;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import mail.SendMail;
+import ngn.model.DB;
 
 /**
  *
@@ -25,7 +29,7 @@ public class GasStation {
     static String OtvetPoDoze;
     static String OtvetKolonki;
 
-    public GasStation() {
+    public GasStation() throws MessagingException, UnsupportedEncodingException {
         KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
         try {
             KolonkaCOM3.openPort();
@@ -35,6 +39,7 @@ public class GasStation {
             TimerKolonkaStart();
         } catch (SerialPortException ex) {
             //System.out.println(ex);
+            SendMail.sendEmail(String.valueOf(ex), "Gas Station error!");
         }
     }
 
@@ -131,10 +136,20 @@ public class GasStation {
                                     //ZaderzkaDoza.restart();
                                 }
                             } catch (SerialPortException ex) {
+                                try {
+                                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                                } catch (MessagingException ex1) {
+                                } catch (UnsupportedEncodingException ex1) {
+                                }
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
+                    try {
+                        SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                    } catch (MessagingException ex1) {
+                    } catch (UnsupportedEncodingException ex1) {
+                    }
                 }
             }
         }

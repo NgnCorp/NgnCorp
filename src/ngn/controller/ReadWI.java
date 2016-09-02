@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.text.Text;
@@ -43,14 +46,14 @@ public class ReadWI {
             System.out.println(ex);
         }
         Transactions = String.valueOf(Content).split("\\|");
-        if(DB.SendTransactionsToDB(Transactions)){
-            System.out.println("Send");            
+        if (DB.SendTransactionsToDB(Transactions)) {
+            System.out.println("Send");
         } else {
-            System.out.println("Oops");            
+            System.out.println("Oops");
         }
     }
 
-    public static void CreateLocalDB() {
+    public static void CreateLocalDB() throws MessagingException, UnsupportedEncodingException {
 
         try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.LDBPATH), "windows-1251")) {
             // чтение посимвольно
@@ -64,6 +67,7 @@ public class ReadWI {
             }
         } catch (IOException ex) {
             BSLoadingText.setText(Text.cannotreadDB);
+            SendMail.sendEmail(String.valueOf(ex), Text.cannotreadDB + " " + DB.MODULENAME);
             System.out.println(ex);
         }
         CustomerInfo = String.valueOf(LDB).split("\\|");

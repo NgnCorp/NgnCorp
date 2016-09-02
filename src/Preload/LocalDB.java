@@ -1,11 +1,15 @@
 package Preload;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.mail.MessagingException;
+import mail.SendMail;
 import ngn.controller.WriteWI;
+import ngn.model.DB;
 import ngn.text.Config;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
@@ -23,7 +27,7 @@ public class LocalDB {
     public static Connection conLDB;
     public static ResultSet rsLDB;
 
-    public static void LocalDB() {
+    public static void LocalDB() throws MessagingException, UnsupportedEncodingException {
         BSLoadingText.setText(Text.createLDB);
         WriteWI.LDBToZero();
         try {

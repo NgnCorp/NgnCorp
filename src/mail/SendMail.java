@@ -29,7 +29,7 @@ public class SendMail {
     private static Multipart mp;
     private static MimeBodyPart mbp;
 
-    public static void sendEmail(String body, String subject, String recipient) throws MessagingException, UnsupportedEncodingException {
+    public static void sendEmail(String body, String subject) throws MessagingException, UnsupportedEncodingException {
 
         Properties mailProps = new Properties();
         mailProps.put("mail.smtp.host", SMTPHOST);
@@ -51,7 +51,7 @@ public class SendMail {
 
         message = new MimeMessage(mailSession);
         message.setFrom(new InternetAddress(FROM));
-        String[] emails = {recipient};
+        String[] emails = {TO};
         InternetAddress dests[] = new InternetAddress[emails.length];
         for (int i = 0; i < emails.length; i++) {
             dests[i] = new InternetAddress(emails[i].trim().toLowerCase());

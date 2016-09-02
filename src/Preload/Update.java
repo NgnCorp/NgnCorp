@@ -3,14 +3,19 @@ package Preload;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
+import javax.mail.MessagingException;
+import mail.SendMail;
 import ngn.controller.ReadWI;
+import ngn.model.DB;
 import ngn.text.Config;
 import ngn.text.Paths;
+import ngn.text.Text;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -24,13 +29,14 @@ public class Update {
     private static final String KEYWORD = "ver";
     private static URL con;
 
-    public static void Update() {
+    public static void Update() throws MessagingException, UnsupportedEncodingException {
         BSLoadingText.setText(h1CheckUpdate);
         if (BackendTimers.InternetCheck) {
             try {
                 BSLoadingText.setText(authSUCS);
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
             } catch (MalformedURLException ex) {
+                SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
                 System.out.println(ex);
             }
@@ -46,6 +52,7 @@ public class Update {
                 }
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
+                SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
                 System.out.println(ex);
             }
         } else { // No Internet
@@ -54,7 +61,7 @@ public class Update {
         }
     }
 
-    private static void CheckNewVersion(String ZipVer, String ZipName) {
+    private static void CheckNewVersion(String ZipVer, String ZipName) throws MessagingException, UnsupportedEncodingException {
 
         if (Double.valueOf(ZipVer) > VER) {// перевірка на нову версію
             String upload = con + ZipName;
@@ -63,6 +70,7 @@ public class Update {
                 BSLoadingText.setText(downlNEW);
                 download(upload, place);
             } catch (IOException ex) {
+                SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantdownlNEW);
                 System.out.println(ex);
             }
@@ -80,12 +88,13 @@ public class Update {
                     }
                 } catch (IOException ex) {
                     BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
+                    SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
                 }
             }
         }
     }
 
-    private static void download(String urlStr, String file) throws IOException {
+    private static void download(String urlStr, String file) throws IOException, MessagingException {
         URL url = new URL(urlStr);
         try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
@@ -93,7 +102,7 @@ public class Update {
         OpenandShut();
     }
 
-    public static void OpenandShut() {
+    public static void OpenandShut() throws MessagingException, UnsupportedEncodingException {
         try {
             Runtime.getRuntime().exec("C:\\NgnUpdater\\dist\\Unzip.exe"); // Запуск програми РОЗАРХІВУВАННЯ
             try {
@@ -103,6 +112,7 @@ public class Update {
             }
         } catch (IOException ex) {
             BSLoadingText.setText(cantRunProg);
+            SendMail.sendEmail(String.valueOf(ex), Text.cantRunProg + " " + DB.MODULENAME);
             System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);

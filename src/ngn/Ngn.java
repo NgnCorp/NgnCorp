@@ -4,6 +4,10 @@ import Preload.BackendTimers;
 import Preload.PortCheck;
 import Preload.Threads;
 import static java.awt.EventQueue.invokeLater;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
@@ -30,7 +34,11 @@ public class Ngn extends JFrame {
             //Threads.UPD();  //Full APP start
             BackendTimers.LocalDBUpdate();
             AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
-            ReadWI.ReadWI(); ReadWI.CreateLocalDB(); //Start without DB update
+            ReadWI.ReadWI(); try {
+                ReadWI.CreateLocalDB(); //Start without DB update
+            } catch (MessagingException ex) {
+            } catch (UnsupportedEncodingException ex) {
+            }
         });
     }
 
@@ -48,7 +56,11 @@ public class Ngn extends JFrame {
 
             // Controllers //
             KeyPad KEYPAD           = new KeyPad();
-            GasStation GASSTATION   = new GasStation();
+            try {
+                GasStation GASSTATION   = new GasStation();
+            } catch (MessagingException ex) {
+            } catch (UnsupportedEncodingException ex) {
+            }
             Listener ACTIONLISTENER = new Listener();
             Timers TIMER            = new Timers();
             Variables VARIABLES     = new Variables();
