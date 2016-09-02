@@ -37,7 +37,6 @@ public class GasStation {
             TimerKolonkaStart();
         } catch (SerialPortException ex) {
             //System.out.println(ex);
-            SendMail.sendEmail(String.valueOf(ex), "Gas Station error!");
         }
     }
 
