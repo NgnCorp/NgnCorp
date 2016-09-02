@@ -24,10 +24,10 @@ public class WriteWI {
                     bw.write(item + "=>");
                     counter++;
                 } else {
-                    bw.write(item + "|\r\n");
+                    System.out.println(counter);
                 }
-            System.out.println(counter);
             }
+            bw.write("|\r\n");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
