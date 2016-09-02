@@ -8,9 +8,12 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
+import mail.SendMail;
 import ngn.controller.ReadWI;
+import ngn.model.DB;
 import ngn.text.Config;
 import ngn.text.Paths;
+import ngn.text.Text;
 import static ngn.text.Text.*;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -31,6 +34,7 @@ public class Update {
                 BSLoadingText.setText(authSUCS);
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
             } catch (MalformedURLException ex) {
+                SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
                 System.out.println(ex);
             }
@@ -46,6 +50,7 @@ public class Update {
                 }
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
+                SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
                 System.out.println(ex);
             }
         } else { // No Internet
@@ -63,6 +68,7 @@ public class Update {
                 BSLoadingText.setText(downlNEW);
                 download(upload, place);
             } catch (IOException ex) {
+                SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantdownlNEW);
                 System.out.println(ex);
             }
@@ -80,12 +86,13 @@ public class Update {
                     }
                 } catch (IOException ex) {
                     BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
+                    SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
                 }
             }
         }
     }
 
-    private static void download(String urlStr, String file) throws IOException {
+    private static void download(String urlStr, String file) throws MalformedURLException, IOException {
         URL url = new URL(urlStr);
         try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
@@ -103,6 +110,7 @@ public class Update {
             }
         } catch (IOException ex) {
             BSLoadingText.setText(cantRunProg);
+            SendMail.sendEmail(String.valueOf(ex), Text.cantRunProg + " " + DB.MODULENAME);
             System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);

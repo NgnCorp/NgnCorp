@@ -34,7 +34,7 @@ public class DB {
     //Конотоп
     //Павлоград
     private static final String DESCRIPTION = "Заправка на АЗС";
-    private static final String MODULENAME = GetModuleName();
+    public static final String MODULENAME = GetModuleName();
     public static StringBuilder allText;
     public static int data;
     public static final String PATH = Paths.MODULENAMEPATH;

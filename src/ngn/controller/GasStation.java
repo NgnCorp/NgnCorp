@@ -8,6 +8,8 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import mail.SendMail;
+import ngn.model.DB;
 
 /**
  *
@@ -35,6 +37,7 @@ public class GasStation {
             TimerKolonkaStart();
         } catch (SerialPortException ex) {
             //System.out.println(ex);
+            SendMail.sendEmail(String.valueOf(ex), "Gas Station error!");
         }
     }
 
@@ -131,10 +134,12 @@ public class GasStation {
                                     //ZaderzkaDoza.restart();
                                 }
                             } catch (SerialPortException ex) {
+                                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
+                        SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
                 }
             }
         }

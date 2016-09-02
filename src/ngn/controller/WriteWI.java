@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import mail.SendMail;
+import ngn.model.DB;
 import ngn.text.Paths;
 
 /**
@@ -35,6 +37,7 @@ public class WriteWI {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, false), "windows-1251"))) {
             bw.write("");
         } catch (IOException ex) {
+            SendMail.sendEmail(String.valueOf(ex), "Can't LDBToZero error! " + DB.MODULENAME);
             System.out.println(ex.getMessage());
         }
     }

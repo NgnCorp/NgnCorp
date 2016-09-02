@@ -38,7 +38,6 @@ public class KeyPad {
             KeyPadCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
             KeyPadCOM4.addEventListener(new EventListener());
         } catch (SerialPortException ex) {
-            System.out.println(ex);
         }
     }
 
