@@ -111,7 +111,7 @@ public class Timers {
                     Work.SchetLitrov.setText("0.0");
                 }
                 double litriDouble = Double.valueOf(Work.SchetLitrov.getText());
-                double formatnewln = Double.valueOf(Litrs.ClientLitrs.getText()) - litriDouble;
+                double formatnewln = Double.valueOf(Variables.litrnum) - litriDouble;
                 // NEWLN - Разница между литрами на карте и заправленными
                 Variables.leftlitr = String.format(Locale.ENGLISH, "%(.2f", litriDouble);
                 Variables.newln = String.format(Locale.ENGLISH, "%(.2f", formatnewln);

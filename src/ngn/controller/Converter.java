@@ -82,4 +82,13 @@ public class Converter {
         }
         return sb.toString();
     }
+
+    public static String lessNumber(double customerBalance, String limitLitrnum) {
+        Double limitLitrs = Double.valueOf(limitLitrnum);
+        if (customerBalance < limitLitrs) {
+            return String.format(Locale.ENGLISH, "%(.2f", customerBalance);
+        } else {
+            return String.format(Locale.ENGLISH, "%(.2f", limitLitrs);
+        }
+    }
 }

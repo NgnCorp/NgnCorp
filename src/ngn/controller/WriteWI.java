@@ -38,7 +38,6 @@ public class WriteWI {
             bw.write("");
         } catch (IOException ex) {
             SendMail.sendEmail(String.valueOf(ex), "Can't LDBToZero error! " + DB.MODULENAME);
-            System.out.println(ex.getMessage());
         }
     }
 }

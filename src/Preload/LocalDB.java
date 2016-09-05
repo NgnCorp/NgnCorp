@@ -35,7 +35,7 @@ public class LocalDB {
                     + "SELECT cl.text FROM " + DB_PREFIX + "coupon_limit cl WHERE cl.limit_id=12 AND cl.coupon_id=c.coupon_id) AS limit_day, ("
                     + "SELECT cl.text FROM " + DB_PREFIX + "coupon_limit cl WHERE cl.limit_id=13 AND cl.coupon_id=c.coupon_id) AS limit_litrs, ("
                     + "SELECT SUM(ch.leftlitrs) FROM " + DB_PREFIX + "cards_history ch WHERE ch.code=c.code AND DATE(ch.date) BETWEEN DATE(CURDATE()) AND DATE(CURDATE() + INTERVAL limit_day DAY)) AS used_limit_litrs, ("
-                    + "SELECT SUM(cr.points) FROM " + DB_PREFIX + "customer_reward cr WHERE cr.customer_id=cu.customer_id) AS customer_balance FROM " + DB_PREFIX + "coupon c "
+                    + "SELECT SUM(cr.points)+cu.credit FROM " + DB_PREFIX + "customer_reward cr WHERE cr.customer_id=cu.customer_id) AS customer_balance FROM " + DB_PREFIX + "coupon c "
                     + "LEFT JOIN " + DB_PREFIX + "coupon_customer cc ON c.coupon_id=cc.coupon_id "
                     + "LEFT JOIN " + DB_PREFIX + "customer cu ON cc.customer_id=cu.customer_id "
                     + "LEFT JOIN " + DB_PREFIX + "custom_field_value_description cfvd ON cfvd.custom_field_value_id=SUBSTRING(cu.custom_field,7,1)");
@@ -55,7 +55,9 @@ public class LocalDB {
                     String.valueOf(rsLDB.getInt("limit_litrs")),
                     String.valueOf(rsLDB.getDouble("used_limit_litrs")),
                     String.valueOf(rsLDB.getInt("c.litr_place")),
-                    String.valueOf(rsLDB.getInt("c.coupon_id"))
+                    String.valueOf(rsLDB.getInt("c.coupon_id")),
+                    String.valueOf(rsLDB.getString("cu.credit")),                    
+                    String.valueOf(rsLDB.getDouble("customer_balance"))
                 };
                 WriteWI.Write(LocalClientInfo, WriteWI.PATHLDB, true);
             }

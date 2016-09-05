@@ -69,10 +69,8 @@ public class ReadWI {
         } catch (IOException ex) {
             BSLoadingText.setText(Text.cannotreadDB);
             SendMail.sendEmail(String.valueOf(ex), Text.cannotreadDB + " " + DB.MODULENAME);
-            System.out.println(ex);
         }
         CustomerInfo = String.valueOf(LDB).split("\\|");
-            System.out.println(Arrays.toString(CustomerInfo));
     }
 
     public static boolean FindCardName(String cardName, String whatToDo) {

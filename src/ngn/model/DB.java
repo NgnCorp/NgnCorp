@@ -106,22 +106,22 @@ public class DB {
                     sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
                     sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
                     if (transactionsnum < Transactions.length - 1) {
-                        System.out.println(transactionsnum);
                         sqlCardsHistory += ",";
                         sqlCustomerReward += ",";
                     }
                     ClientTypeBalanceExist = true;
                 }
 
-                if ("0".equals(ClientType)) { // CardBalance
+                if (ClientType.contains("0")) { // CardBalance
                     sqlCouponSelect += "('" + ClientCardCode + "')";
                     sqlCouponInsert += "('" + ClientCardId + "','" + ClientNewLitrs + "')";
                     if (transactionsnum < Transactions.length - 1) {
                         sqlCouponSelect += ",";
                         sqlCouponInsert += ",";
+                    } else {
+                        sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = VALUES(`litrnum`)";
                     }
                     ClientTypeCardBalanceExist = true;
-                    sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = VALUES(`litrnum`)";
                 }
                 transactionsnum++;
             }

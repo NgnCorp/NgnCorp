@@ -1,6 +1,7 @@
 package ngn.controller;
 
 import java.awt.event.ActionEvent;
+import java.util.Locale;
 import ngn.view.Litrs;
 import static ngn.view.Litrs.ClientLitrs;
 import ngn.view.Pin;
@@ -29,19 +30,9 @@ public class Listener {
             Variables.usedLimitLitrs = Double.valueOf(ReadWI.PersonalInfo[11]);
             Variables.litrPlace      = Integer.valueOf(ReadWI.PersonalInfo[12]);
             Variables.couponId       = Integer.valueOf(ReadWI.PersonalInfo[13]);
-
-            Variables.ClientInfo = new String[]{
-                String.valueOf(Variables.customerId),
-                Variables.name,
-                Variables.litrnum,
-                Variables.code,
-                String.valueOf(Variables.customerPrice),
-                String.valueOf(Variables.uahBalance),
-                Variables.purse,
-                String.valueOf(Variables.limitDay),
-                String.valueOf(Variables.limitLitrs),
-                String.valueOf(Variables.usedLimitLitrs)
-            };
+            Variables.credit         = Double.valueOf(ReadWI.PersonalInfo[14]);
+            Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
+            
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);
@@ -59,9 +50,16 @@ public class Listener {
             Litrs.ClientCard.setText(Variables.code);
             System.out.println(Variables.isLimitClient);
             if (Variables.isLimitClient) {
-                Litrs.ClientLitrs.setText(String.valueOf(Variables.limitLitrs));
+                ClientLitrs.setText(Converter.lessNumber(Double.valueOf(Variables.litrnum), Variables.limitLitrnum));
             } else {
                 Litrs.ClientLitrs.setText(Variables.litrnum);
+            }
+            if (Variables.litrPlace == 1) { // Балансовая карта
+                if (Variables.isLimitClient) { // Есть лимиты по заправке
+                    ClientLitrs.setText(Converter.lessNumber(Variables.customerBalance, Variables.limitLitrnum));
+                } else {
+                    ClientLitrs.setText(String.format(Locale.ENGLISH, "%(.2f", Variables.customerBalance));
+                }
             }
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
             ChangePanel.FocusLitrsInput();

@@ -35,8 +35,9 @@ public class Variables {
     static String newln;
     static String leftlitr;
     static Integer litrPlace;
+    static Double credit;
+    static Double customerBalance;
     static Object sdate;
-    static String[] ClientInfo;
 
     static JPanel[] PanelArray = new JPanel[]{
         BeforeStart.BSLoadingPanel,
