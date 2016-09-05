@@ -72,29 +72,39 @@ public class ReadWI {
             System.out.println(ex);
         }
         CustomerInfo = String.valueOf(LDB).split("\\|");
-            System.out.println(Arrays.toString(CustomerInfo));
+        System.out.println(Arrays.toString(CustomerInfo));
     }
 
-    public static boolean FindCardName(String cardName, String whatToDo) {
+    public static boolean FindCardName(String cardName) {
         String CardCode = cardName.toUpperCase();
-
+        String[] CCS;
         for (String custCard : CustomerInfo) {
-            if (custCard.split("=>")[0].toUpperCase().contains(CardCode)) {
-                PersonalInfo = custCard.split("=>");
+            CCS = custCard.split("=>");
+            if (CCS[0].toUpperCase().contains(CardCode)) {
+                PersonalInfo = CCS;
                 return true;
-            } else if ("Delete".equals(whatToDo)) {
-                WriteWI.Write(custCard.split("=>"), Paths.PATH2, true);
-            }
-        }
-        if ("Delete".equals(whatToDo)) {
-            sourceFile.delete();
-            outputFile.renameTo(sourceFile);
-            try {
-                outputFile.createNewFile();
-            } catch (IOException ex) {
-                System.out.println(ex);
             }
         }
         return false;
+    }
+
+    public static void ReWrite(String cardName) {
+        String CardCode = cardName.toUpperCase();
+        String[] CCS;
+        for (String custCard : CustomerInfo) {
+            CCS = custCard.split("=>");
+            if (CCS[0].toUpperCase().contains(CardCode)) {
+                PersonalInfo = CCS;
+            } else {
+                WriteWI.Write(CCS, Paths.PATH2, true);
+            }
+        }
+        sourceFile.delete();
+        outputFile.renameTo(sourceFile);
+        try {
+            outputFile.createNewFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 }
