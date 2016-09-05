@@ -72,7 +72,6 @@ public class LocalDB {
                 System.out.println(ex);
             }
         }
-        //ReadWI.CreateLocalDB();
         BSLoadingText.setText(Text.LDBdone);
     }
 
