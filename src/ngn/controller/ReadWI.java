@@ -45,6 +45,7 @@ public class ReadWI {
         if (Content != null) {
             Transactions = String.valueOf(Content).split("\\|");
             if (BackendTimers.InternetCheck && DB.SendTransactionsToDB(Transactions)) {
+                WriteWI.FillingDataToZero();
                 System.out.println("Transactions were send");
             } else {
                 System.out.println("Can't connect to server DB");

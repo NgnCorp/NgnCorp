@@ -8,6 +8,7 @@ import ngn.text.Text;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.view.*;
@@ -130,18 +131,22 @@ public class Timers {
                     String.valueOf(Variables.sdate),
                     String.valueOf(Variables.couponId)
                 };
+                //Try to send transaction with internet
                 if (BackendTimers.InternetCheck) {
-                    //WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
-                    LocalDB.WriteToLocalDB();// Записываем в LocalDB
-                    ChangePanel.ShowPanel(Bye.GoodBye);
-                    Litrs.LitrsInput.setText("");
-                    Work.SchetLitrov.setText("");
-                    Success();
-                    GasStation.CustomerInfoToZero();
-                    ToZero.CustomerInfo();
                 } else {
+                    SendMail.sendEmail("No Internet", 
+                    "Wasn't Internet, when trying to send transaction, after client put off gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
+                
+                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                LocalDB.WriteToLocalDB();// Записываем в LocalDB
+                ChangePanel.ShowPanel(Bye.GoodBye);
+                Litrs.LitrsInput.setText("");
+                Work.SchetLitrov.setText("");
+                Success();
+                GasStation.CustomerInfoToZero();
+                ToZero.CustomerInfo();
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
 /*               
 if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров

@@ -27,7 +27,7 @@ public class WriteWI {
                     bw.write(item);
                 }
             }
-            bw.write("|\r\n");
+            bw.write("|");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -38,6 +38,14 @@ public class WriteWI {
             bw.write("");
         } catch (IOException ex) {
             SendMail.sendEmail(String.valueOf(ex), "Can't LDBToZero error! " + DB.MODULENAME);
+        }
+    }
+
+    public static void FillingDataToZero() {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Paths.TRANSACTIONPATH, false), "windows-1251"))) {
+            bw.write("");
+        } catch (IOException ex) {
+            SendMail.sendEmail(String.valueOf(ex), "Can't FillingDataToZero error! " + DB.MODULENAME);
         }
     }
 }
