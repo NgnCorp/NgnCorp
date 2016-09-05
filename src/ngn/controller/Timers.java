@@ -131,6 +131,7 @@ public class Timers {
                 };
                 if (BackendTimers.InternetCheck) {
                     WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                    System.out.println(Variables.customerId+"=>"+Variables.pin+"=>"+Variables.name+"=>"+Variables.litrnum+"=>"+Variables.code+"=>"+Variables.customerPrice+"=>"+Variables.uahBalance+"=>"+Variables.purse+"=>"+Variables.limitDay+"=>"+Variables.limitLitrs+"=>"+Variables.usedLimitLitrs+"=>"+Variables.litrPlace+"=>"+Variables.couponId+"=>"+Variables.credit+"=>"+Variables.customerBalance);
                     
                     ChangePanel.ShowPanel(Bye.GoodBye);
                     Litrs.LitrsInput.setText("");

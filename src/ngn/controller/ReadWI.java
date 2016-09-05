@@ -25,7 +25,7 @@ public class ReadWI {
     public static String[] PersonalInfo;
     public static String[] Transactions;
     public static File sourceFile = new File(Paths.LDBPATH);
-    public static File outputFile = new File(Paths.PATH2);
+    public static File outputFile = new File(Paths.CACHELDBPATH);
 
     public static void ReadWI() {
 
@@ -73,26 +73,36 @@ public class ReadWI {
         CustomerInfo = String.valueOf(LDB).split("\\|");
     }
 
-    public static boolean FindCardName(String cardName, String whatToDo) {
+    public static boolean FindCardName(String cardName) {
         String CardCode = cardName.toUpperCase();
-
+        String[] CCS;
         for (String custCard : CustomerInfo) {
-            if (custCard.split("=>")[0].toUpperCase().contains(CardCode)) {
-                PersonalInfo = custCard.split("=>");
+            CCS = custCard.split("=>");
+            if (CCS[0].toUpperCase().contains(CardCode)) {
+                PersonalInfo = CCS;
                 return true;
-            } else if ("Delete".equals(whatToDo)) {
-                WriteWI.Write(custCard.split("=>"), Paths.PATH2, true);
-            }
-        }
-        if ("Delete".equals(whatToDo)) {
-            sourceFile.delete();
-            outputFile.renameTo(sourceFile);
-            try {
-                outputFile.createNewFile();
-            } catch (IOException ex) {
-                System.out.println(ex);
             }
         }
         return false;
+    }
+
+    public static void ReWrite(String cardName, String[] UpdateVariables) {
+        String CardCode = cardName.toUpperCase();
+        String[] CCS;
+        for (String custCard : CustomerInfo) {
+            CCS = custCard.split("=>");
+            if (CCS[0].toUpperCase().contains(CardCode)) {
+                WriteWI.Write(UpdateVariables, Paths.CACHELDBPATH, true);
+            } else {
+                WriteWI.Write(CCS, Paths.CACHELDBPATH, true);
+            }
+        }
+        sourceFile.delete();
+        outputFile.renameTo(sourceFile);
+        try {
+            outputFile.createNewFile();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 }

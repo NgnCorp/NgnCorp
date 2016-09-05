@@ -163,5 +163,4 @@ public class GasStation {
         } catch (SerialPortException ex) {
         }
     }
-
 }
