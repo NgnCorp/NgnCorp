@@ -60,9 +60,9 @@ public class SendMail {
             Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
         }
         String[] emails = {TOVALERA, TOSASHA};
-        for (int i = 0; i < emails.length; i++) {
+        for (String email : emails) {
             try {
-                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA +","+TOSASHA));
+                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
                 message.setSubject(subject, "UTF-8");
                 mp = new MimeMultipart();
                 mbp = new MimeBodyPart();
