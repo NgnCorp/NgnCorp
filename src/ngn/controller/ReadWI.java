@@ -75,6 +75,7 @@ public class ReadWI {
 
     public static boolean FindCardName(String cardName) {
         String CardCode = cardName.toUpperCase();
+        CreateLocalDB();
         String[] CCS;
         for (String custCard : CustomerInfo) {
             CCS = custCard.split("=>");
@@ -89,10 +90,29 @@ public class ReadWI {
     public static void ReWrite(String cardName, String[] UpdateVariables) {
         String CardCode = cardName.toUpperCase();
         String[] CCS;
+        String[] UpdateData = new String[]{
+            cardName,
+            String.valueOf(Variables.customerId),
+            Variables.pin,
+            Variables.name,
+            UpdateVariables[0],
+            Variables.code,
+            String.valueOf(Variables.customerPrice),
+            String.valueOf(Variables.uahBalance),
+            Variables.purse,
+            String.valueOf(Variables.limitDay),
+            String.valueOf(Variables.limitLitrs),
+            UpdateVariables[1],
+            String.valueOf(Variables.litrPlace),
+            String.valueOf(Variables.couponId),
+            String.valueOf(Variables.credit),
+            UpdateVariables[2]
+        };
+        System.out.println(Arrays.toString(UpdateData));
         for (String custCard : CustomerInfo) {
             CCS = custCard.split("=>");
             if (CCS[0].toUpperCase().contains(CardCode)) {
-                WriteWI.Write(UpdateVariables, Paths.CACHELDBPATH, true);
+                WriteWI.Write(UpdateData, Paths.CACHELDBPATH, true);
             } else {
                 WriteWI.Write(CCS, Paths.CACHELDBPATH, true);
             }

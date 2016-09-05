@@ -18,26 +18,27 @@ import ngn.view.Work;
  */
 public class Variables {
 
-    static Integer customerId;
-    static Integer couponId;
-    static String pin;
-    static String name;
-    static String litrnum;
-    static String code;
-    static Double customerPrice;
-    static Double uahBalance;
-    static String purse;
-    static Integer limitDay;
-    static Double limitLitrs;
-    static Double usedLimitLitrs;
-    static Boolean isLimitClient; // По умолчанию false
-    static String limitLitrnum;
-    static String newln;
-    static String leftlitr;
-    static Integer litrPlace;
-    static Double credit;
-    static Double customerBalance;
-    static Object sdate;
+    public static String cardCode;
+    public static Integer customerId;
+    public static Integer couponId;
+    public static String pin;
+    public static String name;
+    public static String litrnum;
+    public static String code;
+    public static Double customerPrice;
+    public static Double uahBalance;
+    public static String purse;
+    public static Integer limitDay;
+    public static Double limitLitrs;
+    public static Double usedLimitLitrs;
+    public static Boolean isLimitClient; // По умолчанию false
+    public static String limitLitrnum;
+    public static String newln;
+    public static String leftlitr;
+    public static Integer litrPlace;
+    public static Double credit;
+    public static Double customerBalance;
+    public static Object sdate;
 
     static JPanel[] PanelArray = new JPanel[]{
         BeforeStart.BSLoadingPanel,

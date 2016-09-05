@@ -17,6 +17,7 @@ public class Listener {
         String CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10 && ReadWI.FindCardName(CardCode)) {
+            Variables.cardCode       = CardCode;
             Variables.customerId     = Integer.valueOf(ReadWI.PersonalInfo[1]);
             Variables.pin            = ReadWI.PersonalInfo[2];
             Variables.name           = ReadWI.PersonalInfo[3];

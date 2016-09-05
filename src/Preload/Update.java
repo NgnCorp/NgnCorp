@@ -21,9 +21,9 @@ public class Update {
 
     private static final Double VER = 0.02;
 
-    private static final String URL = Config.URL;//daystar.ftp.ukraine.com.ua, aftjokers.esy.es
-    private static final String USER = Config.USER;//daystar_alex, u940880703
-    private static final String PASS = Config.PASS;//3mni537k, saniyaext_25
+    private static final String URL = Config.URL;
+    private static final String USER = Config.USER;
+    private static final String PASS = Config.PASS;
     private static final String KEYWORD = "ver";
     private static URL con;
 
@@ -36,7 +36,6 @@ public class Update {
             } catch (MalformedURLException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
-                System.out.println(ex);
             }
             try {
                 Scanner scan = new Scanner(con.openStream());
@@ -51,7 +50,6 @@ public class Update {
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
-                System.out.println(ex);
             }
         } else { // No Internet
             BSLoadingText.setText(tryConnInet);
@@ -70,7 +68,6 @@ public class Update {
             } catch (IOException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantdownlNEW);
-                System.out.println(ex);
             }
         } else {
             File file = new File(Paths.TRANSACTIONPATH);

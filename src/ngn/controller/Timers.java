@@ -1,6 +1,7 @@
 package ngn.controller;
 
 import Preload.BackendTimers;
+import Preload.LocalDB;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
 import ngn.text.Text;
@@ -130,9 +131,8 @@ public class Timers {
                     String.valueOf(Variables.couponId)
                 };
                 if (BackendTimers.InternetCheck) {
-                    WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
-                    System.out.println(Variables.customerId+"=>"+Variables.pin+"=>"+Variables.name+"=>"+Variables.litrnum+"=>"+Variables.code+"=>"+Variables.customerPrice+"=>"+Variables.uahBalance+"=>"+Variables.purse+"=>"+Variables.limitDay+"=>"+Variables.limitLitrs+"=>"+Variables.usedLimitLitrs+"=>"+Variables.litrPlace+"=>"+Variables.couponId+"=>"+Variables.credit+"=>"+Variables.customerBalance);
-                    
+                    //WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                    LocalDB.WriteToLocalDB();// Записываем в LocalDB
                     ChangePanel.ShowPanel(Bye.GoodBye);
                     Litrs.LitrsInput.setText("");
                     Work.SchetLitrov.setText("");

@@ -13,9 +13,9 @@ public class Config {
     
 //___________D A T A B A S E___________//
     
-    public static final String DB_URL = "jdbc:mysql://daystar.mysql.ukraine.com.ua:3306/daystar_ngntest";
-    public static final String DB_USER = "daystar_ngntest";
-    public static final String DB_PASS = "ykjvf3mj";
+    public static final String DB_URL = "jdbc:mysql://daystar.mysql.ukraine.com.ua:3306/daystar_ngn";//daystar_ngn, daystar_ngntest
+    public static final String DB_USER = "daystar_ngn";//daystar_ngn, daystar_ngntest
+    public static final String DB_PASS = "fky9rpk3";//fky9rpk3, ykjvf3mj
     public static final String DB_PREFIX = "ngn_";   
 
 }
