@@ -94,7 +94,7 @@ public class ReadWI {
         for (String custCard : CustomerInfo) {
             CCS = custCard.split("=>");
             if (CCS[0].toUpperCase().contains(CardCode)) {
-                PersonalInfo = CCS;
+                WriteWI.Write(NEWVARIABLES, Paths.PATH2, true);
             } else {
                 WriteWI.Write(CCS, Paths.PATH2, true);
             }
