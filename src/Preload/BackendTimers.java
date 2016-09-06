@@ -25,12 +25,13 @@ public class BackendTimers {
     public static Timer KyePadWorks;
     public static Timer KyePadNotWorks;
     public static Timer LocalDBUpdate;
+    public static Timer LocalDBUpdateFast;
     public static Timer WaitForInternet;
     public static Timer InternetStatus;
     public static boolean InternetCheck;
-
-    Integer LDBTime = 1 * 60 * 1000;//30 * 60 * 1000 = 30 минут
-    static Integer Delay = 1000;//30 * 60 * 1000 = 30 минут
+    
+    Integer LDBTime = 3 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTimeFast = 15000;
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -79,10 +80,20 @@ public class BackendTimers {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
                 ReadWI.ReadWI();
                 Threads.LOCALDB();
-                LocalDBUpdate.setDelay(1 * 60 * 1000);//Back to normal time
             } else {
-                LocalDBUpdate.setDelay(15000);
+                LocalDBUpdateFast.restart();
+                LocalDBUpdate.stop();
+            }
+        });
+        
+        LocalDBUpdateFast = new Timer(LDBTimeFast, (ActionEvent e) -> {
+            if (CheckVisibility().equals("EnterCard") && InternetCheck) {
+                ReadWI.ReadWI();
+                Threads.LOCALDB();
                 LocalDBUpdate.restart();
+                LocalDBUpdateFast.stop();
+            } else {
+                LocalDBUpdateFast.restart();
             }
         });
 
@@ -98,8 +109,6 @@ public class BackendTimers {
 
         InternetStatus = new Timer(1000, (ActionEvent e) -> {
             InternetCheck = InternetConn.InternetConn();
-            InternetStatus();
-            System.out.println(InternetStatus.getDelay());
         });
     }
 
@@ -120,8 +129,6 @@ public class BackendTimers {
     }
 
     public static void InternetStatus() {
-        InternetStatus.setDelay(Delay);
-        Delay += 3000;
         InternetStatus.start();
     }
 }
