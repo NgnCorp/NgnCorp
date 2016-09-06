@@ -1,6 +1,6 @@
 package mail;
 
-import Preload.InternetConn;
+import static Preload.BackendTimers.InternetCheck;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +37,7 @@ public class SendMail {
     private static MimeBodyPart mbp;
 
     public static void sendEmail(String body, String subject) {
-        if (InternetConn.InternetConn()) {
+        if (InternetCheck) {
             Properties mailProps = new Properties();
             mailProps.put("mail.smtp.host", SMTPHOST);
             mailProps.put("mail.smtp.from", FROM);
