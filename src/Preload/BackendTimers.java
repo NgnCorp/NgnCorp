@@ -25,11 +25,13 @@ public class BackendTimers {
     public static Timer KyePadWorks;
     public static Timer KyePadNotWorks;
     public static Timer LocalDBUpdate;
+    public static Timer LocalDBUpdateFast;
     public static Timer WaitForInternet;
     public static Timer InternetStatus;
     public static boolean InternetCheck;
 
     Integer LDBTime = 3 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTimeFast = 15000;
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -78,10 +80,20 @@ public class BackendTimers {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
                 ReadWI.ReadWI();
                 Threads.LOCALDB();
-                LDBTime = 10 * 60 * 1000;//Back to normal time
             } else {
-                LDBTime = 15000;
+                LocalDBUpdateFast.restart();
+                LocalDBUpdate.stop();
+            }
+        });
+        
+        LocalDBUpdateFast = new Timer(LDBTimeFast, (ActionEvent e) -> {
+            if (CheckVisibility().equals("EnterCard") && InternetCheck) {
+                ReadWI.ReadWI();
+                Threads.LOCALDB();
                 LocalDBUpdate.restart();
+                LocalDBUpdateFast.stop();
+            } else {
+                LocalDBUpdateFast.restart();
             }
         });
 
