@@ -88,20 +88,18 @@ public class DB {
 
         String sqlCardsHistory = "INSERT INTO `" + DB_PREFIX + "cards_history` (name, code, leftlitrs, modulename, description, date) VALUES ";
         String sqlCustomerReward = "INSERT INTO `" + DB_PREFIX + "customer_reward` (customer_id, points, description, comment_m, date_added) VALUES ";
-        String sqlCouponSelect = "SELECT litrnum FROM `" + DB_PREFIX + "coupon` WHERE code IN ";
-        String sqlCouponInsert = "INSERT INTO `" + DB_PREFIX + "coupon` (coupon_id, litrnum) VALUES ";
+        String sqlCouponInsert = "INSERT IGNORE INTO `" + DB_PREFIX + "coupon` (coupon_id, litrnum) VALUES ";
         for (String custTrans : Transactions) {
 
             TransInfo = custTrans.split("=>");
-            if (TransInfo.length == 8) {
+            if (TransInfo.length == 7) {
                 String ClientType = TransInfo[0]; //1 = balance, 0 = card balance
                 String ClientId = TransInfo[1];
-                String ClientNewLitrs = TransInfo[2];
-                String ClientName = TransInfo[3];
-                String ClientCardCode = TransInfo[4];
-                String ClientLeftLitrs = TransInfo[5];
-                String TransactionDate = TransInfo[6];
-                String ClientCardId = TransInfo[7];
+                String ClientName = TransInfo[2];
+                String ClientCardCode = TransInfo[3];
+                String ClientLeftLitrs = TransInfo[4];
+                String TransactionDate = TransInfo[5];
+                String ClientCardId = TransInfo[6];
                 if (ClientType.contains("1")) { // Balance
                     sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
                     sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
@@ -113,32 +111,29 @@ public class DB {
                 }
 
                 if (ClientType.contains("0")) { // CardBalance
-                    sqlCouponSelect += "('" + ClientCardCode + "')";
-                    sqlCouponInsert += "('" + ClientCardId + "','" + ClientNewLitrs + "')";
+                    sqlCouponInsert += "('" + ClientCardId + "','" + ClientLeftLitrs + "')";
                     if (transactionsnum < Transactions.length - 1) {
-                        sqlCouponSelect += ",";
                         sqlCouponInsert += ",";
                     } else {
-                        sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = VALUES(`litrnum`)";
+                        sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
                     }
                     ClientTypeCardBalanceExist = true;
                 }
                 transactionsnum++;
             }
         }
-        System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponSelect + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
-        /*
+        System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
+        
         if (ClientTypeBalanceExist) {
             if (!ClientTypeBalance(sqlCardsHistory, sqlCustomerReward)) {
                 return false;
             }
         }
         if (ClientTypeCardBalanceExist) {
-            if (!ClientTypeCardBalance(sqlCouponSelect, sqlCouponInsert)) {
+            if (!ClientTypeCardBalance(sqlCouponInsert)) {
                 return false;
             }
         }
-         */
         return true;
     }
 
@@ -158,22 +153,13 @@ public class DB {
         return true;
     }
 
-    public static boolean ClientTypeCardBalance(String QueryCouponSelect, String QueryCouponInsert) {
+    public static boolean ClientTypeCardBalance(String QueryCouponInsert) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement pst3 = con.prepareStatement(QueryCouponSelect);
-            rs = pst3.executeQuery();
-            if (rs.next()) {
-                Double checkLitr = rs.getDouble("litrnum");// - Double.valueOf(Query);
-                PreparedStatement pst = con.prepareStatement("UPDATE " + DB_PREFIX + "coupon set litrnum=? WHERE code=?");
-
-                pst.executeUpdate();
-                con.setAutoCommit(true);
-                conStatus = true;
-            } else {
-                System.out.println("THIS IS WHY WE NEED TO DO DOUBLE UPDATE");
-            }
+            PreparedStatement pst3 = con.prepareStatement(QueryCouponInsert);
+            pst3.executeUpdate();
+            con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
             return false;
@@ -181,6 +167,7 @@ public class DB {
         return true;
     }
 
+    /*
     public static boolean updateLitrs(String newln, String cardnum) {
         try {
             Double checkLitr = 0.00;
@@ -224,14 +211,12 @@ public class DB {
             pst.setString(3, leftlitrs);
             pst.setString(4, MODULENAME);
             pst.setString(5, DESCRIPTION);
-            /*
             PreparedStatement pstBallance = con.prepareStatement("INSERT INTO " + DB_PREFIX + "customer_reward (customer_id, litrsoff, description, comment_m, date_added) VALUES (?, ?, ?, ?, ?)");
             pstBallance.setString(1, Integer.toString(NgnApp.customerId));
             pstBallance.setString(2, "-" + leftlitrs);
             pstBallance.setString(3, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
             pstBallance.setString(4, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
             pstBallance.setObject(5, sdate);
-             */
             pst.executeUpdate();
             //pstBallance.executeUpdate();
             con.setAutoCommit(true);
@@ -267,4 +252,5 @@ public class DB {
         }
         return true;
     }
+    */
 }

@@ -87,6 +87,7 @@ public class Timers {
         });
 
         errorCardLength = new Timer(5000, (ActionEvent e) -> {
+            /*
             if (DB.updateLitrs(Variables.newln, Variables.code)) {
                 DB.writeResult(
                         Variables.name,
@@ -100,6 +101,7 @@ public class Timers {
                 Success();
                 errorCardLength.stop();
             }
+            */
         });
 
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
@@ -124,7 +126,6 @@ public class Timers {
                 String[] Transaction = new String[]{
                     String.valueOf(Variables.litrPlace),
                     String.valueOf(Variables.customerId),
-                    Variables.newln,
                     Variables.name,
                     Variables.code,
                     Variables.leftlitr,
@@ -135,7 +136,7 @@ public class Timers {
                 if (BackendTimers.InternetCheck) {
                 } else {
                     SendMail.sendEmail("No Internet", 
-                    "Wasn't Internet, when trying to send transaction, after client put off gas pistol! " + DB.MODULENAME);
+                    "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
                 
@@ -179,6 +180,7 @@ if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем �
             }
         });
 
+        /*
         errorCardLength = new Timer(5000, (ActionEvent e) -> {
             if (Variables.litrPlace == 1 && DB.writeResultToBalance(
                     Variables.name,
@@ -210,6 +212,7 @@ if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем �
                 errorCardLength.stop();
             }
         });
+        */
 
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             ChangePanel.ShowPanel(Card.EnterCard);

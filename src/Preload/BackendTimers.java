@@ -29,7 +29,7 @@ public class BackendTimers {
     public static Timer InternetStatus;
     public static boolean InternetCheck;
 
-    Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 3 * 60 * 1000;//30 * 60 * 1000 = 30 минут
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
