@@ -6,6 +6,7 @@ import ngn.Ngn;
 import static java.awt.EventQueue.invokeLater;
 import jssc.SerialPortException;
 import static ngn.controller.ChangePanel.CheckVisibility;
+import ngn.controller.CmdReload;
 import ngn.controller.KeyPad;
 import ngn.controller.ReadWI;
 import static ngn.view.BeforeStart.BSLoadingPanel;
@@ -28,9 +29,11 @@ public class BackendTimers {
     public static Timer LocalDBUpdateFast;
     public static Timer WaitForInternet;
     public static Timer InternetStatus;
+    public static Timer ReloadSystem;
+
     public static boolean InternetCheck;
-    
-    Integer LDBTime = 3 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+
+    Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
     Integer LDBTimeFast = 15000;
 
     public BackendTimers() {
@@ -85,7 +88,7 @@ public class BackendTimers {
                 LocalDBUpdate.stop();
             }
         });
-        
+
         LocalDBUpdateFast = new Timer(LDBTimeFast, (ActionEvent e) -> {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
                 ReadWI.ReadWI();
@@ -110,6 +113,16 @@ public class BackendTimers {
         InternetStatus = new Timer(1000, (ActionEvent e) -> {
             InternetCheck = InternetConn.InternetConn();
         });
+
+        ReloadSystem = new Timer(5000, (ActionEvent e) -> {
+            if (Card.CardDate.getText().content("11:00")
+                    && BackendTimers.InternetCheck
+                    && CheckVisibility().equals("EnterCard")) {
+                CmdReload.CmdReload();
+            } else {
+                ReloadSystem.restart();
+            }
+        });
     }
 
     public static void AppStart() {
@@ -130,5 +143,9 @@ public class BackendTimers {
 
     public static void InternetStatus() {
         InternetStatus.start();
+    }
+
+    public static void ReloadSystem() {
+        ReloadSystem.restart();
     }
 }

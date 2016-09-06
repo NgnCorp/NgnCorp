@@ -51,6 +51,8 @@ public class Ngn extends JFrame {
             Listener ACTIONLISTENER = new Listener();
             Timers TIMER            = new Timers();
             Variables VARIABLES     = new Variables();
+            
+            BackendTimers.ReloadSystem();//Check for reload computer
 
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
