@@ -1,5 +1,6 @@
 package mail;
 
+import Preload.InternetConn;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import ngn.controller.WriteWI;
+import ngn.text.Paths;
 
 /**
  * @author Svitlyk
@@ -34,50 +37,53 @@ public class SendMail {
     private static MimeBodyPart mbp;
 
     public static void sendEmail(String body, String subject) {
+        if (InternetConn.InternetConn()) {
+            Properties mailProps = new Properties();
+            mailProps.put("mail.smtp.host", SMTPHOST);
+            mailProps.put("mail.smtp.from", FROM);
+            mailProps.put("mail.smtp.port", PORT);
+            mailProps.put("mail.smtp.auth", true);
+            //mailProps.put("mail.smtp.socketFactory.port", PORT);
+            //mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            //mailProps.put("mail.smtp.socketFactory.fallback", "false");
+            mailProps.put("mail.smtp.starttls.enable", "true");
 
-        Properties mailProps = new Properties();
-        mailProps.put("mail.smtp.host", SMTPHOST);
-        mailProps.put("mail.smtp.from", FROM);
-        mailProps.put("mail.smtp.port", PORT);
-        mailProps.put("mail.smtp.auth", true);
-        //mailProps.put("mail.smtp.socketFactory.port", PORT);
-        //mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        //mailProps.put("mail.smtp.socketFactory.fallback", "false");
-        mailProps.put("mail.smtp.starttls.enable", "true");
+            mailSession = Session.getDefaultInstance(mailProps, new Authenticator() {
 
-        mailSession = Session.getDefaultInstance(mailProps, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(LOGIN, PASSWORD);
+                }
+            });
 
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(LOGIN, PASSWORD);
-            }
-        });
-
-        message = new MimeMessage(mailSession);
-        try {
-            message.setFrom(new InternetAddress(FROM));
-        } catch (MessagingException ex) {
-            Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String[] emails = {TOVALERA, TOSASHA};
-        for (String email : emails) {
+            message = new MimeMessage(mailSession);
             try {
-                message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
-                message.setSubject(subject, "UTF-8");
-                mp = new MimeMultipart();
-                mbp = new MimeBodyPart();
-                mbp.setContent(body, "text/html;charset=utf-8");
-                mp.addBodyPart(mbp);
-                message.setContent(mp);
-                message.setSentDate(new java.util.Date());
-
-                Transport.send(message);
-            } catch (AddressException ex) {
-                Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+                message.setFrom(new InternetAddress(FROM));
             } catch (MessagingException ex) {
                 Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+            String[] emails = {TOVALERA, TOSASHA};
+            for (String email : emails) {
+                try {
+                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
+                    message.setSubject(subject, "UTF-8");
+                    mp = new MimeMultipart();
+                    mbp = new MimeBodyPart();
+                    mbp.setContent(body, "text/html;charset=utf-8");
+                    mp.addBodyPart(mbp);
+                    message.setContent(mp);
+                    message.setSentDate(new java.util.Date());
 
+                    Transport.send(message);
+                } catch (AddressException ex) {
+                    Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MessagingException ex) {
+                    Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            String[] logMas = {subject, body};
+            WriteWI.Write(logMas, Paths.LOGPATH, true);
+        }
     }
 }
