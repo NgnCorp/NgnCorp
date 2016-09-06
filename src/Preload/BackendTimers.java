@@ -29,7 +29,8 @@ public class BackendTimers {
     public static Timer InternetStatus;
     public static boolean InternetCheck;
 
-    Integer LDBTime = 3 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 1 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    static Integer Delay = 1000;//30 * 60 * 1000 = 30 минут
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -78,9 +79,9 @@ public class BackendTimers {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
                 ReadWI.ReadWI();
                 Threads.LOCALDB();
-                LDBTime = 10 * 60 * 1000;//Back to normal time
+                LocalDBUpdate.setDelay(1 * 60 * 1000);//Back to normal time
             } else {
-                LDBTime = 15000;
+                LocalDBUpdate.setDelay(15000);
                 LocalDBUpdate.restart();
             }
         });
@@ -97,6 +98,8 @@ public class BackendTimers {
 
         InternetStatus = new Timer(1000, (ActionEvent e) -> {
             InternetCheck = InternetConn.InternetConn();
+            InternetStatus();
+            System.out.println(InternetStatus.getDelay());
         });
     }
 
@@ -117,6 +120,8 @@ public class BackendTimers {
     }
 
     public static void InternetStatus() {
-        InternetStatus.restart();
+        InternetStatus.setDelay(Delay);
+        Delay += 3000;
+        InternetStatus.start();
     }
 }
