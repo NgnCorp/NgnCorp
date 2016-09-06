@@ -15,6 +15,8 @@ public class Card {
     public static javax.swing.JPasswordField CardCode;
     public static javax.swing.JLabel CardAnimate;
     public static javax.swing.JLabel CardText;
+    public static javax.swing.JLabel CardSignature;
+    public static javax.swing.JLabel CardDate;
 
     public Card(JFrame JF) {
 
@@ -22,8 +24,10 @@ public class Card {
         CardCode = new javax.swing.JPasswordField();
         CardAnimate = new javax.swing.JLabel();
         CardText = new javax.swing.JLabel();
+        CardSignature = new javax.swing.JLabel();
+        CardDate = new javax.swing.JLabel();
 
-        Css.cssCard(EnterCard, CardCode, CardAnimate, CardText);
+        Css.cssCard(EnterCard, CardCode, CardAnimate, CardText, CardSignature, CardDate);
         CardAnimate.setIcon(new ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N   
 
         JF.add(EnterCard);
