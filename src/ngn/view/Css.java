@@ -46,7 +46,7 @@ public class Css extends Ngn {
         EnterCard.setLayout(new GridBagLayout());
 
         CardCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
-        CardCode.setHorizontalAlignment(JTextField.CENTER);
+        CardCode.setHorizontalAlignment(JPasswordField.CENTER);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -102,7 +102,7 @@ public class Css extends Ngn {
         EnterPin.setLayout(new GridBagLayout());
 
         PinCode.setFont(new Font("Tahoma", 0, 24)); // NOI18N
-        PinCode.setHorizontalAlignment(JTextField.CENTER);
+        PinCode.setHorizontalAlignment(JPasswordField.CENTER);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
