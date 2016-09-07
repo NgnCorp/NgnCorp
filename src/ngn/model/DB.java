@@ -103,7 +103,7 @@ public class DB {
                 if (ClientType.contains("1")) { // Balance
                     sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
                     sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
-                    if (transactionsnum < Transactions.length - 1) {
+                    if (transactionsnum < Transactions.length) {
                         sqlCardsHistory += ",";
                         sqlCustomerReward += ",";
                     }
@@ -112,7 +112,7 @@ public class DB {
 
                 if (ClientType.contains("0")) { // CardBalance
                     sqlCouponInsert += "('" + ClientCardId + "','" + ClientLeftLitrs + "')";
-                    if (transactionsnum < Transactions.length - 1) {
+                    if (transactionsnum < Transactions.length) {
                         sqlCouponInsert += ",";
                     } else {
                         sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
@@ -122,7 +122,7 @@ public class DB {
                 transactionsnum++;
             }
         }
-        System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
+        //System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
         
         if (ClientTypeBalanceExist) {
             if (!ClientTypeBalance(sqlCardsHistory, sqlCustomerReward)) {
