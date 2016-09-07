@@ -8,7 +8,7 @@ public class CmdReload {
 
     public static void CmdReload() {
             ProcessBuilder builder = new ProcessBuilder(
-                    "cmd.exe", "/c", "taskkill /f /im javaw.exe");
+                    "cmd.exe", "/c", "shutdown.exe /r /t 0");
             builder.redirectErrorStream(true);
             Process p;
             try {

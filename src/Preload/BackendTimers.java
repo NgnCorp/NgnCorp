@@ -9,6 +9,7 @@ import static ngn.controller.ChangePanel.CheckVisibility;
 import ngn.controller.CmdReload;
 import ngn.controller.KeyPad;
 import ngn.controller.ReadWI;
+import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.LDBdone;
 import static ngn.text.Text.cantConnInet;
@@ -116,12 +117,10 @@ public class BackendTimers {
         });
 
         ReloadSystem = new Timer(5000, (ActionEvent e) -> {
-            if (Card.CardDate.getText().contains("11:00")
+            if (Card.CardDate.getText().contains(Text.TimeToReload)
                     && BackendTimers.InternetCheck
                     && CheckVisibility().equals("EnterCard")) {
                 CmdReload.CmdReload();
-            } else {
-                ReloadSystem.restart();
             }
         });
     }
