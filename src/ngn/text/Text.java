@@ -20,10 +20,10 @@ public class Text {
 
     //___________P A N E L S    T E X T___________//
     
-    public static String h1CardPanel    = "<html>Поднесите карту к клавиатуре";
-    public static String h1EnterPin     = "<html>Введите PIN-код";
-    public static String h1ExitStar     = "<html>Нажмите звездочку (*) на клавиатуре для ВЫХОДА.";
-    public static String h1Confirm      = "<html>Для ПОДТВЕРЖДЕНИЯ pin-кода нажмите решетку (#) на клавиатуре.";
+    public static String h1CardPanel    = "<html><p style=\"margin-bottom:20px\">Поднесите карту к клавиатуре";
+    public static String h1EnterPin     = "<html><p style=\"margin-bottom:20px\">Введите PIN-код";
+    public static String h1ExitStar     = "<html>Нажмите звездочку * на клавиатуре для ВЫХОДА.";
+    public static String h1Confirm      = "<html><p style=\"margin-top:20px\">Для ПОДТВЕРЖДЕНИЯ pin нажмите решетку # на клавиатуре.";
     public static String h1SetLitrs     = "<html>Введите количество литров";
     public static String h1CardOwner    = "<html>Владелец карты:";
     public static String h1CardNum      = "<html>Номер карты:";
@@ -77,6 +77,6 @@ public class Text {
     
     //__________C R E A T O R   T E X T____________//
     public static String SignatureText  = "<html><p style=\"text-align:left;\">Designed & developed  by SvinTeger.com";
-    public static String BeginingTime   = "<html><p style=\"padding-right:25px;\">--:--:--";
-    public static String DatePadding    = "<html><p style=\"padding-right:25px;\">";
+    public static String BeginingTime   = "<html><p style=\"padding-right:0px;\">--:--:--";
+    public static String DatePadding    = "<html><p style=\"padding-right:0px;\">";
 }

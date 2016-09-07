@@ -51,14 +51,14 @@ public class Css extends Ngn {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 324;
-        gridBagConstraints.ipady = 24;
+        CardCode.setPreferredSize(new Dimension(324,50));
         EnterCard.setName("EnterCard");
         EnterCard.add(CardCode, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         EnterCard.add(CardAnimate, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
@@ -93,6 +93,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        //gridBagConstraints.insets = new Insets(0,0,20,0);
         EnterCard.add(CardText, gridBagConstraints);
     }
 
@@ -107,8 +108,7 @@ public class Css extends Ngn {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 270;
-        gridBagConstraints.ipady = 10;
+        PinCode.setPreferredSize(new Dimension(324,50));
         EnterPin.add(PinCode, gridBagConstraints);
 
         EnterPin.setName("EnterPin");
@@ -116,6 +116,7 @@ public class Css extends Ngn {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         EnterPin.add(PinAnimate, gridBagConstraints);
 
         PinCodeText.setFont(new Font("Candara", 1, 48));
