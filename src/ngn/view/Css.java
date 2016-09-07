@@ -192,9 +192,8 @@ public class Css extends Ngn {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 200;
-        gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
+        LitrsInput.setPreferredSize(new Dimension(324,50));
         EnterLitrs.add(LitrsInput, gridBagConstraints);
 
         ClientInfo.setBackground(new Color(204, 0, 0));
@@ -492,7 +491,6 @@ public class Css extends Ngn {
         BSLoadingText.setForeground(new Color(255, 255, 255));
         BSLoadingText.setHorizontalAlignment(SwingConstants.CENTER);
         BSLoadingText.setText(Text.h1BeforeStart);
-        BSLoadingText.setToolTipText("");
         BSLoadingPanel.add(BSLoadingText, new GridBagConstraints());
 
         BSLoadingBar.setIndeterminate(true);
