@@ -68,11 +68,15 @@ public class Text {
     
     //READ\WRITE ERRORS
     public static String cannotreadTR     = "Не удалось прочитать данные по транзакциям.";
-    public static String cannotreadDB     = "Не удалось прочитать данные по клиенту.";
-    
+    public static String cannotreadDB     = "Не удалось прочитать данные по клиенту.";    
     
     //__________D I N A M I C   T E X T____________//
     
     public static String WaitingText    = "<html><p style=\"text-align:center;\">Нажмите любую кнопку на клавиатуре.<br>Осталось: ";
     public static String ServerText     = "<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ ";
+    
+    //__________C R E A T O R   T E X T____________//
+    public static String SignatureText  = "<html><p style=\"text-align:left;\">Designed & developed  by SvinTeger.com";
+    public static String BeginingTime   = "<html><p style=\"padding-right:25px;\">--:--:--";
+    public static String DatePadding    = "<html><p style=\"padding-right:25px;\">";
 }

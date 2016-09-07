@@ -2,8 +2,6 @@ package ngn.view;
 
 import java.awt.*;
 import java.awt.image.MemoryImageSource;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +22,6 @@ public class Css extends Ngn {
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int windowHeight = screenSize.height;
     public static int windowWidth = screenSize.width;
-   
 
     public static void MainFrame(JFrame MFrame) {
         MFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +41,7 @@ public class Css extends Ngn {
     }
 
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText, JLabel CardSignature, JLabel CardDate) {
-        Date date = new Date();
+        
         EnterCard.setBackground(new Color(204, 0, 0));
         EnterCard.setLayout(new GridBagLayout());
 
@@ -63,33 +60,29 @@ public class Css extends Ngn {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         EnterCard.add(CardAnimate, gridBagConstraints);
-        
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        //gridBagConstraints.ipadx = 324;
-        gridBagConstraints.ipady = 75;
+        gridBagConstraints.ipadx = CardCode.getWidth();
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         CardSignature.setFont(new Font("Candara", 0, 16));
         CardSignature.setForeground(new Color(255, 255, 255));
-        CardSignature.setText("<html><p style=\"text-align:center;\">Designed & developed  by <br> \"SvinTeger.com\"");
-        CardSignature.setHorizontalAlignment(JTextField.CENTER);
+        CardSignature.setText(Text.SignatureText);
+        CardSignature.setHorizontalAlignment(JTextField.LEFT);
         EnterCard.add(CardSignature, gridBagConstraints);
-        
-      SimpleDateFormat ft = new SimpleDateFormat ("HH:mm:ss");
 
-      //System.out.println("Current Date: " + ft.format(date));
-        
-        
+        //System.out.println("Current Date: " + ft.format(date));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        //gridBagConstraints.ipadx = 324;
-        gridBagConstraints.ipady = 75;
+        gridBagConstraints.ipady = CardSignature.getVerticalTextPosition();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         CardDate.setFont(new Font("Candara", 0, 20));
         CardDate.setForeground(new Color(255, 255, 255));
-        CardDate.setText("<html><p style=\"text-align:center;\">Designed & developed  by <br> \"SvinTeger\"");
-        CardDate.setHorizontalAlignment(JTextField.CENTER);
-        CardDate.setText(ft.format(date));
+        CardDate.setHorizontalAlignment(JTextField.RIGHT);
+        CardDate.setText(Text.BeginingTime);
         EnterCard.add(CardDate, gridBagConstraints);
 
         CardText.setFont(new Font("Candara", 1, 48)); // NOI18N
@@ -485,9 +478,9 @@ public class Css extends Ngn {
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
         LoadingPanel.add(LoadingBar, gridBagConstraints);
     }
-    
+
     static void cssBeforeStart(JPanel BSLoadingPanel, JLabel BSLoadingText, JProgressBar BSLoadingBar) {
-        
+
         BSLoadingPanel.setVisible(true);
         BSLoadingPanel.setBackground(new Color(204, 0, 0));
         BSLoadingPanel.setLayout(new GridBagLayout());
@@ -507,7 +500,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
-        
+
         BSLoadingPanel.add(BSLoadingBar, gridBagConstraints);
     }
 }

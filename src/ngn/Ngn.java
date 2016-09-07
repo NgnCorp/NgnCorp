@@ -52,6 +52,7 @@ public class Ngn extends JFrame {
             Timers TIMER            = new Timers();
             Variables VARIABLES     = new Variables();
             
+            Timers.DateTime();
             BackendTimers.ReloadSystem();//Check for reload computer
 
             ChangePanel.ShowPanel(Card.EnterCard);

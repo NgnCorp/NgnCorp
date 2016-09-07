@@ -3,6 +3,8 @@ package ngn.controller;
 import Preload.BackendTimers;
 import Preload.LocalDB;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import ngn.text.Text;
 import javax.swing.Timer;
@@ -12,6 +14,7 @@ import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.view.*;
+import static ngn.view.Card.CardDate;
 
 /**
  *
@@ -32,12 +35,15 @@ public class Timers {
     static Timer ServerWaiting;
     static Timer KeyPadWorks;
     static Timer KeyPadNotWorks;
+    static Timer DateTime;
 
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
     private static final int WAIT_TIME = 30000;
     private static int SECONDSVALUE = 15;
+
+    SimpleDateFormat ft = new SimpleDateFormat("HH:mm:ss");
 
     public Timers() {
 
@@ -101,7 +107,7 @@ public class Timers {
                 Success();
                 errorCardLength.stop();
             }
-            */
+             */
         });
 
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
@@ -135,11 +141,11 @@ public class Timers {
                 //Try to send transaction with internet
                 if (BackendTimers.InternetCheck) {
                 } else {
-                    SendMail.sendEmail("No Internet", 
-                    "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
+                    SendMail.sendEmail("No Internet",
+                            "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
-                
+
                 WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
                 LocalDB.WriteToLocalDB();// Записываем в LocalDB
                 ChangePanel.ShowPanel(Bye.GoodBye);
@@ -212,8 +218,7 @@ if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем �
                 errorCardLength.stop();
             }
         });
-        */
-
+         */
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
@@ -294,6 +299,10 @@ if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем �
                 }
             } catch (SerialPortException ex_kpdw) {
             }
+        });
+
+        DateTime = new Timer(1000, (ActionEvent f) -> {
+            CardDate.setText(Text.DatePadding + ft.format(new Date()));
         });
     }
 
@@ -384,5 +393,9 @@ if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем �
 
     public static void KyePadWorks() {
         KeyPadWorks.restart();
+    }
+
+    public static void DateTime() {
+        DateTime.restart();
     }
 }
