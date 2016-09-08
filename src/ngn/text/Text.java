@@ -51,6 +51,7 @@ public class Text {
     public static String tryConnInet        = "<html>Проверяем наличие интернета...";
     public static String cantConnInet       = "<html>Не удалось подключиться. Проверьте наличие интернета!";
     public static String authNOT            = "<html>Авторизация не пройдена!";
+    public static String InetOkTryDownload  = "<html>Интернет есть! Пробуем скачать обновление...";
     public static String authSUCS           = "<html>Авторизация прошла успешно!";
     public static String downlNEW           = "<html>Скачивание новой версии программы";
     public static String cantFIND           = "<html>Не удается найти файл: ";

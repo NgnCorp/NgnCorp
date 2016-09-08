@@ -10,6 +10,7 @@ import ngn.controller.CmdReload;
 import ngn.controller.KeyPad;
 import ngn.controller.ReadWI;
 import ngn.text.Text;
+import static ngn.text.Text.InetOkTryDownload;
 import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.LDBdone;
 import static ngn.text.Text.cantConnInet;
@@ -105,10 +106,9 @@ public class BackendTimers {
         WaitForInternet = new Timer(3000, (ActionEvent e) -> {
             if (InternetCheck) {
                 WaitForInternet.stop();
-                Update.Update();
+                Threads.UPD();
             } else {
                 BSLoadingText.setText(cantConnInet);
-                WaitForInternet.restart();
             }
         });
 
