@@ -37,6 +37,7 @@ public class Update {
                 BSLoadingText.setText(cantConn);
             }
             try {
+                //BSLoadingText.setText(InetOkTryDownload);
                 Scanner scan = new Scanner(con.openStream());
                 while (scan.hasNext()) {
                     String line = scan.nextLine();

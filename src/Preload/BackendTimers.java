@@ -36,7 +36,7 @@ public class BackendTimers {
 
     public static boolean InternetCheck;
 
-    Integer LDBTime = 1 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
     Integer LDBTimeFast = 15000;
 
     public BackendTimers() {
@@ -106,7 +106,7 @@ public class BackendTimers {
         WaitForInternet = new Timer(3000, (ActionEvent e) -> {
             if (InternetCheck) {
                 WaitForInternet.stop();
-                Threads.UPD();
+                Update.Update();
             } else {
                 BSLoadingText.setText(cantConnInet);
             }
