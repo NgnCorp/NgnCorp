@@ -28,7 +28,6 @@ public class Update {
     private static URL con;
 
     public static void Update() {
-        BSLoadingText.setText(h1CheckUpdate);
         if (BackendTimers.InternetCheck) {
             try {
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
@@ -37,11 +36,13 @@ public class Update {
                 BSLoadingText.setText(cantConn);
             }
             try {
-                //BSLoadingText.setText(InetOkTryDownload);
+                BSLoadingText.setText(h1CheckUpdate);
                 Scanner scan = new Scanner(con.openStream());
                 while (scan.hasNext()) {
                     String line = scan.nextLine();
+                    System.out.println(line);
                     if (line.contains(KEYWORD)) {
+                    System.out.println(KEYWORD);
                         String ZipVer = line.substring(line.length() - 8, line.length() - 4);
                         String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
                         CheckNewVersion(ZipVer, ZipName);
@@ -59,6 +60,7 @@ public class Update {
 
     private static void CheckNewVersion(String ZipVer, String ZipName) {
 
+        BSLoadingText.setText(InetOkTryDownload);
         if (Double.valueOf(ZipVer) > VER) {// перевірка на нову версію
             String upload = con + ZipName;
             String place = "C:/NgnUpdater/Updates/" + ZipName;

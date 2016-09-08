@@ -46,7 +46,7 @@ public class Text {
     public static String h1BeforeStart      = "<html>Подождите. Идет настройка приложения...";
     public static String h1CheckFacilities  = "<html>Определяем оборудование...";
     public static String PortsON            = "<html>Оборудование на месте";
-    public static String h1CheckUpdate      = "<html>Проверка обновления";
+    public static String h1CheckUpdate      = "<html>Проверка обновления...";
     public static String cantConn           = "<html>Не удается подключится к серверу!";
     public static String tryConnInet        = "<html>Проверяем наличие интернета...";
     public static String cantConnInet       = "<html>Не удалось подключиться. Проверьте наличие интернета!";
