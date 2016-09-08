@@ -32,7 +32,6 @@ public class Update {
             BSLoadingText.setText(h1CheckUpdate);
             try {
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
-                System.out.println("Enter");
             } catch (MalformedURLException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
