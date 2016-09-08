@@ -78,14 +78,14 @@ public class LocalDB {
 
     public static void WriteToLocalDB() {
         String[] UpdateVariables = new String[3];
-        if (Variables.isLimitClient) { // Есть ли лимиты по клиенту?
-            if (Variables.BalanceOneCardZero == 1) { // 1 - баланс клиента 0 - баланс карты
+        if (Variables.isLimitClient) {
+            if (Variables.BalanceOneCardZero == 1) {
                 UpdateVariables[0] = String.valueOf(Variables.litrnum);//litrnum
-                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs) + Double.valueOf(Variables.leftlitr);//usedLimitLitrs
+                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs + Double.valueOf(Variables.leftlitr));//usedLimitLitrs
                 UpdateVariables[2] = String.valueOf(Variables.customerBalance - Double.valueOf(Variables.leftlitr));//customerBalance
             } else {
                 UpdateVariables[0] = String.valueOf(Variables.litrnum);//litrnum;
-                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs) + Double.valueOf(Variables.leftlitr);//usedLimitLitrs
+                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs + Double.valueOf(Variables.leftlitr));//usedLimitLitrs
                 UpdateVariables[2] = String.valueOf(Variables.customerBalance - Double.valueOf(Variables.leftlitr));//customerBalance
             }
         } else if (Variables.BalanceOneCardZero == 1) {
