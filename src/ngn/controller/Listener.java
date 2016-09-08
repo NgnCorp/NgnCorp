@@ -21,7 +21,7 @@ public class Listener {
             Variables.customerId     = Integer.valueOf(ReadWI.PersonalInfo[1]);
             Variables.pin            = ReadWI.PersonalInfo[2];
             Variables.name           = ReadWI.PersonalInfo[3];
-            Variables.litrnum        = ReadWI.PersonalInfo[4];
+            Variables.litrnum        = String.format(Locale.ENGLISH, "%(.2f", Double.valueOf(ReadWI.PersonalInfo[4]));
             Variables.code           = ReadWI.PersonalInfo[5];
             Variables.customerPrice  = Double.valueOf(ReadWI.PersonalInfo[6]);
             Variables.uahBalance     = Double.valueOf(ReadWI.PersonalInfo[7]);
@@ -53,7 +53,7 @@ public class Listener {
             if (Variables.isLimitClient) {
                 ClientLitrs.setText(Converter.lessNumber(Double.valueOf(Variables.litrnum), Variables.limitLitrnum));
             } else {
-                Litrs.ClientLitrs.setText(Variables.litrnum);
+                ClientLitrs.setText(Variables.litrnum);
             }
             if (Variables.litrPlace == 1) { // Балансовая карта
                 if (Variables.isLimitClient) { // Есть лимиты по заправке

@@ -141,8 +141,7 @@ public class Timers {
                 //Try to send transaction with internet
                 if (BackendTimers.InternetCheck) {
                 } else {
-                    SendMail.sendEmail("No Internet",
-                            "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
+                    //SendMail.sendEmail("No Internet","Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
 

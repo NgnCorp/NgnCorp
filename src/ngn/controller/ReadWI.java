@@ -37,21 +37,19 @@ public class ReadWI {
                     Content.append((char) data);
                     data = isr.read();
                 }
+                Transactions = String.valueOf(Content).split("\\|");
+                if (BackendTimers.InternetCheck && DB.SendTransactionsToDB(Transactions)) {
+                    WriteWI.FillingDataToZero();
+                    System.out.println("Transactions were send");
+                } else {
+                    System.out.println("Can't connect to server DB");
+                }
+            } else {
+                System.out.println("No Data in FillingData.txt");
             }
         } catch (IOException ex) {
             BSLoadingText.setText(Text.cannotreadTR);
             System.out.println(ex);
-        }
-        if (Content != null) {
-            Transactions = String.valueOf(Content).split("\\|");
-            if (BackendTimers.InternetCheck && DB.SendTransactionsToDB(Transactions)) {
-                WriteWI.FillingDataToZero();
-                System.out.println("Transactions were send");
-            } else {
-                System.out.println("Can't connect to server DB");
-            }
-        } else {
-            System.out.println("No transactions.");
         }
     }
 

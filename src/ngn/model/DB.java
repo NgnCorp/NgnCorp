@@ -8,9 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ngn.text.Config;
 import ngn.text.Paths;
 
@@ -56,31 +53,6 @@ public class DB {
         }
     }
 
-    /*
-    public static boolean cardCode(String cardcode) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement pst = con.prepareStatement(
-                    "SELECT cu.customer_id, cu.credit, c.name, c.litr_place, c.litrnum, c.code, c.pin, cu.customer_price, cu.customer_price*c.litrnum AS totalprice, cfvd.name AS purse, ("
-                    + "SELECT cl.text FROM " + DB_PREFIX + "coupon_limit cl WHERE cl.limit_id=12 AND cl.coupon_id=c.coupon_id) AS limit_day, ("
-                    + "SELECT cl.text FROM " + DB_PREFIX + "coupon_limit cl WHERE cl.limit_id=13 AND cl.coupon_id=c.coupon_id) AS limit_litrs, ("
-                    + "SELECT SUM(ch.leftlitrs) FROM " + DB_PREFIX + "cards_history ch WHERE ch.code=c.code AND DATE(ch.date) BETWEEN DATE(CURDATE()) AND DATE(CURDATE() + INTERVAL limit_day DAY)) AS used_limit_litrs, ("
-                    + "SELECT SUM(cr.points) FROM " + DB_PREFIX + "customer_reward cr WHERE cr.customer_id=cu.customer_id) AS customer_balance FROM " + DB_PREFIX + "coupon c "
-                    + "LEFT JOIN " + DB_PREFIX + "coupon_customer cc ON c.coupon_id=cc.coupon_id "
-                    + "LEFT JOIN " + DB_PREFIX + "customer cu ON cc.customer_id=cu.customer_id "
-                    + "LEFT JOIN " + DB_PREFIX + "custom_field_value_description cfvd ON cfvd.custom_field_value_id=SUBSTRING(cu.custom_field,7,1) "
-                    + "WHERE c.cardcode=?");
-            pst.setString(1, cardcode);
-            rs = pst.executeQuery();
-            conStatus = true;
-            return rs.next();
-        } catch (ClassNotFoundException | SQLException e) {
-            conStatus = false;
-            return false;
-        }
-    }
-     */
     public static boolean SendTransactionsToDB(String[] Transactions) {
         int transactionsnum = 1;
         boolean ClientTypeCardBalanceExist = false;
@@ -101,12 +73,12 @@ public class DB {
                 String ClientCardId = TransInfo[6];
                 if (ClientType.contains("1")) { // Balance
                     sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
-                    sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','0.00','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
+                    sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "',DEFAULT,'" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
                 }
 
                 if (ClientType.contains("0")) { // CardBalance
                     sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
-                    sqlCustomerReward += "('" + ClientId + "','" + null + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
+                    sqlCustomerReward += "('" + ClientId + "',DEFAULT,'-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
                     sqlCouponInsert += "('" + ClientCardId + "','" + ClientLeftLitrs + "')";
                     ClientTypeCardBalanceExist = true;
                     if (transactionsnum < Transactions.length) {
@@ -116,8 +88,10 @@ public class DB {
                 if (transactionsnum < Transactions.length) {
                     sqlCardsHistory += ",";
                     sqlCustomerReward += ",";
-                } else {                    
-                    sqlCouponInsert = sqlCouponInsert.substring(0,sqlCouponInsert.length()-1) + " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
+                } else if (sqlCouponInsert.substring(sqlCouponInsert.length() - 1).equals(",")) {
+                    sqlCouponInsert = sqlCouponInsert.substring(0, sqlCouponInsert.length() - 1) + " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
+                } else {
+                    sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
                 }
                 transactionsnum++;
             }
@@ -164,91 +138,4 @@ public class DB {
         }
         return true;
     }
-
-    /*
-    public static boolean updateLitrs(String newln, String cardnum) {
-        try {
-            Double checkLitr = 0.00;
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement check = con.prepareStatement("SELECT litrnum FROM " + DB_PREFIX + "coupon WHERE code=?");
-            check.setString(1, cardnum);
-            rs = check.executeQuery();
-            if (rs.next()) {
-                checkLitr = rs.getDouble("litrnum");
-                checkLitr -= Double.valueOf(newln);
-                System.out.println(checkLitr);
-                PreparedStatement pst = con.prepareStatement("UPDATE " + DB_PREFIX + "coupon set litrnum=? WHERE code=?");
-                pst.setString(1, String.valueOf(checkLitr));
-                pst.setString(2, cardnum);
-                pst.executeUpdate();
-                con.setAutoCommit(true);
-                conStatus = true;
-            } else {
-                PreparedStatement pst = con.prepareStatement("UPDATE " + DB_PREFIX + "coupon set litrnum=? WHERE code=?");
-                pst.setString(1, newln);
-                pst.setString(2, cardnum);
-                pst.executeUpdate();
-                con.setAutoCommit(true);
-                conStatus = true;
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            conStatus = false;
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean writeResult(String name, String code, String leftlitrs, Object sdate) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement pst = con.prepareStatement("INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description) VALUES (?, ?, ?, ?, ?)");
-            pst.setString(1, name);
-            pst.setString(2, code);
-            pst.setString(3, leftlitrs);
-            pst.setString(4, MODULENAME);
-            pst.setString(5, DESCRIPTION);
-            PreparedStatement pstBallance = con.prepareStatement("INSERT INTO " + DB_PREFIX + "customer_reward (customer_id, litrsoff, description, comment_m, date_added) VALUES (?, ?, ?, ?, ?)");
-            pstBallance.setString(1, Integer.toString(NgnApp.customerId));
-            pstBallance.setString(2, "-" + leftlitrs);
-            pstBallance.setString(3, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
-            pstBallance.setString(4, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
-            pstBallance.setObject(5, sdate);
-            pst.executeUpdate();
-            //pstBallance.executeUpdate();
-            con.setAutoCommit(true);
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean writeResultToBalance(String name, String code, String leftlitrs, Object sdate) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement pst = con.prepareStatement("INSERT INTO " + DB_PREFIX + "cards_history (name, code, leftlitrs, modulename, description) VALUES (?, ?, ?, ?, ?)");
-            pst.setString(1, name);
-            pst.setString(2, code);
-            pst.setString(3, leftlitrs);
-            pst.setString(4, MODULENAME);
-            pst.setString(5, DESCRIPTION);
-            PreparedStatement pstBallance = con.prepareStatement("INSERT INTO " + DB_PREFIX + "customer_reward (customer_id, points, description, comment_m, date_added) VALUES (?, ?, ?, ?, ?)");
-            //pstBallance.setString(1, Integer.toString(NgnApp.customerId));
-            pstBallance.setString(2, "-" + leftlitrs);
-            pstBallance.setString(3, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
-            pstBallance.setString(4, DESCRIPTION + " " + MODULENAME + ". Карта: " + code + " " + name);
-            pstBallance.setObject(5, sdate);
-            pst.executeUpdate();
-            pstBallance.executeUpdate();
-            con.setAutoCommit(true);
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
-            return false;
-        }
-        return true;
-    }
-     */
 }
