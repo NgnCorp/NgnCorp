@@ -28,10 +28,11 @@ public class Update {
     private static URL con;
 
     public static void Update() {
-        BSLoadingText.setText(h1CheckUpdate);
         if (BackendTimers.InternetCheck) {
+            BSLoadingText.setText(h1CheckUpdate);
             try {
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
+                System.out.println("Enter");
             } catch (MalformedURLException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
@@ -51,6 +52,8 @@ public class Update {
                 BSLoadingText.setText(authNOT);
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
             }
+            ReadWI.ReadWI();
+            Threads.CHECKPORTS();
         } else { // No Internet
             BSLoadingText.setText(tryConnInet);
             BackendTimers.WaitForInternet();
