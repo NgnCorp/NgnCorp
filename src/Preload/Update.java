@@ -30,9 +30,7 @@ public class Update {
     public static void Update() {
         BSLoadingText.setText(h1CheckUpdate);
         if (BackendTimers.InternetCheck) {
-            BSLoadingText.setText(InetOkTryDownload);
             try {
-                BSLoadingText.setText(authSUCS);
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
             } catch (MalformedURLException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
@@ -65,6 +63,7 @@ public class Update {
             String place = "C:/NgnUpdater/Updates/" + ZipName;
             BSLoadingText.setText(downlNEW);
             try {
+                BSLoadingText.setText(InetOkTryDownload);
                 download(upload, place);
             } catch (IOException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);
