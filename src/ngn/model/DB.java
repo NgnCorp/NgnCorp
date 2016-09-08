@@ -83,11 +83,10 @@ public class DB {
      */
     public static boolean SendTransactionsToDB(String[] Transactions) {
         int transactionsnum = 1;
-        boolean ClientTypeBalanceExist = false;
         boolean ClientTypeCardBalanceExist = false;
 
         String sqlCardsHistory = "INSERT INTO `" + DB_PREFIX + "cards_history` (name, code, leftlitrs, modulename, description, date) VALUES ";
-        String sqlCustomerReward = "INSERT INTO `" + DB_PREFIX + "customer_reward` (customer_id, points, description, comment_m, date_added) VALUES ";
+        String sqlCustomerReward = "INSERT INTO `" + DB_PREFIX + "customer_reward` (customer_id, points, litrsoff, description, comment_m, date_added) VALUES ";
         String sqlCouponInsert = "INSERT IGNORE INTO `" + DB_PREFIX + "coupon` (coupon_id, litrnum) VALUES ";
         for (String custTrans : Transactions) {
 
@@ -102,32 +101,31 @@ public class DB {
                 String ClientCardId = TransInfo[6];
                 if (ClientType.contains("1")) { // Balance
                     sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
-                    sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
-                    if (transactionsnum < Transactions.length) {
-                        sqlCardsHistory += ",";
-                        sqlCustomerReward += ",";
-                    }
-                    ClientTypeBalanceExist = true;
+                    sqlCustomerReward += "('" + ClientId + "','-" + ClientLeftLitrs + "','0.00','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
                 }
 
                 if (ClientType.contains("0")) { // CardBalance
+                    sqlCardsHistory += "('" + ClientName + "','" + ClientCardCode + "','" + ClientLeftLitrs + "','" + MODULENAME + "','" + DESCRIPTION + "','" + TransactionDate + "')";
+                    sqlCustomerReward += "('" + ClientId + "','" + null + "','-" + ClientLeftLitrs + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + DESCRIPTION + " " + MODULENAME + ". Карта: " + ClientCardCode + " " + ClientName + "','" + TransactionDate + "')";
                     sqlCouponInsert += "('" + ClientCardId + "','" + ClientLeftLitrs + "')";
+                    ClientTypeCardBalanceExist = true;
                     if (transactionsnum < Transactions.length) {
                         sqlCouponInsert += ",";
-                    } else {
-                        sqlCouponInsert += " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
                     }
-                    ClientTypeCardBalanceExist = true;
+                }
+                if (transactionsnum < Transactions.length) {
+                    sqlCardsHistory += ",";
+                    sqlCustomerReward += ",";
+                } else {                    
+                    sqlCouponInsert = sqlCouponInsert.substring(0,sqlCouponInsert.length()-1) + " ON DUPLICATE KEY UPDATE `litrnum` = `litrnum` - VALUES(`litrnum`)";
                 }
                 transactionsnum++;
             }
         }
-        //System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponInsert + "\nБаланс: " + ClientTypeBalanceExist + "\nКарта: " + ClientTypeCardBalanceExist);
-        
-        if (ClientTypeBalanceExist) {
-            if (!ClientTypeBalance(sqlCardsHistory, sqlCustomerReward)) {
-                return false;
-            }
+        System.out.println(sqlCardsHistory + "\n" + sqlCustomerReward + "\n" + sqlCouponInsert);
+
+        if (!ClientTypeBalance(sqlCardsHistory, sqlCustomerReward)) {
+            return false;
         }
         if (ClientTypeCardBalanceExist) {
             if (!ClientTypeCardBalance(sqlCouponInsert)) {
@@ -252,5 +250,5 @@ public class DB {
         }
         return true;
     }
-    */
+     */
 }
