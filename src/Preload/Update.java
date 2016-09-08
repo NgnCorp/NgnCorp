@@ -29,8 +29,10 @@ public class Update {
 
     public static void Update() {
         if (BackendTimers.InternetCheck) {
+            BSLoadingText.setText(h1CheckUpdate);
             try {
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
+                System.out.println("Enter");
             } catch (MalformedURLException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
@@ -38,15 +40,19 @@ public class Update {
             try {
                 BSLoadingText.setText(h1CheckUpdate);
                 Scanner scan = new Scanner(con.openStream());
+                Boolean FileExist = false;
                 while (scan.hasNext()) {
                     String line = scan.nextLine();
                     System.out.println(line);
                     if (line.contains(KEYWORD)) {
-                    System.out.println(KEYWORD);
+                        FileExist = true;
                         String ZipVer = line.substring(line.length() - 8, line.length() - 4);
                         String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
                         CheckNewVersion(ZipVer, ZipName);
                     }
+                }
+                if (!FileExist) {
+                    runnOldVer();
                 }
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
@@ -73,6 +79,11 @@ public class Update {
                 BSLoadingText.setText(cantdownlNEW);
             }
         } else {
+            runnOldVer();
+        }
+    }
+
+    private static void runnOldVer() {
             File file = new File(Paths.TRANSACTIONPATH);
             if (file.exists()) {
                 ReadWI.ReadWI();
@@ -89,9 +100,8 @@ public class Update {
                     SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
                 }
             }
-        }
     }
-
+    
     private static void download(String urlStr, String file) throws MalformedURLException, IOException {
         URL url = new URL(urlStr);
         try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
