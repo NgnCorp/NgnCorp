@@ -29,7 +29,7 @@ public class Listener {
             Variables.limitDay       = Integer.valueOf(ReadWI.PersonalInfo[9]);
             Variables.limitLitrs     = Double.valueOf(ReadWI.PersonalInfo[10]);
             Variables.usedLimitLitrs = Double.valueOf(ReadWI.PersonalInfo[11]);
-            Variables.litrPlace      = Integer.valueOf(ReadWI.PersonalInfo[12]);
+            Variables.BalanceOneCardZero = Integer.valueOf(ReadWI.PersonalInfo[12]);
             Variables.couponId       = Integer.valueOf(ReadWI.PersonalInfo[13]);
             Variables.credit         = Double.valueOf(ReadWI.PersonalInfo[14]);
             Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
@@ -55,7 +55,7 @@ public class Listener {
             } else {
                 ClientLitrs.setText(Variables.litrnum);
             }
-            if (Variables.litrPlace == 1) { // Балансовая карта
+            if (Variables.BalanceOneCardZero == 1) { // Балансовая карта
                 if (Variables.isLimitClient) { // Есть лимиты по заправке
                     ClientLitrs.setText(Converter.lessNumber(Variables.customerBalance, Variables.limitLitrnum));
                 } else {

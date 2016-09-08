@@ -35,7 +35,7 @@ public class BackendTimers {
 
     public static boolean InternetCheck;
 
-    Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer LDBTime = 1 * 60 * 1000;//30 * 60 * 1000 = 30 минут
     Integer LDBTimeFast = 15000;
 
     public BackendTimers() {

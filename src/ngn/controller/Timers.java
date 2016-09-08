@@ -130,7 +130,7 @@ public class Timers {
                 Variables.sdate = new java.sql.Timestamp(udate.getTime());
                 // Transaction Data
                 String[] Transaction = new String[]{
-                    String.valueOf(Variables.litrPlace),
+                    String.valueOf(Variables.BalanceOneCardZero),
                     String.valueOf(Variables.customerId),
                     Variables.name,
                     Variables.code,

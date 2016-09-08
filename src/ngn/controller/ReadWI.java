@@ -102,12 +102,12 @@ public class ReadWI {
             String.valueOf(Variables.limitDay),
             String.valueOf(Variables.limitLitrs),
             UpdateVariables[1],
-            String.valueOf(Variables.litrPlace),
+            String.valueOf(Variables.BalanceOneCardZero),
             String.valueOf(Variables.couponId),
             String.valueOf(Variables.credit),
             UpdateVariables[2]
         };
-        //System.out.println(Arrays.toString(UpdateData));
+        System.out.println(Arrays.toString(UpdateData));
         for (String custCard : CustomerInfo) {
             CCS = custCard.split("=>");
             if (CCS[0].toUpperCase().contains(CardCode)) {

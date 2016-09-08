@@ -57,6 +57,10 @@ public class Ngn extends JFrame {
 
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
+            
+            // BAG WITH BS APPEARED OB CARDCODE PANEL //
+            BeforeStart.BSLoadingBar.setVisible(false);
+            BeforeStart.BSLoadingText.setVisible(false);
         });
     }
 }

@@ -35,7 +35,7 @@ public class Variables {
     public static String limitLitrnum;
     public static String newln;
     public static String leftlitr;
-    public static Integer litrPlace;
+    public static Integer BalanceOneCardZero;
     public static Double credit;
     public static Double customerBalance;
     public static Object sdate;

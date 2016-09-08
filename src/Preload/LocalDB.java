@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import ngn.controller.ReadWI;
 import ngn.controller.Variables;
 import ngn.controller.WriteWI;
@@ -77,25 +78,26 @@ public class LocalDB {
 
     public static void WriteToLocalDB() {
         String[] UpdateVariables = new String[3];
-        if (Variables.isLimitClient) {
-            if (Variables.litrPlace == 1) {
+        if (Variables.isLimitClient) { // Есть ли лимиты по клиенту?
+            if (Variables.BalanceOneCardZero == 1) { // 1 - баланс клиента 0 - баланс карты
                 UpdateVariables[0] = String.valueOf(Variables.litrnum);//litrnum
-                UpdateVariables[1] = Variables.leftlitr;//usedLimitLitrs
+                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs) + Double.valueOf(Variables.leftlitr);//usedLimitLitrs
                 UpdateVariables[2] = String.valueOf(Variables.customerBalance - Double.valueOf(Variables.leftlitr));//customerBalance
             } else {
                 UpdateVariables[0] = String.valueOf(Variables.litrnum);//litrnum;
-                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs);//usedLimitLitrs
+                UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs) + Double.valueOf(Variables.leftlitr);//usedLimitLitrs
                 UpdateVariables[2] = String.valueOf(Variables.customerBalance - Double.valueOf(Variables.leftlitr));//customerBalance
             }
-        } else if (Variables.litrPlace == 1) {
+        } else if (Variables.BalanceOneCardZero == 1) {
             UpdateVariables[0] = Variables.newln;//litrnum
             UpdateVariables[1] = Variables.leftlitr;//usedLimitLitrs
-            UpdateVariables[2] = String.valueOf(Variables.customerBalance);//customerBalance
+            UpdateVariables[2] = String.valueOf(Variables.customerBalance - Double.valueOf(Variables.leftlitr));//customerBalance
         } else {
             UpdateVariables[0] = Variables.newln;//litrnum
-            UpdateVariables[1] = String.valueOf(Variables.usedLimitLitrs);//usedLimitLitrs
-            UpdateVariables[2] = String.valueOf(Variables.customerBalance);//customerBalance
+            UpdateVariables[1] = Variables.leftlitr;//usedLimitLitrs
+            UpdateVariables[2] = String.valueOf(Variables.customerBalance - Double.valueOf(Variables.leftlitr));//customerBalance
         }
+        System.out.println(Arrays.toString(UpdateVariables));
         ReadWI.ReWrite(Variables.cardCode, UpdateVariables);
     }
 }
