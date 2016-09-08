@@ -106,7 +106,7 @@ public class BackendTimers {
         WaitForInternet = new Timer(3000, (ActionEvent e) -> {
             if (InternetCheck) {
                 WaitForInternet.stop();
-                Update.Update();
+                Threads.UPD();
             } else {
                 BSLoadingText.setText(cantConnInet);
             }

@@ -63,11 +63,7 @@ public class Converter {
             } else {
                 rest = Variables.limitLitrs;
             }
-            if (rest < 1) {
-                //errorCardLength(1);
-            } else {
-                Variables.limitLitrnum = String.format(Locale.ENGLISH, "%(.2f", rest);
-            }
+            Variables.limitLitrnum = String.format(Locale.ENGLISH, "%(.2f", rest);
         } else {
             Variables.isLimitClient = false;
         }
