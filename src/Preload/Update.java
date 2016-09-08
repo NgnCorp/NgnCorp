@@ -19,7 +19,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.02;
+    private static final Double VER = 0.03;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -63,8 +63,8 @@ public class Update {
         if (Double.valueOf(ZipVer) > VER) {// перевірка на нову версію
             String upload = con + ZipName;
             String place = "C:/NgnUpdater/Updates/" + ZipName;
+            BSLoadingText.setText(downlNEW);
             try {
-                BSLoadingText.setText(downlNEW);
                 download(upload, place);
             } catch (IOException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);

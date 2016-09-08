@@ -57,11 +57,14 @@ public class SendMail {
             });
 
             message = new MimeMessage(mailSession);
+            int b = 1;
             try {
                 message.setFrom(new InternetAddress(FROM));
             } catch (MessagingException ex) {
                 Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+                b = 0;
             }
+            if (b == 1) {
             String[] emails = {TOVALERA, TOSASHA};
             for (String email : emails) {
                 try {
@@ -81,6 +84,10 @@ public class SendMail {
                     Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            } else {
+            String[] logMas = {subject, body};
+            WriteWI.Write(logMas, Paths.LOGPATH, true);
+        }
         } else {
             String[] logMas = {subject, body};
             WriteWI.Write(logMas, Paths.LOGPATH, true);
