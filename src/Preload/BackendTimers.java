@@ -125,10 +125,12 @@ public class BackendTimers {
                 CmdReload.CmdReload();
             }
         });
-        
+
         WaitForServer = new Timer(ServerTime, (ActionEvent e) -> {
-            if (BackendTimers.InternetCheck && CheckVisibility().equals("EnterCard")) {
-                //Threads.UPD();
+            if (BackendTimers.InternetCheck
+                    && CheckVisibility().equals("EnterCard")
+                    && Update.CheckServer()) {
+                CmdReload.CmdReload();
             }
         });
     }
@@ -156,7 +158,7 @@ public class BackendTimers {
     public static void ReloadSystem() {
         ReloadSystem.restart();
     }
-    
+
     public static void WaitForServer() {
         WaitForServer.restart();
     }

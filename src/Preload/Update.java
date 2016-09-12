@@ -40,24 +40,6 @@ public class Update {
             }
             try {
                 BSLoadingText.setText(h1CheckUpdate);
-<<<<<<< HEAD
-                Scanner scan = new Scanner(con.openStream());
-                Boolean FileExist = false;
-                if (scan.hasNext()) {
-                while (scan.hasNext()) {
-                    String line = scan.nextLine();
-                    if (line.contains(KEYWORD)) {
-                        FileExist = true;
-                        String ZipVer = line.substring(line.length() - 8, line.length() - 4);
-                        String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
-                        CheckNewVersion(ZipVer, ZipName);
-                    }
-                }
-                } else {
-                    
-                }
-                if (!FileExist) {
-=======
                 if (CheckServer()) {
                     Scanner scan = new Scanner(con.openStream());
                     Boolean FileExist = false;
@@ -74,7 +56,7 @@ public class Update {
                         runnOldVer();
                     }
                 } else {
->>>>>>> origin/master
+                    BackendTimers.WaitForServer();
                     runnOldVer();
                 }
             } catch (IOException ex) {
@@ -87,7 +69,7 @@ public class Update {
         }
     }
 
-    private static boolean CheckServer() {
+    public static boolean CheckServer() {
         try {
             Scanner testscan = new Scanner(con.openStream());
             return testscan.hasNext();
