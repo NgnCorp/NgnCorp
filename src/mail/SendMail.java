@@ -65,7 +65,7 @@ public class SendMail {
                 b = 0;
             }
             if (b == 1) {
-                String[] emails = {TOVALERA, TOSASHA};
+                //String[] emails = {TOVALERA, TOSASHA};
                     try {
                         message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
                         message.setSubject(subject, "UTF-8");

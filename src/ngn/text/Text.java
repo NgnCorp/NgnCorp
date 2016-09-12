@@ -80,5 +80,5 @@ public class Text {
     public static String SignatureText  = "<html><p style=\"text-align:left;\">Designed & developed  by SvinTeger.com";
     public static String BeginingTime   = "<html><p style=\"padding-right:0px;\">--:--:--";
     public static String DatePadding    = "<html><p style=\"padding-right:0px;\">";
-    public static String TimeToReload   = "14:00:";
+    public static String TimeToReload   = "12:00:";
 }

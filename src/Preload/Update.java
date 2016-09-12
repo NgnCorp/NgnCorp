@@ -8,8 +8,6 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mail.SendMail;
 import ngn.controller.ReadWI;
 import ngn.model.DB;
