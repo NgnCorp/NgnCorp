@@ -40,7 +40,7 @@ public class Update {
             }
             try {
                 BSLoadingText.setText(h1CheckUpdate);
-                if (CheckServer()) {
+                //if (CheckServer()) {
                     Scanner scan = new Scanner(con.openStream());
                     Boolean FileExist = false;
                     while (scan.hasNext()) {
@@ -55,10 +55,10 @@ public class Update {
                     if (!FileExist) {
                         runnOldVer();
                     }
-                } else {
+                /*} else {
                     BackendTimers.WaitForServer();
                     runnOldVer();
-                }
+                }*/
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);

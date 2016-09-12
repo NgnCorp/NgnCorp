@@ -28,7 +28,7 @@ public class SendMail {
     private static final String SMTPHOST = "smtp.mail.ru";
     private static final String PORT = "2525";
     private static final String LOGIN = "ngnservise@mail.ru";
-    private static final String PASSWORD = "NgnAdmin2015";
+    private static final String PASSWORD = "NgnAdmin2016";
     private static final String TOVALERA = "lcf666666lcf@gmail.com";
     private static final String TOSASHA = "svitlyk.oleksandr@mail.ru";
     private static Session mailSession;
@@ -65,34 +65,33 @@ public class SendMail {
                 b = 0;
             }
             if (b == 1) {
-            String[] emails = {TOVALERA, TOSASHA};
-            for (String email : emails) {
-                try {
-                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
-                    message.setSubject(subject, "UTF-8");
-                    mp = new MimeMultipart();
-                    mbp = new MimeBodyPart();
-                    mbp.setContent(body, "text/html;charset=utf-8");
-                    mp.addBodyPart(mbp);
-                    message.setContent(mp);
-                    message.setSentDate(new java.util.Date());
+                String[] emails = {TOVALERA, TOSASHA};
+                    try {
+                        message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
+                        message.setSubject(subject, "UTF-8");
+                        mp = new MimeMultipart();
+                        mbp = new MimeBodyPart();
+                        mbp.setContent(body, "text/html;charset=utf-8");
+                        mp.addBodyPart(mbp);
+                        message.setContent(mp);
+                        message.setSentDate(new java.util.Date());
 
-                    Transport.send(message);
-                } catch (AddressException ex) {
-                    String[] logMas = {"Adress", String.valueOf(ex)};
-                    WriteWI.Write(logMas, Paths.LOGPATH, true);
-                } catch (MessagingException ex) {
-                    String[] logMas = {"Message", String.valueOf(ex)};
-                    WriteWI.Write(logMas, Paths.LOGPATH, true);
-                }
-            }
+                        Transport.send(message);
+                    } catch (AddressException ex) {
+                        String[] logMas = {"Adress", String.valueOf(ex)};
+                        WriteWI.Write(logMas, Paths.LOGPATH, false);
+                    } catch (MessagingException ex) {
+                        String[] logMas = {"Message", String.valueOf(ex)};
+                        WriteWI.Write(logMas, Paths.LOGPATH, false);
+                    }
+                
             } else {
-            String[] logMas = {subject, body};
-            WriteWI.Write(logMas, Paths.LOGPATH, true);
-        }
+                String[] logMas = {subject, body};
+                WriteWI.Write(logMas, Paths.LOGPATH, false);
+            }
         } else {
             String[] logMas = {subject, body};
-            WriteWI.Write(logMas, Paths.LOGPATH, true);
+            WriteWI.Write(logMas, Paths.LOGPATH, false);
         }
     }
 }
