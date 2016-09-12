@@ -79,9 +79,11 @@ public class SendMail {
 
                     Transport.send(message);
                 } catch (AddressException ex) {
-                    Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+                    String[] logMas = {"Adress", String.valueOf(ex)};
+                    WriteWI.Write(logMas, Paths.LOGPATH, true);
                 } catch (MessagingException ex) {
-                    Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
+                    String[] logMas = {"Message", String.valueOf(ex)};
+                    WriteWI.Write(logMas, Paths.LOGPATH, true);
                 }
             }
             } else {
