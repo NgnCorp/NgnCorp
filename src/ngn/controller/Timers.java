@@ -10,8 +10,6 @@ import ngn.text.Text;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import mail.SendMail;
-import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.view.*;
 import static ngn.view.Card.CardDate;
@@ -92,24 +90,6 @@ public class Timers {
             }
         });
 
-        errorCardLength = new Timer(5000, (ActionEvent e) -> {
-            /*
-            if (DB.updateLitrs(Variables.newln, Variables.code)) {
-                DB.writeResult(
-                        Variables.name,
-                        Variables.code,
-                        Variables.leftlitr,
-                        Variables.sdate
-                ); //Записываем операцию в таблицу
-                ChangePanel.ShowPanel(Bye.GoodBye);
-                ToZero.TextOff();
-                GasStation.StopStartCom3(false);
-                Success();
-                errorCardLength.stop();
-            }
-             */
-        });
-
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
             Work.PolozheniePistoleta.setText(Text.rememberAboutPistol);
             Work.SchetLitrov.setText(GasStation.SchetLitrov);
@@ -154,70 +134,9 @@ public class Timers {
                 GasStation.CustomerInfoToZero();
                 ToZero.CustomerInfo();
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
-/*               
-if (DB.updateLitrs(Variables.newln, Variables.code)) { // Записываем в базу новое число литров
-                    DB.writeResult(
-                            Variables.name,
-                            Variables.code,
-                            Variables.leftlitr,
-                            Variables.sdate
-                    );//Записываем операцию в таблицу
-                    ChangePanel.ShowPanel(Bye.GoodBye);
-                    Litrs.LitrsInput.setText("");
-                    Work.SchetLitrov.setText("");
-                    Success();
-                    GasStation.CustomerInfoToZero();
-                    ToZero.CustomerInfo(); // обнуляем данные
-                } else if (BackendTimers.InternetCheck) {
-                    Info.ErrorMassage.setText(Text.nointernetatstart);
-                    ChangePanel.ShowPanel(Info.InfoMassage);
-                    ServerWaiting();
-                } else {
-                    noInternetInEnd(
-                            Variables.newln,
-                            Variables.code,
-                            Variables.name,
-                            Variables.leftlitr,
-                            Variables.sdate
-                    );
-                }
-                 */
             }
         });
-
-        /*
-        errorCardLength = new Timer(5000, (ActionEvent e) -> {
-            if (Variables.litrPlace == 1 && DB.writeResultToBalance(
-                    Variables.name,
-                    Variables.code,
-                    String.format(Locale.ENGLISH, "%(.2f", Variables.newln),
-                    Variables.sdate)) {
-                ChangePanel.ShowPanel(Bye.GoodBye);
-                Litrs.LitrsInput.setText("");
-                Work.SchetLitrov.setText("");
-                Success();
-                GasStation.CustomerInfoToZero();
-                ToZero.CustomerInfo(); // обнуляем данные
-                errorCardLength.stop();
-            } else if (Variables.litrPlace != 1 && DB.updateLitrs(
-                    String.format(Locale.ENGLISH, "%(.2f", Variables.newln),
-                    Variables.code)) { // Отдаем для записи данные по заправке
-                DB.writeResult(
-                        Variables.name,
-                        Variables.code,
-                        Variables.leftlitr,
-                        Variables.sdate
-                );//Записываем операцию в таблицу
-                ChangePanel.ShowPanel(Bye.GoodBye);
-                Litrs.LitrsInput.setText("");
-                Work.SchetLitrov.setText("");
-                Success();
-                GasStation.CustomerInfoToZero();
-                ToZero.CustomerInfo(); // обнуляем данные
-                errorCardLength.stop();
-            }
-        });
-         */
+        
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
