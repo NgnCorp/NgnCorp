@@ -8,6 +8,8 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mail.SendMail;
 import ngn.controller.ReadWI;
 import ngn.model.DB;
@@ -38,6 +40,7 @@ public class Update {
             }
             try {
                 BSLoadingText.setText(h1CheckUpdate);
+<<<<<<< HEAD
                 Scanner scan = new Scanner(con.openStream());
                 Boolean FileExist = false;
                 if (scan.hasNext()) {
@@ -54,6 +57,24 @@ public class Update {
                     
                 }
                 if (!FileExist) {
+=======
+                if (CheckServer()) {
+                    Scanner scan = new Scanner(con.openStream());
+                    Boolean FileExist = false;
+                    while (scan.hasNext()) {
+                        String line = scan.nextLine();
+                        if (line.contains(KEYWORD)) {
+                            FileExist = true;
+                            String ZipVer = line.substring(line.length() - 8, line.length() - 4);
+                            String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
+                            CheckNewVersion(ZipVer, ZipName);
+                        }
+                    }
+                    if (!FileExist) {
+                        runnOldVer();
+                    }
+                } else {
+>>>>>>> origin/master
                     runnOldVer();
                 }
             } catch (IOException ex) {
@@ -63,6 +84,15 @@ public class Update {
         } else { // No Internet
             BSLoadingText.setText(tryConnInet);
             BackendTimers.WaitForInternet();
+        }
+    }
+
+    private static boolean CheckServer() {
+        try {
+            Scanner testscan = new Scanner(con.openStream());
+            return testscan.hasNext();
+        } catch (IOException ex) {
+            return false;
         }
     }
 
@@ -86,24 +116,24 @@ public class Update {
     }
 
     private static void runnOldVer() {
-            File file = new File(Paths.TRANSACTIONPATH);
-            if (file.exists()) {
-                ReadWI.ReadWI();
-                Threads.CHECKPORTS();
-            } else {
-                BSLoadingText.setText(cantFIND + Paths.TRANSACTIONPATH);
-                try {
-                    if (file.createNewFile()) {
-                        BSLoadingText.setText(createFile + Paths.TRANSACTIONPATH);
-                        Threads.CHECKPORTS();
-                    }
-                } catch (IOException ex) {
-                    BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
-                    SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
+        File file = new File(Paths.TRANSACTIONPATH);
+        if (file.exists()) {
+            ReadWI.ReadWI();
+            Threads.CHECKPORTS();
+        } else {
+            BSLoadingText.setText(cantFIND + Paths.TRANSACTIONPATH);
+            try {
+                if (file.createNewFile()) {
+                    BSLoadingText.setText(createFile + Paths.TRANSACTIONPATH);
+                    Threads.CHECKPORTS();
                 }
+            } catch (IOException ex) {
+                BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
+                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
             }
+        }
     }
-    
+
     private static void download(String urlStr, String file) throws MalformedURLException, IOException {
         URL url = new URL(urlStr);
         try (ReadableByteChannel rbc = Channels.newChannel(url.openStream()); FileOutputStream fos = new FileOutputStream(file)) {
