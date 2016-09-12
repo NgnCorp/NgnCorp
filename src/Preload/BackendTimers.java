@@ -33,10 +33,12 @@ public class BackendTimers {
     public static Timer WaitForInternet;
     public static Timer InternetStatus;
     public static Timer ReloadSystem;
+    public static Timer WaitForServer;
 
     public static boolean InternetCheck;
 
     Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
+    Integer ServerTime = 5 * 60 * 1000;//30 * 60 * 1000 = 30 минут
     Integer LDBTimeFast = 15000;
 
     public BackendTimers() {
@@ -123,6 +125,12 @@ public class BackendTimers {
                 CmdReload.CmdReload();
             }
         });
+        
+        WaitForServer = new Timer(ServerTime, (ActionEvent e) -> {
+            if (BackendTimers.InternetCheck && CheckVisibility().equals("EnterCard")) {
+                //Threads.UPD();
+            }
+        });
     }
 
     public static void AppStart() {
@@ -147,5 +155,9 @@ public class BackendTimers {
 
     public static void ReloadSystem() {
         ReloadSystem.restart();
+    }
+    
+    public static void WaitForServer() {
+        WaitForServer.restart();
     }
 }

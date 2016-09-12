@@ -28,7 +28,7 @@ public class SendMail {
     private static final String SMTPHOST = "smtp.mail.ru";
     private static final String PORT = "2525";
     private static final String LOGIN = "ngnservise@mail.ru";
-    private static final String PASSWORD = "NgnAdmin2016";
+    private static final String PASSWORD = "NgnAdmin2015";
     private static final String TOVALERA = "lcf666666lcf@gmail.com";
     private static final String TOSASHA = "svitlyk.oleksandr@mail.ru";
     private static Session mailSession;

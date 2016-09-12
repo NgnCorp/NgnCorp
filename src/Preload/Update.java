@@ -40,6 +40,7 @@ public class Update {
                 BSLoadingText.setText(h1CheckUpdate);
                 Scanner scan = new Scanner(con.openStream());
                 Boolean FileExist = false;
+                if (scan.hasNext()) {
                 while (scan.hasNext()) {
                     String line = scan.nextLine();
                     if (line.contains(KEYWORD)) {
@@ -48,6 +49,9 @@ public class Update {
                         String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
                         CheckNewVersion(ZipVer, ZipName);
                     }
+                }
+                } else {
+                    
                 }
                 if (!FileExist) {
                     runnOldVer();
