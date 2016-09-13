@@ -19,7 +19,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.02;
+    private static final Double VER = 0.04;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -38,25 +38,20 @@ public class Update {
             }
             try {
                 BSLoadingText.setText(h1CheckUpdate);
-                //if (CheckServer()) {
-                    Scanner scan = new Scanner(con.openStream());
-                    Boolean FileExist = false;
-                    while (scan.hasNext()) {
-                        String line = scan.nextLine();
-                        if (line.contains(KEYWORD)) {
-                            FileExist = true;
-                            String ZipVer = line.substring(line.length() - 8, line.length() - 4);
-                            String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
-                            CheckNewVersion(ZipVer, ZipName);
-                        }
+                Scanner scan = new Scanner(con.openStream());
+                Boolean FileExist = false;
+                while (scan.hasNext()) {
+                    String line = scan.nextLine();
+                    if (line.contains(KEYWORD)) {
+                        FileExist = true;
+                        String ZipVer = line.substring(line.length() - 8, line.length() - 4);
+                        String ZipName = KEYWORD + line.substring(line.length() - 9, line.length());
+                        CheckNewVersion(ZipVer, ZipName);
                     }
-                    if (!FileExist) {
-                        runnOldVer();
-                    }
-                /*} else {
-                    BackendTimers.WaitForServer();
+                }
+                if (!FileExist) {
                     runnOldVer();
-                }*/
+                }
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
@@ -97,21 +92,41 @@ public class Update {
 
     private static void runnOldVer() {
         File file = new File(Paths.TRANSACTIONPATH);
-        if (file.exists()) {
+        if (file.exists() && CreateCounter()) {
             ReadWI.ReadWI();
             Threads.CHECKPORTS();
         } else {
             BSLoadingText.setText(cantFIND + Paths.TRANSACTIONPATH);
             try {
-                if (file.createNewFile()) {
+                if (file.createNewFile() && CreateCounter()) {
                     BSLoadingText.setText(createFile + Paths.TRANSACTIONPATH);
                     Threads.CHECKPORTS();
+                } else {
+                    SendMail.sendEmail(Text.workingFIREWALL, Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
                 }
             } catch (IOException ex) {
                 BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
                 SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
             }
         }
+    }
+
+    private static boolean CreateCounter() {
+        File file = new File(Paths.COUNTERPATH);
+        if (file.exists()) {
+            return true;
+        } else {
+            try {
+                if (file.createNewFile()) {
+                    return true;
+                }
+            } catch (IOException ex) {
+                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.COUNTERPATH + " " + DB.MODULENAME);
+                return false;
+            }
+
+        }
+        return false;
     }
 
     private static void download(String urlStr, String file) throws MalformedURLException, IOException {
@@ -124,7 +139,7 @@ public class Update {
 
     public static void OpenandShut() {
         try {
-            Runtime.getRuntime().exec("C:\\NgnUpdater\\dist\\Unzip.exe"); // Запуск програми РОЗАРХІВУВАННЯ
+            Runtime.getRuntime().exec(Paths.UPDATEPATH); // Запуск програми РОЗАРХІВУВАННЯ
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {

@@ -57,6 +57,7 @@ public class Text {
     public static String cantFIND           = "<html>Не удается найти файл: ";
     public static String createFile         = "<html>Файл создан: ";
     public static String cantCREATE         = "<html>Не удается создать файл: ";
+    public static String workingFIREWALL    = "<html>Брандмауэр не разрешил создание файла: ";
     public static String cantdownlNEW       = "<html>Не удалось скачать обновление";
     public static String cantRunProg        = "<html>Невозможно открыть програму обновления";
     public static String createLDB          = "<html>Проверяем данные с сервера";
@@ -80,5 +81,5 @@ public class Text {
     public static String SignatureText  = "<html><p style=\"text-align:left;\">Designed & developed  by SvinTeger.com";
     public static String BeginingTime   = "<html><p style=\"padding-right:0px;\">--:--:--";
     public static String DatePadding    = "<html><p style=\"padding-right:0px;\">";
-    public static String TimeToReload   = "12:00:";
+    public static String TimeToReload   = "23:00:";
 }

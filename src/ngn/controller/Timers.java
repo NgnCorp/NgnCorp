@@ -10,6 +10,8 @@ import ngn.text.Text;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import mail.SendMail;
+import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.view.*;
 import static ngn.view.Card.CardDate;
@@ -121,10 +123,11 @@ public class Timers {
                 //Try to send transaction with internet
                 if (BackendTimers.InternetCheck) {
                 } else {
-                    //SendMail.sendEmail("No Internet","Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
+                    SendMail.sendEmail("No Internet", "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
-
+                
+                WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
                 WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
                 LocalDB.WriteToLocalDB();// Записываем в LocalDB
                 ChangePanel.ShowPanel(Bye.GoodBye);
@@ -136,7 +139,7 @@ public class Timers {
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
             }
         });
-        
+
         Success = new Timer(SUCCESSTIME, (ActionEvent e) -> {
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);

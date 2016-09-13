@@ -20,7 +20,9 @@ public class ReadWI {
 
     public static StringBuilder Content;
     public static StringBuilder LDB;
+    public static StringBuilder SB;
     public static int data;
+    public static String CounterStart = "0.00";
     public static String[] CustomerInfo;
     public static String[] PersonalInfo;
     public static String[] Transactions;
@@ -123,5 +125,22 @@ public class ReadWI {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+    }
+
+    public static String CounterReader() {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.COUNTERPATH), "windows-1251")) {
+            data = isr.read();
+            if (data > 0) {
+                SB = new StringBuilder(data);
+                while (data != -1) {
+                    SB.append((char) data);
+                    data = isr.read();
+                }
+                String[] CounterContent = String.valueOf(SB).split("\\|");
+                CounterStart = CounterContent[0].substring(0, CounterContent[0].length() - 1);
+            }
+        } catch (IOException ex) {
+        }
+        return CounterStart;
     }
 }
