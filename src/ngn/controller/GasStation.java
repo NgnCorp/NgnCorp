@@ -20,6 +20,7 @@ public class GasStation {
     private static SerialPort KolonkaCOM3;
     static int komanda;
     static Timer KolonkaStart;
+    static Timer KolonkaStartNotWorks;
     static Timer ZaderzkaDoza;
     static String PolozheniePistoleta;
     static String SchetLitrov;
@@ -58,16 +59,39 @@ public class GasStation {
     public static void TimerKolonkaStart() {
         KolonkaStart = new Timer(600, (ActionEvent e) -> {
             try {
-                KolonkaCOM3.writeString("@10510045#");
+                Boolean TestGSSignal = KolonkaCOM3.writeString("@10510045#");
                 komanda = 0;
+                if (!TestGSSignal) {
+                    KolonkaStart.stop();
+                    KolonkaStartNotWorks.restart();
+                }
             } catch (SerialPortException ex) {
-                //System.out.println(ex);
+                System.out.println(ex);
             }
         });
         KolonkaStart.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"
+
+        KolonkaStartNotWorks = new Timer(1000, (ActionEvent e) -> {
+            GasStationSettings();
+            if (KolonkaCOM3.isOpened()) {
+                KolonkaStart.restart();
+                KolonkaStartNotWorks.stop();
+            }
+        });
     }
 
-    private class EventListener implements SerialPortEventListener {
+    public static void GasStationSettings() {
+        KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
+        try {
+            KolonkaCOM3.openPort();
+            KolonkaCOM3.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
+            KolonkaCOM3.setEventsMask(SerialPort.MASK_RXCHAR);
+            KolonkaCOM3.addEventListener(new EventListener());
+        } catch (SerialPortException ex) {
+        }
+    }
+
+    private static class EventListener implements SerialPortEventListener {
 
         @Override
         public void serialEvent(SerialPortEvent event) {
@@ -97,7 +121,7 @@ public class GasStation {
                         }
                         String pihex = Integer.toHexString(crc);
                         if (pihex.equals(controlNumber)) {
-                            //System.out.println(OtvetKolonki);
+                            System.out.println(OtvetKolonki);
                         }
                         if (komanda == 0) {
                             switch (OtvetKolonki.indexOf("#")) {
@@ -133,12 +157,12 @@ public class GasStation {
                                     //ZaderzkaDoza.restart();
                                 }
                             } catch (SerialPortException ex) {
-                                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
-                        SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
                 }
             }
         }
