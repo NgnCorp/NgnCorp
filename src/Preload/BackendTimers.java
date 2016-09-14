@@ -36,9 +36,9 @@ public class BackendTimers {
 
     public static boolean InternetCheck;
 
-    Integer LDBTime = 10 * 60 * 1000;//30 * 60 * 1000 = 30 минут
-    Integer ServerTime = 5 * 60 * 1000;//30 * 60 * 1000 = 30 минут
-    Integer LDBTimeFast = 15000;
+    Integer LDBTime = 10 * 60 * 1000;//10 * 60 * 1000 = 30 минут
+    Integer ServerTime = 5 * 60 * 1000;
+    Integer LDBTimeFast = 2 * 60 * 1000;
 
     public BackendTimers() {
         AppStart = new Timer(1000, (ActionEvent e) -> {
@@ -104,7 +104,7 @@ public class BackendTimers {
             }
         });
 
-        WaitForInternet = new Timer(3000, (ActionEvent e) -> {
+        WaitForInternet = new Timer(5000, (ActionEvent e) -> {
             if (InternetCheck) {
                 WaitForInternet.stop();
                 Threads.UPD();
@@ -113,8 +113,13 @@ public class BackendTimers {
             }
         });
 
-        InternetStatus = new Timer(1000, (ActionEvent e) -> {
+        InternetStatus = new Timer(5000, (ActionEvent e) -> {
             InternetCheck = InternetConn.InternetConn();
+            if(!InternetCheck){
+                InternetStatus.setDelay(60*1000);
+            } else {
+                InternetStatus.restart();
+            }
         });
 
         ReloadSystem = new Timer(5000, (ActionEvent e) -> {
