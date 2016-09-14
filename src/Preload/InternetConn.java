@@ -30,7 +30,6 @@ public class InternetConn {
             String google = allText.substring(indStart + 7, indEnd);
             if ("Google".equals(google)) {
                 result = true;
-                System.out.println(google);
             }
             System.out.println(google);
         } catch (Exception e) {
