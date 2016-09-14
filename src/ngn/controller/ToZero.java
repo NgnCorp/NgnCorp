@@ -15,7 +15,9 @@ import ngn.view.Litrs;
 public class ToZero {
 
     public static void CustomerInfo() {
+        Variables.cardCode = "";
         Variables.customerId = 0;
+        Variables.couponId = 0;
         Variables.pin = "";
         Variables.name = "";
         Variables.litrnum = "";
@@ -28,6 +30,12 @@ public class ToZero {
         Variables.usedLimitLitrs = 0.00;
         Variables.isLimitClient = false;
         Variables.limitLitrnum = "";
+        Variables.newln = "";
+        Variables.leftlitr = "";
+        Variables.BalanceOneCardZero = 0;
+        Variables.credit = 0.00;
+        Variables.customerBalance = 0.00;
+        Variables.sdate = "";
     }
 
     public static void FocusOff() {
