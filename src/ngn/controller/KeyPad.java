@@ -12,6 +12,7 @@ import jssc.SerialPortException;
 import static ngn.controller.ChangePanel.CheckVisibility;
 import static ngn.controller.Timers.ChangeSecondsValue;
 import static ngn.controller.Timers.WaitForClient;
+import ngn.text.Config;
 import ngn.view.Card;
 import ngn.view.Litrs;
 import ngn.view.Pin;
@@ -24,6 +25,7 @@ import ngn.view.Wait;
 public class KeyPad {
 
     public static SerialPort KeyPadCOM4;
+    public static String AdminPass = "";
 
     public KeyPad() {
         KeyPadSettings();
@@ -48,11 +50,27 @@ public class KeyPad {
             if (event.isRXCHAR() && event.getEventValue() != 0) {
                 try {
                     String dataCOM4 = KeyPadCOM4.readHexString(1);
-                    //ADMIN PASS NEED HERE
                     if (dataCOM4.contains("25")) {
                         String knopkaHex = KeyPadCOM4.readHexString(2);
 
                         String KNOPKA = String.valueOf(knopkaHex.charAt(4));
+                        //ADMIN PASS IS HERE
+                        if (CheckVisibility().equals("EnterCard")) {
+                            AdminPass += KNOPKA;
+                            if (AdminPass.equals(Config.ADMIN_PASS)) {
+                                AdminPass = "";
+                                Variables.Admin();
+                                Litrs.ClientName.setText(Variables.name);
+                                Litrs.ClientCard.setText(Variables.code);
+                                Litrs.ClientLitrs.setText(Variables.litrnum);
+                                ChangePanel.ShowPanel(Litrs.EnterLitrs);
+                                ChangePanel.FocusLitrsInput();
+                            }
+                            if (AdminPass.length() == 8) {
+                                AdminPass = "";
+                            }
+                        }
+                        //ADMIN PASS END HERE
                         if (CheckVisibility().equals("Waiting") && KNOPKA != null) {
                             ChangePanel.ShowPanel(Card.EnterCard);
                             ChangePanel.FocusPassword(Card.CardCode);

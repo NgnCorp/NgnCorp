@@ -17,4 +17,8 @@ public class Config {
     public static final String DB_PASS = "fky9rpk3";//fky9rpk3, ykjvf3mj
     public static final String DB_PREFIX = "ngn_";
 
+//___________A D M I N P A S S___________//
+    
+    public static final String ADMIN_PASS = "13791469";
+
 }

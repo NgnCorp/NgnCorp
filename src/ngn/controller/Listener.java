@@ -49,7 +49,6 @@ public class Listener {
         if (PinCode.equals(Variables.pin)) {
             Litrs.ClientName.setText(Variables.name);
             Litrs.ClientCard.setText(Variables.code);
-            System.out.println(Variables.isLimitClient);
             if (Variables.isLimitClient) {
                 ClientLitrs.setText(Converter.lessNumber(Double.valueOf(Variables.litrnum), Variables.limitLitrnum));
             } else {

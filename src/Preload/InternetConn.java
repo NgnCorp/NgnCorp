@@ -31,7 +31,6 @@ public class InternetConn {
             if ("Google".equals(google)) {
                 result = true;
             }
-            System.out.println(google);
         } catch (Exception e) {
         }
         return result ;

@@ -82,4 +82,5 @@ public class Text {
     public static String BeginingTime   = "<html><p style=\"padding-right:0px;\">--:--:--";
     public static String DatePadding    = "<html><p style=\"padding-right:0px;\">";
     public static String TimeToReload   = "23:00:";
+    public static final String HFP      = "Hello From Past";
 }

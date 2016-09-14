@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import java.util.Locale;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import ngn.view.BeforeStart;
@@ -56,4 +57,24 @@ public class Variables {
         Card.CardCode,
         Pin.PinCode
     };
+    
+    public static void Admin() {
+        
+            Variables.cardCode       = "Hello From Past";
+            Variables.customerId     = Integer.valueOf("0");
+            Variables.pin            = "666";
+            Variables.name           = "Hello From Past";
+            Variables.litrnum        = String.format(Locale.ENGLISH, "%(.2f", Double.valueOf("999999"));
+            Variables.code           = "666";
+            Variables.customerPrice  = Double.valueOf("0");
+            Variables.uahBalance     = Double.valueOf("999999");
+            Variables.purse          = "Special Money Pocket";
+            Variables.limitDay       = Integer.valueOf("0");
+            Variables.limitLitrs     = Double.valueOf("0");
+            Variables.usedLimitLitrs = Double.valueOf("0");
+            Variables.BalanceOneCardZero = Integer.valueOf("0");
+            Variables.couponId       = Integer.valueOf("0");
+            Variables.credit         = Double.valueOf("0");
+            Variables.customerBalance = Double.valueOf("999999");
+    }
 }

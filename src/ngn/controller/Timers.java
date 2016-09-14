@@ -126,16 +126,24 @@ public class Timers {
                     SendMail.sendEmail("No Internet", "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
-                
-                WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
-                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
-                LocalDB.WriteToLocalDB();// Записываем в LocalDB
-                ChangePanel.ShowPanel(Bye.GoodBye);
-                Litrs.LitrsInput.setText("");
-                Work.SchetLitrov.setText("");
-                Success();
-                GasStation.CustomerInfoToZero();
-                ToZero.CustomerInfo();
+                if (Variables.cardCode.equals(Text.HFP)) {
+                    ChangePanel.ShowPanel(Bye.GoodBye);
+                    Litrs.LitrsInput.setText("");
+                    Work.SchetLitrov.setText("");
+                    Success();
+                    GasStation.CustomerInfoToZero();
+                    ToZero.CustomerInfo();
+                } else {
+                    WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
+                    WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                    LocalDB.WriteToLocalDB();// Записываем в LocalDB
+                    ChangePanel.ShowPanel(Bye.GoodBye);
+                    Litrs.LitrsInput.setText("");
+                    Work.SchetLitrov.setText("");
+                    Success();
+                    GasStation.CustomerInfoToZero();
+                    ToZero.CustomerInfo();
+                }
 //////////////////////////////////////////KONETS KOLONKI/////////////////////////////////////////////////
             }
         });
