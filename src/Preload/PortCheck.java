@@ -43,7 +43,7 @@ public class PortCheck {
 
                 DoWithPort("KP");
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
@@ -112,6 +112,11 @@ public class PortCheck {
                     System.out.println(data);
                     if (data.contains("V")) {
                         KPPort = PN;
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            System.out.println(e);
+                        }
                         PortToCheck.writeString("1Q");
                     }
                     if (data.contains("@")) {
