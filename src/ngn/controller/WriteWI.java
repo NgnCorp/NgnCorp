@@ -55,15 +55,16 @@ public class WriteWI {
     }
 
     public static void CounterWriter(Double litriDouble) {
+        double LitrsFromCounter = Double.parseDouble(ReadWI.CounterReader());
         try (final FileWriter writer = new FileWriter(Paths.COUNTERPATH, false)) {
-            double LitrsCounter = Double.parseDouble(ReadWI.CounterReader()) + litriDouble;
+            double LitrsCounter = LitrsFromCounter + litriDouble;
             final String s = String.format(Locale.ENGLISH, "%(.2f", LitrsCounter);
             writer.write(s + " |");
             writer.write(System.lineSeparator());
             String date = String.valueOf(ft.format(new Date()));
             writer.write(date);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            SendMail.sendEmail(String.valueOf(e.getMessage()), "Can't Write to counter! " + DB.MODULENAME);
         }
     }
 }

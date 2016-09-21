@@ -66,7 +66,7 @@ public class KeyPad {
                                 ChangePanel.ShowPanel(Litrs.EnterLitrs);
                                 ChangePanel.FocusLitrsInput();
                             }
-                            if (AdminPass.length() == 8) {
+                            if (AdminPass.length() == 8 || "A".equals(KNOPKA)) {
                                 AdminPass = "";
                             }
                         }

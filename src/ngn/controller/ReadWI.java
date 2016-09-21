@@ -140,6 +140,7 @@ public class ReadWI {
                 CounterStart = CounterContent[0].substring(0, CounterContent[0].length() - 1);
             }
         } catch (IOException ex) {
+            SendMail.sendEmail(String.valueOf(ex), "Can't Read from counter! " + DB.MODULENAME);
         }
         return CounterStart;
     }

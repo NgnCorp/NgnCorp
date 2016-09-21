@@ -79,19 +79,19 @@ public class SendMail {
                         Transport.send(message);
                     } catch (AddressException ex) {
                         String[] logMas = {"Adress", String.valueOf(ex)};
-                        WriteWI.Write(logMas, Paths.LOGPATH, false);
+                        WriteWI.Write(logMas, Paths.LOGPATH, true);
                     } catch (MessagingException ex) {
                         String[] logMas = {"Message", String.valueOf(ex)};
-                        WriteWI.Write(logMas, Paths.LOGPATH, false);
+                        WriteWI.Write(logMas, Paths.LOGPATH, true);
                     }
                 
             } else {
                 String[] logMas = {subject, body};
-                WriteWI.Write(logMas, Paths.LOGPATH, false);
+                WriteWI.Write(logMas, Paths.LOGPATH, true);
             }
         } else {
             String[] logMas = {subject, body};
-            WriteWI.Write(logMas, Paths.LOGPATH, false);
+            WriteWI.Write(logMas, Paths.LOGPATH, true);
         }
     }
 }

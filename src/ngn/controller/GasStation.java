@@ -10,6 +10,7 @@ import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import mail.SendMail;
 import ngn.model.DB;
+import ngn.view.Work;
 
 /**
  *
@@ -179,6 +180,7 @@ public class GasStation {
     public static void CustomerInfoToZero() {
         SchetLitrov = "";
         MoneySchetLitrov = "";
+        Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
     }
 
     public static void KomandaStop() {

@@ -40,7 +40,7 @@ public class Timers {
     private static final int TIMER_TIME = 1000;
     private static final int ERRORTIME = 3000;
     private static final int SUCCESSTIME = 6000;
-    private static final int WAIT_TIME = 30000;
+    private static final int WAIT_TIME = 60000;
     private static int SECONDSVALUE = 15;
 
     SimpleDateFormat ft = new SimpleDateFormat("HH:mm:ss");
@@ -120,12 +120,14 @@ public class Timers {
                     String.valueOf(Variables.sdate),
                     String.valueOf(Variables.couponId)
                 };
+                /*
                 //Try to send transaction with internet
                 if (BackendTimers.InternetCheck) {
                 } else {
                     SendMail.sendEmail("No Internet", "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
                     System.out.println("No Internet");
                 }
+                 */
                 if (Variables.cardCode.equals(Text.HFP)) {
                     ChangePanel.ShowPanel(Bye.GoodBye);
                     Litrs.LitrsInput.setText("");
