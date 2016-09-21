@@ -74,7 +74,7 @@ public class Update {
     private static void CheckNewVersion(String ZipVer, String ZipName) {
 
         BSLoadingText.setText(InetOkTryDownload);
-        if (Double.valueOf(ZipVer) > VER) {// перевірка на нову версію
+        if (Double.parseDouble(ZipVer) > VER) {// перевірка на нову версію
             String upload = con + ZipName;
             String place = "C:/NgnUpdater/Updates/" + ZipName;
             BSLoadingText.setText(downlNEW);
