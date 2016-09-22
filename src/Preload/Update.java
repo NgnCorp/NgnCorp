@@ -56,7 +56,8 @@ public class Update {
                 BSLoadingText.setText(authNOT);
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
             }
-        } else { // No Internet
+        } else {
+            // No Internet
             // Check for LDB file isn't empty. If not - need to run APP
             BSLoadingText.setText(tryConnInet);
             BackendTimers.WaitForInternet();
@@ -152,5 +153,13 @@ public class Update {
             System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);
+    }   
+    
+    public static boolean CheckLocalDB() {
+        File file = new File(Paths.LDBPATH);
+        if (file.exists()) {
+            return true;
+        }
+        return false;
     }
 }

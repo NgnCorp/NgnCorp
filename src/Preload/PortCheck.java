@@ -1,5 +1,6 @@
 package Preload;
 
+import static Preload.Update.CheckLocalDB;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -60,7 +61,11 @@ public class PortCheck {
         if (GSPort != null) {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
-                Threads.LOCALDB();
+                if(BackendTimers.InternetCheck) {
+                    Threads.LOCALDB();
+                } else if(CheckLocalDB()) {
+                    BSLoadingText.setText(Text.LDBdone);
+                }
             } else {
                 BSLoadingText.setText(Text.KPPortOff);
             }
