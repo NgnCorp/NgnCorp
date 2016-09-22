@@ -63,4 +63,7 @@ public class Ngn extends JFrame {
             BeforeStart.BSLoadingText.setVisible(false);
         });
     }
+    public static void SetActiveNgn() {
+        NGN.toFront();
+    }
 }

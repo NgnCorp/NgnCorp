@@ -9,6 +9,7 @@ import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
+import ngn.Ngn;
 import static ngn.controller.ChangePanel.CheckVisibility;
 import static ngn.controller.Timers.ChangeSecondsValue;
 import static ngn.controller.Timers.WaitForClient;
@@ -115,7 +116,7 @@ public class KeyPad {
 
                         String KARTA = String.valueOf(kartaArray);
                         if (CheckVisibility().equals("EnterCard")) {
-                            ChangePanel.FocusPassword(Card.CardCode);
+                            Ngn.SetActiveNgn();
                             Card.CardCode.setText(KARTA);
                             try {
                                 Robot robot = new Robot();
