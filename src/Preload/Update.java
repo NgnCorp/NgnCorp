@@ -20,7 +20,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.12;
+    private static final Double VER = 0.13;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -58,9 +58,7 @@ public class Update {
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
             }
         } else {
-            PortCheck();
-            // No Internet
-            // Check for LDB file isn't empty. If not - need to run APP
+            Threads.CHECKPORTS();//No Internet
             BSLoadingText.setText(tryConnInet);
             //BackendTimers.WaitForInternet();
         }
@@ -155,8 +153,8 @@ public class Update {
             System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);
-    }   
-    
+    }
+
     public static boolean CheckLocalDB() {
         File file = new File(Paths.LDBPATH);
         if (file.exists()) {
