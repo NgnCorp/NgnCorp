@@ -41,7 +41,6 @@ public class ChangePanel {
                 VisiblePanel = PanelArray.getName();
             }
         }
-        System.out.println(VisiblePanel);
         return VisiblePanel;
     }
 }
