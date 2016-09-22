@@ -115,6 +115,7 @@ public class KeyPad {
 
                         String KARTA = String.valueOf(kartaArray);
                         if (CheckVisibility().equals("EnterCard")) {
+                            ChangePanel.FocusPassword(Card.CardCode);
                             Card.CardCode.setText(KARTA);
                             try {
                                 Robot robot = new Robot();

@@ -19,7 +19,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.10;
+    private static final Double VER = 0.11;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -57,6 +57,7 @@ public class Update {
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
             }
         } else { // No Internet
+            // Check for LDB file isn't empty. If not - need to run APP
             BSLoadingText.setText(tryConnInet);
             BackendTimers.WaitForInternet();
         }
