@@ -1,5 +1,6 @@
 package Preload;
 
+import static Preload.PortCheck.PortCheck;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -57,10 +58,11 @@ public class Update {
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
             }
         } else {
+            PortCheck();
             // No Internet
             // Check for LDB file isn't empty. If not - need to run APP
             BSLoadingText.setText(tryConnInet);
-            BackendTimers.WaitForInternet();
+            //BackendTimers.WaitForInternet();
         }
     }
 
