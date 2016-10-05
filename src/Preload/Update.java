@@ -125,7 +125,6 @@ public class Update {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.COUNTERPATH + " " + DB.MODULENAME);
                 return false;
             }
-
         }
         return false;
     }
