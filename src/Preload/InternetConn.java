@@ -45,8 +45,8 @@ public class InternetConn {
             HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
             urlc.setRequestProperty("User-Agent", "test");
             urlc.setRequestProperty("Connection", "close");
-            urlc.setConnectTimeout(1000);
-            urlc.setReadTimeout(2000);
+            urlc.setConnectTimeout(2000);
+            urlc.setReadTimeout(3000);
             urlc.connect();
             System.out.println(urlc.getResponseCode());
             return urlc.getResponseCode() == 200;
