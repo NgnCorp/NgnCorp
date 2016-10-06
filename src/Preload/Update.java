@@ -36,6 +36,7 @@ public class Update {
             } catch (MalformedURLException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantConn);
+                System.out.println(ex);
             }
             try {
                 BSLoadingText.setText(h1CheckUpdate);
@@ -56,6 +57,7 @@ public class Update {
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
                 SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
+                System.out.println(ex);
             }
         } else {
             BSLoadingText.setText(tryConnInet);
@@ -68,6 +70,7 @@ public class Update {
             Scanner testscan = new Scanner(con.openStream());
             return testscan.hasNext();
         } catch (IOException ex) {
+            System.out.println(ex);
             return false;
         }
     }
@@ -83,6 +86,7 @@ public class Update {
                 BSLoadingText.setText(InetOkTryDownload);
                 download(upload, place);
             } catch (IOException ex) {
+                System.out.println(ex);
                 SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);
                 BSLoadingText.setText(cantdownlNEW);
             }
@@ -106,6 +110,7 @@ public class Update {
                     SendMail.sendEmail(Text.workingFIREWALL, Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
                 }
             } catch (IOException ex) {
+                System.out.println(ex);
                 BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
                 SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
             }
@@ -122,6 +127,7 @@ public class Update {
                     return true;
                 }
             } catch (IOException ex) {
+                System.out.println(ex);
                 SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.COUNTERPATH + " " + DB.MODULENAME);
                 return false;
             }

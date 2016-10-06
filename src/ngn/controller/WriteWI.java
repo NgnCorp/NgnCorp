@@ -43,6 +43,7 @@ public class WriteWI {
             bw.write("");
         } catch (IOException ex) {
             SendMail.sendEmail(String.valueOf(ex), "Can't LDBToZero error! " + DB.MODULENAME);
+            System.out.println(ex);
         }
     }
 
@@ -51,6 +52,7 @@ public class WriteWI {
             bw.write("");
         } catch (IOException ex) {
             SendMail.sendEmail(String.valueOf(ex), "Can't FillingDataToZero error! " + DB.MODULENAME);
+            System.out.println(ex);
         }
     }
 
@@ -65,6 +67,7 @@ public class WriteWI {
             writer.write(date);
         } catch (IOException e) {
             SendMail.sendEmail(String.valueOf(e.getMessage()), "Can't Write to counter! " + DB.MODULENAME);
+            System.out.println(e);
         }
     }
 }

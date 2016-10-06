@@ -63,28 +63,31 @@ public class SendMail {
             } catch (MessagingException ex) {
                 Logger.getLogger(SendMail.class.getName()).log(Level.SEVERE, null, ex);
                 b = 0;
+                System.out.println(ex);
             }
             if (b == 1) {
                 //String[] emails = {TOVALERA, TOSASHA};
-                    try {
-                        message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
-                        message.setSubject(subject, "UTF-8");
-                        mp = new MimeMultipart();
-                        mbp = new MimeBodyPart();
-                        mbp.setContent(body, "text/html;charset=utf-8");
-                        mp.addBodyPart(mbp);
-                        message.setContent(mp);
-                        message.setSentDate(new java.util.Date());
+                try {
+                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
+                    message.setSubject(subject, "UTF-8");
+                    mp = new MimeMultipart();
+                    mbp = new MimeBodyPart();
+                    mbp.setContent(body, "text/html;charset=utf-8");
+                    mp.addBodyPart(mbp);
+                    message.setContent(mp);
+                    message.setSentDate(new java.util.Date());
 
-                        Transport.send(message);
-                    } catch (AddressException ex) {
-                        String[] logMas = {"Adress", String.valueOf(ex)};
-                        WriteWI.Write(logMas, Paths.LOGPATH, true);
-                    } catch (MessagingException ex) {
-                        String[] logMas = {"Message", String.valueOf(ex)};
-                        WriteWI.Write(logMas, Paths.LOGPATH, true);
-                    }
-                
+                    Transport.send(message);
+                } catch (AddressException ex) {
+                    String[] logMas = {"Adress", String.valueOf(ex)};
+                    WriteWI.Write(logMas, Paths.LOGPATH, true);
+                    System.out.println(ex);
+                } catch (MessagingException ex) {
+                    String[] logMas = {"Message", String.valueOf(ex)};
+                    WriteWI.Write(logMas, Paths.LOGPATH, true);
+                    System.out.println(ex);
+                }
+
             } else {
                 String[] logMas = {subject, body};
                 WriteWI.Write(logMas, Paths.LOGPATH, true);

@@ -32,6 +32,7 @@ public class InternetConn {
                 result = true;
             }
         } catch (Exception e) {
+            System.out.println(e);
         }
         return result ;
     }

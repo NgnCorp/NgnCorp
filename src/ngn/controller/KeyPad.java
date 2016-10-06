@@ -41,6 +41,7 @@ public class KeyPad {
             KeyPadCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
             KeyPadCOM4.addEventListener(new EventListener());
         } catch (SerialPortException ex) {
+            System.out.println(ex);
         }
     }
 
@@ -85,6 +86,7 @@ public class KeyPad {
                                 robot.keyPress(KeyEvent.VK_ENTER);
                                 robot.keyRelease(KeyEvent.VK_ENTER);
                             } catch (AWTException ex) {
+                                System.out.println(ex);
                             }
                         } else if ("A".equals(KNOPKA) && !CheckVisibility().equals("Working")) {
                             if (CheckVisibility().equals("EnterPin") || CheckVisibility().equals("EnterLitrs")) {
@@ -123,10 +125,12 @@ public class KeyPad {
                                 robot.keyPress(KeyEvent.VK_ENTER);
                                 robot.keyRelease(KeyEvent.VK_ENTER);
                             } catch (AWTException ex) {
+                                System.out.println(ex);
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
+                    System.out.println(ex);
                 }
             }
         }

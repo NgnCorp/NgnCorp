@@ -38,7 +38,7 @@ public class GasStation {
             KolonkaCOM3.addEventListener(new EventListener());
             TimerKolonkaStart();
         } catch (SerialPortException ex) {
-            //System.out.println(ex);
+            System.out.println(ex);
         }
     }
 
@@ -50,7 +50,7 @@ public class GasStation {
                 komanda = 1;
                 KolonkaCOM3.writeString(doza); // Отправляем на колонку количество литров на отдачу
             } catch (SerialPortException ex) {
-                //System.out.println(ex);
+                System.out.println(ex);
             }
         });
         KolonkaStart.stop();
@@ -89,6 +89,7 @@ public class GasStation {
             KolonkaCOM3.setEventsMask(SerialPort.MASK_RXCHAR);
             KolonkaCOM3.addEventListener(new EventListener());
         } catch (SerialPortException ex) {
+            System.out.println(ex);
         }
     }
 
@@ -159,11 +160,13 @@ public class GasStation {
                                 }
                             } catch (SerialPortException ex) {
                                 SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                                System.out.println(ex);
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
                     SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                    System.out.println(ex);
                 }
             }
         }
@@ -187,6 +190,7 @@ public class GasStation {
         try {
             KolonkaCOM3.writeString("@015801014C#");
         } catch (SerialPortException ex) {
+            System.out.println(ex);
         }
     }
 }

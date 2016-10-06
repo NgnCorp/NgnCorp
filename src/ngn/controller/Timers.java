@@ -211,6 +211,7 @@ public class Timers {
                     KeyPadNotWorks.restart();
                 }
             } catch (SerialPortException ex_kpw) {
+                System.out.println(ex_kpw);
             }
         });
 
@@ -223,12 +224,14 @@ public class Timers {
                     KeyPad.KeyPadCOM4.setEventsMask(SerialPort.MASK_RXCHAR);
                     KeyPad.KeyPadCOM4.addEventListener(new KeyPad.EventListener());
                 } catch (SerialPortException ex) {
+                    System.out.println(ex);
                 }
                 if (KeyPad.KeyPadCOM4.writeString("00")) {
                     KeyPadWorks.restart();
                     KeyPadNotWorks.stop();
                 }
             } catch (SerialPortException ex_kpdw) {
+                System.out.println(ex_kpdw);
             }
         });
 

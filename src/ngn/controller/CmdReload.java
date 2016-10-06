@@ -24,6 +24,7 @@ public class CmdReload {
                 }
             } catch (IOException ex) {
                 Logger.getLogger(CmdReload.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
     }
 }
