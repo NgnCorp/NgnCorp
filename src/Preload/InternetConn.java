@@ -1,9 +1,6 @@
 package Preload;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.*;
 
 /**
@@ -11,6 +8,25 @@ import java.net.*;
  * @author Валерик
  */
 public class InternetConn {
+    public static boolean InternetConn() {
+        try {
+            URL url = new URL("http://www.google.com/");
+            HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+            urlc.setRequestProperty("User-Agent", "test");
+            urlc.setRequestProperty("Connection", "close");
+            urlc.setConnectTimeout(2000);
+            urlc.setReadTimeout(3000);
+            urlc.connect();
+            System.out.println(urlc.getResponseCode());
+            return urlc.getResponseCode() == 200;
+
+        } catch (IOException e) {
+            System.out.println("Ошибка проверки подключения к интернету: " + e);
+            return false;
+        }
+    }
+}
+
 
     /*
     public static boolean InternetConn() {
@@ -39,21 +55,3 @@ public class InternetConn {
         return result ;
     }
      */
-    public static boolean InternetConn() {
-        try {
-            URL url = new URL("http://www.google.com/");
-            HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-            urlc.setRequestProperty("User-Agent", "test");
-            urlc.setRequestProperty("Connection", "close");
-            urlc.setConnectTimeout(2000);
-            urlc.setReadTimeout(3000);
-            urlc.connect();
-            System.out.println(urlc.getResponseCode());
-            return urlc.getResponseCode() == 200;
-
-        } catch (IOException e) {
-            System.out.println("Ошибка проверки подключения к интернету: " + e);
-            return false;
-        }
-    }
-}
