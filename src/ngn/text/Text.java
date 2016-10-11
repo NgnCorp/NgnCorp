@@ -17,7 +17,7 @@ public class Text {
     public static  String notenoughlitres   = "<html><p style=\"text-align:center;\">НЕДОСТАТОЧНО ЛИТРОВ НА КАРТЕ!<br>ПОПОЛНИТЕ КАРТУ.</p>";
     public static  String getpistol         = "<html><p style=\"text-align:center\">Поднимите пистолет и вставьте в бак.<br>Затем снова нажмите кнопку #</p>";
     public static  String technic           = "<html><p style=\"text-align:center\">ТЕХНИЧЕСКИЕ НЕПОЛАДКИ!<br>ПОЗВОНИТЕ ПО НОМЕРУ +38(093)674-64-54.</p>";
-
+    
     //___________P A N E L S    T E X T___________//
     
     public static String h1CardPanel    = "<html><p style=\"margin-bottom:20px\">Поднесите карту к клавиатуре";
@@ -71,6 +71,7 @@ public class Text {
     //READ\WRITE ERRORS
     public static String cannotreadTR     = "Не удалось прочитать данные по транзакциям.";
     public static String cannotreadDB     = "Не удалось прочитать данные по клиенту.";    
+    public static String cannotConSer     = "Сервер не ответил.";
     
     //__________D I N A M I C   T E X T____________//
     

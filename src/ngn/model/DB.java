@@ -8,8 +8,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import mail.SendMail;
 import ngn.text.Config;
 import ngn.text.Paths;
+import ngn.text.Text;
 
 public class DB {
 
@@ -119,7 +121,7 @@ public class DB {
             pst2.executeUpdate();
             con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
+            SendMail.sendEmail(String.valueOf(e), Text.cannotConSer + " " + DB.MODULENAME);
             return false;
         }
         return true;
@@ -133,7 +135,7 @@ public class DB {
             pst3.executeUpdate();
             con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
+            SendMail.sendEmail(String.valueOf(e), Text.cannotConSer + " " + DB.MODULENAME);
             return false;
         }
         return true;
