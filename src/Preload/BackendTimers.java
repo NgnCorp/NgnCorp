@@ -9,6 +9,7 @@ import static ngn.controller.ChangePanel.CheckVisibility;
 import ngn.controller.CmdReload;
 import ngn.controller.KeyPad;
 import ngn.controller.ReadWI;
+import ngn.text.Paths;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingPanel;
 import static ngn.text.Text.LDBdone;
@@ -123,9 +124,11 @@ public class BackendTimers {
         InternetStatus = new Timer(5000, (ActionEvent e) -> {
             InternetCheck = InternetConn.InternetConn();
             if (!InternetCheck) {
+                Ngn.StatusBar(Paths.INETOFF, 1);
                 InternetStatus.setDelay(60 * 1000);
             } else {
                 InternetStatus.restart();
+                Ngn.StatusBar(Paths.INETON, 1);
             }
         });
 

@@ -4,6 +4,9 @@ import Preload.BackendTimers;
 import Preload.PortCheck;
 import Preload.Threads;
 import static java.awt.EventQueue.invokeLater;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import ngn.view.*;
 import ngn.controller.*;
@@ -17,7 +20,7 @@ public class Ngn extends JFrame {
     static JFrame NGN = new JFrame();
 
     public static void main(String[] args) throws InterruptedException {
-        
+
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(NGN);
@@ -27,43 +30,66 @@ public class Ngn extends JFrame {
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
             Threads.INTERNETCONN();
-            Threads.UPD();  //Full APP start
+            //Threads.UPD();  //Full APP start
             BackendTimers.LocalDBUpdate();
-            //AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
+            AppContent();
+            PortCheck.GSPort = "COM3";
+            PortCheck.KPPort = "COM4"; //Start without COM ports check
         });
     }
 
     public static void AppContent() {
 
         invokeLater(() -> {
-            Card CARD   = new Card(NGN);
-            Pin PIN     = new Pin(NGN);
+            Card CARD = new Card(NGN);
+            Pin PIN = new Pin(NGN);
             Litrs LITRS = new Litrs(NGN);
-            Work WORK   = new Work(NGN);
-            Wait WAIT   = new Wait(NGN);
-            Info INFO   = new Info(NGN);
-            Load LOAD   = new Load(NGN);
-            Bye BYE     = new Bye(NGN);
+            Work WORK = new Work(NGN);
+            Wait WAIT = new Wait(NGN);
+            Info INFO = new Info(NGN);
+            Load LOAD = new Load(NGN);
+            Bye BYE = new Bye(NGN);
 
             // Controllers //
-            KeyPad KEYPAD           = new KeyPad();
-            GasStation GASSTATION   = new GasStation();
+            KeyPad KEYPAD = new KeyPad();
+            GasStation GASSTATION = new GasStation();
             Listener ACTIONLISTENER = new Listener();
-            Timers TIMER            = new Timers();
-            Variables VARIABLES     = new Variables();
-            
+            Timers TIMER = new Timers();
+            Variables VARIABLES = new Variables();
+
             Timers.DateTime();
             BackendTimers.ReloadSystem();//Check for reload computer
 
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
-            
+
             // BAG WITH BS APPEARED OB CARDCODE PANEL //
             BeforeStart.BSLoadingBar.setVisible(false);
             BeforeStart.BSLoadingText.setVisible(false);
         });
     }
+
     public static void SetActiveNgn() {
         NGN.toFront();
+    }
+
+    public static void StatusBar(String src, Integer position) {
+        Graphics g = NGN.getGraphics();
+        Image img = new ImageIcon(src).getImage();
+        System.out.println(src);
+        switch (position) {
+            case 1:
+                g.clearRect(10, 10, 32, 32);
+                g.drawImage(img, 0, 0, null);
+                break;
+            case 2:
+                g.clearRect(52, 10, 32, 32);
+                g.drawImage(img, 0, 32, null);
+                break;
+            case 3:
+                g.clearRect(84, 10, 32, 32);
+                g.drawImage(img, 0, 32, null);
+                break;
+        }
     }
 }
