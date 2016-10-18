@@ -1,6 +1,6 @@
 package ngn.view;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,7 +12,7 @@ public class Load {
     public static javax.swing.JLabel LoadingText;
     public static javax.swing.JProgressBar LoadingBar;
 
-    public Load(JFrame JF) {
+    public Load(JPanel JF) {
 
         LoadingPanel = new javax.swing.JPanel();
         LoadingText = new javax.swing.JLabel();

@@ -1,6 +1,6 @@
 package ngn.view;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,7 +12,7 @@ public class BeforeStart {
     public static javax.swing.JLabel BSLoadingText;
     public static javax.swing.JProgressBar BSLoadingBar;
 
-    public BeforeStart(JFrame JF) {
+    public BeforeStart(JPanel JF) {
 
         BSLoadingPanel = new javax.swing.JPanel();
         BSLoadingText = new javax.swing.JLabel();

@@ -3,11 +3,13 @@ package ngn;
 import Preload.BackendTimers;
 import Preload.PortCheck;
 import Preload.Threads;
+import java.awt.Color;
 import static java.awt.EventQueue.invokeLater;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import ngn.view.*;
 import ngn.controller.*;
 
@@ -17,13 +19,15 @@ import ngn.controller.*;
  */
 public class Ngn extends JFrame {
 
-    static JFrame NGN = new JFrame();
+    static JFrame MFRAME = new JFrame();
+    static JPanel STATUSBAR = new JPanel();
+    static JPanel NGN = new JPanel();
 
     public static void main(String[] args) throws InterruptedException {
 
         invokeLater(() -> {
             // Frames //
-            Css.MainFrame(NGN);
+            Css.MainFrame(MFRAME, STATUSBAR, NGN);
 
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
@@ -50,6 +54,9 @@ public class Ngn extends JFrame {
             Load LOAD = new Load(NGN);
             Bye BYE = new Bye(NGN);
 
+            MFRAME.add(STATUSBAR);
+            MFRAME.add(NGN);
+
             // Controllers //
             KeyPad KEYPAD = new KeyPad();
             GasStation GASSTATION = new GasStation();
@@ -70,25 +77,25 @@ public class Ngn extends JFrame {
     }
 
     public static void SetActiveNgn() {
-        NGN.toFront();
+        MFRAME.toFront();
     }
 
     public static void StatusBar(String src, Integer position) {
-        Graphics g = NGN.getGraphics();
+        Graphics g = STATUSBAR.getGraphics();
         Image img = new ImageIcon(src).getImage();
         System.out.println(src);
         switch (position) {
             case 1:
                 g.clearRect(10, 10, 32, 32);
-                g.drawImage(img, 0, 0, null);
+                g.drawImage(img, 10, 10, new Color(204, 0, 0), null);
                 break;
             case 2:
                 g.clearRect(52, 10, 32, 32);
-                g.drawImage(img, 0, 32, null);
+                g.drawImage(img, 52, 10, new Color(204, 0, 0), null);
                 break;
             case 3:
                 g.clearRect(84, 10, 32, 32);
-                g.drawImage(img, 0, 32, null);
+                g.drawImage(img, 84, 10, new Color(204, 0, 0), null);
                 break;
         }
     }

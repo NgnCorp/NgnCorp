@@ -1,6 +1,6 @@
 package ngn.view;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -11,7 +11,7 @@ public class Bye {
         public static javax.swing.JPanel GoodBye;
         public static javax.swing.JLabel ThankYou;
         
-    public Bye(JFrame JF){
+    public Bye(JPanel JF){
         GoodBye = new javax.swing.JPanel();
         ThankYou = new javax.swing.JLabel();
         

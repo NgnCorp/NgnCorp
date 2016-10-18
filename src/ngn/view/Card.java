@@ -1,8 +1,8 @@
 package ngn.view;
 
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import ngn.controller.Listener;
 
 /**
@@ -18,7 +18,7 @@ public class Card {
     public static javax.swing.JLabel CardSignature;
     public static javax.swing.JLabel CardDate;
 
-    public Card(JFrame JF) {
+    public Card(JPanel JF) {
 
         EnterCard = new javax.swing.JPanel();
         CardCode = new javax.swing.JPasswordField();

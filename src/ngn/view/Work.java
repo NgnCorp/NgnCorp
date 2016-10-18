@@ -1,6 +1,5 @@
 package ngn.view;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,7 +17,7 @@ public class Work {
     public static JLabel MarkMoneySchetLitrov;
     public static JLabel Reklama;
 
-    public Work(JFrame JF) {
+    public Work(JPanel JF) {
 
         Working = new javax.swing.JPanel();
         PolozheniePistoleta = new javax.swing.JLabel();

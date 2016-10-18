@@ -25,7 +25,7 @@ public class Litrs {
     public static JLabel ActionEnterText;
     public static JLabel ActionExitText;
     
-    public Litrs(JFrame JF) {
+    public Litrs(JPanel JF) {
         
         EnterLitrs = new JPanel();
         LitrsInputMark = new JLabel();

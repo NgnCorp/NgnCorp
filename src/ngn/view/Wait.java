@@ -1,6 +1,6 @@
 package ngn.view;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,7 +12,7 @@ public class Wait {
     public static javax.swing.JLabel Here;
     public static javax.swing.JLabel WaitingSeconds;
 
-    public Wait(JFrame JF) {
+    public Wait(JPanel JF) {
 
         Waiting = new javax.swing.JPanel();
         Here = new javax.swing.JLabel();

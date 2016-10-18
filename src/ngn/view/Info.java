@@ -1,6 +1,5 @@
 package ngn.view;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,7 +13,7 @@ public class Info {
         public static JLabel ErrorMassage;
         public static JLabel ServerTimer;
         
-    public Info(JFrame JF) {
+    public Info(JPanel JF) {
         
         InfoMassage = new JPanel();
         ErrorMassage = new JLabel();

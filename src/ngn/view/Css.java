@@ -2,6 +2,7 @@ package ngn.view;
 
 import java.awt.*;
 import java.awt.image.MemoryImageSource;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,21 +24,28 @@ public class Css extends Ngn {
     public static int windowHeight = screenSize.height;
     public static int windowWidth = screenSize.width;
 
-    public static void MainFrame(JFrame MFrame) {
+    public static void MainFrame(JFrame MFrame, JPanel StatusBar, JPanel Ngn) {
         MFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         MFrame.setUndecorated(true);
         MFrame.pack();
         MFrame.setSize(windowWidth, windowHeight);
         MFrame.setLocationRelativeTo(null);
-        MFrame.setLayout(new CardLayout());
-        MFrame.setVisible(true);
+        MFrame.setLayout(new BoxLayout(MFrame.getContentPane(), BoxLayout.Y_AXIS));
 
         int[] pixels = new int[16 * 16];
         Image image = Toolkit.getDefaultToolkit().createImage(
                 new MemoryImageSource(16, 16, pixels, 0, 16));
         Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
         MFrame.setCursor(transparentCursor);
+        
+        StatusBar.setBackground(new Color(204, 0, 0));
+        StatusBar.setMaximumSize(new Dimension(2147483647, 100));
+        StatusBar.setPreferredSize(new Dimension(168, 42));
+        StatusBar.setLayout(new CardLayout());
+        Ngn.setLayout(new CardLayout());
+        
+        MFrame.setVisible(true);
     }
 
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText, JLabel CardSignature, JLabel CardDate) {

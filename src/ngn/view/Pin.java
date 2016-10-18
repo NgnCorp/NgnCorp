@@ -1,7 +1,7 @@
 package ngn.view;
 
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import ngn.controller.Listener;
 
 /**
@@ -17,7 +17,7 @@ public class Pin {
     public static javax.swing.JPasswordField PinCode;
     public static javax.swing.JLabel PinCodeText;
     
-    public Pin(JFrame JF) {
+    public Pin(JPanel JF) {
         
         EnterPin = new javax.swing.JPanel();
         PinCode = new javax.swing.JPasswordField();
