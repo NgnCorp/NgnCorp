@@ -71,12 +71,12 @@ public class LocalDB {
         } finally {
             try {
                 conLDB.close();
-                Ngn.StatusBar(Paths.SERVERCON, 6);
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
         }
         BSLoadingText.setText(Text.LDBdone);
+        Ngn.StatusBar(Paths.SERVERCON, 6);
     }
 
     public static void WriteToLocalDB() {
