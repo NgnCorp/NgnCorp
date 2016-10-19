@@ -16,14 +16,14 @@ public class Paths {
     public static final String COUNTERPATH      = "C:\\NgnUpdater\\Counter.txt";
 
     //___________I M A G E S   P A T H___________//
-    public static final String INETON           = "D:\\GitHub\\NgnCorp\\src\\images\\internetON.png";
-    public static final String INETOFF          = "D:\\GitHub\\NgnCorp\\src\\images\\internetOFF.png";
-    public static final String KEYPADON         = "D:\\GitHub\\NgnCorp\\src\\images\\keypadON.png";
-    public static final String KEYPADOFF        = "D:\\GitHub\\NgnCorp\\src\\images\\keypadOFF.png";
-    public static final String PISTOLON         = "D:\\GitHub\\NgnCorp\\src\\images\\pistolON.png";
-    public static final String PISTOLOFF        = "D:\\GitHub\\NgnCorp\\src\\images\\pistolOFF.png";
-    public static final String SERVERON         = "D:\\GitHub\\NgnCorp\\src\\images\\serverON.png";
-    public static final String SERVEROFF        = "D:\\GitHub\\NgnCorp\\src\\images\\serverOFF.png";
-    public static final String SERVERCON        = "D:\\GitHub\\NgnCorp\\src\\images\\serverCON.png";
+    public static final String INETON           = "src/images/internetON.png";
+    public static final String INETOFF          = "src/images/internetOFF.png";
+    public static final String KEYPADON         = "src/images/keypadON.png";
+    public static final String KEYPADOFF        = "src/images/keypadOFF.png";
+    public static final String PISTOLON         = "src/images/pistolON.png";
+    public static final String PISTOLOFF        = "src/images/pistolOFF.png";
+    public static final String SERVERON         = "src/images/serverON.png";
+    public static final String SERVEROFF        = "src/images/serverOFF.png";
+    public static final String SERVERCON        = "src/images/serverCON.png";
 
 }
