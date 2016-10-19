@@ -3,6 +3,7 @@ package ngn.view;
 import java.awt.*;
 import java.awt.image.MemoryImageSource;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,18 +39,18 @@ public class Css extends Ngn {
                 new MemoryImageSource(16, 16, pixels, 0, 16));
         Cursor transparentCursor = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
         MFrame.setCursor(transparentCursor);
-        
+
         StatusBar.setBackground(new Color(204, 0, 0));
         StatusBar.setMaximumSize(new Dimension(2147483647, 100));
         StatusBar.setPreferredSize(new Dimension(168, 42));
         StatusBar.setLayout(new CardLayout());
         Ngn.setLayout(new CardLayout());
-        
+
         MFrame.setVisible(true);
     }
 
     static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText, JLabel CardSignature, JLabel CardDate) {
-        
+
         EnterCard.setBackground(new Color(204, 0, 0));
         EnterCard.setLayout(new GridBagLayout());
 
@@ -59,7 +60,7 @@ public class Css extends Ngn {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        CardCode.setPreferredSize(new Dimension(324,50));
+        CardCode.setPreferredSize(new Dimension(324, 50));
         EnterCard.setName("EnterCard");
         EnterCard.add(CardCode, gridBagConstraints);
 
@@ -116,7 +117,7 @@ public class Css extends Ngn {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        PinCode.setPreferredSize(new Dimension(324,50));
+        PinCode.setPreferredSize(new Dimension(324, 50));
         EnterPin.add(PinCode, gridBagConstraints);
 
         EnterPin.setName("EnterPin");
@@ -201,7 +202,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
-        LitrsInput.setPreferredSize(new Dimension(324,50));
+        LitrsInput.setPreferredSize(new Dimension(324, 50));
         EnterLitrs.add(LitrsInput, gridBagConstraints);
 
         ClientInfo.setBackground(new Color(204, 0, 0));

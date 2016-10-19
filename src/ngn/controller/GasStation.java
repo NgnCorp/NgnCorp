@@ -9,7 +9,9 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import mail.SendMail;
+import ngn.Ngn;
 import ngn.model.DB;
+import ngn.text.Paths;
 import ngn.view.Work;
 
 /**
@@ -30,13 +32,17 @@ public class GasStation {
     static String OtvetKolonki;
 
     public GasStation() {
+        GasStationSettings();
+        TimerKolonkaStart();
+    }
+
+    public static void GasStationSettings() {
         KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
         try {
             KolonkaCOM3.openPort();
             KolonkaCOM3.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
             KolonkaCOM3.setEventsMask(SerialPort.MASK_RXCHAR);
             KolonkaCOM3.addEventListener(new EventListener());
-            TimerKolonkaStart();
         } catch (SerialPortException ex) {
             System.out.println(ex);
         }
@@ -63,10 +69,14 @@ public class GasStation {
                 Boolean TestGSSignal = KolonkaCOM3.writeString("@10510045#");
                 komanda = 0;
                 if (!TestGSSignal) {
+                    Ngn.StatusBar(Paths.PISTOLOFF, 3);
                     KolonkaStart.stop();
                     KolonkaStartNotWorks.restart();
+                } else {
+                    Ngn.StatusBar(Paths.PISTOLON, 3);
                 }
             } catch (SerialPortException ex) {
+                Ngn.StatusBar(Paths.PISTOLOFF, 3);
                 System.out.println(ex);
             }
         });
@@ -79,18 +89,6 @@ public class GasStation {
                 KolonkaStartNotWorks.stop();
             }
         });
-    }
-
-    public static void GasStationSettings() {
-        KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
-        try {
-            KolonkaCOM3.openPort();
-            KolonkaCOM3.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
-            KolonkaCOM3.setEventsMask(SerialPort.MASK_RXCHAR);
-            KolonkaCOM3.addEventListener(new EventListener());
-        } catch (SerialPortException ex) {
-            System.out.println(ex);
-        }
     }
 
     private static class EventListener implements SerialPortEventListener {

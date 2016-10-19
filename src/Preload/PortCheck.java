@@ -7,6 +7,8 @@ import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 import mail.SendMail;
+import ngn.Ngn;
+import ngn.text.Paths;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -61,9 +63,9 @@ public class PortCheck {
         if (GSPort != null) {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
-                if(BackendTimers.InternetCheck) {
+                if (BackendTimers.InternetCheck) {
                     Threads.LOCALDB();
-                } else if(CheckLocalDB()) {
+                } else if (CheckLocalDB()) {
                     BSLoadingText.setText(Text.LDBdone);
                 }
             } else {
@@ -117,6 +119,7 @@ public class PortCheck {
                     System.out.println(data);
                     if (data.contains("V")) {
                         KPPort = PN;
+                        Ngn.StatusBar(Paths.KEYPADON, 2);
                         try {
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
@@ -126,6 +129,7 @@ public class PortCheck {
                     }
                     if (data.contains("@")) {
                         GSPort = PN;
+                        Ngn.StatusBar(Paths.PISTOLON, 3);
                     }
                 } catch (SerialPortException ex) {
                     System.out.println(ex);

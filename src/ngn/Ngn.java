@@ -28,17 +28,17 @@ public class Ngn extends JFrame {
         invokeLater(() -> {
             // Frames //
             Css.MainFrame(MFRAME, STATUSBAR, NGN);
+            MFRAME.add(STATUSBAR);
+            MFRAME.add(NGN);
 
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
             Threads.INTERNETCONN();
-            //Threads.UPD();  //Full APP start
+            Threads.UPD();  //Full APP start
             BackendTimers.LocalDBUpdate();
-            AppContent();
-            PortCheck.GSPort = "COM3";
-            PortCheck.KPPort = "COM4"; //Start without COM ports check
+            //AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
         });
     }
 
@@ -53,9 +53,6 @@ public class Ngn extends JFrame {
             Info INFO = new Info(NGN);
             Load LOAD = new Load(NGN);
             Bye BYE = new Bye(NGN);
-
-            MFRAME.add(STATUSBAR);
-            MFRAME.add(NGN);
 
             // Controllers //
             KeyPad KEYPAD = new KeyPad();
@@ -85,17 +82,29 @@ public class Ngn extends JFrame {
         Image img = new ImageIcon(src).getImage();
         System.out.println(src);
         switch (position) {
-            case 1:
+            case 1: //internet
                 g.clearRect(10, 10, 32, 32);
                 g.drawImage(img, 10, 10, new Color(204, 0, 0), null);
                 break;
-            case 2:
+            case 2: //keypad
                 g.clearRect(52, 10, 32, 32);
                 g.drawImage(img, 52, 10, new Color(204, 0, 0), null);
                 break;
-            case 3:
-                g.clearRect(84, 10, 32, 32);
-                g.drawImage(img, 84, 10, new Color(204, 0, 0), null);
+            case 3: //pistol
+                g.clearRect(94, 10, 32, 32);
+                g.drawImage(img, 94, 10, new Color(204, 0, 0), null);
+                break;
+            case 4: //server
+                g.clearRect(136, 10, 32, 32);
+                g.drawImage(img, 136, 10, new Color(204, 0, 0), null);
+                break;
+            case 5: //sync DB
+                g.clearRect(178, 10, 32, 32);
+                g.drawImage(img, 178, 10, new Color(204, 0, 0), null);
+                break;
+            case 6: //clear sync
+                g.setColor(new Color(204, 0, 0));
+                g.fillRect(178, 10, 32, 32);
                 break;
         }
     }

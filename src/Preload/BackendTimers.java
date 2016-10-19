@@ -69,10 +69,14 @@ public class BackendTimers {
             try {
                 Boolean TestSignal = KeyPad.KeyPadCOM4.writeString("00");
                 if (!TestSignal) {
+                    Ngn.StatusBar(Paths.KEYPADOFF, 2);
                     KyePadWorks.stop();
                     KyePadNotWorks.restart();
+                } else {
+                    Ngn.StatusBar(Paths.KEYPADON, 2);
                 }
             } catch (SerialPortException ex) {
+                Ngn.StatusBar(Paths.KEYPADOFF, 2);
                 System.out.println(ex);
             }
         });
@@ -89,9 +93,12 @@ public class BackendTimers {
             if (CheckVisibility().equals("EnterCard") && InternetCheck) {
                 ReadWI.ReadWI();
                 Threads.LOCALDB();
+                Ngn.StatusBar(Paths.SERVERON, 4);
+                Ngn.StatusBar(Paths.SERVERCON, 5);
             } else {
                 LocalDBUpdateFast.restart();
                 LocalDBUpdate.stop();
+                Ngn.StatusBar(Paths.SERVEROFF, 4);
             }
         });
 
@@ -101,6 +108,8 @@ public class BackendTimers {
                 Threads.LOCALDB();
                 LocalDBUpdate.restart();
                 LocalDBUpdateFast.stop();
+                Ngn.StatusBar(Paths.SERVERON, 4);
+                Ngn.StatusBar(Paths.SERVERCON, 5);
             } else {
                 LocalDBUpdateFast.restart();
             }

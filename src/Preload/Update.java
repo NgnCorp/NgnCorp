@@ -10,6 +10,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Scanner;
 import mail.SendMail;
+import ngn.Ngn;
 import ngn.controller.ReadWI;
 import ngn.model.DB;
 import ngn.text.Config;
@@ -39,6 +40,8 @@ public class Update {
                 System.out.println(ex);
             }
             try {
+                Ngn.StatusBar(Paths.SERVERON, 4);
+                Ngn.StatusBar(Paths.SERVERCON, 5);
                 BSLoadingText.setText(h1CheckUpdate);
                 Scanner scan = new Scanner(con.openStream());
                 Boolean FileExist = false;

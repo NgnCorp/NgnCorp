@@ -6,10 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import ngn.Ngn;
 import ngn.controller.ReadWI;
 import ngn.controller.Variables;
 import ngn.controller.WriteWI;
 import ngn.text.Config;
+import ngn.text.Paths;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
 
@@ -69,6 +71,7 @@ public class LocalDB {
         } finally {
             try {
                 conLDB.close();
+                Ngn.StatusBar(Paths.SERVERCON, 6);
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
