@@ -90,35 +90,35 @@ public class Ngn extends JFrame {
     public static void StatusBar(URL src, Integer position) {
         Graphics g = STATUSBAR.getGraphics();
         Image img = new ImageIcon(src).getImage();
-        int mardinL = (screenSize.width - 670) / 2;
+        int marginL = (screenSize.width - 670) / 2;
         int iconW = 32;
         int iconH = 32;
-        int Yposition = 115;
+        int Yposition = screenSize.height/4 - iconH;
         //g.drawString("HELLO WORLD", 300, 10);
         switch (position) {
             case 1: //internet
-                g.clearRect(mardinL + 10, Yposition, iconW, iconH);
-                g.drawImage(img, mardinL + 10, Yposition, new Color(204, 0, 0), null);
+                g.clearRect(marginL + 10, Yposition, iconW, iconH);
+                g.drawImage(img, marginL + 10, Yposition, new Color(204, 0, 0), null);
                 break;
             case 2: //keypad
-                g.clearRect(mardinL + 52, Yposition, iconW, iconH);
-                g.drawImage(img, mardinL + 52, Yposition, new Color(204, 0, 0), null);
+                g.clearRect(marginL + 52, Yposition, iconW, iconH);
+                g.drawImage(img, marginL + 52, Yposition, new Color(204, 0, 0), null);
                 break;
             case 3: //pistol
-                g.clearRect(mardinL + 94, Yposition, iconW, iconH);
-                g.drawImage(img, mardinL + 94, Yposition, new Color(204, 0, 0), null);
+                g.clearRect(marginL + 94, Yposition, iconW, iconH);
+                g.drawImage(img, marginL + 94, Yposition, new Color(204, 0, 0), null);
                 break;
             case 4: //server
-                g.clearRect(mardinL + 136, Yposition, iconW, iconH);
-                g.drawImage(img, mardinL + 136, Yposition, new Color(204, 0, 0), null);
+                g.clearRect(marginL + 136, Yposition, iconW, iconH);
+                g.drawImage(img, marginL + 136, Yposition, new Color(204, 0, 0), null);
                 break;
             case 5: //sync DB
-                g.clearRect(mardinL + 178, Yposition, iconW, iconH);
-                g.drawImage(img, mardinL + 178, Yposition, new Color(204, 0, 0), null);
+                g.clearRect(marginL + 178, Yposition, iconW, iconH);
+                g.drawImage(img, marginL + 178, Yposition, new Color(204, 0, 0), null);
                 break;
             case 6: //clear sync
                 g.setColor(new Color(204, 0, 0));
-                g.fillRect(mardinL + 178, Yposition, iconW, iconH);
+                g.fillRect(marginL + 178, Yposition, iconW, iconH);
                 break;
         }
     }
