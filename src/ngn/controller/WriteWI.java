@@ -60,7 +60,7 @@ public class WriteWI {
         double LitrsFromCounter = Double.parseDouble(ReadWI.CounterReader());
         try (final FileWriter writer = new FileWriter(Paths.COUNTERPATH, false)) {
             double LitrsCounter = LitrsFromCounter + litriDouble;
-            final String s = String.format(Locale.ENGLISH, "%(.2f", LitrsCounter);
+            final String s = String.format(Locale.ENGLISH, "%.2f", LitrsCounter);
             writer.write(s + " |");
             writer.write(System.lineSeparator());
             String date = String.valueOf(ft.format(new Date()));

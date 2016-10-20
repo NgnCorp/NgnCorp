@@ -21,7 +21,7 @@ public class Listener {
             Variables.customerId     = Integer.valueOf(ReadWI.PersonalInfo[1]);
             Variables.pin            = ReadWI.PersonalInfo[2];
             Variables.name           = ReadWI.PersonalInfo[3];
-            Variables.litrnum        = String.format(Locale.ENGLISH, "%(.2f", Double.valueOf(ReadWI.PersonalInfo[4]));
+            Variables.litrnum        = String.format(Locale.ENGLISH, "%.2f", Double.valueOf(ReadWI.PersonalInfo[4]));
             Variables.code           = ReadWI.PersonalInfo[5];
             Variables.customerPrice  = Double.valueOf(ReadWI.PersonalInfo[6]);
             Variables.uahBalance     = Double.valueOf(ReadWI.PersonalInfo[7]);
@@ -58,7 +58,7 @@ public class Listener {
                 if (Variables.isLimitClient) { // Есть лимиты по заправке
                     ClientLitrs.setText(Converter.lessNumber(Variables.customerBalance, Variables.limitLitrnum));
                 } else {
-                    ClientLitrs.setText(String.format(Locale.ENGLISH, "%(.2f", Variables.customerBalance));
+                    ClientLitrs.setText(String.format(Locale.ENGLISH, "%.2f", Variables.customerBalance));
                 }
             }
             ChangePanel.ShowPanel(Litrs.EnterLitrs);

@@ -63,7 +63,7 @@ public class Converter {
             } else {
                 rest = Variables.limitLitrs;
             }
-            Variables.limitLitrnum = String.format(Locale.ENGLISH, "%(.2f", rest);
+            Variables.limitLitrnum = String.format(Locale.ENGLISH, "%.2f", rest);
         } else {
             Variables.isLimitClient = false;
         }
@@ -82,9 +82,9 @@ public class Converter {
     public static String lessNumber(double customerBalance, String limitLitrnum) {
         Double limitLitrs = Double.valueOf(limitLitrnum);
         if (customerBalance < limitLitrs) {
-            return String.format(Locale.ENGLISH, "%(.2f", customerBalance);
+            return String.format(Locale.ENGLISH, "%.2f", customerBalance);
         } else {
-            return String.format(Locale.ENGLISH, "%(.2f", limitLitrs);
+            return String.format(Locale.ENGLISH, "%.2f", limitLitrs);
         }
     }
 }

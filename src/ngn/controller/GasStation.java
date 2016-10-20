@@ -140,7 +140,7 @@ public class GasStation {
                                     double litrbez = Integer.decode("0x" + hexNUM) / 100.0;
                                     PolozheniePistoleta = "ИДЕТ ПРОЦЕСС ЗАПРАВКИ...";
                                     SchetLitrov = String.valueOf(litrbez);
-                                    MoneySchetLitrov = String.format(Locale.ENGLISH, "%(.2f", Variables.customerPrice * litrbez);
+                                    MoneySchetLitrov = String.format(Locale.ENGLISH, "%.2f", Variables.customerPrice * litrbez);
                                     break;
                                 default:
                                     komanda = 1;

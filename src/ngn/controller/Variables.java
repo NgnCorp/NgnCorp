@@ -64,7 +64,7 @@ public class Variables {
             Variables.customerId     = Integer.valueOf("0");
             Variables.pin            = "666";
             Variables.name           = "Hello From Past";
-            Variables.litrnum        = String.format(Locale.ENGLISH, "%(.2f", Double.valueOf("999999"));
+            Variables.litrnum        = String.format(Locale.ENGLISH, "%.2f", Double.valueOf("999999"));
             Variables.code           = "666";
             Variables.customerPrice  = Double.valueOf("0");
             Variables.uahBalance     = Double.valueOf("999999");
