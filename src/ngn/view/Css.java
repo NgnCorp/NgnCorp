@@ -21,11 +21,10 @@ import ngn.text.Text;
 public class Css extends Ngn {
 
     static java.awt.GridBagConstraints gridBagConstraints;
-    static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public static int windowHeight = screenSize.height;
-    public static int windowWidth = screenSize.width;
+    public static int windowHeight = Ngn.screenSize.height;
+    public static int windowWidth = Ngn.screenSize.width;
 
-    public static void MainFrame(JFrame MFrame, JPanel StatusBar, JPanel Ngn) {
+    public static void MainFrame(JFrame MFrame, JPanel StatusBar, JPanel Ngn, JPanel Footer) {
         MFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         MFrame.setUndecorated(true);
@@ -41,10 +40,15 @@ public class Css extends Ngn {
         MFrame.setCursor(transparentCursor);
 
         StatusBar.setBackground(new Color(204, 0, 0));
-        StatusBar.setMaximumSize(new Dimension(2147483647, 100));
-        StatusBar.setPreferredSize(new Dimension(168, 42));
+        StatusBar.setMaximumSize(new Dimension(windowWidth+1, windowHeight/4));
+        StatusBar.setPreferredSize(new Dimension(windowWidth+1, windowHeight/4));
         StatusBar.setLayout(new CardLayout());
+        
         Ngn.setLayout(new CardLayout());
+        
+        Footer.setBackground(new Color(204, 0, 0));
+        Footer.setMaximumSize(new Dimension(windowWidth+1, windowHeight/4));
+        Footer.setPreferredSize(new Dimension(windowWidth+1, windowHeight/4));
 
         MFrame.setVisible(true);
     }

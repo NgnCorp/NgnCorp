@@ -1,5 +1,7 @@
 package ngn.text;
 
+import java.net.URL;
+
 /**
  *
  * @author Валерик
@@ -16,14 +18,26 @@ public class Paths {
     public static final String COUNTERPATH      = "C:\\NgnUpdater\\Counter.txt";
 
     //___________I M A G E S   P A T H___________//
-    public static final String INETON           = "src/images/internetON.png";
-    public static final String INETOFF          = "src/images/internetOFF.png";
-    public static final String KEYPADON         = "src/images/keypadON.png";
-    public static final String KEYPADOFF        = "src/images/keypadOFF.png";
-    public static final String PISTOLON         = "src/images/pistolON.png";
-    public static final String PISTOLOFF        = "src/images/pistolOFF.png";
-    public static final String SERVERON         = "src/images/serverON.png";
-    public static final String SERVEROFF        = "src/images/serverOFF.png";
-    public static final String SERVERCON        = "src/images/serverCON.png";
+    public static URL INETON;
+    public static URL INETOFF;
+    public static URL KEYPADON;
+    public static URL KEYPADOFF;
+    public static URL PISTOLON;
+    public static URL PISTOLOFF;
+    public static URL SERVERON;
+    public static URL SERVEROFF;
+    public static URL SERVERCON;
+    
+    public Paths(){
+        INETON           = getClass().getResource("/images/internetON.png");
+        INETOFF          = getClass().getResource("/images/internetOFF.png");
+        KEYPADON         = getClass().getResource("/images/keypadON.png");
+        KEYPADOFF        = getClass().getResource("/images/keypadOFF.png");
+        PISTOLON         = getClass().getResource("/images/pistolON.png");
+        PISTOLOFF        = getClass().getResource("/images/pistolOFF.png");
+        SERVERON         = getClass().getResource("/images/serverON.png");
+        SERVEROFF        = getClass().getResource("/images/serverOFF.png");
+        SERVERCON        = getClass().getResource("/images/serverCON.png");
+    }
 
 }

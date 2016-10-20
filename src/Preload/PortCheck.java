@@ -70,9 +70,11 @@ public class PortCheck {
                 }
             } else {
                 BSLoadingText.setText(Text.KPPortOff);
+                Ngn.StatusBar(Paths.KEYPADOFF, 2);
             }
         } else {
             BSLoadingText.setText(Text.GSPortOff);
+            Ngn.StatusBar(Paths.PISTOLOFF, 3);
         }
     }
 

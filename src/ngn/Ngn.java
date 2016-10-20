@@ -4,14 +4,18 @@ import Preload.BackendTimers;
 import Preload.PortCheck;
 import Preload.Threads;
 import java.awt.Color;
+import java.awt.Dimension;
 import static java.awt.EventQueue.invokeLater;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import ngn.view.*;
 import ngn.controller.*;
+import ngn.text.Paths;
 
 /**
  *
@@ -19,32 +23,38 @@ import ngn.controller.*;
  */
 public class Ngn extends JFrame {
 
+    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     static JFrame MFRAME = new JFrame();
     static JPanel STATUSBAR = new JPanel();
     static JPanel NGN = new JPanel();
+    static JPanel FOOTER = new JPanel();
 
     public static void main(String[] args) throws InterruptedException {
 
         invokeLater(() -> {
             // Frames //
-            Css.MainFrame(MFRAME, STATUSBAR, NGN);
+            Css.MainFrame(MFRAME, STATUSBAR, NGN, FOOTER);
+            Paths PATHS = new Paths();//write paths to images on StatusBar
             MFRAME.add(STATUSBAR);
             MFRAME.add(NGN);
+            MFRAME.add(FOOTER);
 
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
             Threads.INTERNETCONN();
-            Threads.UPD();  //Full APP start
+            //Threads.UPD();  //Full APP start
             BackendTimers.LocalDBUpdate();
-            //AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
+            AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
         });
     }
 
     public static void AppContent() {
 
         invokeLater(() -> {
+
+            // App Panels //
             Card CARD = new Card(NGN);
             Pin PIN = new Pin(NGN);
             Litrs LITRS = new Litrs(NGN);
@@ -77,34 +87,38 @@ public class Ngn extends JFrame {
         MFRAME.toFront();
     }
 
-    public static void StatusBar(String src, Integer position) {
+    public static void StatusBar(URL src, Integer position) {
         Graphics g = STATUSBAR.getGraphics();
         Image img = new ImageIcon(src).getImage();
-        System.out.println(src);
+        int mardinL = (screenSize.width - 670) / 2;
+        int iconW = 32;
+        int iconH = 32;
+        int Yposition = 115;
+        //g.drawString("HELLO WORLD", 300, 10);
         switch (position) {
             case 1: //internet
-                g.clearRect(10, 10, 32, 32);
-                g.drawImage(img, 10, 10, new Color(204, 0, 0), null);
+                g.clearRect(mardinL + 10, Yposition, iconW, iconH);
+                g.drawImage(img, mardinL + 10, Yposition, new Color(204, 0, 0), null);
                 break;
             case 2: //keypad
-                g.clearRect(52, 10, 32, 32);
-                g.drawImage(img, 52, 10, new Color(204, 0, 0), null);
+                g.clearRect(mardinL + 52, Yposition, iconW, iconH);
+                g.drawImage(img, mardinL + 52, Yposition, new Color(204, 0, 0), null);
                 break;
             case 3: //pistol
-                g.clearRect(94, 10, 32, 32);
-                g.drawImage(img, 94, 10, new Color(204, 0, 0), null);
+                g.clearRect(mardinL + 94, Yposition, iconW, iconH);
+                g.drawImage(img, mardinL + 94, Yposition, new Color(204, 0, 0), null);
                 break;
             case 4: //server
-                g.clearRect(136, 10, 32, 32);
-                g.drawImage(img, 136, 10, new Color(204, 0, 0), null);
+                g.clearRect(mardinL + 136, Yposition, iconW, iconH);
+                g.drawImage(img, mardinL + 136, Yposition, new Color(204, 0, 0), null);
                 break;
             case 5: //sync DB
-                g.clearRect(178, 10, 32, 32);
-                g.drawImage(img, 178, 10, new Color(204, 0, 0), null);
+                g.clearRect(mardinL + 178, Yposition, iconW, iconH);
+                g.drawImage(img, mardinL + 178, Yposition, new Color(204, 0, 0), null);
                 break;
             case 6: //clear sync
                 g.setColor(new Color(204, 0, 0));
-                g.fillRect(178, 10, 32, 32);
+                g.fillRect(mardinL + 178, Yposition, iconW, iconH);
                 break;
         }
     }

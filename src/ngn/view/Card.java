@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import ngn.controller.Listener;
+import ngn.text.Paths;
 
 /**
  *
@@ -28,7 +29,8 @@ public class Card {
         CardDate = new javax.swing.JLabel();
 
         Css.cssCard(EnterCard, CardCode, CardAnimate, CardText, CardSignature, CardDate);
-        CardAnimate.setIcon(new ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N   
+        CardAnimate.setIcon(new ImageIcon(getClass().getResource("/images/firstAnim.gif"))); // NOI18N
+        CardSignature.setIcon(new ImageIcon(getClass().getResource("/images/Developer.png")));
 
         JF.add(EnterCard);
 
