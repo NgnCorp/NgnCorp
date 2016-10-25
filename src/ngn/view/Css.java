@@ -515,4 +515,67 @@ public class Css extends Ngn {
 
         BSLoadingPanel.add(BSLoadingBar, gridBagConstraints);
     }
+    
+    static void cssChoseOil(JPanel ChoseOil,JLabel ChoIl, JLabel Gas, JLabel Petrol, JLabel DieselFuel) {
+
+        ChoseOil.setBackground(new Color(204, 0, 0));
+        ChoseOil.setLayout(new GridBagLayout());
+
+        ChoseOil.setFont(new Font("Tahoma", 0, 24)); // NOI18N
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        ChoseOil.setPreferredSize(new Dimension(324, 50));
+        ChoseOil.setName("EnterCard");
+        ChoseOil.add(Gas, gridBagConstraints);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = ChoseOil.getWidth();
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        ChoIl.setFont(new Font("Candara", 0, 50));
+        ChoIl.setForeground(new Color(255, 255, 255));
+        ChoIl.setText("Выберите вид топлива");
+        ChoIl.setHorizontalAlignment(JTextField.LEFT);
+        ChoseOil.add(ChoIl, gridBagConstraints);
+        
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = ChoseOil.getWidth();
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        Petrol.setFont(new Font("Candara", 0, 40));
+        Petrol.setForeground(new Color(255, 255, 255));
+        Petrol.setText("1 - Газ");
+        Petrol.setHorizontalAlignment(JTextField.LEFT);
+        ChoseOil.add(Petrol, gridBagConstraints);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = ChoseOil.getWidth();
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        Gas.setFont(new Font("Candara", 0, 40));
+        Gas.setForeground(new Color(255, 255, 255));
+        Gas.setText("2 - Бензин");
+        Gas.setHorizontalAlignment(JTextField.LEFT);
+        ChoseOil.add(Gas, gridBagConstraints);
+        
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = ChoseOil.getWidth();
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        DieselFuel.setFont(new Font("Candara", 0, 40));
+        DieselFuel.setForeground(new Color(255, 255, 255));
+        DieselFuel.setText("3 - Дизельное топливо");
+        DieselFuel.setHorizontalAlignment(JTextField.LEFT);
+        ChoseOil.add(DieselFuel, gridBagConstraints);
+    }
 }

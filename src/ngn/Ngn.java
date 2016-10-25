@@ -56,6 +56,7 @@ public class Ngn extends JFrame {
 
             // App Panels //
             Card CARD = new Card(NGN);
+            ChoseOil CHOSEOIL = new ChoseOil(NGN);
             Pin PIN = new Pin(NGN);
             Litrs LITRS = new Litrs(NGN);
             Work WORK = new Work(NGN);
