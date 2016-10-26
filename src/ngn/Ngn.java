@@ -38,15 +38,16 @@ public class Ngn extends JFrame {
             MFRAME.add(STATUSBAR);
             MFRAME.add(NGN);
             MFRAME.add(FOOTER);
+            Footer footer = new Footer(FOOTER);
 
             // Backend Controllers //
             BeforeStart BEFORESTART = new BeforeStart(NGN);
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
             Threads.INTERNETCONN();
-            Threads.UPD();  //Full APP start
+            //Threads.UPD();  //Full APP start
             BackendTimers.LocalDBUpdate();
-            //AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
+            AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
         });
     }
 

@@ -14,7 +14,7 @@ import mail.SendMail;
 import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.view.*;
-import static ngn.view.Card.CardDate;
+import static ngn.view.Footer.CardDate;
 
 /**
  *

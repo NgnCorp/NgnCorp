@@ -52,8 +52,29 @@ public class Css extends Ngn {
 
         MFrame.setVisible(true);
     }
+    
+    public static void cssFooter(JPanel Footer, JLabel CardSignature, JLabel CardDate) {
+        
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        CardSignature.setFont(new Font("Candara", 0, 16));
+        CardSignature.setForeground(new Color(255, 255, 255));
+        CardSignature.setText(Text.SignatureText);
+        CardSignature.setPreferredSize(new Dimension(550,50));
+        Footer.add(CardSignature, gridBagConstraints);
 
-    static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText, JLabel CardSignature, JLabel CardDate) {
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        CardDate.setFont(new Font("Candara", 0, 20));
+        CardDate.setForeground(new Color(255, 255, 255));
+        CardDate.setText(Text.BeginingTime);
+        CardDate.setPreferredSize(new Dimension(100,50));
+        Footer.add(CardDate, gridBagConstraints);
+    }
+
+    static void cssCard(JPanel EnterCard, JPasswordField CardCode, JLabel CardAnimate, JLabel CardText) {
 
         EnterCard.setBackground(new Color(204, 0, 0));
         EnterCard.setLayout(new GridBagLayout());
@@ -73,30 +94,6 @@ public class Css extends Ngn {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         EnterCard.add(CardAnimate, gridBagConstraints);
-
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = CardCode.getWidth();
-        gridBagConstraints.ipady = 25;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        CardSignature.setFont(new Font("Candara", 0, 16));
-        CardSignature.setForeground(new Color(255, 255, 255));
-        CardSignature.setText(Text.SignatureText);
-        CardSignature.setHorizontalAlignment(JTextField.LEFT);
-        EnterCard.add(CardSignature, gridBagConstraints);
-
-        //System.out.println("Current Date: " + ft.format(date));
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipady = CardSignature.getVerticalTextPosition();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        CardDate.setFont(new Font("Candara", 0, 20));
-        CardDate.setForeground(new Color(255, 255, 255));
-        CardDate.setHorizontalAlignment(JTextField.RIGHT);
-        CardDate.setText(Text.BeginingTime);
-        EnterCard.add(CardDate, gridBagConstraints);
 
         CardText.setFont(new Font("Candara", 1, 48)); // NOI18N
         CardText.setForeground(new Color(255, 255, 255));

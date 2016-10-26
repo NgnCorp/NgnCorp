@@ -17,6 +17,7 @@ import static ngn.text.Text.cantConnInet;
 import static ngn.text.Text.h1SettingsDone;
 import static ngn.view.BeforeStart.BSLoadingText;
 import ngn.view.Card;
+import static ngn.view.Footer.CardDate;
 
 /**
  *
@@ -142,7 +143,7 @@ public class BackendTimers {
         });
 
         ReloadSystem = new Timer(5000, (ActionEvent e) -> {
-            if (Card.CardDate.getText().contains(Text.TimeToReload)
+            if (CardDate.getText().contains(Text.TimeToReload)
                     && BackendTimers.InternetCheck
                     && CheckVisibility().equals("EnterCard")) {
                 CmdReload.CmdReload();

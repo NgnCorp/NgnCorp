@@ -79,9 +79,9 @@ public class Text {
     public static String ServerText     = "<html><p style=\"text-align:center;\">ОТСУТСТВУЕТ СВЯЗЬ С СЕРВЕРОМ!<br>ЖДЕМ ";
     
     //__________C R E A T O R   T E X T____________//
-    public static String SignatureText  = "<html><p style=\"text-align:left;\">Designed & developed  by SvinTeger.com";
+    public static String SignatureText  = "<html><p style=\"text-align:left;padding-right:170px;\">Designed & developed  by SvinTeger.com";
     public static String BeginingTime   = "<html><p style=\"padding-right:0px;\">--:--:--";
-    public static String DatePadding    = "<html><p style=\"padding-right:0px;\">";
+    public static String DatePadding    = "<html><p style=\"padding-left:0px;\">";
     public static String TimeToReload   = "23:00:";
     public static final String HFP      = "Hello From Past";
 }
