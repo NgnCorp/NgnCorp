@@ -32,7 +32,7 @@ public class Listener {
             Variables.BalanceOneCardZero = Integer.valueOf(ReadWI.PersonalInfo[12]);
             Variables.couponId       = Integer.valueOf(ReadWI.PersonalInfo[13]);
             Variables.credit         = Double.valueOf(ReadWI.PersonalInfo[14]);
-            Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
+            Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]) + Variables.credit;
             
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
