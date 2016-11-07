@@ -12,6 +12,8 @@ import ngn.view.Work;
  * @author Офис
  */
 public class Listener {
+    
+    public static String LitrsInput;
 
     public static void CardCodeAction(ActionEvent e) {
         String CardCode = Converter.DeleteSymbols(e.getActionCommand());
@@ -38,6 +40,7 @@ public class Listener {
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);
             Timers.WaitForClient();
+            System.out.println("Balance: " + ReadWI.PersonalInfo[15] + "Credit: " + ReadWI.PersonalInfo[14]);
         } else {
             Timers.errorCard();
         }
@@ -70,7 +73,7 @@ public class Listener {
     }
 
     public static void LitrsInputAction(ActionEvent e) {
-        String LitrsInput = Converter.DeleteSymbols(e.getActionCommand());
+        LitrsInput = Converter.DeleteSymbols(e.getActionCommand());
 
         if (LitrsInput.length() != 0 && Integer.valueOf(LitrsInput) > 0) { // Строка не пустая и значение строки больше ноля
             String eqHex = Converter.ConvertToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения     

@@ -95,7 +95,7 @@ public class Ngn extends JFrame {
         int marginL = (screenSize.width - 670) / 2;
         int iconW = 32;
         int iconH = 32;
-        int Yposition = screenSize.height/4 - iconH;
+        int Yposition = screenSize.height/5 - iconH;
         //g.drawString("HELLO WORLD", 300, 10);
         switch (position) {
             case 1: //internet

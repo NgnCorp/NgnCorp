@@ -40,15 +40,15 @@ public class Css extends Ngn {
         MFrame.setCursor(transparentCursor);
 
         StatusBar.setBackground(new Color(204, 0, 0));
-        StatusBar.setMaximumSize(new Dimension(9999, windowHeight/4));
-        StatusBar.setPreferredSize(new Dimension(9999, windowHeight/4));
+        StatusBar.setMaximumSize(new Dimension(9999, windowHeight/5));
+        StatusBar.setPreferredSize(new Dimension(9999, windowHeight/5));
         StatusBar.setLayout(new CardLayout());
         
         Ngn.setLayout(new CardLayout());
         
         Footer.setBackground(new Color(204, 0, 0));
-        Footer.setMaximumSize(new Dimension(9999, windowHeight/4));
-        Footer.setPreferredSize(new Dimension(9999, windowHeight/4));
+        Footer.setMaximumSize(new Dimension(9999, windowHeight/5));
+        Footer.setPreferredSize(new Dimension(9999, windowHeight/5));
 
         MFrame.setVisible(true);
     }

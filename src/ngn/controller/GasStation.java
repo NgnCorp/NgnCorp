@@ -20,6 +20,8 @@ import ngn.view.Work;
  */
 public class GasStation {
 
+    public static boolean PistolStatus = true;
+    
     private static SerialPort KolonkaCOM3;
     static int komanda;
     static Timer KolonkaStart;
@@ -49,12 +51,11 @@ public class GasStation {
     }
 
     public static void TimerZaderzkaDoza(String komDoza) {
-        String doza = komDoza;
-        ZaderzkaDoza = new javax.swing.Timer(600, (ActionEvent e) -> {
+        ZaderzkaDoza = new Timer(600, (ActionEvent e) -> {
             try {
                 ZaderzkaDoza.stop();
                 komanda = 1;
-                KolonkaCOM3.writeString(doza); // Отправляем на колонку количество литров на отдачу
+                KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }
@@ -70,13 +71,16 @@ public class GasStation {
                 komanda = 0;
                 if (!TestGSSignal) {
                     Ngn.StatusBar(Paths.PISTOLOFF, 3);
+                    PistolStatus = false;
                     KolonkaStart.stop();
                     KolonkaStartNotWorks.restart();
                 } else {
                     Ngn.StatusBar(Paths.PISTOLON, 3);
+                    PistolStatus = true;
                 }
             } catch (SerialPortException ex) {
                 Ngn.StatusBar(Paths.PISTOLOFF, 3);
+                PistolStatus = false;
                 System.out.println(ex);
             }
         });
