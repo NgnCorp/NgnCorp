@@ -34,6 +34,7 @@ public class BackendTimers {
     public static Timer WaitForInternet;
     public static Timer InternetStatus;
     public static Timer ReloadSystem;
+    public static Timer FastReloadSystem;
     public static Timer WaitForServer;
 
     public static boolean InternetCheck;
@@ -150,6 +151,10 @@ public class BackendTimers {
             }
         });
 
+        FastReloadSystem = new Timer(5000, (ActionEvent e) -> {
+                CmdReload.CmdReload();
+        });
+
         WaitForServer = new Timer(ServerTime, (ActionEvent e) -> {
             if (BackendTimers.InternetCheck
                     && CheckVisibility().equals("EnterCard")
@@ -181,6 +186,10 @@ public class BackendTimers {
 
     public static void ReloadSystem() {
         ReloadSystem.restart();
+    }
+
+    public static void FastReloadSystem() {
+        FastReloadSystem.restart();
     }
 
     public static void WaitForServer() {

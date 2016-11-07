@@ -296,6 +296,7 @@ public class Timers {
         double litriDouble = Double.valueOf(Work.SchetLitrov.getText());
         if (!state) {
             litriDouble = Double.valueOf(Listener.LitrsInput);
+            BackendTimers.FastReloadSystem();
         }
         double formatnewln = Double.valueOf(Variables.litrnum) - litriDouble;
         // NEWLN - Разница между литрами на карте и заправленными
@@ -333,16 +334,12 @@ public class Timers {
             WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
             WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
             LocalDB.WriteToLocalDB();// Записываем в LocalDB
-            if (state) {
-                ChangePanel.ShowPanel(Bye.GoodBye);
-            } else {
-                CmdReload.CmdReload();
-            }
             Litrs.LitrsInput.setText("");
             Work.SchetLitrov.setText("");
             Success();
             GasStation.CustomerInfoToZero();
             ToZero.CustomerInfo();
+            ChangePanel.ShowPanel(Bye.GoodBye);
         }
     }
 }
