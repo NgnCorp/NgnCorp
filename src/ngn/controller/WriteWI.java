@@ -42,7 +42,7 @@ public class WriteWI {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(PATHLDB, false), "windows-1251"))) {
             bw.write("");
         } catch (IOException ex) {
-            SendMail.sendEmail(String.valueOf(ex), "Can't LDBToZero error! " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(ex), "Can't LDBToZero error! " + DB.MODULENAME, false);
             System.out.println(ex);
         }
     }
@@ -51,7 +51,7 @@ public class WriteWI {
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Paths.TRANSACTIONPATH, false), "windows-1251"))) {
             bw.write("");
         } catch (IOException ex) {
-            SendMail.sendEmail(String.valueOf(ex), "Can't FillingDataToZero error! " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(ex), "Can't FillingDataToZero error! " + DB.MODULENAME, false);
             System.out.println(ex);
         }
     }
@@ -66,7 +66,7 @@ public class WriteWI {
             String date = String.valueOf(ft.format(new Date()));
             writer.write(date);
         } catch (IOException e) {
-            SendMail.sendEmail(String.valueOf(e.getMessage()), "Can't Write to counter! " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(e.getMessage()), "Can't Write to counter! " + DB.MODULENAME, false);
             System.out.println(e);
         }
     }

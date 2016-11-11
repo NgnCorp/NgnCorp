@@ -31,12 +31,13 @@ public class SendMail {
     private static final String PASSWORD = "NgnAdmin2015";
     private static final String TOVALERA = "lcf666666lcf@gmail.com";
     private static final String TOSASHA = "svitlyk.oleksandr@mail.ru";
+    private static final String TOVITYA = "info@n-g-n.com";
     private static Session mailSession;
     private static MimeMessage message;
     private static Multipart mp;
     private static MimeBodyPart mbp;
 
-    public static void sendEmail(String body, String subject) {
+    public static void sendEmail(String body, String subject, Boolean SendToVitya) {
         if (InternetCheck) {
             Properties mailProps = new Properties();
             mailProps.put("mail.smtp.host", SMTPHOST);
@@ -68,7 +69,11 @@ public class SendMail {
             if (b == 1) {
                 //String[] emails = {TOVALERA, TOSASHA};
                 try {
-                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + TOSASHA));
+                    String SecondEmailAdress = TOSASHA;
+                    if(SendToVitya) {
+                        SecondEmailAdress = TOVITYA;
+                    }
+                    message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(TOVALERA + "," + SecondEmailAdress));
                     message.setSubject(subject, "UTF-8");
                     mp = new MimeMultipart();
                     mbp = new MimeBodyPart();

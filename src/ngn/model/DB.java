@@ -121,7 +121,7 @@ public class DB {
             pst2.executeUpdate();
             con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
-            SendMail.sendEmail(String.valueOf(e), Text.cannotConSer + " " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(e), Text.cannotConSer + " " + DB.MODULENAME, false);
             return false;
         }
         return true;
@@ -135,7 +135,7 @@ public class DB {
             pst3.executeUpdate();
             con.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
-            SendMail.sendEmail(String.valueOf(e), Text.cannotConSer + " " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(e), Text.cannotConSer + " " + DB.MODULENAME, false);
             return false;
         }
         return true;

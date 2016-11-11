@@ -165,13 +165,13 @@ public class GasStation {
                                     //ZaderzkaDoza.restart();
                                 }
                             } catch (SerialPortException ex) {
-                                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
                                 System.out.println(ex);
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
-                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
                     System.out.println(ex);
                 }
             }

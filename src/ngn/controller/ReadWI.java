@@ -69,7 +69,7 @@ public class ReadWI {
             }
         } catch (IOException ex) {
             BSLoadingText.setText(Text.cannotreadDB);
-            SendMail.sendEmail(String.valueOf(ex), Text.cannotreadDB + " " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(ex), Text.cannotreadDB + " " + DB.MODULENAME, false);
             System.out.println(ex);
         }
         CustomerInfo = String.valueOf(LDB).split("\\|");
@@ -141,7 +141,7 @@ public class ReadWI {
                 CounterStart = CounterContent[0].substring(0, CounterContent[0].length() - 1);
             }
         } catch (IOException ex) {
-            SendMail.sendEmail(String.valueOf(ex), "Can't Read from counter! " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(ex), "Can't Read from counter! " + DB.MODULENAME, false);
             System.out.println(ex);
         }
         return CounterStart;
