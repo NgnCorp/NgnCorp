@@ -376,9 +376,9 @@ public class Css extends Ngn {
         Working.add(MarkMoneySchetLitrov, gridBagConstraints);
         
         WorkingCardCode.setBackground(PolozheniePistoleta.getBackground());
-        WorkingCardCode.setFont(new Font("Candara", 1, 48)); // NOI18N
+        WorkingCardCode.setFont(PolozheniePistoleta.getFont()); // NOI18N
         WorkingCardCode.setForeground(PolozheniePistoleta.getForeground());
-        WorkingCardCode.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        WorkingCardCode.setHorizontalAlignment(SwingConstants.RIGHT);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
