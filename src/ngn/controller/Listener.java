@@ -13,31 +13,35 @@ import ngn.view.Work;
  */
 public class Listener {
 
+    public static String LitrsInput;
+
     public static void CardCodeAction(ActionEvent e) {
         String CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10 && ReadWI.FindCardName(CardCode)) {
-            Variables.cardCode       = CardCode;
-            Variables.customerId     = Integer.valueOf(ReadWI.PersonalInfo[1]);
-            Variables.pin            = ReadWI.PersonalInfo[2];
-            Variables.name           = ReadWI.PersonalInfo[3];
-            Variables.litrnum        = String.format(Locale.ENGLISH, "%.2f", Double.valueOf(ReadWI.PersonalInfo[4]));
-            Variables.code           = ReadWI.PersonalInfo[5];
-            Variables.customerPrice  = Double.valueOf(ReadWI.PersonalInfo[6]);
-            Variables.uahBalance     = Double.valueOf(ReadWI.PersonalInfo[7]);
-            Variables.purse          = ReadWI.PersonalInfo[8];
-            Variables.limitDay       = Integer.valueOf(ReadWI.PersonalInfo[9]);
-            Variables.limitLitrs     = Double.valueOf(ReadWI.PersonalInfo[10]);
+            Variables.cardCode = CardCode;
+            Variables.customerId = Integer.valueOf(ReadWI.PersonalInfo[1]);
+            Variables.pin = ReadWI.PersonalInfo[2];
+            Variables.name = ReadWI.PersonalInfo[3];
+            Variables.litrnum = String.format(Locale.ENGLISH, "%.2f", Double.valueOf(ReadWI.PersonalInfo[4]));
+            Variables.code = ReadWI.PersonalInfo[5];
+            Variables.customerPrice = Double.valueOf(ReadWI.PersonalInfo[6]);
+            Variables.uahBalance = Double.valueOf(ReadWI.PersonalInfo[7]);
+            Variables.purse = ReadWI.PersonalInfo[8];
+            Variables.limitDay = Integer.valueOf(ReadWI.PersonalInfo[9]);
+            Variables.limitLitrs = Double.valueOf(ReadWI.PersonalInfo[10]);
             Variables.usedLimitLitrs = Double.valueOf(ReadWI.PersonalInfo[11]);
             Variables.BalanceOneCardZero = Integer.valueOf(ReadWI.PersonalInfo[12]);
-            Variables.couponId       = Integer.valueOf(ReadWI.PersonalInfo[13]);
-            Variables.credit         = Double.valueOf(ReadWI.PersonalInfo[14]);
-            Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]) + Variables.credit;
+            Variables.couponId = Integer.valueOf(ReadWI.PersonalInfo[13]);
+            Variables.credit = Double.valueOf(ReadWI.PersonalInfo[14]);
+            Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
             
+            Work.WorkingCardCode.setText(Variables.cardCode);
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);
             Timers.WaitForClient();
+            System.out.println("Balance: " + ReadWI.PersonalInfo[15] + "Credit: " + ReadWI.PersonalInfo[14]);
         } else {
             Timers.errorCard();
         }
@@ -70,7 +74,7 @@ public class Listener {
     }
 
     public static void LitrsInputAction(ActionEvent e) {
-        String LitrsInput = Converter.DeleteSymbols(e.getActionCommand());
+        LitrsInput = Converter.DeleteSymbols(e.getActionCommand());
 
         if (LitrsInput.length() != 0 && Integer.valueOf(LitrsInput) > 0) { // Строка не пустая и значение строки больше ноля
             String eqHex = Converter.ConvertToHex(LitrsInput); // Передаем вводимое число литров на обработку для получения хексового значения     

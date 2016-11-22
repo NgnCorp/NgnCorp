@@ -21,7 +21,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.18;
+    private static final Double VER = 0.22;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -35,7 +35,7 @@ public class Update {
             try {
                 con = new URL("ftp://" + USER + ":" + PASS + "@" + URL + "/");
             } catch (MalformedURLException ex) {
-                SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME);
+                SendMail.sendEmail(String.valueOf(ex), Text.cantConn + " " + DB.MODULENAME, false);
                 BSLoadingText.setText(cantConn);
                 System.out.println(ex);
             }
@@ -59,7 +59,7 @@ public class Update {
                 }
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
-                SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME);
+                SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME, false);
                 System.out.println(ex);
             }
         } else {
@@ -90,7 +90,7 @@ public class Update {
                 download(upload, place);
             } catch (IOException ex) {
                 System.out.println(ex);
-                SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME);
+                SendMail.sendEmail(String.valueOf(ex), Text.cantdownlNEW + " " + DB.MODULENAME, false);
                 BSLoadingText.setText(cantdownlNEW);
             }
         } else {
@@ -110,12 +110,12 @@ public class Update {
                     BSLoadingText.setText(createFile + Paths.TRANSACTIONPATH);
                     Threads.CHECKPORTS();
                 } else {
-                    SendMail.sendEmail(Text.workingFIREWALL, Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
+                    SendMail.sendEmail(Text.workingFIREWALL, Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME, false);
                 }
             } catch (IOException ex) {
                 System.out.println(ex);
                 BSLoadingText.setText(cantCREATE + Paths.TRANSACTIONPATH);
-                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME);
+                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.TRANSACTIONPATH + " " + DB.MODULENAME, false);
             }
         }
     }
@@ -131,7 +131,7 @@ public class Update {
                 }
             } catch (IOException ex) {
                 System.out.println(ex);
-                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.COUNTERPATH + " " + DB.MODULENAME);
+                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.COUNTERPATH + " " + DB.MODULENAME, false);
                 return false;
             }
         }
@@ -156,7 +156,7 @@ public class Update {
             }
         } catch (IOException ex) {
             BSLoadingText.setText(cantRunProg);
-            SendMail.sendEmail(String.valueOf(ex), Text.cantRunProg + " " + DB.MODULENAME);
+            SendMail.sendEmail(String.valueOf(ex), Text.cantRunProg + " " + DB.MODULENAME, false);
             System.out.println(ex);
         }
         Runtime.getRuntime().exit(0);

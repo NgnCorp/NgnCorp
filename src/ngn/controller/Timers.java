@@ -333,4 +333,60 @@ public class Timers {
     public static void DateTime() {
         DateTime.restart();
     }
+
+    public static void WriteTransaction(boolean state) {
+
+        ForceMajor.stop();
+        if (Work.SchetLitrov.getText().equals("")) { //Исправление бага "моментальное повешанье пистолета"
+            Work.SchetLitrov.setText("0.0");
+        }
+        double litriDouble = Double.valueOf(Work.SchetLitrov.getText());
+        double formatnewln = Double.valueOf(Variables.litrnum) - litriDouble;
+        // NEWLN - Разница между литрами на карте и заправленными
+        Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f", litriDouble);
+        Variables.newln = String.format(Locale.ENGLISH, "%.2f", formatnewln);
+        // Date 
+        java.util.Date udate = new java.util.Date();
+        Variables.sdate = new java.sql.Timestamp(udate.getTime());
+        // Transaction Data
+        String[] Transaction = new String[]{
+            String.valueOf(Variables.BalanceOneCardZero),
+            String.valueOf(Variables.customerId),
+            Variables.name,
+            Variables.code,
+            Variables.leftlitr,
+            String.valueOf(Variables.sdate),
+            String.valueOf(Variables.couponId)
+        };
+        /*
+                //Try to send transaction with internet
+                if (BackendTimers.InternetCheck) {
+                } else {
+                    SendMail.sendEmail("No Internet", "Wasn't Internet, when trying to send transaction, after client put on gas pistol! " + DB.MODULENAME);
+                    System.out.println("No Internet");
+                }
+         */
+        if (Variables.cardCode.equals(Text.HFP)) {
+            ChangePanel.ShowPanel(Bye.GoodBye);
+            Litrs.LitrsInput.setText("");
+            Work.SchetLitrov.setText("");
+            Success();
+            GasStation.CustomerInfoToZero();
+            ToZero.CustomerInfo();
+        } else {
+            WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
+            WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+            LocalDB.WriteToLocalDB();// Записываем в LocalDB
+            Litrs.LitrsInput.setText("");
+            Work.SchetLitrov.setText("");
+            Success();
+            GasStation.CustomerInfoToZero();
+            ToZero.CustomerInfo();
+            ChangePanel.ShowPanel(Bye.GoodBye);
+        }
+        if (!state) {
+            SendMail.sendEmail("Клиент: " + Variables.name + "\nВвел литров: " + Listener.LitrsInput + "\nНомер карты: " + Variables.code, Text.GSPortOff + " на АЗС  " + DB.MODULENAME, true);
+            BackendTimers.FastReloadSystem();
+        }
+    }
 }

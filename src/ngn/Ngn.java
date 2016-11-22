@@ -45,9 +45,9 @@ public class Ngn extends JFrame {
             BackendTimers BACKENDTIMERS = new BackendTimers();
             Threads THREADS = new Threads();
             Threads.INTERNETCONN();
-            Threads.UPD();  //Full APP start
+            //Threads.UPD();  //Full APP start
             BackendTimers.LocalDBUpdate();
-            //AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
+            AppContent(); PortCheck.GSPort = "COM3"; PortCheck.KPPort = "COM4"; //Start without COM ports check
         });
     }
 
@@ -95,7 +95,7 @@ public class Ngn extends JFrame {
         int marginL = (screenSize.width - 670) / 2;
         int iconW = 32;
         int iconH = 32;
-        int Yposition = screenSize.height/4 - iconH;
+        int Yposition = screenSize.height/5 - iconH;
         //g.drawString("HELLO WORLD", 300, 10);
         switch (position) {
             case 1: //internet

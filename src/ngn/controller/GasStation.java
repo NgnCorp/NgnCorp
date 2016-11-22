@@ -20,6 +20,10 @@ import ngn.view.Work;
  */
 public class GasStation {
 
+    public static boolean PistolStatus = true;
+    public static boolean TestInGSSignal = false;
+    public static boolean TestOutGSSignal = false;
+
     private static SerialPort KolonkaCOM3;
     static int komanda;
     static Timer KolonkaStart;
@@ -49,12 +53,11 @@ public class GasStation {
     }
 
     public static void TimerZaderzkaDoza(String komDoza) {
-        String doza = komDoza;
-        ZaderzkaDoza = new javax.swing.Timer(600, (ActionEvent e) -> {
+        ZaderzkaDoza = new Timer(600, (ActionEvent e) -> {
             try {
                 ZaderzkaDoza.stop();
                 komanda = 1;
-                KolonkaCOM3.writeString(doza); // Отправляем на колонку количество литров на отдачу
+                KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }
@@ -66,17 +69,21 @@ public class GasStation {
     public static void TimerKolonkaStart() {
         KolonkaStart = new Timer(600, (ActionEvent e) -> {
             try {
-                Boolean TestGSSignal = KolonkaCOM3.writeString("@10510045#");
+                TestInGSSignal = KolonkaCOM3.writeString("@10510045#");
                 komanda = 0;
-                if (!TestGSSignal) {
+                if (!TestInGSSignal && !TestOutGSSignal) {
                     Ngn.StatusBar(Paths.PISTOLOFF, 3);
+                    PistolStatus = false;
                     KolonkaStart.stop();
                     KolonkaStartNotWorks.restart();
                 } else {
                     Ngn.StatusBar(Paths.PISTOLON, 3);
+                    PistolStatus = true;
                 }
+                TestOutGSSignal = false;
             } catch (SerialPortException ex) {
                 Ngn.StatusBar(Paths.PISTOLOFF, 3);
+                PistolStatus = false;
                 System.out.println(ex);
             }
         });
@@ -95,6 +102,7 @@ public class GasStation {
 
         @Override
         public void serialEvent(SerialPortEvent event) {
+            TestOutGSSignal = true;
             if (event.isRXCHAR() && event.getEventValue() != 0) {
                 String data = "";
                 String oneSymbol;
@@ -157,13 +165,13 @@ public class GasStation {
                                     //ZaderzkaDoza.restart();
                                 }
                             } catch (SerialPortException ex) {
-                                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
                                 System.out.println(ex);
                             }
                         }
                     }
                 } catch (SerialPortException ex) {
-                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME);
+                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
                     System.out.println(ex);
                 }
             }
