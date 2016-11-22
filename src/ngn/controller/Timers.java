@@ -95,7 +95,7 @@ public class Timers {
         ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
             Work.PolozheniePistoleta.setText(Text.rememberAboutPistol);
             Work.SchetLitrov.setText(GasStation.SchetLitrov);
-            Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
+            //Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
             if (GasStation.PolozheniePistoleta.equals(Text.pistolOnGS)) { // Ждем повешанья пистолета после заправки
                 // Если что, проблему искать тут. Форс мажор таймер.
                 ForceMajor.stop();
@@ -155,7 +155,8 @@ public class Timers {
             ChangePanel.FocusPassword(Card.CardCode);
             ToZero.TextOff();
             GasStation.SchetLitrov = "";
-            GasStation.MoneySchetLitrov = "";
+            GasStation.WorkingCardCode = "";
+            //GasStation.MoneySchetLitrov = "";
             Success.stop();
         });
 

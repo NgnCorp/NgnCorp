@@ -12,6 +12,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import ngn.Ngn;
+import static ngn.controller.Variables.cardCode;
 import ngn.text.Text;
 
 /**
@@ -306,7 +307,7 @@ public class Css extends Ngn {
         EnterLitrs.setVisible(false); // Hide panel after render
     }
 
-    static void cssWork(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel MoneySchetLitrov, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
+    static void cssWork(JPanel Working, JLabel PolozheniePistoleta, JLabel SchetLitrov, JLabel WorkingCardCode/*JLabel MoneySchetLitrov*/, JLabel MarkSchetLitrov, JLabel MarkMoneySchetLitrov, JLabel Reklama) {
 
         Working.setBackground(new Color(204, 0, 0));
         Working.setLayout(new GridBagLayout());
@@ -334,7 +335,7 @@ public class Css extends Ngn {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         Working.add(SchetLitrov, gridBagConstraints);
-
+        /*
         MoneySchetLitrov.setBackground(PolozheniePistoleta.getBackground());
         MoneySchetLitrov.setFont(new Font("Candara", 1, 48)); // NOI18N
         MoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
@@ -346,7 +347,8 @@ public class Css extends Ngn {
         gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.insets = new Insets(0, 50, 0, 0);
         Working.add(MoneySchetLitrov, gridBagConstraints);
-
+        */
+        
         MarkSchetLitrov.setBackground(PolozheniePistoleta.getBackground());
         MarkSchetLitrov.setFont(PolozheniePistoleta.getFont());
         MarkSchetLitrov.setForeground(PolozheniePistoleta.getForeground());
@@ -365,13 +367,26 @@ public class Css extends Ngn {
         MarkMoneySchetLitrov.setFont(PolozheniePistoleta.getFont());
         MarkMoneySchetLitrov.setForeground(PolozheniePistoleta.getForeground());
         MarkMoneySchetLitrov.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
-        MarkMoneySchetLitrov.setText(Text.h1UAH);
+        MarkMoneySchetLitrov.setText(Text.h1CardNum); // h1UAH поменяли на h1CardNum
         MarkMoneySchetLitrov.setToolTipText("");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         Working.add(MarkMoneySchetLitrov, gridBagConstraints);
+        
+        WorkingCardCode.setBackground(PolozheniePistoleta.getBackground());
+        WorkingCardCode.setFont(new Font("Candara", 1, 48)); // NOI18N
+        WorkingCardCode.setForeground(PolozheniePistoleta.getForeground());
+        WorkingCardCode.setHorizontalAlignment(PolozheniePistoleta.getHorizontalAlignment());
+        WorkingCardCode.setText(cardCode);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(0, 50, 0, 0);
+        Working.add(WorkingCardCode, gridBagConstraints);
 
         Reklama.setBackground(PolozheniePistoleta.getBackground());
         Reklama.setFont(PolozheniePistoleta.getFont());

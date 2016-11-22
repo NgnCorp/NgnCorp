@@ -27,7 +27,7 @@ public class GasStation {
     static Timer ZaderzkaDoza;
     static String PolozheniePistoleta;
     static String SchetLitrov;
-    static String MoneySchetLitrov;
+    static String WorkingCardCode; //MoneySchetLitrov
     static String OtvetPoDoze;
     static String OtvetKolonki;
 
@@ -140,7 +140,7 @@ public class GasStation {
                                     double litrbez = Integer.decode("0x" + hexNUM) / 100.0;
                                     PolozheniePistoleta = "ИДЕТ ПРОЦЕСС ЗАПРАВКИ...";
                                     SchetLitrov = String.valueOf(litrbez);
-                                    MoneySchetLitrov = String.format(Locale.ENGLISH, "%.2f", Variables.customerPrice * litrbez);
+                                    //MoneySchetLitrov = String.format(Locale.ENGLISH, "%.2f", Variables.customerPrice * litrbez);
                                     break;
                                 default:
                                     komanda = 1;
@@ -180,8 +180,9 @@ public class GasStation {
 
     public static void CustomerInfoToZero() {
         SchetLitrov = "";
-        MoneySchetLitrov = "";
-        Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
+        WorkingCardCode = "";
+        //MoneySchetLitrov = "";
+        //Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
     }
 
     public static void KomandaStop() {
