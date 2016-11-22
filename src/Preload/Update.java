@@ -21,7 +21,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.22;
+    private static final Double VER = 0.25;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -164,9 +164,6 @@ public class Update {
 
     public static boolean CheckLocalDB() {
         File file = new File(Paths.LDBPATH);
-        if (file.exists()) {
-            return true;
-        }
-        return false;
+        return file.exists();
     }
 }

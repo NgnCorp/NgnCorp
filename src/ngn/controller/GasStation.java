@@ -129,45 +129,47 @@ public class GasStation {
                         }
                         String pihex = Integer.toHexString(crc);
                         if (pihex.equals(controlNumber)) {
-                            System.out.println(OtvetKolonki);
-                        }
-                        if (komanda == 0) {
-                            switch (OtvetKolonki.indexOf("#")) {
-                                case 11:
-                                    if (OtvetKolonki.equals("@0151010044#")) {
-                                        PolozheniePistoleta = "ПИСТОЛЕТ ПОВЕШЕН";
-                                    } else {
-                                        PolozheniePistoleta = "ПОВЕСЬТЕ ПИСТОЛЕТ!";
-                                    }
-                                    break;
-                                //String poluchenieOtcheta = KolonkaCOM3.readString(8);
-                                //String schetLitrov = proverkaSvyazi + poluchenieOtcheta;
-                                ////////////////////////////Читаем 19 байт и проверяем наличие решетки в конце//////////////////////////////////////
-                                case 19:
-                                    String hexNUM = new String(OtvetKolonki.toCharArray(), 9, 8);
-                                    double litrbez = Integer.decode("0x" + hexNUM) / 100.0;
-                                    PolozheniePistoleta = "ИДЕТ ПРОЦЕСС ЗАПРАВКИ...";
-                                    SchetLitrov = String.valueOf(litrbez);
-                                    //MoneySchetLitrov = String.format(Locale.ENGLISH, "%.2f", Variables.customerPrice * litrbez);
-                                    break;
-                                default:
-                                    komanda = 1;
-                                    break;
-                            }
-                        }
-                        if (komanda == 1) {
-                            try {
-                                //OtvetPoDoze = KolonkaCOM3.readString(11);
-                                if (OtvetKolonki.equals("@0144010141#")) {
-                                    KolonkaCOM3.writeString("@1047010142#"); //PUSK
-                                    TimerKolonkaStart();
-                                } else {
-                                    //ZaderzkaDoza.restart();
+                            if (komanda == 0) {
+                                switch (OtvetKolonki.indexOf("#")) {
+                                    case 11:
+                                        if (OtvetKolonki.equals("@0151010044#")) {
+                                            PolozheniePistoleta = "ПИСТОЛЕТ ПОВЕШЕН";
+                                        } else {
+                                            PolozheniePistoleta = "ПОВЕСЬТЕ ПИСТОЛЕТ!";
+                                        }
+                                        break;
+                                    //String poluchenieOtcheta = KolonkaCOM3.readString(8);
+                                    //String schetLitrov = proverkaSvyazi + poluchenieOtcheta;
+                                    ////////////////////////////Читаем 19 байт и проверяем наличие решетки в конце//////////////////////////////////////
+                                    case 19:
+                                        String hexNUM = new String(OtvetKolonki.toCharArray(), 9, 8);
+                                        double litrbez = Integer.decode("0x" + hexNUM) / 100.0;
+                                        PolozheniePistoleta = "ИДЕТ ПРОЦЕСС ЗАПРАВКИ...";
+                                        SchetLitrov = String.valueOf(litrbez);
+                                        //MoneySchetLitrov = String.format(Locale.ENGLISH, "%.2f", Variables.customerPrice * litrbez);
+                                        break;
+                                    default:
+                                        komanda = 1;
+                                        break;
                                 }
-                            } catch (SerialPortException ex) {
-                                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
-                                System.out.println(ex);
                             }
+                            if (komanda == 1) {
+                                try {
+                                    //OtvetPoDoze = KolonkaCOM3.readString(11);
+                                    if (OtvetKolonki.equals("@0144010141#")) {
+                                        KolonkaCOM3.writeString("@1047010142#"); //PUSK
+                                        TimerKolonkaStart();
+                                    } else {
+                                        //ZaderzkaDoza.restart();
+                                    }
+                                } catch (SerialPortException ex) {
+                                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
+                                    System.out.println(ex);
+                                }
+                            }
+                        } else {
+                            //System.out.println("Сбойный пакет: " + OtvetKolonki);
+                            //SendMail.sendEmail("Сбойный пакет: " + OtvetKolonki, "Gas Station error! " + DB.MODULENAME, false);
                         }
                     }
                 } catch (SerialPortException ex) {
