@@ -8,16 +8,19 @@ import java.net.*;
  * @author Валерик
  */
 public class InternetConn {
+
     public static boolean InternetConn() {
         try {
             URL url = new URL("http://www.google.com/");
+            
             HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
             urlc.setRequestProperty("User-Agent", "test");
             urlc.setRequestProperty("Connection", "close");
             urlc.setConnectTimeout(2000);
             urlc.setReadTimeout(3000);
             urlc.connect();
-            System.out.println(urlc.getResponseCode());
+            System.out.println(urlc.getInputStream());
+            //System.out.println(urlc.getResponseCode());
             return urlc.getResponseCode() == 200;
 
         } catch (IOException e) {
