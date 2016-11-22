@@ -169,7 +169,7 @@ public class GasStation {
                             }
                         } else {
                             //System.out.println("Сбойный пакет: " + OtvetKolonki);
-                            SendMail.sendEmail("Сбойный пакет: " + OtvetKolonki, "Gas Station error! " + DB.MODULENAME, false);
+                            //SendMail.sendEmail("Сбойный пакет: " + OtvetKolonki, "Gas Station error! " + DB.MODULENAME, false);
                         }
                     }
                 } catch (SerialPortException ex) {
