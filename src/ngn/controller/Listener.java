@@ -36,7 +36,6 @@ public class Listener {
             Variables.credit = Double.valueOf(ReadWI.PersonalInfo[14]);
             Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
             
-            Work.WorkingCardCode.setText(Variables.code);
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);
@@ -88,6 +87,7 @@ public class Listener {
                     String komDoza = Converter.HexDozaForKolonka(eqHex); // Получили команду для старта
                     GasStation.TimerZaderzkaDoza(komDoza);
                     Work.SchetLitrov.setText("");
+                    Work.WorkingCardCode.setText(Variables.code);
                     Timers.ForceMajor();
                     /* Нужно проверить человеческий фактор дергания руки. Существует
                        возможность после поднятия пистолета, его мгновенное опускание.*/
