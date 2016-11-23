@@ -21,7 +21,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    private static final Double VER = 0.26;
+    public static final Double VER = 0.27;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;
@@ -59,8 +59,9 @@ public class Update {
                 }
             } catch (IOException ex) {
                 BSLoadingText.setText(authNOT);
-                SendMail.sendEmail(String.valueOf(ex), Text.authNOT + " " + DB.MODULENAME, false);
-                System.out.println(ex);
+                SendMail.sendEmail(String.valueOf(ex) + " - Не удалось скачать новую версию.", Text.authNOT + " " + DB.MODULENAME, false);
+                runnOldVer();
+                //System.out.println(ex);
             }
         } else {
             BSLoadingText.setText(tryConnInet);

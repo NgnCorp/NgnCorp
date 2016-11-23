@@ -22,7 +22,7 @@ public class GasStation {
 
     public static boolean PistolStatus = true;
     public static boolean TestInGSSignal = false;
-    public static boolean TestOutGSSignal = false;
+    public static boolean TestOutGSSignal = true;
 
     private static SerialPort KolonkaCOM3;
     static int komanda;
@@ -68,17 +68,20 @@ public class GasStation {
 
     public static void TimerKolonkaStart() {
         KolonkaStart = new Timer(600, (ActionEvent e) -> {
+            //System.out.println("Sent: " + TestInGSSignal + " Got: " + TestOutGSSignal);
             try {
                 TestInGSSignal = KolonkaCOM3.writeString("@10510045#");
                 komanda = 0;
-                if (!TestInGSSignal && !TestOutGSSignal) {
-                    Ngn.StatusBar(Paths.PISTOLOFF, 3);
-                    PistolStatus = false;
-                    KolonkaStart.stop();
-                    KolonkaStartNotWorks.restart();
-                } else {
+                if (TestOutGSSignal & TestInGSSignal) {
                     Ngn.StatusBar(Paths.PISTOLON, 3);
                     PistolStatus = true;
+                } else {
+                    Ngn.StatusBar(Paths.PISTOLOFF, 3);
+                    PistolStatus = false;
+                    if (!TestInGSSignal) {
+                        KolonkaStart.stop();
+                        KolonkaStartNotWorks.restart();
+                    }
                 }
                 TestOutGSSignal = false;
             } catch (SerialPortException ex) {
@@ -102,13 +105,13 @@ public class GasStation {
 
         @Override
         public void serialEvent(SerialPortEvent event) {
-            TestOutGSSignal = true;
             if (event.isRXCHAR() && event.getEventValue() != 0) {
                 String data = "";
                 String oneSymbol;
                 try {
                     String StartWork = KolonkaCOM3.readString(1);
                     if (StartWork.indexOf("@") == 0) {
+                        TestOutGSSignal = true;
                         // Get data //
                         do {
                             oneSymbol = KolonkaCOM3.readString(1);

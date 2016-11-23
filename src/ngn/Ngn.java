@@ -3,6 +3,7 @@ package ngn;
 import Preload.BackendTimers;
 import Preload.PortCheck;
 import Preload.Threads;
+import Preload.Update;
 import java.awt.Color;
 import java.awt.Dimension;
 import static java.awt.EventQueue.invokeLater;
@@ -96,7 +97,8 @@ public class Ngn extends JFrame {
         int iconW = 32;
         int iconH = 32;
         int Yposition = screenSize.height/5 - iconH;
-        //g.drawString("HELLO WORLD", 300, 10);
+        g.setColor(Color.WHITE);
+        g.drawString("Version: " + String.valueOf(Update.VER), marginL + 560, Yposition + 32);
         switch (position) {
             case 1: //internet
                 g.clearRect(marginL + 10, Yposition, iconW, iconH);
