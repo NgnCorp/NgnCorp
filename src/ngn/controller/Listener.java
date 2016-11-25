@@ -12,13 +12,13 @@ import ngn.view.Work;
  * @author Офис
  */
 public class Listener {
-
+    
     // DATA FOR CRITICAL REFILL'S END //
     public static String LitrsInput;
-    public static String CardCode;
+    public static String Code;
 
     public static void CardCodeAction(ActionEvent e) {
-        CardCode = Converter.DeleteSymbols(e.getActionCommand());
+        String CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10 && ReadWI.FindCardName(CardCode)) {
             Variables.cardCode = CardCode;
@@ -38,6 +38,7 @@ public class Listener {
             Variables.credit = Double.valueOf(ReadWI.PersonalInfo[14]);
             Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
             
+            Code = Variables.code;
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
             ChangePanel.FocusPassword(Pin.PinCode);
