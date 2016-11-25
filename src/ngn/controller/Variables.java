@@ -6,6 +6,7 @@ import javax.swing.JPasswordField;
 import ngn.view.BeforeStart;
 import ngn.view.Bye;
 import ngn.view.Card;
+import ngn.view.ChoseOil;
 import ngn.view.Info;
 import ngn.view.Litrs;
 import ngn.view.Load;
@@ -45,6 +46,7 @@ public class Variables {
         BeforeStart.BSLoadingPanel,
         Card.EnterCard,
         Pin.EnterPin,
+        ChoseOil.ChoseOil,
         Litrs.EnterLitrs,
         Work.Working,
         Wait.Waiting,

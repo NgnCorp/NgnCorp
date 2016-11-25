@@ -118,11 +118,12 @@ public class GasStation {
                             data += oneSymbol;
                         } while (!"#".equals(oneSymbol));
                         OtvetKolonki = StartWork + data;
+                        // Check data //
                         Integer dataLenghth = OtvetKolonki.length();
+                        String CorrectString = "@" + Converter.DeleteSymbols(new String(OtvetKolonki.toCharArray(), 1, dataLenghth - 1)) + "#";
+                        /*
                         String dataOffCrx = new String(OtvetKolonki.toCharArray(), 0, dataLenghth - 3);
                         String controlNumber = new String(OtvetKolonki.toCharArray(), dataLenghth - 3, 2);
-
-                        // Check data //
                         int decnum = dataOffCrx.length();
                         char[] decimal = new char[decnum];
                         int crc = 0;
@@ -131,7 +132,15 @@ public class GasStation {
                             crc ^= decimal[col]; // CRC (контрольная сумма)
                         }
                         String pihex = Integer.toHexString(crc);
+                        System.out.println("WRONG: " + OtvetKolonki);
                         if (pihex.equals(controlNumber)) {
+                        } else {
+                            //System.out.println("Сбойный пакет: " + OtvetKolonki);
+                            //SendMail.sendEmail("Сбойный пакет: " + OtvetKolonki, "Gas Station error! " + DB.MODULENAME, false);
+                        }
+                            System.out.println("Correct: " + OtvetKolonki);
+                         */
+                        if (CorrectString.equals(OtvetKolonki)) {
                             if (komanda == 0) {
                                 switch (OtvetKolonki.indexOf("#")) {
                                     case 11:
@@ -170,9 +179,6 @@ public class GasStation {
                                     System.out.println(ex);
                                 }
                             }
-                        } else {
-                            //System.out.println("Сбойный пакет: " + OtvetKolonki);
-                            //SendMail.sendEmail("Сбойный пакет: " + OtvetKolonki, "Gas Station error! " + DB.MODULENAME, false);
                         }
                     }
                 } catch (SerialPortException ex) {

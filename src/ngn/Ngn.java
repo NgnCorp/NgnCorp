@@ -58,8 +58,8 @@ public class Ngn extends JFrame {
 
             // App Panels //
             Card CARD = new Card(NGN);
-            ChoseOil CHOSEOIL = new ChoseOil(NGN);
             Pin PIN = new Pin(NGN);
+            ChoseOil CHOSEOIL = new ChoseOil(NGN);
             Litrs LITRS = new Litrs(NGN);
             Work WORK = new Work(NGN);
             Wait WAIT = new Wait(NGN);
@@ -80,7 +80,7 @@ public class Ngn extends JFrame {
             ChangePanel.ShowPanel(Card.EnterCard);
             ChangePanel.FocusPassword(Card.CardCode);
 
-            // BAG WITH BS APPEARED OB CARDCODE PANEL //
+            // HIDE BS ON CARDCODE PANEL //
             BeforeStart.BSLoadingBar.setVisible(false);
             BeforeStart.BSLoadingText.setVisible(false);
         });

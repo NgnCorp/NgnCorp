@@ -5,10 +5,12 @@ import javax.swing.Timer;
 import ngn.Ngn;
 import static java.awt.EventQueue.invokeLater;
 import jssc.SerialPortException;
+import mail.SendMail;
 import static ngn.controller.ChangePanel.CheckVisibility;
 import ngn.controller.CmdReload;
 import ngn.controller.KeyPad;
 import ngn.controller.ReadWI;
+import ngn.model.DB;
 import ngn.text.Paths;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingPanel;
@@ -16,7 +18,6 @@ import static ngn.text.Text.LDBdone;
 import static ngn.text.Text.cantConnInet;
 import static ngn.text.Text.h1SettingsDone;
 import static ngn.view.BeforeStart.BSLoadingText;
-import ngn.view.Card;
 import static ngn.view.Footer.CardDate;
 
 /**
@@ -147,6 +148,7 @@ public class BackendTimers {
             if (CardDate.getText().contains(Text.TimeToReload)
                     && BackendTimers.InternetCheck
                     && CheckVisibility().equals("EnterCard")) {
+                SendMail.sendEmail(ReadWI.CounterReader(), "Данные Счетчика по " + DB.MODULENAME, true);
                 CmdReload.CmdReload();
             }
         });

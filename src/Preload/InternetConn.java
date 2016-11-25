@@ -34,7 +34,7 @@ public class InternetConn {
             Integer intStart = allText.indexOf("<title>");
             Integer intEnd = allText.indexOf("</title>", intStart);
             String google = allText.substring(intStart + 7, intEnd);
-            System.out.println(google);
+            //System.out.println(google);
             return "Google".equals(google);
         } catch (IOException e) {
             System.out.println("Ошибка проверки подключения к интернету: " + e);
