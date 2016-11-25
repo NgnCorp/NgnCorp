@@ -341,7 +341,7 @@ public class Timers {
             ChangePanel.ShowPanel(Bye.GoodBye);
         }
         if (!state) {
-            SendMail.sendEmail("Клиент: " + Variables.name + "\nВвел литров: " + Listener.LitrsInput + "\nНомер карты: " + Variables.code, Text.GSPortOff + " на АЗС  " + DB.MODULENAME, true);
+            SendMail.sendEmail("По номеру карты: " + Listener.CardCode + " Введено литров: " + Listener.LitrsInput, Text.GSPortOff + " на АЗС  " + DB.MODULENAME + " в момент заправки!", true);
             BackendTimers.FastReloadSystem();
         }
     }

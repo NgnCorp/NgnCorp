@@ -13,10 +13,12 @@ import ngn.view.Work;
  */
 public class Listener {
 
+    // DATA FOR CRITICAL REFILL'S END //
     public static String LitrsInput;
+    public static String CardCode;
 
     public static void CardCodeAction(ActionEvent e) {
-        String CardCode = Converter.DeleteSymbols(e.getActionCommand());
+        CardCode = Converter.DeleteSymbols(e.getActionCommand());
 
         if (CardCode.length() == 10 && ReadWI.FindCardName(CardCode)) {
             Variables.cardCode = CardCode;
