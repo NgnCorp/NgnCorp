@@ -106,6 +106,8 @@ public class Timers {
                     GSoffCount = 0;
                     WriteTransaction(false);
                 }
+            } else {
+                GSoffCount = 0;
             }
         });
 
