@@ -36,6 +36,8 @@ public class ToZero {
         Variables.credit = 0.00;
         Variables.customerBalance = 0.00;
         Variables.sdate = "";
+        
+        Timers.GSoffCount = 0;
     }
 
     public static void FocusOff() {

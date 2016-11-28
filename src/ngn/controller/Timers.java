@@ -42,6 +42,7 @@ public class Timers {
     private static final int SUCCESSTIME = 6000;
     private static final int WAIT_TIME = 60000;
     private static int SECONDSVALUE = 15;
+    public static int GSoffCount = 0;
 
     SimpleDateFormat ft = new SimpleDateFormat("HH:mm:ss");
 
@@ -100,7 +101,11 @@ public class Timers {
                 WriteTransaction(true);
             }
             if (!GasStation.PistolStatus) {
-                WriteTransaction(false);
+                GSoffCount++;
+                if (GSoffCount >= 5) {
+                    GSoffCount = 0;
+                    WriteTransaction(false);
+                }
             }
         });
 
