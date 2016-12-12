@@ -34,6 +34,8 @@ public class GasStation {
     static String WorkingCardCode; //MoneySchetLitrov
     static String OtvetPoDoze;
     static String OtvetKolonki;
+    
+    public static Double GScounter;
 
     public GasStation() {
         GasStationSettings();
@@ -61,7 +63,6 @@ public class GasStation {
                     KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
                 } else {
                     komanda = 2;
-                System.out.println("PINCODE ACTION");
                     KolonkaCOM3.writeString("@1054010140#"); // Check for GS counter                    
                 }
             } catch (SerialPortException ex) {
@@ -189,8 +190,7 @@ public class GasStation {
                                 String GScounterHex = new String(OtvetKolonki.toCharArray(), 9, 10);
                                 Integer Litrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 0, 8));
                                 Integer MiliLitrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 8, 2));
-                                Double GScounter = Double.valueOf(Litrs + "." + MiliLitrs);
-                                System.out.println(GScounter);
+                                GScounter = Double.valueOf(Litrs + "." + MiliLitrs);
                             }
                         }
                     }

@@ -56,6 +56,15 @@ public class WriteWI {
         }
     }
 
+    public static void CacheDataToZero() {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Paths.CACHEDATAPATH, false), "windows-1251"))) {
+            bw.write("");
+        } catch (IOException ex) {
+            SendMail.sendEmail(String.valueOf(ex), "Can't FillingDataToZero error! " + DB.MODULENAME, false);
+            System.out.println(ex);
+        }
+    }
+
     public static void CounterWriter(Double litriDouble) {
         double LitrsFromCounter = Double.parseDouble(ReadWI.CounterReader());
         try (final FileWriter writer = new FileWriter(Paths.COUNTERPATH, false)) {

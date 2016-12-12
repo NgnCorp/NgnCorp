@@ -150,7 +150,7 @@ public class ReadWI {
     }
     
     public static boolean readGSCache() {
-        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.GSCACHEPATH), "window-1251")) {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.CACHEDATAPATH), "windows-1251")) {
             data = isr.read();
             if (data > 0) {
                 Cache = new StringBuilder(data);
@@ -158,7 +158,7 @@ public class ReadWI {
                     Cache.append((char) data);
                     data = isr.read();
                 }
-                CacheData = String.valueOf(Cache).split("\\|");
+                CacheData = String.valueOf(Cache).split("=>");
                 return true;
             }
         } catch (IOException ex) {

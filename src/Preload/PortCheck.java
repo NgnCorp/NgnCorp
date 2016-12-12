@@ -1,6 +1,7 @@
 package Preload;
 
 import static Preload.Update.CheckLocalDB;
+import java.util.Locale;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
@@ -8,6 +9,9 @@ import jssc.SerialPortException;
 import jssc.SerialPortList;
 import mail.SendMail;
 import ngn.Ngn;
+import ngn.controller.GasStation;
+import ngn.controller.ReadWI;
+import ngn.controller.WriteWI;
 import ngn.text.Paths;
 import ngn.text.Text;
 import static ngn.view.BeforeStart.BSLoadingText;
@@ -64,10 +68,13 @@ public class PortCheck {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
                 if (BackendTimers.InternetCheck) {
-                    Threads.LOCALDB();
-                    if(Update.CheckCacheData()) {
-                        
+                    if (Update.CheckCacheData()) {
+                        System.out.println(ReadWI.CacheData[4]);
+                        ReadWI.CacheData[4] = String.format(Locale.ENGLISH, "%.2f", GasStation.GScounter - Double.valueOf(ReadWI.CacheData[4]));
+                        WriteWI.Write(ReadWI.CacheData, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                        WriteWI.CacheDataToZero();
                     }
+                    Threads.LOCALDB();
                 } else if (CheckLocalDB()) {
                     BSLoadingText.setText(Text.LDBdone);
                 }
@@ -91,10 +98,10 @@ public class PortCheck {
             }
             if (port.equals("GS")) {
                 System.out.println("9600");
-                NumberOfSymbols = 12;
+                NumberOfSymbols = 19;
                 PortToCheck.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
                 PortToCheck.setEventsMask(SerialPort.MASK_RXCHAR);
-                PortToCheck.writeString("@10510045#");
+                PortToCheck.writeString("@1054010140#");
             }
         } catch (SerialPortException ex) {
             System.out.println(ex);
@@ -135,6 +142,9 @@ public class PortCheck {
                     if (data.contains("@")) {
                         GSPort = PN;
                         Ngn.StatusBar(Paths.PISTOLON, 3);
+                        Integer Litrs = Integer.decode("0x" + new String(data.toCharArray(), 9, 8));
+                        Integer MiliLitrs = Integer.decode("0x" + new String(data.toCharArray(), 17, 2));
+                        GasStation.GScounter = Double.valueOf(Litrs + "." + MiliLitrs);
                     }
                 } catch (SerialPortException ex) {
                     System.out.println(ex);

@@ -306,7 +306,11 @@ public class Timers {
         double litriDouble = Double.valueOf(Work.SchetLitrov.getText());
         double formatnewln = Double.valueOf(Variables.litrnum) - litriDouble;
         // NEWLN - Разница между литрами на карте и заправленными
-        Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f", litriDouble);
+        if (state) {
+            Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f", litriDouble);
+        } else {
+            Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f",GasStation.GScounter);
+        }
         Variables.newln = String.format(Locale.ENGLISH, "%.2f", formatnewln);
         // Date 
         java.util.Date udate = new java.util.Date();
