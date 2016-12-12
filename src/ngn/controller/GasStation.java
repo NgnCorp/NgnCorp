@@ -67,7 +67,7 @@ public class GasStation {
     }
 
     public static void TimerKolonkaStart() {
-        KolonkaStart = new Timer(600, (ActionEvent e) -> {
+        KolonkaStart = new Timer(800, (ActionEvent e) -> {
             //System.out.println("Sent: " + TestInGSSignal + " Got: " + TestOutGSSignal);
             try {
                 TestInGSSignal = KolonkaCOM3.writeString("@10510045#");
