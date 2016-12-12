@@ -329,25 +329,28 @@ public class Timers {
                     System.out.println("No Internet");
                 }
          */
-        if (Variables.cardCode.equals(Text.HFP)) {
-            ChangePanel.ShowPanel(Bye.GoodBye);
-            Litrs.LitrsInput.setText("");
-            Work.SchetLitrov.setText("");
-            Success();
-            GasStation.CustomerInfoToZero();
-            ToZero.CustomerInfo();
+        if (state) {
+            if (Variables.cardCode.equals(Text.HFP)) {
+                ChangePanel.ShowPanel(Bye.GoodBye);
+                Litrs.LitrsInput.setText("");
+                Work.SchetLitrov.setText("");
+                Success();
+                GasStation.CustomerInfoToZero();
+                ToZero.CustomerInfo();
+            } else {
+                WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
+                WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                LocalDB.WriteToLocalDB();// Записываем в LocalDB
+                Litrs.LitrsInput.setText("");
+                Work.SchetLitrov.setText("");
+                Success();
+                GasStation.CustomerInfoToZero();
+                ToZero.CustomerInfo();
+                ChangePanel.ShowPanel(Bye.GoodBye);
+            }
+        } else if (Variables.cardCode.equals(Text.HFP)) {
+            BackendTimers.FastReloadSystem();
         } else {
-            WriteWI.CounterWriter(litriDouble);// Записываем отданные литры в счетчик
-            WriteWI.Write(Transaction, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
-            LocalDB.WriteToLocalDB();// Записываем в LocalDB
-            Litrs.LitrsInput.setText("");
-            Work.SchetLitrov.setText("");
-            Success();
-            GasStation.CustomerInfoToZero();
-            ToZero.CustomerInfo();
-            ChangePanel.ShowPanel(Bye.GoodBye);
-        }
-        if (!state) {
             SendMail.sendEmail("По номеру карты: " + Listener.Code + " Введено литров: " + Listener.LitrsInput, Text.GSPortOff + " на АЗС  " + DB.MODULENAME + " в момент заправки!", true);
             BackendTimers.FastReloadSystem();
         }
