@@ -12,6 +12,7 @@ import java.util.Scanner;
 import mail.SendMail;
 import ngn.Ngn;
 import ngn.controller.ReadWI;
+import static ngn.controller.ReadWI.readGSCache;
 import ngn.model.DB;
 import ngn.text.Config;
 import ngn.text.Paths;
@@ -124,11 +125,11 @@ public class Update {
     public static boolean CheckCacheData() {
         File file = new File(Paths.CACHEDATAPATH);
         if (file.exists()) {
-            return true;
+            return readGSCache();
         } else {
             try {
                 if (file.createNewFile()) {
-                    return true;
+                    return false;
                 }
             } catch (IOException ex) {
                 SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.CACHEDATAPATH + " " + DB.MODULENAME, false);

@@ -65,7 +65,9 @@ public class PortCheck {
                 BSLoadingText.setText(Text.PortsON);
                 if (BackendTimers.InternetCheck) {
                     Threads.LOCALDB();
-                    Update.CheckCacheData();
+                    if(Update.CheckCacheData()) {
+                        
+                    }
                 } else if (CheckLocalDB()) {
                     BSLoadingText.setText(Text.LDBdone);
                 }

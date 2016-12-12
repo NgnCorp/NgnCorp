@@ -21,11 +21,13 @@ public class ReadWI {
     public static StringBuilder Content;
     public static StringBuilder LDB;
     public static StringBuilder SB;
+    public static StringBuilder Cache;
     public static int data;
     public static String CounterStart = "0.00";
     public static String[] CustomerInfo;
     public static String[] PersonalInfo;
     public static String[] Transactions;
+    public static String[] CacheData;
     public static File sourceFile = new File(Paths.LDBPATH);
     public static File outputFile = new File(Paths.CACHELDBPATH);
 
@@ -145,5 +147,23 @@ public class ReadWI {
             System.out.println(ex);
         }
         return CounterStart;
+    }
+    
+    public static boolean readGSCache() {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(Paths.GSCACHEPATH), "window-1251")) {
+            data = isr.read();
+            if (data > 0) {
+                Cache = new StringBuilder(data);
+                while (data != -1) {
+                    Cache.append((char) data);
+                    data = isr.read();
+                }
+                CacheData = String.valueOf(Cache).split("\\|");
+                return true;
+            }
+        } catch (IOException ex) {
+            SendMail.sendEmail(String.valueOf(ex), "Can't Read from Cache! " + DB.MODULENAME, false);
+        }
+        return false;
     }
 }

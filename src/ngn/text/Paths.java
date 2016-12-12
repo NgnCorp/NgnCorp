@@ -17,6 +17,7 @@ public class Paths {
     public static final String UPDATEPATH       = "C:\\NgnUpdater\\dist\\Unzip.exe";
     public static final String COUNTERPATH      = "C:\\NgnUpdater\\Counter.txt";
     public static final String CACHEDATAPATH    = "C:\\NgnUpdater\\CacheData.txt";
+    public static final String GSCACHEPATH      = "C:\\NgnUpdater\\GSCache.txt";
 
     //___________I M A G E S   P A T H___________//
     public static URL INETON;
