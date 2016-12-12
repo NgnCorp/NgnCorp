@@ -52,12 +52,18 @@ public class GasStation {
         }
     }
 
-    public static void TimerZaderzkaDoza(String komDoza) {
-        ZaderzkaDoza = new Timer(600, (ActionEvent e) -> {
+    public static void TimerZaderzkaDoza(String komDoza, boolean wait_case) {
+        ZaderzkaDoza = new Timer(800, (ActionEvent e) -> {
             try {
                 ZaderzkaDoza.stop();
-                komanda = 1;
-                KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
+                if (wait_case) {
+                    komanda = 1;
+                    KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
+                } else {
+                    komanda = 2;
+                System.out.println("PINCODE ACTION");
+                    KolonkaCOM3.writeString("@1054010140#"); // Check for GS counter                    
+                }
             } catch (SerialPortException ex) {
                 System.out.println(ex);
             }
@@ -178,6 +184,13 @@ public class GasStation {
                                     SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
                                     System.out.println(ex);
                                 }
+                            }
+                            if (komanda == 2) {
+                                String GScounterHex = new String(OtvetKolonki.toCharArray(), 9, 10);
+                                Integer Litrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 0, 8));
+                                Integer MiliLitrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 8, 2));
+                                Double GScounter = Double.valueOf(Litrs + "." + MiliLitrs);
+                                System.out.println(GScounter);
                             }
                         }
                     }

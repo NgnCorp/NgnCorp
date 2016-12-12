@@ -12,7 +12,7 @@ import ngn.view.Work;
  * @author Офис
  */
 public class Listener {
-    
+
     // DATA FOR CRITICAL REFILL'S END //
     public static String LitrsInput;
     public static String Code;
@@ -37,7 +37,7 @@ public class Listener {
             Variables.couponId = Integer.valueOf(ReadWI.PersonalInfo[13]);
             Variables.credit = Double.valueOf(ReadWI.PersonalInfo[14]);
             Variables.customerBalance = Double.valueOf(ReadWI.PersonalInfo[15]);
-            
+
             Code = Variables.code;
             Converter.chekLimit();
             ChangePanel.ShowPanel(Pin.EnterPin);
@@ -68,6 +68,7 @@ public class Listener {
                 }
             }
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
+            GasStation.TimerZaderzkaDoza("", false);
             ChangePanel.FocusLitrsInput();
         } else {
             Timers.WaitForClient();
@@ -88,7 +89,7 @@ public class Listener {
                     ChangePanel.ShowPanel(Work.Working);
                     Work.Working.requestFocusInWindow(); // Отображаем окно процесса заправки
                     String komDoza = Converter.HexDozaForKolonka(eqHex); // Получили команду для старта
-                    GasStation.TimerZaderzkaDoza(komDoza);
+                    GasStation.TimerZaderzkaDoza(komDoza, true);
                     Work.SchetLitrov.setText("");
                     Work.WorkingCardCode.setText(Variables.code);
                     Timers.ForceMajor();
