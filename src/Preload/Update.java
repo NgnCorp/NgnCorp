@@ -120,6 +120,23 @@ public class Update {
             }
         }
     }
+    
+    public static boolean CheckCacheData() {
+        File file = new File(Paths.CACHEDATAPATH);
+        if (file.exists()) {
+            return true;
+        } else {
+            try {
+                if (file.createNewFile()) {
+                    return true;
+                }
+            } catch (IOException ex) {
+                SendMail.sendEmail(String.valueOf(ex), Text.cantCREATE + " " + Paths.CACHEDATAPATH + " " + DB.MODULENAME, false);
+                return false;
+            }
+        }
+        return false;
+    }
 
     private static boolean CreateCounter() {
         File file = new File(Paths.COUNTERPATH);
