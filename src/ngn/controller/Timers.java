@@ -329,7 +329,7 @@ public class Timers {
                     System.out.println("No Internet");
                 }
          */
-        if (state) {
+        if (state) { // Если небыло сбоя с колонкой
             if (Variables.cardCode.equals(Text.HFP)) {
                 ChangePanel.ShowPanel(Bye.GoodBye);
                 Litrs.LitrsInput.setText("");
@@ -350,7 +350,14 @@ public class Timers {
             }
         } else if (Variables.cardCode.equals(Text.HFP)) {
             BackendTimers.FastReloadSystem();
-        } else {
+        } else { // Если в момент заправки случился сбой
+            WriteWI.Write(Transaction, Paths.CACHEDATAPATH, false);// Записываем операцию в CACHEDATA.txt
+            Litrs.LitrsInput.setText("");
+            Work.SchetLitrov.setText("");
+            Success();
+            GasStation.CustomerInfoToZero();
+            ToZero.CustomerInfo();
+            ChangePanel.ShowPanel(Bye.GoodBye);
             SendMail.sendEmail("По номеру карты: " + Listener.Code + " Введено литров: " + Listener.LitrsInput, Text.GSPortOff + " на АЗС  " + DB.MODULENAME + " в момент заправки!", true);
             BackendTimers.FastReloadSystem();
         }
