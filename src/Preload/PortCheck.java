@@ -69,7 +69,6 @@ public class PortCheck {
                 BSLoadingText.setText(Text.PortsON);
                 if (BackendTimers.InternetCheck) {
                     if (Update.CheckCacheData()) {
-                        System.out.println(ReadWI.CacheData[4]);
                         ReadWI.CacheData[4] = String.format(Locale.ENGLISH, "%.2f", GasStation.GScounter - Double.valueOf(ReadWI.CacheData[4]));
                         WriteWI.Write(ReadWI.CacheData, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
                         WriteWI.CacheDataToZero();
