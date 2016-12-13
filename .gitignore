@@ -67,3 +67,4 @@ $RECYCLE.BIN/
 /dist/
 nbproject/private/private.properties
 nbproject/private/private.xml
+src/ngn/text/Config.java
