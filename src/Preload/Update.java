@@ -55,6 +55,7 @@ public class Update {
                     }
                 }
                 if (!FileExist) {
+                    scan.close();
                     runnOldVer();
                 }
             } catch (IOException ex) {

@@ -67,15 +67,17 @@ public class PortCheck {
         if (GSPort != null) {
             if (KPPort != null) {
                 BSLoadingText.setText(Text.PortsON);
+                if (Update.CheckCacheData()) {
+                    ReadWI.CacheData[4] = String.format(Locale.ENGLISH, "%.2f", GasStation.GScounter - Double.valueOf(ReadWI.CacheData[4]));
+                    WriteWI.Write(ReadWI.CacheData, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
+                    WriteWI.CacheDataToZero();
+                }
                 if (BackendTimers.InternetCheck) {
-                    if (Update.CheckCacheData()) {
-                        ReadWI.CacheData[4] = String.format(Locale.ENGLISH, "%.2f", GasStation.GScounter - Double.valueOf(ReadWI.CacheData[4]));
-                        WriteWI.Write(ReadWI.CacheData, Paths.TRANSACTIONPATH, true);// Записываем операцию в FillingData.txt
-                        WriteWI.CacheDataToZero();
-                    }
                     Threads.LOCALDB();
                 } else if (CheckLocalDB()) {
                     BSLoadingText.setText(Text.LDBdone);
+                } else {
+                    BSLoadingText.setText(Text.LDBNotdone);                    
                 }
             } else {
                 BSLoadingText.setText(Text.KPPortOff);

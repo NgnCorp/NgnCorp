@@ -2,7 +2,6 @@ package ngn.controller;
 
 import Preload.PortCheck;
 import java.awt.event.ActionEvent;
-import java.util.Locale;
 import javax.swing.Timer;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -12,7 +11,6 @@ import mail.SendMail;
 import ngn.Ngn;
 import ngn.model.DB;
 import ngn.text.Paths;
-import ngn.view.Work;
 
 /**
  *
@@ -27,6 +25,7 @@ public class GasStation {
     private static SerialPort KolonkaCOM3;
     static int komanda;
     static Timer KolonkaStart;
+    static Timer Pusk;
     static Timer KolonkaStartNotWorks;
     static Timer ZaderzkaDoza;
     static String PolozheniePistoleta;
@@ -34,7 +33,7 @@ public class GasStation {
     static String WorkingCardCode; //MoneySchetLitrov
     static String OtvetPoDoze;
     static String OtvetKolonki;
-    
+
     public static Double GScounter;
 
     public GasStation() {
@@ -59,8 +58,8 @@ public class GasStation {
             try {
                 ZaderzkaDoza.stop();
                 if (wait_case) {
-                    komanda = 1;
                     KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
+                    Pusk.start();
                 } else {
                     komanda = 2;
                     KolonkaCOM3.writeString("@1054010140#"); // Check for GS counter                    
@@ -70,7 +69,18 @@ public class GasStation {
             }
         });
         KolonkaStart.stop();
-        ZaderzkaDoza.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"
+        ZaderzkaDoza.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"        
+
+        Pusk = new Timer(800, (ActionEvent e) -> {
+            try {
+                Pusk.stop();
+                KolonkaCOM3.writeString("@1047010142#");
+                TimerKolonkaStart();
+            } catch (SerialPortException ex) {
+                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
+                System.out.println(ex);
+            }
+        });
     }
 
     public static void TimerKolonkaStart() {
@@ -99,7 +109,7 @@ public class GasStation {
         });
         KolonkaStart.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"
 
-        KolonkaStartNotWorks = new Timer(1000, (ActionEvent e) -> {
+        KolonkaStartNotWorks = new Timer(800, (ActionEvent e) -> {
             GasStationSettings();
             if (KolonkaCOM3.isOpened()) {
                 KolonkaStart.restart();
@@ -168,22 +178,8 @@ public class GasStation {
                                         //MoneySchetLitrov = String.format(Locale.ENGLISH, "%.2f", Variables.customerPrice * litrbez);
                                         break;
                                     default:
-                                        komanda = 1;
+                                        SendMail.sendEmail(OtvetKolonki, "New GS command! " + DB.MODULENAME, false);
                                         break;
-                                }
-                            }
-                            if (komanda == 1) {
-                                try {
-                                    //OtvetPoDoze = KolonkaCOM3.readString(11);
-                                    if (OtvetKolonki.equals("@0144010141#")) {
-                                        KolonkaCOM3.writeString("@1047010142#"); //PUSK
-                                        TimerKolonkaStart();
-                                    } else {
-                                        //ZaderzkaDoza.restart();
-                                    }
-                                } catch (SerialPortException ex) {
-                                    SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
-                                    System.out.println(ex);
                                 }
                             }
                             if (komanda == 2) {
@@ -191,6 +187,7 @@ public class GasStation {
                                 Integer Litrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 0, 8));
                                 Integer MiliLitrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 8, 2));
                                 GScounter = Double.valueOf(Litrs + "." + MiliLitrs);
+                                TimerKolonkaStart();
                             }
                         }
                     }

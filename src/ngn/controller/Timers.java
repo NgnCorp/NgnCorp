@@ -93,7 +93,7 @@ public class Timers {
             }
         });
 
-        ForceMajor = new Timer(600, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
+        ForceMajor = new Timer(800, (ActionEvent e) -> { // Через секунду начало обработки процесса заправки
             Work.PolozheniePistoleta.setText(Text.rememberAboutPistol);
             Work.SchetLitrov.setText(GasStation.SchetLitrov);
             //Work.MoneySchetLitrov.setText(GasStation.MoneySchetLitrov);
@@ -300,7 +300,8 @@ public class Timers {
         GasStation.KomandaStop();
 
         ForceMajor.stop();
-        if (Work.SchetLitrov.getText().equals("")) { //Исправление бага "моментальное повешанье пистолета"
+        System.out.println("Text from SL: " + Work.SchetLitrov.getText());
+        if (Work.SchetLitrov.getText() == null || Work.SchetLitrov.getText().equals("")) { //Исправление бага "моментальное повешанье пистолета"
             Work.SchetLitrov.setText("0.0");
         }
         double litriDouble = Double.valueOf(Work.SchetLitrov.getText());
@@ -355,14 +356,14 @@ public class Timers {
         } else if (Variables.cardCode.equals(Text.HFP)) {
             BackendTimers.FastReloadSystem();
         } else { // Если в момент заправки случился сбой
-            WriteWI.Write(Transaction, Paths.CACHEDATAPATH, false);// Записываем операцию в CACHEDATA.txt
+            WriteWI.Write(Transaction, Paths.CACHEDATAPATH, false);// Записываем операцию в CacheData.txt
             Litrs.LitrsInput.setText("");
             Work.SchetLitrov.setText("");
             Success();
             GasStation.CustomerInfoToZero();
             ToZero.CustomerInfo();
             ChangePanel.ShowPanel(Bye.GoodBye);
-            SendMail.sendEmail("По номеру карты: " + Listener.Code + " Введено литров: " + Listener.LitrsInput, Text.GSPortOff + " на АЗС  " + DB.MODULENAME + " в момент заправки!", true);
+            SendMail.sendEmail("По номеру карты: " + Listener.Code + " Введено литров: " + Listener.LitrsInput, Text.GSPortOff + " на АЗС  " + DB.MODULENAME + " в момент заправки! " + CardDate.getText(), true);
             BackendTimers.FastReloadSystem();
         }
     }

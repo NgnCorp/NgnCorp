@@ -28,10 +28,13 @@ public class WriteWI {
                 counter++;
                 if (counter < Arr.length) {
                     bw.write(item + "=>");
+                } else if (item.endsWith("|")) {
+                    bw.write(item.substring(0, item.length() - 1));
                 } else {
                     bw.write(item);
                 }
             }
+            
             bw.write("|");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
