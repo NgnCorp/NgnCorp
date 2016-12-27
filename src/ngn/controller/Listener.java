@@ -1,5 +1,6 @@
 package ngn.controller;
 
+import Preload.BackendTimers;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
 import ngn.view.Litrs;
@@ -92,6 +93,7 @@ public class Listener {
                     GasStation.TimerZaderzkaDoza(komDoza, true);
                     Work.SchetLitrov.setText("");
                     Work.WorkingCardCode.setText(Variables.code);
+                    BackendTimers.InternetStatus.stop();
                     Timers.ForceMajor();
                     /* Нужно проверить человеческий фактор дергания руки. Существует
                        возможность после поднятия пистолета, его мгновенное опускание.*/

@@ -21,7 +21,7 @@ import static ngn.view.BeforeStart.BSLoadingText;
 
 public class Update {
 
-    public static final Double VER = 0.33;
+    public static final Double VER = 0.35;
 
     private static final String URL = Config.URL;
     private static final String USER = Config.USER;

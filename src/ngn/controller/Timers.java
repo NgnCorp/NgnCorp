@@ -298,6 +298,7 @@ public class Timers {
     public static void WriteTransaction(boolean state) {
 
         GasStation.KomandaStop();
+        BackendTimers.InternetStatus.restart();
 
         ForceMajor.stop();
         System.out.println("Text from SL: " + Work.SchetLitrov.getText());
