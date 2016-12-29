@@ -310,8 +310,9 @@ public class Timers {
         // NEWLN - Разница между литрами на карте и заправленными
         if (state) {
             Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f", litriDouble);
+            GasStation.GScounter += litriDouble;
         } else {
-            Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f",GasStation.GScounter);
+            Variables.leftlitr = String.format(Locale.ENGLISH, "%.2f", GasStation.GScounter);
         }
         Variables.newln = String.format(Locale.ENGLISH, "%.2f", formatnewln);
         // Date 

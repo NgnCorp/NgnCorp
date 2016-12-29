@@ -69,7 +69,6 @@ public class Listener {
                 }
             }
             ChangePanel.ShowPanel(Litrs.EnterLitrs);
-            GasStation.TimerZaderzkaDoza("", false);
             ChangePanel.FocusLitrsInput();
         } else {
             Timers.WaitForClient();
@@ -90,7 +89,7 @@ public class Listener {
                     ChangePanel.ShowPanel(Work.Working);
                     Work.Working.requestFocusInWindow(); // Отображаем окно процесса заправки
                     String komDoza = Converter.HexDozaForKolonka(eqHex); // Получили команду для старта
-                    GasStation.TimerZaderzkaDoza(komDoza, true);
+                    GasStation.TimerZaderzkaDoza(komDoza);
                     Work.SchetLitrov.setText("");
                     Work.WorkingCardCode.setText(Variables.code);
                     BackendTimers.InternetStatus.stop();

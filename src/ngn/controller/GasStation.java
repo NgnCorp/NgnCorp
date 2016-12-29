@@ -37,53 +37,6 @@ public class GasStation {
     public static Double GScounter;
 
     public GasStation() {
-        GasStationSettings();
-        TimerKolonkaStart();
-    }
-
-    public static void GasStationSettings() {
-        KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
-        try {
-            KolonkaCOM3.openPort();
-            KolonkaCOM3.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
-            KolonkaCOM3.setEventsMask(SerialPort.MASK_RXCHAR);
-            KolonkaCOM3.addEventListener(new EventListener());
-        } catch (SerialPortException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public static void TimerZaderzkaDoza(String komDoza, boolean wait_case) {
-        ZaderzkaDoza = new Timer(800, (ActionEvent e) -> {
-            try {
-                ZaderzkaDoza.stop();
-                if (wait_case) {
-                    KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
-                    Pusk.start();
-                } else {
-                    komanda = 2;
-                    KolonkaCOM3.writeString("@1054010140#"); // Check for GS counter                    
-                }
-            } catch (SerialPortException ex) {
-                System.out.println(ex);
-            }
-        });
-        KolonkaStart.stop();
-        ZaderzkaDoza.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"        
-
-        Pusk = new Timer(800, (ActionEvent e) -> {
-            try {
-                Pusk.stop();
-                KolonkaCOM3.writeString("@1047010142#");
-                TimerKolonkaStart();
-            } catch (SerialPortException ex) {
-                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
-                System.out.println(ex);
-            }
-        });
-    }
-
-    public static void TimerKolonkaStart() {
         KolonkaStart = new Timer(800, (ActionEvent e) -> {
             //System.out.println("Sent: " + TestInGSSignal + " Got: " + TestOutGSSignal);
             try {
@@ -107,7 +60,6 @@ public class GasStation {
                 System.out.println(ex);
             }
         });
-        KolonkaStart.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"
 
         KolonkaStartNotWorks = new Timer(800, (ActionEvent e) -> {
             GasStationSettings();
@@ -116,6 +68,49 @@ public class GasStation {
                 KolonkaStartNotWorks.stop();
             }
         });
+        GasStationSettings();
+        TimerKolonkaStart();
+    }
+
+    public static void GasStationSettings() {
+        KolonkaCOM3 = new SerialPort(PortCheck.GSPort);
+        try {
+            KolonkaCOM3.openPort();
+            KolonkaCOM3.setParams(SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_MARK);
+            KolonkaCOM3.setEventsMask(SerialPort.MASK_RXCHAR);
+            KolonkaCOM3.addEventListener(new EventListener());
+        } catch (SerialPortException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public static void TimerZaderzkaDoza(String komDoza) {
+        ZaderzkaDoza = new Timer(800, (ActionEvent e) -> {
+            try {
+                ZaderzkaDoza.stop();
+                KolonkaCOM3.writeString(komDoza); // Отправляем на колонку количество литров на отдачу
+                Pusk.start();
+            } catch (SerialPortException ex) {
+                System.out.println(ex);
+            }
+        });
+        KolonkaStart.stop();
+        ZaderzkaDoza.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"        
+
+        Pusk = new Timer(800, (ActionEvent e) -> {
+            try {
+                Pusk.stop();
+                KolonkaCOM3.writeString("@1047010142#");
+                TimerKolonkaStart();
+            } catch (SerialPortException ex) {
+                SendMail.sendEmail(String.valueOf(ex), "Gas Station error! " + DB.MODULENAME, false);
+                System.out.println(ex);
+            }
+        });
+    }
+
+    public static void TimerKolonkaStart() {
+        KolonkaStart.restart();  // Запуск команды "ЗАПРОС СОСТОЯНИЯ"
     }
 
     private static class EventListener implements SerialPortEventListener {
@@ -181,13 +176,6 @@ public class GasStation {
                                         SendMail.sendEmail(OtvetKolonki, "New GS command! " + DB.MODULENAME, false);
                                         break;
                                 }
-                            }
-                            if (komanda == 2) {
-                                String GScounterHex = new String(OtvetKolonki.toCharArray(), 9, 10);
-                                Integer Litrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 0, 8));
-                                Integer MiliLitrs = Integer.decode("0x" + new String(GScounterHex.toCharArray(), 8, 2));
-                                GScounter = Double.valueOf(Litrs + "." + MiliLitrs);
-                                TimerKolonkaStart();
                             }
                         }
                     }
