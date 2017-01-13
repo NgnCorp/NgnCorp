@@ -114,7 +114,7 @@ public class DB {
     public static boolean ClientTypeBalance(String QueryCardsHistory, String QueryCustomerReward) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            con = DriverManager.getConnection(URL, Config.SetProp());
             PreparedStatement pst1 = con.prepareStatement(QueryCardsHistory);
             PreparedStatement pst2 = con.prepareStatement(QueryCustomerReward);
             pst1.executeUpdate();
@@ -130,7 +130,7 @@ public class DB {
     public static boolean ClientTypeCardBalance(String QueryCouponInsert) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            con = DriverManager.getConnection(URL, Config.SetProp());
             PreparedStatement pst3 = con.prepareStatement(QueryCouponInsert);
             pst3.executeUpdate();
             con.setAutoCommit(true);
